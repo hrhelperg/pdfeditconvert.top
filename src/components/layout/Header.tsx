@@ -29,20 +29,24 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 bg-[--color-surface]/85 backdrop-blur border-b border-[--color-border]">
+    <header className="sticky top-0 z-40 bg-[--color-surface]/90 backdrop-blur border-b border-[--color-border]">
+      {/* Red brand accent stripe */}
+      <div aria-hidden className="h-[3px] w-full bg-[var(--gradient-brand)]" />
       <Container className="flex items-center justify-between h-16">
         <Link
           href="/"
           className="flex items-center gap-2.5"
           aria-label="PDF Editor home"
         >
-          <span
-            aria-hidden
-            className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[--color-brand] text-white text-[10px] font-bold leading-none tracking-tight"
-          >
-            PDF
-          </span>
-          <span className="text-lg font-bold tracking-tight">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/pdf-editor-mark.svg"
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-lg"
+          />
+          <span className="text-lg font-extrabold tracking-tight">
             <span className="text-[--color-brand]">PDF</span>
             <span className="text-[--color-ink]"> Editor</span>
           </span>

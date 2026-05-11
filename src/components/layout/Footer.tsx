@@ -31,6 +31,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-[--color-ink] text-white">
+      <div aria-hidden className="h-[3px] w-full bg-[var(--gradient-brand)]" />
       <Container className="py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div className="col-span-2">

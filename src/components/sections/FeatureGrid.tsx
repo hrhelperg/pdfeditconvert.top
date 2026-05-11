@@ -4,10 +4,11 @@ import * as Icons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { FeatureItem } from "@/types/content";
 
-function Icon({ name }: { name: string }) {
+function Icon({ name, variant = "outline" }: { name: string; variant?: "outline" | "solid" }) {
   const iconMap = Icons as unknown as Record<string, LucideIcon>;
   const Comp = iconMap[name] ?? iconMap.Sparkles ?? iconMap.Star;
-  return <Comp className="h-6 w-6 text-[--color-brand]" aria-hidden />;
+  const color = variant === "solid" ? "text-white" : "text-[--color-brand]";
+  return <Comp className={`h-6 w-6 ${color}`} aria-hidden />;
 }
 
 export function FeatureGrid({
@@ -47,10 +48,13 @@ export function FeatureGrid({
           {items.map((f) => (
             <li
               key={f.title}
-              className="rounded-2xl bg-[--color-surface] border border-[--color-border] p-6 shadow-[var(--shadow-card)]"
+              className="group rounded-2xl bg-[--color-surface] border border-[--color-border] p-6 shadow-[var(--shadow-card)] hover:border-[--color-brand]/30 hover:shadow-[var(--shadow-card-hover)] transition-all duration-200"
             >
-              <div className="flex items-center justify-center h-10 w-10 rounded-xl bg-[--color-brand-soft] mb-4">
-                <Icon name={f.icon} />
+              <div
+                className="flex items-center justify-center h-12 w-12 rounded-xl mb-5 text-white shadow-[var(--shadow-brand)]"
+                style={{ background: "var(--gradient-brand)" }}
+              >
+                <Icon name={f.icon} variant="solid" />
               </div>
               <h3 className="text-lg font-semibold text-[--color-ink]">
                 {f.title}

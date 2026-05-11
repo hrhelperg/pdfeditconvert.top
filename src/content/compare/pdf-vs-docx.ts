@@ -7,7 +7,8 @@ const content: CompareContent = {
     "Compare PDF and DOCX across editability, fidelity, signing, security and sharing. Pick the right format for the job.",
   intro: [
     "PDF and DOCX are the two formats most documents end up in. Both have a job to do — and choosing the right one for any given task avoids most of the formatting and sharing headaches people associate with documents in general.",
-    "This comparison is practical, not academic. Each row reflects how the two formats behave in real workflows, not how they're specified in standards documents.",
+    "This comparison is practical, not academic. Each row reflects how the two formats behave in real-world workflows, not how they're specified in standards documents. We focus on the things you'll notice within the first month of using either format heavily.",
+    "Short version: PDF wins when the document is finished, needs to look identical for the reader, or contains a signature. DOCX wins when the document is a working draft, multiple people are reviewing it, or you'll want to repurpose content elsewhere. Most documents end up touching both formats at different stages of their life.",
   ],
   leftLabel: "PDF",
   rightLabel: "DOCX",

@@ -7,6 +7,7 @@ const content: UseCaseContent = {
     "Workflows freelancers love: proposals, signed agreements, and invoices, all from a phone.",
   intro: [
     "Freelancers handle most business operations on a phone. There's no office, no IT department, no shared printer. The same PDF workflow that takes a corporate team three apps and an e-signature subscription often needs to happen in one app, fast, between billable hours.",
+    "Every minute spent fighting tooling is a minute not spent on work that bills. A PDF editor that just works — without uploads, without account creation, without monthly fees for a tool used twice a week — is one of those quiet investments that pays back over months.",
     "These are the specific operations that make the freelancer lifestyle viable from a phone — fast, private, and without subscription overhead.",
   ],
   workflows: [

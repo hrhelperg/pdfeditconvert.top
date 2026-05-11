@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" role="img" aria-label="PDF Editor logo">
+  <!-- Document (light gray, behind right side) -->
+  <g>
+    <path d="M132 24 H210 L236 50 V172 a8 8 0 0 1 -8 8 H132 a8 8 0 0 1 -8 -8 V32 a8 8 0 0 1 8 -8 Z"
+          fill="#F1F5F9" stroke="#E5E7EB" stroke-width="2"/>
+    <path d="M210 24 L236 50 H218 a8 8 0 0 1 -8 -8 Z" fill="#E5E7EB"/>
+    <rect x="144" y="62" width="36" height="6" rx="3" fill="#E50914"/>
+    <rect x="144" y="84" width="80" height="5" rx="2.5" fill="#CBD5E1"/>
+    <rect x="144" y="100" width="74" height="5" rx="2.5" fill="#CBD5E1"/>
+    <rect x="144" y="116" width="66" height="5" rx="2.5" fill="#CBD5E1"/>
+    <rect x="144" y="132" width="50" height="5" rx="2.5" fill="#CBD5E1"/>
+  </g>
+  <!-- Pencil over top-right of document -->
+  <g transform="translate(196 18) rotate(35)">
+    <rect x="-7" y="0" width="14" height="46" rx="3" fill="#E50914"/>
+    <rect x="-7" y="0" width="14" height="6" rx="2" fill="#B30710"/>
+    <path d="M -7 46 L 0 60 L 7 46 Z" fill="#0B1220"/>
+  </g>
+  <!-- Red rounded square mark (foreground left) -->
+  <g>
+    <rect x="14" y="22" width="124" height="152" rx="22" fill="#E50914"/>
+    <text x="76" y="96" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">PDF</text>
+    <text x="76" y="134" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" letter-spacing="2.2">EDITOR</text>
+  </g>
+</svg>

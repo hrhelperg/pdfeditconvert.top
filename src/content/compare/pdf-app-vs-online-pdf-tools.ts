@@ -7,7 +7,8 @@ const content: CompareContent = {
     "Native PDF apps vs browser-based tools: speed, privacy, and offline access compared.",
   intro: [
     "There are two ways to work with PDFs from a phone or laptop: install a native app or use one of the many browser-based PDF tools. Both options work — but the trade-offs are very different, and they matter most for sensitive documents.",
-    "This comparison covers speed, privacy, offline access, cost, and the kinds of files each option handles well.",
+    "Browser-based tools win on convenience: one click and you're working. Native apps win on speed, privacy, and offline access. For one-off conversions of public documents, browser tools are fine. For everyday document work — especially contracts, IDs, and client files — native is the better default.",
+    "This comparison covers speed, privacy, offline access, cost, and the kinds of files each option handles well so you can pick deliberately rather than landing wherever your first Google result took you.",
   ],
   leftLabel: "Native PDF App",
   rightLabel: "Online PDF Tool",

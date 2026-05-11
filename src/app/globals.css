@@ -4,7 +4,9 @@
   /* Brand palette */
   --color-brand: #E50914;
   --color-brand-2: #EF1D26;
-  --color-brand-soft: #FEE2E2;
+  --color-brand-soft: #FEF2F2;
+  --color-brand-tint: #FFE4E6;
+  --color-brand-dark: #B30710;
 
   /* Neutral */
   --color-ink: #0B1220;
@@ -21,11 +23,17 @@
 
   /* Shadow */
   --shadow-card: 0 1px 2px rgba(11, 18, 32, 0.04), 0 1px 3px rgba(11, 18, 32, 0.06);
-  --shadow-card-hover: 0 4px 12px rgba(229, 9, 20, 0.08), 0 2px 6px rgba(11, 18, 32, 0.06);
-  --shadow-elevated: 0 12px 32px rgba(11, 18, 32, 0.08);
+  --shadow-card-hover: 0 8px 20px rgba(229, 9, 20, 0.10), 0 2px 6px rgba(11, 18, 32, 0.06);
+  --shadow-elevated: 0 16px 40px rgba(11, 18, 32, 0.10);
+  --shadow-brand: 0 12px 30px rgba(229, 9, 20, 0.22);
 
   /* Container */
   --container-max: 1152px;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #E50914 0%, #EF1D26 100%);
+  --gradient-brand-soft: linear-gradient(180deg, #FEF2F2 0%, #FFFFFF 70%);
+  --gradient-brand-deep: linear-gradient(135deg, #B30710 0%, #E50914 55%, #EF1D26 100%);
 }
 
 :root {
@@ -109,3 +117,26 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* Decorative red accent stripe (used in section dividers) */
+.brand-stripe {
+  height: 3px;
+  width: 56px;
+  border-radius: 999px;
+  background: var(--gradient-brand);
+}
+
+/* Subtle red glow ring for emphasized cards */
+.brand-ring-soft {
+  box-shadow: 0 0 0 1px rgba(229, 9, 20, 0.12);
+}
+
+/* Article callout */
+.callout {
+  border-left: 4px solid var(--color-brand);
+  background: var(--color-brand-soft);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.callout > p:last-child { margin-bottom: 0; }

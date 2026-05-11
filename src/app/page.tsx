@@ -78,6 +78,7 @@ export default function HomePage() {
         lead={`${SITE.tagline}. Scan paper, sign contracts, compress files and convert formats — all from a single app on iOS and Android.`}
         secondaryHref="/guides"
         secondaryLabel="Read the guides"
+        showLockup
       />
 
       <Section>
@@ -90,9 +91,12 @@ export default function HomePage() {
               { icon: ScanLine, label: "Scan" },
               { icon: LayoutGrid, label: "Organize" },
             ].map(({ icon: Icon, label }) => (
-              <li key={label} className="flex flex-col items-center gap-2.5">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[--color-brand-soft]">
-                  <Icon className="h-6 w-6 text-[--color-brand]" aria-hidden />
+              <li key={label} className="flex flex-col items-center gap-3">
+                <span
+                  className="inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-[var(--shadow-brand)]"
+                  style={{ background: "var(--gradient-brand)" }}
+                >
+                  <Icon className="h-7 w-7" aria-hidden />
                 </span>
                 <span className="font-semibold text-[--color-ink]">{label}</span>
               </li>

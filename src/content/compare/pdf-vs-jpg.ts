@@ -7,7 +7,8 @@ const content: CompareContent = {
     "PDF vs JPG: when to scan, when to photograph. Compare quality, file size, OCR and document workflow fit.",
   intro: [
     "JPG is a photo format. PDF is a document format. Despite that simple split, people regularly send JPGs of contracts and PDFs of single images — both choices that work but aren't ideal.",
-    "This comparison helps you pick the right format for receipts, IDs, contracts, screenshots, and product photos.",
+    "The misuse happens because phones default to JPG for everything from family photos to scanned receipts, and laptops default to PDF for any printable document. Without thinking about it, people end up with receipt JPGs in their gallery and image-heavy PDFs cluttering Downloads.",
+    "This comparison helps you pick the right format for the documents you actually send: receipts, IDs, contracts, screenshots, product photos, and the in-between cases where the right answer isn't obvious.",
   ],
   leftLabel: "PDF",
   rightLabel: "JPG",

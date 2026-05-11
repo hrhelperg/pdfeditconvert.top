@@ -15,7 +15,10 @@ export function Steps({
     <ol className="space-y-6">
       {items.map((s, i) => (
         <li key={s.title} className="flex gap-5">
-          <span className="flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-xl bg-[--color-brand] text-white font-bold">
+          <span
+            className="flex-shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-xl text-white font-bold shadow-[var(--shadow-brand)]"
+            style={{ background: "var(--gradient-brand)" }}
+          >
             {i + 1}
           </span>
           <div>

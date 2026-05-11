@@ -7,7 +7,8 @@ const content: UseCaseContent = {
     "Work with documents on the go: scan, sign, and share PDFs from any device, any location.",
   intro: [
     "Remote work decouples your office from your job. The downside is that the document operations that used to happen at a printer, scanner, or shared drive now have to happen on whatever device you're using — often on a train, in a café, or at a customer site. A native mobile PDF editor closes that gap.",
-    "These are the workflows that turn a phone into a portable document office — without relying on a specific desk, country, or internet connection.",
+    "The bar for any remote-work tool is that it works on patchy WiFi, works offline when needed, doesn't require uploading sensitive documents to a third party, and works on whatever device you happen to be using. PDF Editor meets all four because all the heavy operations run on-device.",
+    "These are the specific workflows that turn a phone into a portable document office — without relying on a specific desk, country, or internet connection.",
   ],
   workflows: [
     {

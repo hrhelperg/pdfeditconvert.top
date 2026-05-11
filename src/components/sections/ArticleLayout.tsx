@@ -16,7 +16,8 @@ export function ArticleLayout({
     <article className="pt-10 pb-4">
       <Container size="md">
         <Breadcrumbs items={crumbs} />
-        <h1 className="mt-5 text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-[--color-ink]">
+        <div className="brand-stripe mt-6" aria-hidden />
+        <h1 className="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1] text-[--color-ink]">
           {h1}
         </h1>
         {updated ? (
