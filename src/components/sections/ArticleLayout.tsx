@@ -1,0 +1,38 @@
+import { Container } from "@/components/primitives/Container";
+import { Breadcrumbs, type Crumb } from "@/components/seo/Breadcrumbs";
+
+export function ArticleLayout({
+  crumbs,
+  h1,
+  updated,
+  children,
+}: {
+  crumbs: Crumb[];
+  h1: string;
+  updated?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <article className="pt-10 pb-4">
+      <Container size="md">
+        <Breadcrumbs items={crumbs} />
+        <h1 className="mt-5 text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-[--color-ink]">
+          {h1}
+        </h1>
+        {updated ? (
+          <p className="mt-3 text-sm text-[--color-muted]">
+            Last updated{" "}
+            <time dateTime={updated}>
+              {new Date(updated).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </p>
+        ) : null}
+        <div className="mt-8">{children}</div>
+      </Container>
+    </article>
+  );
+}
