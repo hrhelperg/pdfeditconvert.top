@@ -1,3 +1,4 @@
+// ImageResponse uses Satori, which only understands inline styles.
 import { ImageResponse } from "next/og";
 
 export const alt = "PDF Editor — Edit, Convert, Sign and Scan PDFs";
@@ -37,8 +38,17 @@ export default async function OGImage() {
           >
             PDF
           </div>
-          <div style={{ fontSize: 48, fontWeight: 800, color: "#0B1220" }}>
-            <span style={{ color: "#E50914" }}>PDF</span> Editor
+          <div
+            style={{
+              fontSize: 48,
+              fontWeight: 800,
+              color: "#0B1220",
+              display: "flex",
+              gap: 14,
+            }}
+          >
+            <span style={{ color: "#E50914" }}>PDF</span>
+            <span>Editor</span>
           </div>
         </div>
         <div

@@ -57,13 +57,5 @@ export function rootMetadata(): Metadata {
     },
     description:
       "All-in-one PDF solution for work, study and life. Edit, convert, compress, merge, sign and scan PDFs from your phone.",
-    icons: {
-      icon: [
-        { url: "/favicon.ico", sizes: "any" },
-        { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
-        { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
-      ],
-      apple: "/apple-touch-icon.png",
-    },
   };
 }
