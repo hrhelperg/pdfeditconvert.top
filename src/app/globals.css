@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand palette */
+  --color-brand: #E50914;
+  --color-brand-2: #EF1D26;
+  --color-brand-soft: #FEE2E2;
+
+  /* Neutral */
+  --color-ink: #0B1220;
+  --color-muted: #4B5563;
+  --color-border: #E5E7EB;
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Shadow */
+  --shadow-card: 0 1px 2px rgba(11, 18, 32, 0.04), 0 1px 3px rgba(11, 18, 32, 0.06);
+  --shadow-card-hover: 0 4px 12px rgba(229, 9, 20, 0.08), 0 2px 6px rgba(11, 18, 32, 0.06);
+  --shadow-elevated: 0 12px 32px rgba(11, 18, 32, 0.08);
+
+  /* Container */
+  --container-max: 1152px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
 }
 
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: white;
+}
+
+/* Prose (article body styling) */
+.prose {
+  color: var(--color-ink);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+.prose h2 {
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+.prose h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+.prose p {
+  margin-bottom: 1.1rem;
+}
+.prose ul,
+.prose ol {
+  margin: 1rem 0 1.25rem;
+  padding-left: 1.25rem;
+}
+.prose ul {
+  list-style: disc;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose li {
+  margin-bottom: 0.4rem;
+}
+.prose a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+.prose a:hover {
+  color: var(--color-brand-2);
+}
+.prose strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.prose code {
+  background: var(--color-brand-soft);
+  color: var(--color-ink);
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
