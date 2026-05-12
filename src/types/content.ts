@@ -1,6 +1,7 @@
 export type RouteCategory =
   | "core"
   | "hub"
+  | "tool"
   | "guide"
   | "compare"
   | "use-case"
@@ -110,4 +111,31 @@ export interface UseCaseContent {
   workflows: UseCaseWorkflow[];
   appPitch: string;
   related: RelatedLink[];
+}
+
+export interface ToolUseCase {
+  title: string;
+  body: string;
+}
+
+export interface ToolLimitation {
+  title: string;
+  body: string;
+}
+
+export interface ToolContent {
+  slug: string;
+  hero: {
+    eyebrow: string;
+    h1: string;
+    highlight?: string;
+    lead: string;
+  };
+  privacyNote: string;
+  howTo: { heading: string; steps: StepItem[] };
+  useCases: { heading: string; items: ToolUseCase[] };
+  limitations: { heading: string; items: ToolLimitation[] };
+  related: RelatedLink[];
+  faq: FaqItem[];
+  appCta: { heading: string; sub: string };
 }

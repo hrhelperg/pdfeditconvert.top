@@ -43,19 +43,19 @@ export const ROUTES: RouteEntry[] = [
   },
   {
     path: "/merge-pdf",
-    title: "Merge PDF Files — Combine Multiple PDFs Into One",
+    title: "Merge PDF — Combine PDFs in Your Browser (Free, No Upload)",
     description:
-      "Combine PDF documents into a single file in seconds. Step-by-step mobile workflow with the PDF Editor app for iPhone and Android.",
-    category: "hub",
+      "Combine multiple PDFs into a single file directly in your browser. Free, no signup, no upload — your files never leave your device.",
+    category: "tool",
     priority: 0.9,
     changeFrequency: "monthly",
   },
   {
     path: "/split-pdf",
-    title: "Split PDF — Separate Pages Into New Documents",
+    title: "Split PDF — Extract Pages in Your Browser (Free, No Upload)",
     description:
-      "Split a PDF into individual pages or custom ranges. Quick guide to splitting PDFs on mobile with the PDF Editor app.",
-    category: "hub",
+      "Split a PDF by page range directly in your browser. Free, no signup, no upload — your files stay on your device.",
+    category: "tool",
     priority: 0.8,
     changeFrequency: "monthly",
   },
@@ -270,6 +270,53 @@ export const ROUTES: RouteEntry[] = [
       "Work with documents on the go: scan, sign and share PDFs from any device, any location.",
     category: "use-case",
     priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
+  // Tools (browser-based, free, no upload)
+  {
+    path: "/pdf-tools",
+    title: "Free PDF Tools — Browser-Based, No Upload Needed",
+    description:
+      "Free PDF tools that run entirely in your browser. Merge, split, rotate, watermark, convert images to PDF and PDFs to images — your files never leave your device.",
+    category: "tool",
+    priority: 0.9,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/image-to-pdf",
+    title: "Image to PDF — Convert JPG, PNG, WebP to PDF in Your Browser",
+    description:
+      "Combine JPG, PNG and WebP images into a single PDF directly in your browser. Free, no upload, no signup — files stay on your device.",
+    category: "tool",
+    priority: 0.9,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/rotate-pdf",
+    title: "Rotate PDF — Fix Page Orientation in Your Browser",
+    description:
+      "Rotate all or selected pages of a PDF by 90°, 180° or 270° directly in your browser. Free and private — files never leave your device.",
+    category: "tool",
+    priority: 0.8,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/pdf-to-images",
+    title: "PDF to Images — Export PDF Pages as PNG or JPG",
+    description:
+      "Turn any PDF into PNG or JPG images, page by page, in your browser. Free, no upload, no account — runs entirely on your device.",
+    category: "tool",
+    priority: 0.8,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/add-watermark-to-pdf",
+    title: "Add Watermark to PDF — Free, Private, In-Browser",
+    description:
+      "Add a text watermark to every page of a PDF directly in your browser. Free, no upload, no signup — files stay on your device.",
+    category: "tool",
+    priority: 0.8,
     changeFrequency: "monthly",
   },
 
