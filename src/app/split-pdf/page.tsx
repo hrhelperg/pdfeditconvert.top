@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { seo } from "@/lib/seo";
 import { getRoute } from "@/lib/routes";
-import { HubPage } from "@/components/sections/HubPage";
-import content from "@/content/hubs/split-pdf";
+import { ToolPage } from "@/components/sections/ToolPage";
+import { SplitPdfTool } from "@/components/tools/SplitPdfTool";
+import content from "@/content/tools/split-pdf";
 
 const route = getRoute("/split-pdf");
 export const metadata: Metadata = seo({
@@ -12,5 +13,5 @@ export const metadata: Metadata = seo({
 });
 
 export default function Page() {
-  return <HubPage content={content} />;
+  return <ToolPage content={content} toolSlot={<SplitPdfTool />} />;
 }
