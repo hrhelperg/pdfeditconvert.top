@@ -6,7 +6,6 @@ const PRODUCT = [
   { label: "PDF Editor", href: "/pdf-editor" },
   { label: "PDF Converter", href: "/pdf-converter" },
   { label: "Compress PDF", href: "/compress-pdf" },
-  { label: "Merge PDF", href: "/merge-pdf" },
   { label: "Sign PDF", href: "/sign-pdf" },
   { label: "Scan to PDF", href: "/scan-to-pdf" },
 ];
@@ -27,13 +26,23 @@ const COMPANY = [
   { label: "Sitemap", href: "/sitemap.xml" },
 ];
 
+const TOOLS = [
+  { label: "All free tools", href: "/pdf-tools" },
+  { label: "Image to PDF", href: "/image-to-pdf" },
+  { label: "Merge PDF", href: "/merge-pdf" },
+  { label: "Split PDF", href: "/split-pdf" },
+  { label: "Rotate PDF", href: "/rotate-pdf" },
+  { label: "PDF to images", href: "/pdf-to-images" },
+  { label: "Add watermark", href: "/add-watermark-to-pdf" },
+];
+
 export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-[--color-ink] text-white">
       <div aria-hidden className="h-[3px] w-full bg-[var(--gradient-brand)]" />
       <Container className="py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-10">
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
               <span
@@ -59,6 +68,7 @@ export function Footer() {
           <FooterCol title="Product" items={PRODUCT} />
           <FooterCol title="Learn" items={LEARN} />
           <FooterCol title="Company" items={COMPANY} />
+          <FooterCol title="Free tools" items={TOOLS} />
         </div>
 
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-white/60">

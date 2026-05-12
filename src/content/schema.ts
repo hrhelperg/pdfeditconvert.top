@@ -126,3 +126,26 @@ export function faqSchema(items: { q: string; a: string }[]) {
     })),
   };
 }
+
+export function webApplicationSchema({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name,
+    description,
+    url: `${SITE_URL}${path}`,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Any (web browser)",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    publisher: ORG,
+  };
+}

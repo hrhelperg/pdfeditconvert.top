@@ -77,8 +77,9 @@ const content: GuideContent = {
     },
   ],
   related: [
-    { label: "Merge PDF — full overview", path: "/merge-pdf" },
-    { label: "Split PDF — the reverse operation", path: "/split-pdf" },
+    { label: "Merge PDF — free, in your browser", path: "/merge-pdf" },
+    { label: "Split PDF — extract pages in your browser", path: "/split-pdf" },
+    { label: "All free PDF tools", path: "/pdf-tools" },
     {
       label: "How to compress a PDF after merging",
       path: "/guides/how-to-compress-pdf",
