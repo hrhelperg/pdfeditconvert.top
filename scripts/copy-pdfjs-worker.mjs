@@ -8,6 +8,14 @@ const src = resolve(root, "node_modules/pdfjs-dist/build/pdf.worker.min.mjs");
 const destDir = resolve(root, "public/pdfjs");
 const dest = resolve(destDir, "pdf.worker.min.mjs");
 
-await mkdir(destDir, { recursive: true });
-await copyFile(src, dest);
-console.log(`[copy-pdfjs-worker] ${src} → ${dest}`);
+try {
+  await mkdir(destDir, { recursive: true });
+  await copyFile(src, dest);
+  console.log(`[copy-pdfjs-worker] ${src} → ${dest}`);
+} catch (err) {
+  console.error(
+    `[copy-pdfjs-worker] failed to copy pdfjs worker from ${src} to ${dest}.\n` +
+      `Make sure pdfjs-dist is installed. Original error: ${(err instanceof Error ? err.message : String(err))}`,
+  );
+  process.exit(1);
+}
