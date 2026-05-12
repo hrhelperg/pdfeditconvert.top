@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { seo } from "@/lib/seo";
 import { getRoute } from "@/lib/routes";
 import { Container } from "@/components/primitives/Container";
@@ -29,13 +30,20 @@ const HUBS = [
   { label: "PDF Editor", href: "/pdf-editor", desc: "Edit text, images and pages." },
   { label: "PDF Converter", href: "/pdf-converter", desc: "Convert to Word, JPG, PNG and more." },
   { label: "Compress PDF", href: "/compress-pdf", desc: "Shrink files without losing quality." },
-  { label: "Merge PDF", href: "/merge-pdf", desc: "Combine multiple PDFs into one." },
-  { label: "Split PDF", href: "/split-pdf", desc: "Separate pages into new files." },
   { label: "Sign PDF", href: "/sign-pdf", desc: "Add a signature from your phone." },
   { label: "Scan to PDF", href: "/scan-to-pdf", desc: "Turn paper into clean PDFs." },
   { label: "PDF Security", href: "/pdf-security", desc: "Protect documents with a password." },
   { label: "PDF for Business", href: "/pdf-for-business", desc: "Contracts and invoices on the go." },
   { label: "PDF for Students", href: "/pdf-for-students", desc: "Notes, highlights and study guides." },
+];
+
+const TOOLS = [
+  { label: "Image to PDF", href: "/image-to-pdf", desc: "Combine JPG, PNG, WebP into one PDF." },
+  { label: "Merge PDF", href: "/merge-pdf", desc: "Combine PDFs into one document." },
+  { label: "Split PDF", href: "/split-pdf", desc: "Extract pages by range." },
+  { label: "Rotate PDF", href: "/rotate-pdf", desc: "Fix sideways pages." },
+  { label: "PDF to images", href: "/pdf-to-images", desc: "Export pages as PNG or JPG." },
+  { label: "Add watermark", href: "/add-watermark-to-pdf", desc: "Stamp text across every page." },
 ];
 
 const FEATURED_GUIDES = [
@@ -126,6 +134,46 @@ export default function HomePage() {
                   <span className="block mt-2 text-sm text-[--color-muted]">
                     {h.desc}
                   </span>
+                </CardLink>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[--color-brand] mb-3">
+              Free, in your browser
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[--color-ink]">
+              PDF tools that don&apos;t upload your files.
+            </h2>
+            <p className="mt-3 text-lg text-[--color-muted]">
+              Merge, split, rotate, watermark and convert PDFs without leaving the page.
+              Every tool runs locally in your browser — your files never touch our servers.
+            </p>
+            <div className="mt-5">
+              <Link
+                href="/pdf-tools"
+                className="text-sm font-semibold text-[--color-ink] hover:text-[--color-brand]"
+              >
+                See all free tools →
+              </Link>
+            </div>
+          </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {TOOLS.map((t) => (
+              <li key={t.href}>
+                <CardLink href={t.href}>
+                  <span className="text-xs font-bold uppercase tracking-wide text-[--color-brand]">
+                    Free tool
+                  </span>
+                  <span className="block mt-2 text-base font-semibold text-[--color-ink] group-hover:text-[--color-brand]">
+                    {t.label}
+                  </span>
+                  <span className="block mt-1 text-sm text-[--color-muted]">{t.desc}</span>
                 </CardLink>
               </li>
             ))}
