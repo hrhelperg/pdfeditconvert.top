@@ -9,6 +9,7 @@ import { ToolShell } from "@/components/tools/primitives/ToolShell";
 import { assertImage, MAX_FILES } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
+import { uuid } from "@/lib/tools/uuid";
 
 type Item = { id: string; file: File };
 
@@ -21,7 +22,7 @@ export function ImageToPdfTool() {
     setError(null);
     try {
       for (const f of files) assertImage(f);
-      const next = [...items, ...files.map((file) => ({ id: crypto.randomUUID(), file }))];
+      const next = [...items, ...files.map((file) => ({ id: uuid(), file }))];
       if (next.length > MAX_FILES) {
         throw new Error(`Add up to ${MAX_FILES} images at a time.`);
       }

@@ -21,7 +21,7 @@ export function assertPdf(file: File) {
 }
 
 export function assertImage(file: File) {
-  if (!IMAGE_TYPES.has(file.type)) {
+  if (!IMAGE_TYPES.has(file.type) && !/\.(jpe?g|png|webp)$/i.test(file.name)) {
     throw new Error(`"${file.name}" is not a supported image. Use JPG, PNG or WebP.`);
   }
   assertSize(file);
