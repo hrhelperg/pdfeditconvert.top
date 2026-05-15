@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { CheckCircle2, Download, RotateCcw } from "lucide-react";
 import { formatBytes } from "@/lib/tools/validate";
