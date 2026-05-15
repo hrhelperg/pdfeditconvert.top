@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MergePdfTool } from "@/components/tools/MergePdfTool";
 
@@ -35,7 +35,10 @@ describe("MergePdfTool", () => {
     ]);
     const moveUp = screen.getByRole("button", { name: /Move b\.pdf up/i });
     await userEvent.click(moveUp);
-    const items = screen.getAllByRole("listitem");
-    expect(items[0]).toHaveTextContent("b.pdf");
+    const lists = screen.getAllByRole("list");
+    // First list is the StepIndicator <ol>; second is the file <ul>.
+    const fileList = lists[lists.length - 1];
+    const fileItems = within(fileList).getAllByRole("listitem");
+    expect(fileItems[0]).toHaveTextContent("b.pdf");
   });
 });

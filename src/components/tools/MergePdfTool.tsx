@@ -86,7 +86,7 @@ export function MergePdfTool() {
       title="Merge PDFs"
       subtitle="Upload two or more PDF files and combine them into one document."
     >
-      <div className="mb-5" aria-hidden="true">
+      <div className="mb-5">
         <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
       </div>
 
