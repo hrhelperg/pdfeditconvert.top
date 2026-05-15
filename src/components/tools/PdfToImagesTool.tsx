@@ -6,9 +6,18 @@ import { FileChip } from "@/components/tools/primitives/FileChip";
 import { ProcessButton } from "@/components/tools/primitives/ProcessButton";
 import { ToolError } from "@/components/tools/primitives/ToolError";
 import { ToolShell } from "@/components/tools/primitives/ToolShell";
+import { StepIndicator } from "@/components/tools/primitives/StepIndicator";
+import { SuccessState } from "@/components/tools/primitives/SuccessState";
+import { ProcessingStatus } from "@/components/tools/primitives/ProcessingStatus";
+import { OptionGroup } from "@/components/tools/primitives/OptionGroup";
+import { OptionRange } from "@/components/tools/primitives/OptionRange";
+import { OptionField } from "@/components/tools/primitives/OptionField";
+import { useToolFlow } from "@/components/tools/primitives/useToolFlow";
+import { mapToolError } from "@/components/tools/primitives/errors";
 import { assertPdf } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfJs } from "@/lib/tools/pdfjs";
+import { parsePageRange } from "@/lib/tools/pageRange";
 
 type Format = "png" | "jpeg";
 
@@ -16,34 +25,47 @@ export function PdfToImagesTool() {
   const [file, setFile] = useState<File | null>(null);
   const [format, setFormat] = useState<Format>("png");
   const [scale, setScale] = useState(2);
-  const [busy, setBusy] = useState(false);
-  const [progress, setProgress] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [quality, setQuality] = useState(0.92);
+  const [range, setRange] = useState("");
+  const { state, setBusy, setError, setSuccess, reset: resetFlow } = useToolFlow();
+
+  const current: 0 | 1 | 2 =
+    state.status === "success" ? 2 : file ? 1 : 0;
 
   const onFiles = (files: File[]) => {
-    setError(null);
     const f = files[0];
     if (!f) return;
     try {
       assertPdf(f);
       setFile(f);
     } catch (e) {
-      setError((e as Error).message);
+      const m = mapToolError(e);
+      setError(m.message, m.hint);
     }
   };
 
+  const startOver = () => {
+    setFile(null);
+    setRange("");
+    resetFlow();
+  };
+
   const run = async () => {
-    setError(null);
     if (!file) return;
-    setBusy(true);
-    setProgress("Loading PDF…");
+    setBusy("Loading PDF…");
     try {
       const pdfjs = await loadPdfJs();
       const bytes = new Uint8Array(await file.arrayBuffer());
       const doc = await pdfjs.getDocument({ data: bytes }).promise;
       const base = file.name.replace(/\.pdf$/i, "");
-      for (let i = 1; i <= doc.numPages; i++) {
-        setProgress(`Rendering page ${i} of ${doc.numPages}…`);
+      const totalPages = doc.numPages;
+      const pages = range.trim()
+        ? parsePageRange(range, totalPages)
+        : Array.from({ length: totalPages }, (_, i) => i + 1);
+      let lastBlob: Blob | null = null;
+      let lastFilename = "";
+      for (const i of pages) {
+        setBusy(`Rendering page ${i} of ${totalPages}…`);
         const page = await doc.getPage(i);
         const viewport = page.getViewport({ scale });
         const canvas = document.createElement("canvas");
@@ -54,80 +76,130 @@ export function PdfToImagesTool() {
         await page.render({ canvasContext: ctx, viewport }).promise;
         const mime = format === "png" ? "image/png" : "image/jpeg";
         const ext = format === "png" ? "png" : "jpg";
-        const quality = format === "jpeg" ? 0.92 : undefined;
+        const q = format === "jpeg" ? quality : undefined;
         const blob: Blob = await new Promise((resolve, reject) =>
           canvas.toBlob(
             (b) => (b ? resolve(b) : reject(new Error("Encoding failed."))),
             mime,
-            quality,
+            q,
           ),
         );
-        downloadBlob(blob, `${base}-page-${String(i).padStart(2, "0")}.${ext}`, mime);
+        const filename = `${base}-page-${String(i).padStart(2, "0")}.${ext}`;
+        downloadBlob(blob, filename, mime);
+        lastBlob = blob;
+        lastFilename = filename;
         await new Promise((r) => setTimeout(r, 100));
       }
-      setProgress(`Done — ${doc.numPages} image${doc.numPages === 1 ? "" : "s"} downloaded.`);
+      if (lastBlob) {
+        setSuccess({
+          filename: `${pages.length} image${pages.length === 1 ? "" : "s"} downloaded (last: ${lastFilename})`,
+          sizeBytes: lastBlob.size,
+          blob: lastBlob,
+        });
+      }
     } catch (e) {
-      setError((e as Error).message || "Rendering failed. Try a smaller PDF or lower scale.");
-    } finally {
-      setBusy(false);
+      const m = mapToolError(e);
+      setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell title="PDF to images" subtitle="Render each page as a PNG or JPG.">
-      <DropZone
-        accept="application/pdf"
-        onFiles={onFiles}
-        label="Drop a PDF here, or click to choose"
-        hint="One PDF · up to 100 MB"
-      />
-      {file ? (
-        <ul className="mt-4 space-y-2">
-          <FileChip name={file.name} size={file.size} onRemove={() => setFile(null)} />
-        </ul>
-      ) : null}
-      <div className="mt-5 grid gap-4 md:grid-cols-2">
-        <div>
-          <label className="block text-sm font-semibold text-[--color-ink] mb-2">Format</label>
-          <div className="flex gap-2">
-            {(["png", "jpeg"] as Format[]).map((f) => (
-              <button
-                key={f}
-                type="button"
-                onClick={() => setFormat(f)}
-                className={`px-4 py-2 rounded-xl border font-semibold uppercase ${
-                  format === f
-                    ? "border-[--color-brand] bg-[--color-brand] text-white"
-                    : "border-[--color-border] bg-[--color-surface] text-[--color-ink]"
-                }`}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <label className="block text-sm font-semibold text-[--color-ink] mb-2">
-            Scale: {scale}×
-          </label>
-          <input
-            type="range"
-            min={1}
-            max={3}
-            step={0.5}
-            value={scale}
-            onChange={(e) => setScale(Number(e.currentTarget.value))}
-            className="w-full"
+    <ToolShell
+      title="PDF to images"
+      subtitle="Turn PDF pages into downloadable image files."
+    >
+      <div className="mb-5">
+        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+      </div>
+
+      {state.status === "success" ? (
+        <SuccessState
+          title="Your images are ready"
+          description="Each page downloaded as a separate file."
+          filename={state.success.filename}
+          sizeBytes={state.success.sizeBytes}
+          onReset={startOver}
+          related={[
+            { label: "Image to PDF — the reverse", path: "/image-to-pdf" },
+            { label: "Split a PDF", path: "/split-pdf" },
+          ]}
+        />
+      ) : (
+        <>
+          <DropZone
+            accept="application/pdf"
+            onFiles={onFiles}
+            label="Drop a PDF here, or click to choose"
+            hint="One PDF · up to 100 MB"
           />
-        </div>
-      </div>
-      <div className="mt-6 flex items-center gap-3">
-        <ProcessButton busy={busy} onClick={run} disabled={!file}>
-          {busy ? "Rendering…" : "Export images"}
-        </ProcessButton>
-        {progress ? <span className="text-sm text-[--color-muted]">{progress}</span> : null}
-      </div>
-      <ToolError message={error} />
+          {file ? (
+            <ul className="mt-4 space-y-2">
+              <FileChip name={file.name} size={file.size} onRemove={() => setFile(null)} />
+            </ul>
+          ) : null}
+
+          {file ? (
+            <div className="mt-5 grid gap-5 md:grid-cols-2">
+              <OptionGroup<Format>
+                label="Format"
+                value={format}
+                onChange={setFormat}
+                options={[
+                  { value: "png", label: "PNG" },
+                  { value: "jpeg", label: "JPEG" },
+                ]}
+              />
+              <OptionRange
+                label="Scale"
+                valueLabel={`${scale}×`}
+                min={1}
+                max={3}
+                step={0.5}
+                value={scale}
+                onChange={setScale}
+              />
+              {format === "jpeg" ? (
+                <OptionRange
+                  label="JPEG quality"
+                  valueLabel={`${Math.round(quality * 100)}%`}
+                  min={0.5}
+                  max={1}
+                  step={0.05}
+                  value={quality}
+                  onChange={setQuality}
+                />
+              ) : null}
+              <OptionField
+                label="Pages (optional)"
+                hint="Leave blank to render all pages. Examples: 1-3 or 2,4,6"
+                type="text"
+                value={range}
+                onChange={(e) => setRange(e.currentTarget.value)}
+                placeholder="All pages"
+                inputMode="numeric"
+              />
+            </div>
+          ) : null}
+
+          <div className="mt-6 flex items-center gap-3">
+            <ProcessButton
+              busy={state.status === "busy"}
+              onClick={run}
+              disabled={!file}
+            >
+              {state.status === "busy" ? "Rendering…" : "Export images"}
+            </ProcessButton>
+          </div>
+
+          <ProcessingStatus
+            message={state.status === "busy" ? state.message : null}
+          />
+          <ToolError
+            message={state.status === "error" ? state.error : null}
+            hint={state.status === "error" ? state.hint : undefined}
+          />
+        </>
+      )}
     </ToolShell>
   );
 }
