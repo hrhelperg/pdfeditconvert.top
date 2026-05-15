@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { BrandMark } from "@/components/primitives/BrandMark";
 
 export function ToolShell({
   title,
@@ -15,17 +16,18 @@ export function ToolShell({
   return (
     <div
       className={cn(
-        "rounded-3xl border border-[--color-border] bg-[--color-surface] shadow-[var(--shadow-card)] p-6 md:p-8",
+        "relative overflow-hidden rounded-3xl border border-[--color-border] bg-[--color-surface] shadow-[var(--shadow-card)] p-6 md:p-8",
         className,
       )}
     >
+      {/* Brand accent strip */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-1"
+        style={{ background: "var(--gradient-brand)" }}
+      />
       <div className="mb-6 flex items-start gap-4">
-        <div
-          aria-hidden
-          className="h-10 w-10 rounded-xl bg-[--color-brand] text-white grid place-items-center font-bold"
-        >
-          PDF
-        </div>
+        <BrandMark size={48} className="shrink-0" />
         <div>
           <h2 className="text-xl md:text-2xl font-bold text-[--color-ink] leading-tight">{title}</h2>
           {subtitle ? (

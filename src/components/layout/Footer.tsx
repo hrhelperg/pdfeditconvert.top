@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
 import { StoreButtons } from "@/components/sections/StoreButtons";
+import { BrandMark } from "@/components/primitives/BrandMark";
 
 const PRODUCT = [
   { label: "PDF Editor", href: "/pdf-editor" },
@@ -40,17 +41,48 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-[--color-ink] text-white">
-      <div aria-hidden className="h-[3px] w-full bg-[var(--gradient-brand)]" />
+      <div aria-hidden className="h-1 w-full bg-[var(--gradient-brand)]" />
+
+      {/* Get-the-app top panel */}
+      <div
+        className="relative overflow-hidden"
+        style={{ background: "var(--gradient-brand-deep)" }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+        <Container className="py-10 md:py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <BrandMark size={56} className="h-14 w-14" />
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/85">
+                PDF Editor app
+              </p>
+              <p className="mt-1 text-xl md:text-2xl font-extrabold tracking-tight">
+                Take PDF Editor with you.
+              </p>
+              <p className="mt-1 text-sm text-white/80">
+                Free on iPhone and Android. No account required.
+              </p>
+            </div>
+          </div>
+          <div className="md:shrink-0">
+            <StoreButtons size="lg" />
+          </div>
+        </Container>
+      </div>
+
       <Container className="py-16">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-10">
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
-              <span
-                aria-hidden
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[--color-brand] text-white text-[10px] font-bold leading-none"
-              >
-                PDF
-              </span>
+              <BrandMark size={32} className="h-8 w-8" />
               <span className="text-lg font-bold">
                 <span className="text-[--color-brand]">PDF</span>{" "}
                 <span className="text-white">Editor</span>
@@ -60,9 +92,6 @@ export function Footer() {
               All-in-One PDF Solution for Work, Study &amp; Life. Edit, convert,
               sign and scan PDFs from your phone.
             </p>
-            <div className="mt-6">
-              <StoreButtons size="md" />
-            </div>
           </div>
 
           <FooterCol title="Product" items={PRODUCT} />

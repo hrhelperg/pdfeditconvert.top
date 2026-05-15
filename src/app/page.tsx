@@ -89,24 +89,36 @@ export default function HomePage() {
         showLockup
       />
 
-      <Section>
+      <Section className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{ background: "var(--gradient-brand-soft)" }}
+        />
         <Container>
-          <ul className="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[--color-brand] text-center mb-6">
+            One app · five everyday tools
+          </p>
+          <ul className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6">
             {[
-              { icon: Pencil, label: "Edit" },
-              { icon: Files, label: "Convert" },
-              { icon: ShieldCheck, label: "Secure" },
-              { icon: ScanLine, label: "Scan" },
-              { icon: LayoutGrid, label: "Organize" },
-            ].map(({ icon: Icon, label }) => (
-              <li key={label} className="flex flex-col items-center gap-3">
+              { icon: Pencil, label: "Edit", sub: "Text, images, pages" },
+              { icon: Files, label: "Convert", sub: "Word, JPG, PNG" },
+              { icon: ShieldCheck, label: "Secure", sub: "Password protect" },
+              { icon: ScanLine, label: "Scan", sub: "Paper to PDF" },
+              { icon: LayoutGrid, label: "Organize", sub: "Reorder, split" },
+            ].map(({ icon: Icon, label, sub }) => (
+              <li
+                key={label}
+                className="flex flex-col items-center gap-3 rounded-2xl bg-[--color-surface] border border-[--color-border] shadow-[var(--shadow-card)] p-4 sm:p-5 hover:shadow-[var(--shadow-card-hover)] transition-shadow"
+              >
                 <span
                   className="inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-[var(--shadow-brand)]"
                   style={{ background: "var(--gradient-brand)" }}
                 >
                   <Icon className="h-7 w-7" aria-hidden />
                 </span>
-                <span className="font-semibold text-[--color-ink]">{label}</span>
+                <span className="font-bold text-[--color-ink]">{label}</span>
+                <span className="text-xs text-[--color-muted] text-center -mt-1.5">{sub}</span>
               </li>
             ))}
           </ul>
@@ -128,7 +140,14 @@ export default function HomePage() {
             {HUBS.map((h) => (
               <li key={h.href}>
                 <CardLink href={h.href}>
-                  <span className="text-base font-semibold text-[--color-ink] group-hover:text-[--color-brand]">
+                  <span
+                    aria-hidden
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-white text-[9px] font-extrabold tracking-wider mb-3"
+                    style={{ background: "var(--gradient-brand)" }}
+                  >
+                    PDF
+                  </span>
+                  <span className="block text-base font-semibold text-[--color-ink] group-hover:text-[--color-brand]">
                     {h.label}
                   </span>
                   <span className="block mt-2 text-sm text-[--color-muted]">
@@ -166,14 +185,26 @@ export default function HomePage() {
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {TOOLS.map((t) => (
               <li key={t.href}>
-                <CardLink href={t.href}>
-                  <span className="text-xs font-bold uppercase tracking-wide text-[--color-brand]">
+                <CardLink href={t.href} className="relative overflow-hidden p-7">
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 top-0 h-1"
+                    style={{ background: "var(--gradient-brand)" }}
+                  />
+                  <span
+                    aria-hidden
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-white text-[10px] font-extrabold tracking-wide shadow-[var(--shadow-brand)] mb-4"
+                    style={{ background: "var(--gradient-brand)" }}
+                  >
+                    PDF
+                  </span>
+                  <span className="block text-xs font-bold uppercase tracking-wide text-[--color-brand] mb-1">
                     Free tool
                   </span>
-                  <span className="block mt-2 text-base font-semibold text-[--color-ink] group-hover:text-[--color-brand]">
+                  <span className="block text-lg font-bold text-[--color-ink] group-hover:text-[--color-brand]">
                     {t.label}
                   </span>
-                  <span className="block mt-1 text-sm text-[--color-muted]">{t.desc}</span>
+                  <span className="block mt-1.5 text-sm text-[--color-muted]">{t.desc}</span>
                 </CardLink>
               </li>
             ))}
@@ -189,8 +220,13 @@ export default function HomePage() {
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {FEATURED_GUIDES.map((g) => (
               <li key={g.href}>
-                <CardLink href={g.href}>
-                  <span className="text-sm font-semibold uppercase tracking-wide text-[--color-brand]">
+                <CardLink href={g.href} className="relative overflow-hidden">
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 top-0 h-0.5"
+                    style={{ background: "var(--gradient-brand)" }}
+                  />
+                  <span className="text-xs font-bold uppercase tracking-wide text-[--color-brand]">
                     Guide
                   </span>
                   <span className="block mt-2 text-base font-semibold text-[--color-ink] group-hover:text-[--color-brand]">

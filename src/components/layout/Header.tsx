@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/primitives/Container";
 import { ButtonLink } from "@/components/primitives/Button";
+import { BrandMark } from "@/components/primitives/BrandMark";
 import { cn } from "@/lib/cn";
 
 const NAV = [
@@ -31,21 +32,14 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-[--color-surface]/90 backdrop-blur border-b border-[--color-border]">
       {/* Red brand accent stripe */}
-      <div aria-hidden className="h-[3px] w-full bg-[var(--gradient-brand)]" />
+      <div aria-hidden className="h-1 w-full bg-[var(--gradient-brand)]" />
       <Container className="flex items-center justify-between h-16">
         <Link
           href="/"
           className="flex items-center gap-2.5"
           aria-label="PDF Editor home"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/pdf-editor-mark.svg"
-            alt=""
-            width={36}
-            height={36}
-            className="h-9 w-9 rounded-lg"
-          />
+          <BrandMark size={36} className="h-9 w-9" />
           <span className="text-lg font-extrabold tracking-tight">
             <span className="text-[--color-brand]">PDF</span>
             <span className="text-[--color-ink]"> Editor</span>
