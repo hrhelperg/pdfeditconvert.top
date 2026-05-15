@@ -16,6 +16,13 @@ describe("mapToolError", () => {
     expect(r.hint).toMatch(/1-3|2,4,6/i);
   });
 
+  it("recognises an out-of-bounds page range message", () => {
+    const r = mapToolError(new Error("No pages matched. Use values between 1 and 3."));
+    expect(r.kind).toBe("invalid_range");
+    expect(r.message).toMatch(/page range/i);
+    expect(r.hint).toMatch(/1-3|2,4,6/i);
+  });
+
   it("recognises out-of-memory / large file errors", () => {
     const r = mapToolError(new RangeError("Maximum call stack size exceeded"));
     expect(r.kind).toBe("memory");

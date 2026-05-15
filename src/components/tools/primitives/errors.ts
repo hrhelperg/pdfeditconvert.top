@@ -16,7 +16,7 @@ export type MappedError = {
 export function mapToolError(err: unknown): MappedError {
   const raw = err instanceof Error ? err.message : "";
 
-  if (/password-?protected|corrupted/i.test(raw)) {
+  if (/password-?protected|looks corrupted|corrupted.*pdf|pdf.*corrupted|could not be opened/i.test(raw)) {
     return {
       kind: "unreadable",
       message: "This file could not be opened.",
