@@ -277,13 +277,15 @@ function layoutImage(
   boxH: number,
   fit: Fit,
 ): { w: number; h: number; x: number; y: number } {
-  const scale =
-    fit === "fit"
-      ? Math.min(boxW / imgW, boxH / imgH)
-      : Math.max(boxW / imgW, boxH / imgH);
-  const w = imgW * scale;
-  const h = imgH * scale;
-  return { w, h, x: (boxW - w) / 2, y: (boxH - h) / 2 };
+  if (fit === "fit") {
+    const scale = Math.min(boxW / imgW, boxH / imgH);
+    const w = imgW * scale;
+    const h = imgH * scale;
+    return { w, h, x: (boxW - w) / 2, y: (boxH - h) / 2 };
+  }
+  // fill: draw the image at the box dimensions, accepting horizontal or vertical
+  // crop of the source — never bleed past the media box.
+  return { w: boxW, h: boxH, x: 0, y: 0 };
 }
 
 async function webpToPng(file: File): Promise<Uint8Array> {

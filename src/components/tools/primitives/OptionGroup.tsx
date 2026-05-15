@@ -20,7 +20,7 @@ export function OptionGroup<T extends string>({
 }) {
   const groupId = useId();
   return (
-    <fieldset className={cn(className)} aria-labelledby={groupId}>
+    <fieldset className={cn(className)}>
       <legend
         id={groupId}
         className="block text-sm font-semibold text-[--color-ink] mb-2"
