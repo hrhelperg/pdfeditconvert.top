@@ -6,7 +6,7 @@ const content: ToolContent = {
     eyebrow: "Image to PDF",
     h1: "Turn JPG, PNG and WebP images into a single PDF.",
     highlight: "single PDF",
-    lead: "Drop your photos and screenshots in the order you want them, and download a clean, multi-page PDF — all without uploading anything.",
+    lead: "Upload JPG, PNG or WebP images and combine them into one PDF. Reorder pages, then download — your images stay on your device.",
   },
   privacyNote:
     "Your files are processed locally in your browser and are not uploaded to our servers. Nothing leaves your device.",

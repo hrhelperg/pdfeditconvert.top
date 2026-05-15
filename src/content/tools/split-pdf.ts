@@ -6,7 +6,7 @@ const content: ToolContent = {
     eyebrow: "Split PDF",
     h1: "Extract pages from a PDF — privately, in your browser.",
     highlight: "in your browser",
-    lead: "Pick any pages or ranges (e.g. 1-3,5,8-10) and download them as a new PDF. Your file never leaves your device.",
+    lead: "Upload a PDF and select the page range you want to export. Use ranges like 1-3,5,8-10 — your file stays on your device.",
   },
   privacyNote:
     "Your file is processed locally in your browser and is not uploaded to our servers. Nothing leaves your device.",
