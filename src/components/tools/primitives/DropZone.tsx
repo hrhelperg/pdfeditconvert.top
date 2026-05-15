@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState, type DragEvent } from "react";
+import { useId, useState, type DragEvent } from "react";
 import { cn } from "@/lib/cn";
 import { UploadCloud, ShieldCheck } from "lucide-react";
 
@@ -20,7 +20,6 @@ export function DropZone({
   privacyText?: string;
 }) {
   const [hover, setHover] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
   const inputId = useId();
   const hintId = useId();
   const privacyId = useId();
@@ -64,7 +63,6 @@ export function DropZone({
       </span>
       <input
         id={inputId}
-        ref={inputRef}
         type="file"
         accept={accept}
         multiple={multiple}
