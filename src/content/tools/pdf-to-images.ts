@@ -6,7 +6,7 @@ const content: ToolContent = {
     eyebrow: "PDF to images",
     h1: "Export each PDF page as a PNG or JPG.",
     highlight: "PNG or JPG",
-    lead: "Render every page of a PDF as a sharp image, ready to drop into a slide deck or a chat. Files stay on your device.",
+    lead: "Turn PDF pages into downloadable PNG or JPEG image files — rendered locally in your browser.",
   },
   privacyNote:
     "Your file is rendered locally in your browser and is not uploaded to our servers. Nothing leaves your device.",

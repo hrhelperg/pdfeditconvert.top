@@ -6,7 +6,7 @@ const content: ToolContent = {
     eyebrow: "Merge PDF",
     h1: "Combine PDFs into one document — in your browser.",
     highlight: "in your browser",
-    lead: "Stack scans, quotes, contracts and one-off pages into a single PDF without sending them to a server. Drag, drop, reorder, merge.",
+    lead: "Upload two or more PDF files and combine them into one document. Reorder before merging — your files stay on your device.",
   },
   privacyNote:
     "Your files are processed locally in your browser and are not uploaded to our servers. Nothing leaves your device.",

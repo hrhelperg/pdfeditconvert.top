@@ -6,7 +6,7 @@ const content: ToolContent = {
     eyebrow: "Add watermark",
     h1: "Add a text watermark to every page of a PDF.",
     highlight: "every page",
-    lead: "Stamp CONFIDENTIAL, DRAFT, or your own text across every page of a PDF — diagonally and translucently, just like you'd want.",
+    lead: "Add a simple text watermark before sharing your PDF — choose position, opacity, font size and rotation.",
   },
   privacyNote:
     "Your file is processed locally in your browser and is not uploaded to our servers. Nothing leaves your device.",

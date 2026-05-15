@@ -6,7 +6,7 @@ const content: ToolContent = {
     eyebrow: "Rotate PDF",
     h1: "Fix sideways PDF pages — in your browser.",
     highlight: "in your browser",
-    lead: "Rotate every page by 90°, 180° or 270°, or pick specific pages. Your file never leaves your device.",
+    lead: "Rotate all pages or selected pages, then download a corrected PDF — all in your browser.",
   },
   privacyNote:
     "Your file is processed locally in your browser and is not uploaded to our servers. Nothing leaves your device.",
