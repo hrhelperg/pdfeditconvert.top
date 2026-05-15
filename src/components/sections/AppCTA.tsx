@@ -1,6 +1,7 @@
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { StoreButtons } from "@/components/sections/StoreButtons";
+import { BrandMark } from "@/components/primitives/BrandMark";
 
 type Variant = "hero" | "inline" | "final";
 
@@ -16,8 +17,9 @@ export function AppCTA({
   if (variant === "inline") {
     return (
       <div className="my-10 rounded-2xl border-l-4 border-l-[--color-brand] border-y border-r border-[--color-border] bg-[--color-brand-soft] p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5 shadow-[var(--shadow-card)]">
+        <BrandMark size={48} className="h-12 w-12 shrink-0" />
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-[--color-ink]">{heading}</h3>
+          <h3 className="text-lg md:text-xl font-bold text-[--color-ink]">{heading}</h3>
           {sub ? <p className="text-[--color-muted] mt-1">{sub}</p> : null}
         </div>
         <StoreButtons size="md" />
