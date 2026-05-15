@@ -30,8 +30,13 @@ export function SuccessState({
     <div
       role="status"
       aria-live="polite"
-      className="rounded-2xl border border-[--color-border] bg-[--color-brand-soft] p-5 md:p-6"
+      className="relative overflow-hidden rounded-2xl border border-[--color-border] bg-[--color-brand-soft] p-5 md:p-6"
     >
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-1"
+        style={{ background: "var(--gradient-brand)" }}
+      />
       <div className="flex items-start gap-3">
         <CheckCircle2 className="h-6 w-6 text-[--color-brand] shrink-0 mt-0.5" aria-hidden />
         <div className="min-w-0 flex-1">

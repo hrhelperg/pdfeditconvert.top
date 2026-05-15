@@ -29,16 +29,21 @@ export function StepIndicator({
             <span
               aria-hidden
               className={cn(
-                "h-6 w-6 sm:h-7 sm:w-7 grid place-items-center rounded-full font-bold text-[11px] sm:text-xs shrink-0",
+                "h-8 w-8 sm:h-9 sm:w-9 grid place-items-center rounded-full font-bold text-xs sm:text-sm shrink-0 transition-colors",
                 state === "done" &&
-                  "bg-[--color-brand] text-white",
+                  "text-white shadow-[var(--shadow-brand)]",
                 state === "active" &&
-                  "bg-[--color-brand] text-white shadow-[var(--shadow-brand)]",
+                  "text-white shadow-[var(--shadow-brand)] ring-4 ring-[--color-brand-soft]",
                 state === "todo" &&
-                  "bg-[--color-bg] text-[--color-muted] border border-[--color-border]",
+                  "bg-[--color-surface] text-[--color-muted] border border-[--color-border]",
               )}
+              style={
+                state === "done" || state === "active"
+                  ? { background: "var(--gradient-brand)" }
+                  : undefined
+              }
             >
-              {state === "done" ? <Check className="h-3.5 w-3.5" /> : i + 1}
+              {state === "done" ? <Check className="h-4 w-4" /> : i + 1}
             </span>
             <span
               className={cn(
@@ -53,7 +58,12 @@ export function StepIndicator({
             {i < steps.length - 1 ? (
               <span
                 aria-hidden
-                className="hidden sm:block h-px w-6 md:w-10 bg-[--color-border]"
+                className={cn(
+                  "hidden sm:block h-px w-6 md:w-10 transition-colors",
+                  state === "done"
+                    ? "bg-[--color-brand]"
+                    : "bg-[--color-border]",
+                )}
               />
             ) : null}
           </li>

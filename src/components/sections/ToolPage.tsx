@@ -32,12 +32,22 @@ export function ToolPage({
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: crumbLabel }]} />
       </Container>
 
-      <Hero
-        eyebrow={content.hero.eyebrow}
-        h1={content.hero.h1}
-        highlight={content.hero.highlight}
-        lead={content.hero.lead}
-      />
+      <div
+        className="relative overflow-hidden"
+        style={{ background: "var(--gradient-brand-soft)" }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full opacity-30 blur-3xl"
+          style={{ background: "radial-gradient(closest-side, rgba(229,9,20,0.40), transparent)" }}
+        />
+        <Hero
+          eyebrow={content.hero.eyebrow}
+          h1={content.hero.h1}
+          highlight={content.hero.highlight}
+          lead={content.hero.lead}
+        />
+      </div>
 
       <Section>
         <Container size="md">{toolSlot}</Container>

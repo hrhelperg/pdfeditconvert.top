@@ -45,13 +45,13 @@ export function DropZone({
       onDragLeave={() => setHover(false)}
       onDrop={onDrop}
       className={cn(
-        "relative flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-6 py-10 cursor-pointer transition-colors text-center",
+        "relative flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-6 py-12 cursor-pointer transition-all text-center",
         hover
-          ? "border-[--color-brand] bg-[rgba(229,9,20,0.04)]"
-          : "border-[--color-border] hover:border-[--color-brand-2] hover:bg-[--color-bg]",
+          ? "border-[--color-brand] bg-[--color-brand-soft] shadow-[var(--shadow-brand)]"
+          : "border-[--color-border] bg-[--color-surface] hover:border-[--color-brand-2] hover:bg-[--color-brand-soft]",
       )}
     >
-      <UploadCloud className="h-8 w-8 text-[--color-brand]" aria-hidden />
+      <UploadCloud className="h-10 w-10 text-[--color-brand]" aria-hidden />
       <span className="font-semibold text-[--color-ink]">{label}</span>
       <span id={hintId} className="text-sm text-[--color-muted]">{hint}</span>
       <span
