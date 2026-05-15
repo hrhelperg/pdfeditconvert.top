@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, type DragEvent } from "react";
+import { useId, useRef, useState, type DragEvent } from "react";
 import { cn } from "@/lib/cn";
-import { UploadCloud } from "lucide-react";
+import { UploadCloud, ShieldCheck } from "lucide-react";
 
 export function DropZone({
   accept,
@@ -10,15 +10,20 @@ export function DropZone({
   onFiles,
   label,
   hint,
+  privacyText = "Files are processed locally in your browser.",
 }: {
   accept: string;
   multiple?: boolean;
   onFiles: (files: File[]) => void;
   label: string;
   hint: string;
+  privacyText?: string;
 }) {
   const [hover, setHover] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const inputId = useId();
+  const hintId = useId();
+  const privacyId = useId();
 
   const handle = (files: FileList | null) => {
     if (!files || files.length === 0) return;
@@ -33,6 +38,7 @@ export function DropZone({
 
   return (
     <label
+      htmlFor={inputId}
       onDragOver={(e) => {
         e.preventDefault();
         setHover(true);
@@ -40,7 +46,7 @@ export function DropZone({
       onDragLeave={() => setHover(false)}
       onDrop={onDrop}
       className={cn(
-        "relative flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-6 py-10 cursor-pointer transition-colors",
+        "relative flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-6 py-10 cursor-pointer transition-colors text-center",
         hover
           ? "border-[--color-brand] bg-[rgba(229,9,20,0.04)]"
           : "border-[--color-border] hover:border-[--color-brand-2] hover:bg-[--color-bg]",
@@ -48,12 +54,21 @@ export function DropZone({
     >
       <UploadCloud className="h-8 w-8 text-[--color-brand]" aria-hidden />
       <span className="font-semibold text-[--color-ink]">{label}</span>
-      <span className="text-sm text-[--color-muted]">{hint}</span>
+      <span id={hintId} className="text-sm text-[--color-muted]">{hint}</span>
+      <span
+        id={privacyId}
+        className="mt-1 inline-flex items-center gap-1.5 text-xs text-[--color-muted]"
+      >
+        <ShieldCheck className="h-3.5 w-3.5 text-[--color-brand]" aria-hidden />
+        {privacyText}
+      </span>
       <input
+        id={inputId}
         ref={inputRef}
         type="file"
         accept={accept}
         multiple={multiple}
+        aria-describedby={`${hintId} ${privacyId}`}
         onChange={(e) => handle(e.currentTarget.files)}
         className="sr-only"
       />
