@@ -27,7 +27,7 @@ export function OptionGroup<T extends string>({
       >
         {label}
       </legend>
-      <div className="flex flex-wrap gap-2">
+      <div role="radiogroup" aria-labelledby={groupId} className="flex flex-wrap gap-2">
         {options.map((opt) => {
           const active = opt.value === value;
           return (

@@ -33,7 +33,7 @@ export function OptionRange({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.currentTarget.value))}
-        className="w-full accent-[--color-brand]"
+        className="w-full min-h-[44px] accent-[--color-brand]"
       />
     </div>
   );
