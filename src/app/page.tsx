@@ -5,18 +5,25 @@ import { getRoute } from "@/lib/routes";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { CardLink } from "@/components/primitives/Card";
-import { Hero } from "@/components/sections/Hero";
 import { AppCTA } from "@/components/sections/AppCTA";
 import { FAQ } from "@/components/sections/FAQ";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
 import { softwareAppSchema, faqSchema } from "@/content/schema";
-import { SITE } from "@/content/site";
 import {
+  Check,
+  Image as ImageIcon,
+  Combine,
+  Scissors,
+  RotateCw,
+  Images,
+  Stamp,
   Pencil,
   Files,
   ShieldCheck,
   ScanLine,
   LayoutGrid,
+  type LucideIcon,
 } from "lucide-react";
 
 const route = getRoute("/");
@@ -25,6 +32,52 @@ export const metadata: Metadata = seo({
   description: route.description,
   path: route.path,
 });
+
+const TOOLS: { label: string; href: string; desc: string; icon: LucideIcon }[] =
+  [
+    {
+      label: "Image to PDF",
+      href: "/image-to-pdf",
+      desc: "Combine JPG, PNG, WebP into one PDF.",
+      icon: ImageIcon,
+    },
+    {
+      label: "Merge PDF",
+      href: "/merge-pdf",
+      desc: "Combine PDFs into one document.",
+      icon: Combine,
+    },
+    {
+      label: "Split PDF",
+      href: "/split-pdf",
+      desc: "Extract pages by range.",
+      icon: Scissors,
+    },
+    {
+      label: "Rotate PDF",
+      href: "/rotate-pdf",
+      desc: "Fix sideways pages.",
+      icon: RotateCw,
+    },
+    {
+      label: "PDF to images",
+      href: "/pdf-to-images",
+      desc: "Export pages as PNG or JPG.",
+      icon: Images,
+    },
+    {
+      label: "Add watermark",
+      href: "/add-watermark-to-pdf",
+      desc: "Stamp text across every page.",
+      icon: Stamp,
+    },
+  ];
+
+const TRUST = [
+  "Files are processed locally in your browser",
+  "No upload, no account, no watermark",
+  "Free — works on mobile and desktop",
+];
 
 const HUBS = [
   { label: "PDF Editor", href: "/pdf-editor", desc: "Edit text, images and pages." },
@@ -37,13 +90,12 @@ const HUBS = [
   { label: "PDF for Students", href: "/pdf-for-students", desc: "Notes, highlights and study guides." },
 ];
 
-const TOOLS = [
-  { label: "Image to PDF", href: "/image-to-pdf", desc: "Combine JPG, PNG, WebP into one PDF." },
-  { label: "Merge PDF", href: "/merge-pdf", desc: "Combine PDFs into one document." },
-  { label: "Split PDF", href: "/split-pdf", desc: "Extract pages by range." },
-  { label: "Rotate PDF", href: "/rotate-pdf", desc: "Fix sideways pages." },
-  { label: "PDF to images", href: "/pdf-to-images", desc: "Export pages as PNG or JPG." },
-  { label: "Add watermark", href: "/add-watermark-to-pdf", desc: "Stamp text across every page." },
+const FEATURE_BAND: { icon: LucideIcon; label: string; sub: string }[] = [
+  { icon: Pencil, label: "Edit", sub: "Text, images, pages" },
+  { icon: Files, label: "Convert", sub: "Word, JPG, PNG" },
+  { icon: ShieldCheck, label: "Secure", sub: "Password protect" },
+  { icon: ScanLine, label: "Scan", sub: "Paper to PDF" },
+  { icon: LayoutGrid, label: "Organize", sub: "Reorder, split" },
 ];
 
 const FEATURED_GUIDES = [
@@ -79,34 +131,133 @@ const FAQ_ITEMS = [
 export default function HomePage() {
   return (
     <>
-      <Hero
-        eyebrow={SITE.features.join(" · ")}
-        h1="Edit PDFs anywhere. From your phone."
-        highlight="phone"
-        lead={`${SITE.tagline}. Scan paper, sign contracts, compress files and convert formats — all from a single app on iOS and Android.`}
-        secondaryHref="/guides"
-        secondaryLabel="Read the guides"
-        showLockup
-      />
-
-      <Section className="relative overflow-hidden">
+      {/*
+        Conversion-first hero band. A real working converter (Image to PDF)
+        is the dominant element and is first in the DOM, so on mobile it
+        appears on the first screen before any marketing prose; on desktop it
+        takes the wide column with the H1 + value props in a slim rail. All
+        SEO content (tool grid, hubs, guides, FAQ, schema) stays server-
+        rendered below.
+      */}
+      <div
+        className="relative overflow-hidden"
+        style={{ background: "var(--gradient-brand-soft)" }}
+      >
         <div
           aria-hidden
-          className="absolute inset-0 -z-10"
-          style={{ background: "var(--gradient-brand-soft)" }}
+          className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full opacity-30 blur-3xl"
+          style={{ background: "radial-gradient(closest-side, rgba(229,9,20,0.40), transparent)" }}
         />
+        <Container className="py-8 md:py-12">
+          <div className="grid lg:grid-cols-[minmax(0,1.55fr)_minmax(0,360px)] gap-8 lg:gap-12 lg:items-start">
+            {/* The actual converter — dominant; first in DOM = first on mobile. */}
+            <div>
+              <ImageToPdfTool />
+            </div>
+
+            {/* Supporting rail: H1 (SEO) + concise value props. */}
+            <div className="lg:pt-2">
+              <p
+                className="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-white"
+                style={{ background: "var(--gradient-brand)" }}
+              >
+                Free browser PDF tools
+              </p>
+              <h1 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.1] text-[--color-ink]">
+                Convert, Merge &amp; Edit PDFs{" "}
+                <span className="text-[--color-brand]">in Seconds</span>
+              </h1>
+              <p className="mt-3 text-sm md:text-base text-[--color-muted] leading-relaxed">
+                Free browser-based PDF tools with private, local processing —
+                nothing is uploaded to a server.
+              </p>
+              <ul className="mt-6 space-y-2.5">
+                {TRUST.map((t) => (
+                  <li
+                    key={t}
+                    className="flex items-start gap-2.5 text-sm font-medium text-[--color-ink]"
+                  >
+                    <span
+                      aria-hidden
+                      className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[--color-brand] text-white shrink-0 mt-0.5"
+                    >
+                      <Check className="h-3 w-3" />
+                    </span>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                <Link
+                  href="/pdf-tools"
+                  className="text-sm font-semibold text-[--color-ink] hover:text-[--color-brand]"
+                >
+                  Browse all PDF tools →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Primary tool grid — the most important section, immediately below. */}
+      <Section>
+        <Container>
+          <div className="max-w-2xl mb-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[--color-brand] mb-3">
+              Free, in your browser
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[--color-ink]">
+              Every PDF tool you need — no upload required.
+            </h2>
+            <p className="mt-3 text-lg text-[--color-muted]">
+              Merge, split, rotate, watermark and convert PDFs without leaving
+              the page. Every tool runs locally in your browser.
+            </p>
+          </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {TOOLS.map((t) => {
+              const Icon = t.icon;
+              return (
+                <li key={t.href}>
+                  <CardLink href={t.href} className="relative overflow-hidden p-7">
+                    <span
+                      aria-hidden
+                      className="absolute inset-x-0 top-0 h-1"
+                      style={{ background: "var(--gradient-brand)" }}
+                    />
+                    <span
+                      aria-hidden
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-[var(--shadow-brand)] mb-4"
+                      style={{ background: "var(--gradient-brand)" }}
+                    >
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <span className="block text-xs font-bold uppercase tracking-wide text-[--color-brand] mb-1">
+                      Free tool
+                    </span>
+                    <span className="block text-lg font-bold text-[--color-ink] group-hover:text-[--color-brand]">
+                      {t.label}
+                    </span>
+                    <span className="block mt-1.5 text-sm text-[--color-muted]">
+                      {t.desc}
+                    </span>
+                  </CardLink>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </Section>
+
+      {/* Mobile-app surface (demoted below the working tools). */}
+      <Section tone="muted">
         <Container>
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[--color-brand] text-center mb-6">
-            One app · five everyday tools
+            Also on iPhone &amp; Android · five everyday tools
           </p>
           <ul className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6">
-            {[
-              { icon: Pencil, label: "Edit", sub: "Text, images, pages" },
-              { icon: Files, label: "Convert", sub: "Word, JPG, PNG" },
-              { icon: ShieldCheck, label: "Secure", sub: "Password protect" },
-              { icon: ScanLine, label: "Scan", sub: "Paper to PDF" },
-              { icon: LayoutGrid, label: "Organize", sub: "Reorder, split" },
-            ].map(({ icon: Icon, label, sub }) => (
+            {FEATURE_BAND.map(({ icon: Icon, label, sub }) => (
               <li
                 key={label}
                 className="flex flex-col items-center gap-3 rounded-2xl bg-[--color-surface] border border-[--color-border] shadow-[var(--shadow-card)] p-4 sm:p-5 hover:shadow-[var(--shadow-card-hover)] transition-shadow"
@@ -118,14 +269,16 @@ export default function HomePage() {
                   <Icon className="h-7 w-7" aria-hidden />
                 </span>
                 <span className="font-bold text-[--color-ink]">{label}</span>
-                <span className="text-xs text-[--color-muted] text-center -mt-1.5">{sub}</span>
+                <span className="text-xs text-[--color-muted] text-center -mt-1.5">
+                  {sub}
+                </span>
               </li>
             ))}
           </ul>
         </Container>
       </Section>
 
-      <Section tone="muted">
+      <Section>
         <Container>
           <div className="max-w-2xl mb-10">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[--color-ink]">
@@ -153,58 +306,6 @@ export default function HomePage() {
                   <span className="block mt-2 text-sm text-[--color-muted]">
                     {h.desc}
                   </span>
-                </CardLink>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <div className="max-w-2xl mb-10">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[--color-brand] mb-3">
-              Free, in your browser
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[--color-ink]">
-              PDF tools that don&apos;t upload your files.
-            </h2>
-            <p className="mt-3 text-lg text-[--color-muted]">
-              Merge, split, rotate, watermark and convert PDFs without leaving the page.
-              Every tool runs locally in your browser — your files never touch our servers.
-            </p>
-            <div className="mt-5">
-              <Link
-                href="/pdf-tools"
-                className="text-sm font-semibold text-[--color-ink] hover:text-[--color-brand]"
-              >
-                See all free tools →
-              </Link>
-            </div>
-          </div>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {TOOLS.map((t) => (
-              <li key={t.href}>
-                <CardLink href={t.href} className="relative overflow-hidden p-7">
-                  <span
-                    aria-hidden
-                    className="absolute inset-x-0 top-0 h-1"
-                    style={{ background: "var(--gradient-brand)" }}
-                  />
-                  <span
-                    aria-hidden
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-white text-[10px] font-extrabold tracking-wide shadow-[var(--shadow-brand)] mb-4"
-                    style={{ background: "var(--gradient-brand)" }}
-                  >
-                    PDF
-                  </span>
-                  <span className="block text-xs font-bold uppercase tracking-wide text-[--color-brand] mb-1">
-                    Free tool
-                  </span>
-                  <span className="block text-lg font-bold text-[--color-ink] group-hover:text-[--color-brand]">
-                    {t.label}
-                  </span>
-                  <span className="block mt-1.5 text-sm text-[--color-muted]">{t.desc}</span>
                 </CardLink>
               </li>
             ))}

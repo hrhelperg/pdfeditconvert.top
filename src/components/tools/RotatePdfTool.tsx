@@ -107,6 +107,10 @@ export function RotatePdfTool() {
             { label: "Split a PDF", path: "/split-pdf" },
             { label: "Add a watermark", path: "/add-watermark-to-pdf" },
           ]}
+          appCta={{
+            heading: "Need PDF tools on your phone?",
+            sub: "PDF Editor for iPhone and Android rotates and reorders pages too.",
+          }}
         />
       ) : (
         <>

@@ -109,6 +109,10 @@ export function WatermarkPdfTool() {
             { label: "Merge PDFs", path: "/merge-pdf" },
             { label: "Rotate pages", path: "/rotate-pdf" },
           ]}
+          appCta={{
+            heading: "Need PDF tools on your phone?",
+            sub: "PDF Editor for iPhone and Android stamps and signs documents too.",
+          }}
         />
       ) : (
         <>

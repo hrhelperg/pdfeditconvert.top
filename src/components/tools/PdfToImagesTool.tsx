@@ -27,6 +27,12 @@ export function PdfToImagesTool() {
   const [scale, setScale] = useState(2);
   const [quality, setQuality] = useState(0.92);
   const [range, setRange] = useState("");
+  // Retain every generated image Blob so "Download again" can re-trigger all
+  // downloads without re-rendering the PDF. Held in component state so it
+  // survives rerenders; cleared on Start over (and dropped on unmount → GC).
+  const [outputs, setOutputs] = useState<
+    { blob: Blob; filename: string; mime: string }[]
+  >([]);
   const { state, setBusy, setError, setSuccess, reset: resetFlow } = useToolFlow();
 
   const current: 0 | 1 | 2 =
@@ -47,7 +53,12 @@ export function PdfToImagesTool() {
   const startOver = () => {
     setFile(null);
     setRange("");
+    setOutputs([]);
     resetFlow();
+  };
+
+  const downloadAll = () => {
+    for (const o of outputs) downloadBlob(o.blob, o.filename, o.mime);
   };
 
   const run = async () => {
@@ -62,8 +73,7 @@ export function PdfToImagesTool() {
       const pages = range.trim()
         ? parsePageRange(range, totalPages)
         : Array.from({ length: totalPages }, (_, i) => i + 1);
-      let lastBlob: Blob | null = null;
-      let lastFilename = "";
+      const produced: { blob: Blob; filename: string; mime: string }[] = [];
       for (const i of pages) {
         setBusy(`Rendering page ${i} of ${totalPages}…`);
         const page = await doc.getPage(i);
@@ -86,15 +96,17 @@ export function PdfToImagesTool() {
         );
         const filename = `${base}-page-${String(i).padStart(2, "0")}.${ext}`;
         downloadBlob(blob, filename, mime);
-        lastBlob = blob;
-        lastFilename = filename;
+        produced.push({ blob, filename, mime });
         await new Promise((r) => setTimeout(r, 100));
       }
-      if (lastBlob) {
+      if (produced.length > 0) {
+        setOutputs(produced);
+        const last = produced[produced.length - 1];
+        const totalBytes = produced.reduce((n, o) => n + o.blob.size, 0);
         setSuccess({
-          filename: `${pages.length} image${pages.length === 1 ? "" : "s"} downloaded (last: ${lastFilename})`,
-          sizeBytes: lastBlob.size,
-          blob: lastBlob,
+          filename: `${produced.length} image${produced.length === 1 ? "" : "s"} downloaded (last: ${last.filename})`,
+          sizeBytes: totalBytes,
+          blob: last.blob,
         });
       }
     } catch (e) {
@@ -119,10 +131,15 @@ export function PdfToImagesTool() {
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
           onReset={startOver}
+          onDownloadAgain={downloadAll}
           related={[
             { label: "Image to PDF — the reverse", path: "/image-to-pdf" },
             { label: "Split a PDF", path: "/split-pdf" },
           ]}
+          appCta={{
+            heading: "Need PDF tools on your phone?",
+            sub: "PDF Editor for iPhone and Android renders pages with hardware acceleration.",
+          }}
         />
       ) : (
         <>
