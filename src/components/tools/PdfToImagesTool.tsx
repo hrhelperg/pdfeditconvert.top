@@ -73,7 +73,7 @@ export function PdfToImagesTool() {
         canvas.height = Math.ceil(viewport.height);
         const ctx = canvas.getContext("2d");
         if (!ctx) throw new Error("Canvas not supported.");
-        await page.render({ canvasContext: ctx, viewport }).promise;
+        await page.render({ canvas, canvasContext: ctx, viewport }).promise;
         const mime = format === "png" ? "image/png" : "image/jpeg";
         const ext = format === "png" ? "png" : "jpg";
         const q = format === "jpeg" ? quality : undefined;
@@ -187,7 +187,7 @@ export function PdfToImagesTool() {
               onClick={run}
               disabled={!file}
             >
-              {state.status === "busy" ? "Rendering…" : "Export images"}
+              {state.status === "busy" ? "Converting…" : "Convert to images"}
             </ProcessButton>
           </div>
 

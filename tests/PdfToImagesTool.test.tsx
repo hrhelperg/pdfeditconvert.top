@@ -11,8 +11,8 @@ describe("PdfToImagesTool", () => {
     expect(screen.getByText("Download")).toBeInTheDocument();
   });
 
-  it("Export images is disabled until a file is added", () => {
+  it("Convert to images is disabled until a file is added", () => {
     render(<PdfToImagesTool />);
-    expect(screen.getByRole("button", { name: /Export images/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Convert to images/i })).toBeDisabled();
   });
 });

@@ -4,9 +4,9 @@ import { render, screen } from "@testing-library/react";
 import { SplitPdfTool } from "@/components/tools/SplitPdfTool";
 
 describe("SplitPdfTool", () => {
-  it("Extract pages button is disabled with no file", () => {
+  it("Split PDF button is disabled with no file", () => {
     render(<SplitPdfTool />);
-    expect(screen.getByRole("button", { name: /Extract pages/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Split PDF/i })).toBeDisabled();
   });
 
   it("renders the 3-step indicator", () => {

@@ -223,7 +223,7 @@ export function ImageToPdfTool() {
               onClick={create}
               disabled={items.length === 0}
             >
-              {state.status === "busy" ? "Creating PDF…" : "Create PDF"}
+              {state.status === "busy" ? "Converting…" : "Convert to PDF"}
             </ProcessButton>
             {items.length > 0 ? (
               <button

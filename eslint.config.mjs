@@ -13,6 +13,10 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "public/pdfjs/**",
+    // Nested local git worktrees carry their own node_modules + minified
+    // vendor bundles; never lint into them.
+    ".claude/**",
+    ".worktrees/**",
   ]),
 ]);
 

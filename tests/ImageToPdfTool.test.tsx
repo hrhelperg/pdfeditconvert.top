@@ -4,9 +4,9 @@ import userEvent from "@testing-library/user-event";
 import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
 
 describe("ImageToPdfTool", () => {
-  it("disables Create PDF until images are added", () => {
+  it("disables Convert to PDF until images are added", () => {
     render(<ImageToPdfTool />);
-    const btn = screen.getByRole("button", { name: /Create PDF/i });
+    const btn = screen.getByRole("button", { name: /Convert to PDF/i });
     expect(btn).toBeDisabled();
   });
 

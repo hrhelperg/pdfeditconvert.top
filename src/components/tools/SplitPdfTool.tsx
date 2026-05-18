@@ -148,7 +148,7 @@ export function SplitPdfTool() {
               onClick={split}
               disabled={!file || !range.trim()}
             >
-              {state.status === "busy" ? "Extracting…" : "Extract pages"}
+              {state.status === "busy" ? "Splitting…" : "Split PDF"}
             </ProcessButton>
           </div>
 
