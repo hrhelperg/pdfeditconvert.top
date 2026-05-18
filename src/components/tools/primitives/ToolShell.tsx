@@ -16,18 +16,18 @@ export function ToolShell({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-3xl border border-[--color-border] bg-[--color-surface] shadow-[var(--shadow-card)] p-6 md:p-8",
+        "relative overflow-hidden rounded-3xl border border-[--color-border] bg-[--color-surface] shadow-[var(--shadow-elevated)] p-6 md:p-8",
         className,
       )}
     >
       {/* Brand accent strip */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-1"
+        className="absolute inset-x-0 top-0 h-1.5"
         style={{ background: "var(--gradient-brand)" }}
       />
       <div className="mb-6 flex items-start gap-4">
-        <BrandMark size={48} className="shrink-0" />
+        <BrandMark size={52} className="shrink-0" />
         <div>
           <h2 className="text-xl md:text-2xl font-bold text-[--color-ink] leading-tight">{title}</h2>
           {subtitle ? (

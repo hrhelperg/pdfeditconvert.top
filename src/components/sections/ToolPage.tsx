@@ -58,11 +58,13 @@ export function ToolPage({
       </Container>
 
       {/*
-        Conversion-first hero band: compact marketing copy on the left,
-        the working tool panel on the right. On desktop both sit above
-        the fold; on mobile the copy is intentionally short so the tool
-        panel appears within the first screen. The SEO content (how-to,
-        use cases, limitations, related, FAQ) stays server-rendered below.
+        Conversion-first hero band. The converter is the dominant element:
+        it is first in the DOM so on mobile (single column) it appears on
+        the first screen, before any marketing prose. On desktop it takes
+        the wide column; the marketing copy (H1 kept for SEO + concise lead
+        + trust signals) sits in a slim supporting rail. The SEO content
+        (how-to, use cases, limitations, related, FAQ) stays server-rendered
+        below.
       */}
       <div
         className="relative overflow-hidden"
@@ -73,26 +75,40 @@ export function ToolPage({
           className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full opacity-30 blur-3xl"
           style={{ background: "radial-gradient(closest-side, rgba(229,9,20,0.40), transparent)" }}
         />
-        <Container className="py-8 md:py-12">
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] gap-8 lg:gap-12 lg:items-start">
-            <div className="lg:pt-4">
+        <Container className="py-6 md:py-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/pdf-editor-wordmark.svg"
+            alt="PDF Editor"
+            width={150}
+            height={28}
+            className="h-7 w-auto mb-6 md:mb-8"
+            loading="eager"
+            decoding="async"
+          />
+          <div className="grid lg:grid-cols-[minmax(0,1.6fr)_minmax(0,340px)] gap-8 lg:gap-12 lg:items-start">
+            {/* The actual converter — dominant; first in DOM = first on mobile. */}
+            <div>{toolSlot}</div>
+
+            {/* Supporting rail: H1 for SEO + concise lead + trust signals. */}
+            <div className="lg:pt-2">
               {content.hero.eyebrow ? (
                 <p className="inline-flex items-center rounded-full bg-[--color-brand] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-white">
                   {content.hero.eyebrow}
                 </p>
               ) : null}
-              <h1 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1] text-[--color-ink]">
+              <h1 className="mt-4 text-2xl md:text-3xl font-extrabold tracking-tight leading-[1.15] text-[--color-ink]">
                 {renderH1(content.hero.h1, content.hero.highlight)}
               </h1>
-              <p className="mt-4 text-base md:text-lg text-[--color-muted] leading-relaxed max-w-xl">
+              <p className="mt-3 text-sm md:text-base text-[--color-muted] leading-relaxed">
                 {content.hero.lead}
               </p>
-              <ul className="mt-7 space-y-2.5">
+              <ul className="mt-6 space-y-2.5">
                 {TRUST.map((t) => (
-                  <li key={t} className="flex items-center gap-2.5 text-sm font-medium text-[--color-ink]">
+                  <li key={t} className="flex items-start gap-2.5 text-sm font-medium text-[--color-ink]">
                     <span
                       aria-hidden
-                      className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[--color-brand] text-white shrink-0"
+                      className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[--color-brand] text-white shrink-0 mt-0.5"
                     >
                       <Check className="h-3 w-3" />
                     </span>
@@ -101,9 +117,6 @@ export function ToolPage({
                 ))}
               </ul>
             </div>
-
-            {/* The actual converter — first screen, no scrolling required. */}
-            <div className="lg:sticky lg:top-24">{toolSlot}</div>
           </div>
         </Container>
       </div>
