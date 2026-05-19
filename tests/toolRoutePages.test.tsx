@@ -61,6 +61,16 @@ const CASES: RouteCase[] = [
     load: () => import("@/app/word-to-pdf/page"),
     actionButton: /Convert to PDF/i,
   },
+  {
+    path: "/reorder-pdf-pages",
+    load: () => import("@/app/reorder-pdf-pages/page"),
+    actionButton: /Reorder PDF/i,
+  },
+  {
+    path: "/extract-pdf-pages",
+    load: () => import("@/app/extract-pdf-pages/page"),
+    actionButton: /Extract pages/i,
+  },
 ];
 
 describe("every tool route renders its interactive tool", () => {
@@ -85,10 +95,12 @@ describe("every tool route renders its interactive tool", () => {
       [
         "/add-watermark-to-pdf",
         "/compress-pdf",
+        "/extract-pdf-pages",
         "/image-to-pdf",
         "/merge-pdf",
         "/pdf-to-images",
         "/pdf-to-word",
+        "/reorder-pdf-pages",
         "/rotate-pdf",
         "/split-pdf",
         "/word-to-pdf",

@@ -39,6 +39,7 @@ const content: ToolContent = {
   related: [
     { label: "Merge PDFs", path: "/merge-pdf" },
     { label: "Split a PDF", path: "/split-pdf" },
+    { label: "Extract PDF pages", path: "/extract-pdf-pages" },
     { label: "All free PDF tools", path: "/pdf-tools" },
     { label: "Guide: how to compress a PDF", path: "/guides/how-to-compress-pdf" },
   ],

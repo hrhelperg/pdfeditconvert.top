@@ -21,6 +21,8 @@ import {
   Minimize2,
   FileText,
   FileOutput,
+  ArrowUpDown,
+  FileStack,
   Pencil,
   Files,
   ShieldCheck,
@@ -91,6 +93,18 @@ const TOOLS: { label: string; href: string; desc: string; icon: LucideIcon }[] =
       href: "/word-to-pdf",
       desc: "Turn a .docx or .txt into a clean PDF.",
       icon: FileOutput,
+    },
+    {
+      label: "Reorder PDF pages",
+      href: "/reorder-pdf-pages",
+      desc: "Preview and rearrange pages, then download.",
+      icon: ArrowUpDown,
+    },
+    {
+      label: "Extract PDF pages",
+      href: "/extract-pdf-pages",
+      desc: "Save selected pages or ranges as a new PDF.",
+      icon: FileStack,
     },
   ];
 

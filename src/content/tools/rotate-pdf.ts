@@ -40,6 +40,7 @@ const content: ToolContent = {
     { label: "Merge PDF files", path: "/merge-pdf" },
     { label: "Split PDF", path: "/split-pdf" },
     { label: "Add watermark to PDF", path: "/add-watermark-to-pdf" },
+    { label: "Reorder PDF pages", path: "/reorder-pdf-pages" },
     { label: "All free PDF tools", path: "/pdf-tools" },
   ],
   faq: [

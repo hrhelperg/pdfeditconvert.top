@@ -41,6 +41,8 @@ const content: ToolContent = {
     { label: "Rotate PDF pages", path: "/rotate-pdf" },
     { label: "PDF to images", path: "/pdf-to-images" },
     { label: "Compress a PDF", path: "/compress-pdf" },
+    { label: "Extract PDF pages", path: "/extract-pdf-pages" },
+    { label: "Reorder PDF pages", path: "/reorder-pdf-pages" },
     { label: "All free PDF tools", path: "/pdf-tools" },
   ],
   faq: [

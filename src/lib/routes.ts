@@ -60,6 +60,24 @@ export const ROUTES: RouteEntry[] = [
     changeFrequency: "monthly",
   },
   {
+    path: "/reorder-pdf-pages",
+    title: "Reorder PDF Pages — Rearrange Pages in Your Browser (Free, No Upload)",
+    description:
+      "Preview every page and drag-free reorder a PDF with simple controls, then download the rearranged file. Free, no signup, no upload — files stay on your device.",
+    category: "tool",
+    priority: 0.85,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/extract-pdf-pages",
+    title: "Extract PDF Pages — Save Selected Pages as a New PDF (Free, No Upload)",
+    description:
+      "Pick specific pages or ranges and download a new PDF with only those pages, directly in your browser. Free, no signup, no upload — files never leave your device.",
+    category: "tool",
+    priority: 0.85,
+    changeFrequency: "monthly",
+  },
+  {
     path: "/merge-pdf",
     title: "Merge PDF — Combine PDFs in Your Browser (Free, No Upload)",
     description:

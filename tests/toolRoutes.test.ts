@@ -8,11 +8,13 @@ describe("tool routes", () => {
       [
         "/add-watermark-to-pdf",
         "/compress-pdf",
+        "/extract-pdf-pages",
         "/image-to-pdf",
         "/merge-pdf",
         "/pdf-to-images",
         "/pdf-to-word",
         "/pdf-tools",
+        "/reorder-pdf-pages",
         "/rotate-pdf",
         "/split-pdf",
         "/word-to-pdf",
