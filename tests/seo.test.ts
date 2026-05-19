@@ -13,12 +13,16 @@ describe("seo()", () => {
     );
   });
 
-  it("uses default OG image when none provided", () => {
+  it("defaults OG + Twitter image to the framework /opengraph-image route (never the 404 /og/default.png)", () => {
     const m = seo({ title: "x", description: "y", path: "/" });
-    const images = m.openGraph?.images as { url: string }[];
-    expect(images[0].url).toBe(
-      "https://pdfeditconvert.top/og/default.png",
+    const ogImages = m.openGraph?.images as { url: string }[];
+    const twImages = m.twitter?.images as string[];
+    expect(ogImages[0].url).toBe(
+      "https://pdfeditconvert.top/opengraph-image",
     );
+    expect(twImages[0]).toBe("https://pdfeditconvert.top/opengraph-image");
+    // Regression guard: the old default had no backing asset and 404'd.
+    expect(ogImages[0].url).not.toContain("/og/default.png");
   });
 
   it("supports article type with publishedTime", () => {

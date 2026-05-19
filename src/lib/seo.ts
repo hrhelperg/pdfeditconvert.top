@@ -17,7 +17,10 @@ export function seo({
   title,
   description,
   path,
-  ogImage = "/og/default.png",
+  // Use the framework-generated OG image route (app/opengraph-image.tsx,
+  // served at /opengraph-image, 200 image/png). The previous default
+  // "/og/default.png" had no backing asset and 404'd sitewide.
+  ogImage = "/opengraph-image",
   type = "website",
   publishedTime,
   modifiedTime,
