@@ -40,6 +40,7 @@ const content: ToolContent = {
     { label: "Merge PDF — the reverse", path: "/merge-pdf" },
     { label: "Rotate PDF pages", path: "/rotate-pdf" },
     { label: "PDF to images", path: "/pdf-to-images" },
+    { label: "Compress a PDF", path: "/compress-pdf" },
     { label: "All free PDF tools", path: "/pdf-tools" },
   ],
   faq: [

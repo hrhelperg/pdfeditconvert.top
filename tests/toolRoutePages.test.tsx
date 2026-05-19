@@ -46,6 +46,21 @@ const CASES: RouteCase[] = [
     load: () => import("@/app/add-watermark-to-pdf/page"),
     actionButton: /Add watermark/i,
   },
+  {
+    path: "/compress-pdf",
+    load: () => import("@/app/compress-pdf/page"),
+    actionButton: /Compress PDF/i,
+  },
+  {
+    path: "/pdf-to-word",
+    load: () => import("@/app/pdf-to-word/page"),
+    actionButton: /Convert to Word/i,
+  },
+  {
+    path: "/word-to-pdf",
+    load: () => import("@/app/word-to-pdf/page"),
+    actionButton: /Convert to PDF/i,
+  },
 ];
 
 describe("every tool route renders its interactive tool", () => {
@@ -65,15 +80,18 @@ describe("every tool route renders its interactive tool", () => {
     });
   }
 
-  it("covers exactly the six known tool routes", () => {
+  it("covers every interactive tool route", () => {
     expect(CASES.map((c) => c.path).sort()).toEqual(
       [
         "/add-watermark-to-pdf",
+        "/compress-pdf",
         "/image-to-pdf",
         "/merge-pdf",
         "/pdf-to-images",
+        "/pdf-to-word",
         "/rotate-pdf",
         "/split-pdf",
+        "/word-to-pdf",
       ].sort(),
     );
   });

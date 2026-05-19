@@ -39,6 +39,7 @@ const content: ToolContent = {
   related: [
     { label: "Split PDF — the reverse", path: "/split-pdf" },
     { label: "Rotate PDF pages", path: "/rotate-pdf" },
+    { label: "Compress a PDF", path: "/compress-pdf" },
     { label: "All free PDF tools", path: "/pdf-tools" },
     { label: "Guide: how to merge PDFs", path: "/guides/how-to-merge-pdf-files" },
   ],

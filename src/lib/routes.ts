@@ -34,11 +34,29 @@ export const ROUTES: RouteEntry[] = [
   },
   {
     path: "/compress-pdf",
-    title: "Compress PDF — Shrink PDF File Size Without Losing Quality",
+    title: "Compress PDF — Reduce PDF File Size in Your Browser (Free, No Upload)",
     description:
-      "Make PDFs smaller for email, upload and storage. A simple guide to compressing PDFs on mobile with the PDF Editor app.",
-    category: "hub",
+      "Shrink a PDF's file size directly in your browser with adjustable compression levels. Free, no signup, no upload — your file never leaves your device.",
+    category: "tool",
     priority: 0.9,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/pdf-to-word",
+    title: "PDF to Word — Convert PDF to Editable DOCX in Your Browser",
+    description:
+      "Extract a PDF's text into an editable Word (.docx) document directly in your browser. Free, no upload — an honest text conversion, not a fake layout promise.",
+    category: "tool",
+    priority: 0.85,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/word-to-pdf",
+    title: "Word to PDF — Convert DOCX or TXT to PDF in Your Browser",
+    description:
+      "Turn a Word .docx or .txt file into a clean PDF directly in your browser. Free, no signup, no upload — your document never leaves your device.",
+    category: "tool",
+    priority: 0.85,
     changeFrequency: "monthly",
   },
   {

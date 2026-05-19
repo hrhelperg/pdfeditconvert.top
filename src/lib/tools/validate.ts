@@ -27,6 +27,30 @@ export function assertImage(file: File) {
   assertSize(file);
 }
 
+const WORD_TYPES = new Set([
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "text/plain",
+]);
+
+/** Accepts .docx (and plain .txt as a simple fallback). Legacy binary .doc
+ *  is not supported by the in-browser parser. */
+export function assertWordDoc(file: File) {
+  const okExt = /\.(docx|txt)$/i.test(file.name);
+  if (!WORD_TYPES.has(file.type) && !okExt) {
+    if (/\.doc$/i.test(file.name)) {
+      throw new Error(
+        `Legacy ".doc" files can't be read in the browser. Save it as ".docx" first.`,
+      );
+    }
+    throw new Error(`"${file.name}" is not a Word (.docx) or .txt file.`);
+  }
+  assertSize(file);
+}
+
+export function isPlainText(file: File): boolean {
+  return file.type === "text/plain" || /\.txt$/i.test(file.name);
+}
+
 export function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;

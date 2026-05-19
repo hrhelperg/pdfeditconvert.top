@@ -18,6 +18,9 @@ import {
   RotateCw,
   Images,
   Stamp,
+  Minimize2,
+  FileText,
+  FileOutput,
   Pencil,
   Files,
   ShieldCheck,
@@ -70,6 +73,24 @@ const TOOLS: { label: string; href: string; desc: string; icon: LucideIcon }[] =
       href: "/add-watermark-to-pdf",
       desc: "Stamp text across every page.",
       icon: Stamp,
+    },
+    {
+      label: "Compress PDF",
+      href: "/compress-pdf",
+      desc: "Shrink file size for email and upload.",
+      icon: Minimize2,
+    },
+    {
+      label: "PDF to Word",
+      href: "/pdf-to-word",
+      desc: "Extract text into an editable .docx.",
+      icon: FileText,
+    },
+    {
+      label: "Word to PDF",
+      href: "/word-to-pdf",
+      desc: "Turn a .docx or .txt into a clean PDF.",
+      icon: FileOutput,
     },
   ];
 

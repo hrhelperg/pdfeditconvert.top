@@ -2,17 +2,20 @@ import { describe, expect, it } from "vitest";
 import { ROUTES, routesByCategory } from "@/lib/routes";
 
 describe("tool routes", () => {
-  it("includes the six tool pages plus the index", () => {
+  it("includes every interactive tool plus the index", () => {
     const tools = routesByCategory("tool").map((r) => r.path).sort();
     expect(tools).toEqual(
       [
         "/add-watermark-to-pdf",
+        "/compress-pdf",
         "/image-to-pdf",
         "/merge-pdf",
         "/pdf-to-images",
+        "/pdf-to-word",
         "/pdf-tools",
         "/rotate-pdf",
         "/split-pdf",
+        "/word-to-pdf",
       ].sort(),
     );
   });
