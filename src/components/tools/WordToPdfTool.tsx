@@ -59,9 +59,7 @@ export function WordToPdfTool() {
       if (isPlainText(file)) {
         text = await file.text();
       } else {
-        const mammoth = await loadMammoth();
-        const extractRawText =
-          mammoth.extractRawText ?? mammoth.default.extractRawText;
+        const { extractRawText } = await loadMammoth();
         const result = await extractRawText({
           arrayBuffer: await file.arrayBuffer(),
         }).catch(() => {
