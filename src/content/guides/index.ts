@@ -124,6 +124,14 @@ import whyPdfPopular from "@/content/guides/why-pdf-is-still-popular";
 import whenScannedPdf from "@/content/guides/when-to-use-scanned-pdf";
 import editableVsFlat from "@/content/guides/editable-pdf-vs-flat-pdf";
 
+// Wave 2 — Group 6: commercial intent
+import bestFreeTools from "@/content/guides/best-free-pdf-tools";
+import freeBrowserTools from "@/content/guides/free-browser-based-pdf-tools";
+import toolsWithoutUpload from "@/content/guides/best-pdf-tools-without-upload";
+import bestPrivateTools from "@/content/guides/best-private-pdf-tools";
+import freeForIphone from "@/content/guides/free-pdf-tools-for-iphone";
+import freeForAndroid from "@/content/guides/free-pdf-tools-for-android";
+
 export const GUIDES: Record<string, GuideContent> = {
   // Existing
   "how-to-edit-pdf-on-iphone": howToEditIphone,
@@ -248,4 +256,12 @@ export const GUIDES: Record<string, GuideContent> = {
   "why-pdf-is-still-popular": whyPdfPopular,
   "when-to-use-scanned-pdf": whenScannedPdf,
   "editable-pdf-vs-flat-pdf": editableVsFlat,
+
+  // Wave 2 — Group 6: commercial intent
+  "best-free-pdf-tools": bestFreeTools,
+  "free-browser-based-pdf-tools": freeBrowserTools,
+  "best-pdf-tools-without-upload": toolsWithoutUpload,
+  "best-private-pdf-tools": bestPrivateTools,
+  "free-pdf-tools-for-iphone": freeForIphone,
+  "free-pdf-tools-for-android": freeForAndroid,
 };

@@ -11,8 +11,8 @@ const routeByPath = new Map(ROUTES.map((r) => [r.path, r]));
 
 describe("guides registry integrity", () => {
   it("has the full cluster registered", () => {
-    // 10 pre-existing guides + 44 new cluster guides
-    expect(entries.length).toBeGreaterThanOrEqual(54);
+    // 54 Wave 1 guides + 54 Wave 2 guides
+    expect(entries.length).toBeGreaterThanOrEqual(108);
   });
 
   it("each map key matches its content slug", () => {

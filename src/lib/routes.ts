@@ -1090,6 +1090,62 @@ export const ROUTES: RouteEntry[] = [
     changeFrequency: "monthly",
   },
 
+  // Guides — Wave 2: commercial-intent cluster
+  {
+    path: "/guides/best-free-pdf-tools",
+    title: "Best Free PDF Tools in 2026 (Honest, No-Signup Picks)",
+    description:
+      "The free PDF tools worth using — compress, merge, sign, convert, scan — picked for actual quality and privacy, not for how many ads they show or how long the trial lasts.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/free-browser-based-pdf-tools",
+    title: "Free Browser-Based PDF Tools (No Install, No Upload)",
+    description:
+      "The PDF tools that run entirely in your browser — no install, no account, no upload. What's available, what they cover, and how to verify they really run locally.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/best-pdf-tools-without-upload",
+    title: "Best PDF Tools Without Uploading (Files Stay on Your Device)",
+    description:
+      "When you don't want your PDF leaving your device, these are the tools that do the work locally. Compression, merging, conversion — all with files staying on your machine.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/best-private-pdf-tools",
+    title: "Best Private PDF Tools (When Confidentiality Actually Matters)",
+    description:
+      "For contracts, financial records and other sensitive PDFs, these are the tools that respect privacy by architecture — not just by stated policy.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/free-pdf-tools-for-iphone",
+    title: "Free PDF Tools for iPhone (Browser and App Picks)",
+    description:
+      "Free iPhone PDF tools that actually work without a subscription — compress, sign, scan, convert. Browser-based options and the PDF Editor app for offline workflows.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/free-pdf-tools-for-android",
+    title: "Free PDF Tools for Android (Browser and App Picks)",
+    description:
+      "Free Android PDF tools picked for everyday tasks — compress, sign, scan, convert. Mobile browser routes and the PDF Editor app for offline use.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+
   // Compare
   {
     path: "/compare/pdf-vs-docx",
