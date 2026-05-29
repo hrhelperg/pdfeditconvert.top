@@ -13,9 +13,13 @@ const PRODUCT = [
 
 const LEARN = [
   { label: "All guides", href: "/guides" },
+  { label: "Convert PDF to Word", href: "/guides/how-to-convert-pdf-to-word" },
+  { label: "Convert JPG to PDF", href: "/guides/how-to-convert-jpg-to-pdf" },
+  {
+    label: "Reduce PDF size for email",
+    href: "/guides/how-to-reduce-pdf-file-size-for-email",
+  },
   { label: "Edit PDF on iPhone", href: "/guides/how-to-edit-pdf-on-iphone" },
-  { label: "Edit PDF on Android", href: "/guides/how-to-edit-pdf-on-android" },
-  { label: "Compress PDF", href: "/guides/how-to-compress-pdf" },
   { label: "Merge PDFs", href: "/guides/how-to-merge-pdf-files" },
   { label: "PDF vs DOCX", href: "/compare/pdf-vs-docx" },
 ];
