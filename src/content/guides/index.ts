@@ -103,6 +103,17 @@ import editClassDocs from "@/content/guides/how-to-edit-class-documents-as-pdf";
 import workflowUniversity from "@/content/guides/pdf-workflow-for-university-students";
 import createStudyPdfs from "@/content/guides/how-to-create-digital-study-pdfs";
 
+// Wave 2 — Group 4: privacy & trust
+import areOnlineSafe from "@/content/guides/are-online-pdf-tools-safe";
+import protectSensitive from "@/content/guides/how-to-protect-sensitive-pdf-files";
+import sharePrivately from "@/content/guides/how-to-share-pdf-files-privately";
+import privacyFirstWorkflows from "@/content/guides/privacy-first-document-workflows";
+import localProcessingExplained from "@/content/guides/local-browser-pdf-processing-explained";
+import doToolsStore from "@/content/guides/do-online-pdf-tools-store-files";
+import avoidUploading from "@/content/guides/how-to-avoid-uploading-sensitive-documents";
+import securePdfBusiness from "@/content/guides/secure-pdf-workflows-for-business";
+import browserBasedBenefits from "@/content/guides/browser-based-document-processing-benefits";
+
 export const GUIDES: Record<string, GuideContent> = {
   // Existing
   "how-to-edit-pdf-on-iphone": howToEditIphone,
@@ -206,4 +217,15 @@ export const GUIDES: Record<string, GuideContent> = {
   "how-to-edit-class-documents-as-pdf": editClassDocs,
   "pdf-workflow-for-university-students": workflowUniversity,
   "how-to-create-digital-study-pdfs": createStudyPdfs,
+
+  // Wave 2 — Group 4: privacy & trust
+  "are-online-pdf-tools-safe": areOnlineSafe,
+  "how-to-protect-sensitive-pdf-files": protectSensitive,
+  "how-to-share-pdf-files-privately": sharePrivately,
+  "privacy-first-document-workflows": privacyFirstWorkflows,
+  "local-browser-pdf-processing-explained": localProcessingExplained,
+  "do-online-pdf-tools-store-files": doToolsStore,
+  "how-to-avoid-uploading-sensitive-documents": avoidUploading,
+  "secure-pdf-workflows-for-business": securePdfBusiness,
+  "browser-based-document-processing-benefits": browserBasedBenefits,
 };

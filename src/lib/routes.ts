@@ -933,6 +933,89 @@ export const ROUTES: RouteEntry[] = [
     changeFrequency: "monthly",
   },
 
+  // Guides — Wave 2: privacy, security & trust cluster
+  {
+    path: "/guides/are-online-pdf-tools-safe",
+    title: "Are Online PDF Tools Safe? An Honest Look at the Risk",
+    description:
+      "Most 'online' PDF tools upload your file to a server. Some don't. The real risks, the categories of tool that handle data differently, and how to tell which is which.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-protect-sensitive-pdf-files",
+    title: "How to Protect Sensitive PDF Files (Storage, Sharing, Lifecycle)",
+    description:
+      "Sensitive PDFs need protection at three points: while stored, while shared, and after the recipient is done with them. A practical workflow that covers all three.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-share-pdf-files-privately",
+    title: "How to Share PDF Files Privately (Without Uploading to Strangers)",
+    description:
+      "The private way to share a PDF doesn't route through a public 'PDF tools' website. The channels that keep documents between you and the recipient, with sensible defaults.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/privacy-first-document-workflows",
+    title: "Privacy-First Document Workflows (End-to-End Without Uploads)",
+    description:
+      "An entire document workflow — capture, edit, sign, send, archive — that keeps files on your devices and out of third-party servers. The realistic shape and the tools.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/local-browser-pdf-processing-explained",
+    title: "Local Browser PDF Processing, Explained (How It Actually Works)",
+    description:
+      "How a PDF tool can run in a browser without sending your file anywhere. The technology, the trade-offs, and how to verify a tool is really local.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/do-online-pdf-tools-store-files",
+    title: "Do Online PDF Tools Store Your Files? What to Check",
+    description:
+      "Some online PDF tools delete uploads instantly, some hold them for hours, some keep them indefinitely. How to read a privacy policy quickly and what to look for.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-avoid-uploading-sensitive-documents",
+    title: "How to Avoid Uploading Sensitive Documents (Practical Alternatives)",
+    description:
+      "When a workflow tempts you to upload a sensitive PDF, there's almost always a local-only alternative. The categories of task and the no-upload tool for each.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/secure-pdf-workflows-for-business",
+    title: "Secure PDF Workflows for Business (Without an Enterprise Stack)",
+    description:
+      "A small business doesn't need a SOC2 PDF vault to run securely. The realistic baseline — encrypted storage, signed transfers, local processing — that meets actual risk.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/browser-based-document-processing-benefits",
+    title: "Browser-Based Document Processing Benefits (Speed, Privacy, Cost)",
+    description:
+      "Why processing PDFs in the browser changes the speed-privacy-cost calculus versus traditional cloud tools, and where the limits of local processing actually are.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
   // Compare
   {
     path: "/compare/pdf-vs-docx",
