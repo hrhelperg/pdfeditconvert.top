@@ -114,6 +114,16 @@ import avoidUploading from "@/content/guides/how-to-avoid-uploading-sensitive-do
 import securePdfBusiness from "@/content/guides/secure-pdf-workflows-for-business";
 import browserBasedBenefits from "@/content/guides/browser-based-document-processing-benefits";
 
+// Wave 2 — Group 5: format comparisons
+import pdfVsGoogleDocs from "@/content/guides/pdf-vs-google-docs";
+import pdfVsDocxBusiness from "@/content/guides/pdf-vs-docx-for-business";
+import pdfVsImages from "@/content/guides/pdf-vs-images-for-sharing-documents";
+import pdfVsPng from "@/content/guides/pdf-vs-png";
+import bestSharingFormat from "@/content/guides/best-format-for-sharing-documents";
+import whyPdfPopular from "@/content/guides/why-pdf-is-still-popular";
+import whenScannedPdf from "@/content/guides/when-to-use-scanned-pdf";
+import editableVsFlat from "@/content/guides/editable-pdf-vs-flat-pdf";
+
 export const GUIDES: Record<string, GuideContent> = {
   // Existing
   "how-to-edit-pdf-on-iphone": howToEditIphone,
@@ -228,4 +238,14 @@ export const GUIDES: Record<string, GuideContent> = {
   "how-to-avoid-uploading-sensitive-documents": avoidUploading,
   "secure-pdf-workflows-for-business": securePdfBusiness,
   "browser-based-document-processing-benefits": browserBasedBenefits,
+
+  // Wave 2 — Group 5: format comparisons
+  "pdf-vs-google-docs": pdfVsGoogleDocs,
+  "pdf-vs-docx-for-business": pdfVsDocxBusiness,
+  "pdf-vs-images-for-sharing-documents": pdfVsImages,
+  "pdf-vs-png": pdfVsPng,
+  "best-format-for-sharing-documents": bestSharingFormat,
+  "why-pdf-is-still-popular": whyPdfPopular,
+  "when-to-use-scanned-pdf": whenScannedPdf,
+  "editable-pdf-vs-flat-pdf": editableVsFlat,
 };

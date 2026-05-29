@@ -1016,6 +1016,80 @@ export const ROUTES: RouteEntry[] = [
     changeFrequency: "monthly",
   },
 
+  // Guides — Wave 2: format comparison cluster
+  {
+    path: "/guides/pdf-vs-google-docs",
+    title: "PDF vs Google Docs — When to Use Each (Editing, Sharing, Locking)",
+    description:
+      "Google Docs is for collaboration; PDF is for delivery. The realistic when-to-use-each, and how to convert cleanly between them at the right moments.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-vs-docx-for-business",
+    title: "PDF vs DOCX for Business (Contracts, Reports, Distribution)",
+    description:
+      "Why business documents almost always ship as PDF but live as DOCX. The right tool at each stage of a contract, report or invoice's life.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-vs-images-for-sharing-documents",
+    title: "PDF vs Images for Sharing Documents (JPG, PNG, HEIC)",
+    description:
+      "When a JPG, PNG or HEIC of a document is wrong — and what makes PDF the right format for anything beyond a quick screenshot.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-vs-png",
+    title: "PDF vs PNG — Multi-Page Documents vs Single Sharp Images",
+    description:
+      "PDF wins for multi-page documents; PNG wins for single, sharp, transparent-background images. The clear rules and the conversion between them.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/best-format-for-sharing-documents",
+    title: "Best Format for Sharing Documents (PDF, DOCX, Images Compared)",
+    description:
+      "When PDF is the right format to share, when it isn't, and how the realistic alternatives (DOCX, images, HTML, Markdown) actually compare across the everyday scenarios.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/why-pdf-is-still-popular",
+    title: "Why PDF Is Still the Default for Documents in 2026",
+    description:
+      "Decades on, PDF still dominates document sharing. The reasons it stuck around — fidelity, universality, signability, archive-friendliness — and where it's vulnerable.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/when-to-use-scanned-pdf",
+    title: "When to Use a Scanned PDF (and When Not To)",
+    description:
+      "Scanned PDFs solve a specific problem — paper-to-digital. They're also bigger, less searchable, and harder to edit. When the trade is worth it.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/editable-pdf-vs-flat-pdf",
+    title: "Editable PDF vs Flat PDF — What the Difference Actually Is",
+    description:
+      "Some PDFs have real selectable text and editable structure; some are images of pages with no underlying text. How to tell which you have, and when each is right.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
   // Compare
   {
     path: "/compare/pdf-vs-docx",
