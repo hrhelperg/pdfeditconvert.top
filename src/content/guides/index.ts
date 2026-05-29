@@ -92,6 +92,17 @@ import workflowSmallBusiness from "@/content/guides/pdf-workflows-for-small-busi
 import workflowConsultants from "@/content/guides/pdf-workflows-for-consultants";
 import workflowAgencies from "@/content/guides/pdf-workflows-for-agencies";
 
+// Wave 2 — Group 3: student & education workflow
+import submitHomework from "@/content/guides/how-to-submit-homework-as-pdf";
+import scanNotes from "@/content/guides/how-to-scan-notes-to-pdf";
+import compressForSchool from "@/content/guides/how-to-compress-pdf-for-school-portals";
+import convertLectureNotes from "@/content/guides/how-to-convert-lecture-notes-to-pdf";
+import organizeStudyMaterials from "@/content/guides/how-to-organize-study-materials-as-pdf";
+import shareStudyNotes from "@/content/guides/how-to-share-study-notes-as-pdf";
+import editClassDocs from "@/content/guides/how-to-edit-class-documents-as-pdf";
+import workflowUniversity from "@/content/guides/pdf-workflow-for-university-students";
+import createStudyPdfs from "@/content/guides/how-to-create-digital-study-pdfs";
+
 export const GUIDES: Record<string, GuideContent> = {
   // Existing
   "how-to-edit-pdf-on-iphone": howToEditIphone,
@@ -184,4 +195,15 @@ export const GUIDES: Record<string, GuideContent> = {
   "pdf-workflows-for-small-business": workflowSmallBusiness,
   "pdf-workflows-for-consultants": workflowConsultants,
   "pdf-workflows-for-agencies": workflowAgencies,
+
+  // Wave 2 — Group 3: student & education workflow
+  "how-to-submit-homework-as-pdf": submitHomework,
+  "how-to-scan-notes-to-pdf": scanNotes,
+  "how-to-compress-pdf-for-school-portals": compressForSchool,
+  "how-to-convert-lecture-notes-to-pdf": convertLectureNotes,
+  "how-to-organize-study-materials-as-pdf": organizeStudyMaterials,
+  "how-to-share-study-notes-as-pdf": shareStudyNotes,
+  "how-to-edit-class-documents-as-pdf": editClassDocs,
+  "pdf-workflow-for-university-students": workflowUniversity,
+  "how-to-create-digital-study-pdfs": createStudyPdfs,
 };

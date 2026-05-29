@@ -850,6 +850,89 @@ export const ROUTES: RouteEntry[] = [
     changeFrequency: "monthly",
   },
 
+  // Guides — Wave 2: student & education workflow cluster
+  {
+    path: "/guides/how-to-submit-homework-as-pdf",
+    title: "How to Submit Homework as PDF (Without Portal Drama)",
+    description:
+      "School portals reject homework for predictable reasons — file size, page count, format. The simplest path from finished assignment to accepted PDF upload.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-scan-notes-to-pdf",
+    title: "How to Scan Handwritten Notes to PDF (Clean, Searchable)",
+    description:
+      "Turn pages of handwritten lecture notes into clean multi-page PDFs with a phone camera. The settings that produce readable scans on the first try.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-compress-pdf-for-school-portals",
+    title: "How to Compress PDF for School Portals (Strict Limits)",
+    description:
+      "School and university upload portals cap PDFs harder than email does. How to compress assignments to fit without crushing the readability the grader checks for.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-convert-lecture-notes-to-pdf",
+    title: "How to Convert Lecture Notes to PDF (Word, Photos, Slides)",
+    description:
+      "Lecture notes arrive in every format — Word doc, slide deck, screenshot, photo of the board. How to turn each into a single readable PDF without losing structure.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-organize-study-materials-as-pdf",
+    title: "How to Organize Study Materials as PDF (Folders, Naming, Index)",
+    description:
+      "Course PDFs pile up fast. A simple folder, naming and merging convention that keeps semester materials searchable from week one through finals.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-share-study-notes-as-pdf",
+    title: "How to Share Study Notes as PDF (Group, Group Chat, Cloud)",
+    description:
+      "Share notes with a study group without losing formatting or version control. The PDF habits that keep collaborative study from devolving into screenshot chaos.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-edit-class-documents-as-pdf",
+    title: "How to Edit Class Documents as PDF (Annotate, Highlight, Sign)",
+    description:
+      "Class handouts, problem sets and consent forms often arrive as PDFs. How to mark them up, fill them in and return them without printing — all on phone or laptop.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-workflow-for-university-students",
+    title: "PDF Workflow for University Students (Notes, Assignments, Submissions)",
+    description:
+      "A semester-long PDF rhythm that survives finals week: lecture notes scanned, assignments submitted, study packs shared. Browser-based and free.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-create-digital-study-pdfs",
+    title: "How to Create Digital Study PDFs (Flashcards, Summaries, Packs)",
+    description:
+      "Build your own study PDFs from notes, slides and highlights — searchable, portable, ready for tablet annotation. The structure that makes them actually useful at exam time.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
   // Compare
   {
     path: "/compare/pdf-vs-docx",
