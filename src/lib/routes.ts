@@ -648,6 +648,98 @@ export const ROUTES: RouteEntry[] = [
     changeFrequency: "monthly",
   },
 
+  // Guides — Wave 2: problem & fix cluster
+  {
+    path: "/guides/why-wont-my-pdf-open",
+    title: "Why Won't My PDF Open? Causes and Practical Fixes",
+    description:
+      "A PDF that refuses to open is almost always one of five things. How to diagnose damaged downloads, password locks, viewer bugs and old files — and what fixes each.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/why-is-my-pdf-blank",
+    title: "Why Is My PDF Blank? Real Causes and How to Recover It",
+    description:
+      "When a PDF opens to blank pages, the content is usually still there — just hidden by a render failure, missing font or scan error. How to tell what happened and bring the document back.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/why-cant-i-edit-a-pdf",
+    title: "Why Can't I Edit a PDF? The Real Reasons and What Helps",
+    description:
+      "PDFs were designed to resist editing, but several specific things — scans, security flags, viewer limits — make some files harder than others. What's blocking yours, and what actually works.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/why-is-my-pdf-blurry",
+    title: "Why Is My PDF Blurry? Resolution, Compression and Scan Causes",
+    description:
+      "Blurry PDFs come from low-resolution scans, aggressive compression or a bad export — not from the format itself. How to tell which cause you're dealing with and how to get sharpness back.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fix-a-corrupted-pdf",
+    title: "How to Fix a Corrupted PDF File (What Actually Works)",
+    description:
+      "Most 'corrupted' PDFs aren't really corrupted — they're truncated downloads, viewer mismatches or partial writes. The honest checklist of fixes that recover the file, and when it's truly gone.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fix-pdf-printing-issues",
+    title: "How to Fix PDF Printing Problems (Cut Pages, Wrong Size, Missing Text)",
+    description:
+      "When a PDF prints cropped, scaled wrong, or with missing text, the fix depends on the symptom. A short matrix matching each print problem to the right setting or pre-print fix.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fix-pdf-upload-errors",
+    title: "How to Fix PDF Upload Errors (Too Big, Rejected, Stuck)",
+    description:
+      "Portals reject PDFs for a handful of reasons: file size, page count, format strictness or a flaky upload. How to identify which one bit you and get the file accepted on the next try.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fix-pdf-formatting-problems",
+    title: "How to Fix PDF Formatting Issues (Wrapping, Margins, Spacing)",
+    description:
+      "When a PDF's layout looks broken — text reflowing, margins off, spacing mangled — the fix usually lives in the source document, not the PDF. The cleanest workflow to get a good-looking export.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fix-scanned-pdf-quality",
+    title: "How to Fix Scanned PDF Quality (Sharpen, Straighten, Recolor)",
+    description:
+      "Scanned PDFs go wrong in predictable ways: skew, washed-out contrast, dotty backgrounds, oversized files. The pre-scan adjustments and post-scan tools that actually clean them up.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fix-pdf-font-issues",
+    title: "How to Fix PDF Font Issues (Missing, Substituted, Garbled)",
+    description:
+      "When a PDF shows the wrong font, boxes instead of characters, or substituted text, it's usually missing an embedded font. How embedding works and what to change at export time.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+
   // Compare
   {
     path: "/compare/pdf-vs-docx",

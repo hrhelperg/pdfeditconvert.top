@@ -66,6 +66,18 @@ import browserVsUpload from "@/content/guides/browser-based-pdf-tools-vs-upload-
 import privacyFirst from "@/content/guides/privacy-first-pdf-tools";
 import commonMistakes from "@/content/guides/common-pdf-mistakes-to-avoid";
 
+// Wave 2 — Group 1: problem & fix
+import whyWontOpen from "@/content/guides/why-wont-my-pdf-open";
+import whyBlank from "@/content/guides/why-is-my-pdf-blank";
+import whyCantEdit from "@/content/guides/why-cant-i-edit-a-pdf";
+import whyBlurry from "@/content/guides/why-is-my-pdf-blurry";
+import fixCorrupted from "@/content/guides/how-to-fix-a-corrupted-pdf";
+import fixPrinting from "@/content/guides/how-to-fix-pdf-printing-issues";
+import fixUploadErrors from "@/content/guides/how-to-fix-pdf-upload-errors";
+import fixFormatting from "@/content/guides/how-to-fix-pdf-formatting-problems";
+import fixScannedQuality from "@/content/guides/how-to-fix-scanned-pdf-quality";
+import fixFontIssues from "@/content/guides/how-to-fix-pdf-font-issues";
+
 export const GUIDES: Record<string, GuideContent> = {
   // Existing
   "how-to-edit-pdf-on-iphone": howToEditIphone,
@@ -132,4 +144,16 @@ export const GUIDES: Record<string, GuideContent> = {
   "browser-based-pdf-tools-vs-upload-tools": browserVsUpload,
   "privacy-first-pdf-tools": privacyFirst,
   "common-pdf-mistakes-to-avoid": commonMistakes,
+
+  // Wave 2 — Group 1: problem & fix
+  "why-wont-my-pdf-open": whyWontOpen,
+  "why-is-my-pdf-blank": whyBlank,
+  "why-cant-i-edit-a-pdf": whyCantEdit,
+  "why-is-my-pdf-blurry": whyBlurry,
+  "how-to-fix-a-corrupted-pdf": fixCorrupted,
+  "how-to-fix-pdf-printing-issues": fixPrinting,
+  "how-to-fix-pdf-upload-errors": fixUploadErrors,
+  "how-to-fix-pdf-formatting-problems": fixFormatting,
+  "how-to-fix-scanned-pdf-quality": fixScannedQuality,
+  "how-to-fix-pdf-font-issues": fixFontIssues,
 };
