@@ -740,6 +740,116 @@ export const ROUTES: RouteEntry[] = [
     changeFrequency: "monthly",
   },
 
+  // Guides — Wave 2: business & office workflow cluster
+  {
+    path: "/guides/best-pdf-tools-for-remote-work",
+    title: "Best PDF Tools for Remote Work (Free, Browser-Based)",
+    description:
+      "PDF tools that hold up when your office is a laptop and a phone — sign, compress, merge, scan, share — all without installs or per-seat licenses.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/best-pdf-tools-for-office-documents",
+    title: "Best PDF Tools for Office Documents (Word, Excel, Reports)",
+    description:
+      "The PDF toolkit that office work actually needs: clean Word↔PDF round-trips, multi-doc merging, page reordering and reliable compression for email attachments.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/best-pdf-workflow-for-teams",
+    title: "Best PDF Workflow for Teams (Shared Files, Reviews, Signoffs)",
+    description:
+      "How small teams move documents without paid PDF subscriptions: a repeatable handoff for drafts, reviews and signed approvals using free browser tools.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-share-pdfs-with-clients",
+    title: "How to Share PDFs With Clients (Professionally, Privately)",
+    description:
+      "A short playbook for sending PDFs to clients — sizing for email, password choices, branding the file, confirming receipt — without uploading anything to third parties.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-prepare-pdf-for-business-use",
+    title: "How to Prepare a PDF for Business Use (Cleanup Checklist)",
+    description:
+      "Before a PDF leaves the office: trim drafts, verify pagination, fix orientation, embed fonts and shrink the file. A pre-send checklist for documents that represent your business.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-send-contracts-as-pdf",
+    title: "How to Send Contracts as PDF (Sign, Lock, Deliver)",
+    description:
+      "Contracts demand a tighter PDF workflow: locking content, applying signatures, watermarking drafts, and getting a final file the other party can countersign without back-and-forth.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-organize-work-documents-as-pdf",
+    title: "How to Organize Work Documents as PDF (Folders, Names, Versions)",
+    description:
+      "A practical naming and folder convention for work PDFs — quotes, briefs, deliverables, archives — that keeps version chaos out and lets anyone find anything fast.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-manage-invoices-as-pdf",
+    title: "How to Manage Invoices as PDF (Issue, Track, Archive)",
+    description:
+      "An invoice-as-PDF workflow that doesn't need accounting software: generate, number, send, track and archive — using only free browser tools and a clean folder system.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-create-client-ready-pdf-files",
+    title: "How to Create Client-Ready PDF Files (Polished, On-Brand)",
+    description:
+      "What separates an internal PDF from a client-ready one: cover sheet, page numbering, branding, file size, file name. The quick polish that makes the document feel done.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-workflows-for-small-business",
+    title: "PDF Workflows for Small Business (Quotes, Contracts, Records)",
+    description:
+      "How a small business runs its document flow on PDFs — quotes out, contracts back, records archived — without buying a subscription stack for it.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-workflows-for-consultants",
+    title: "PDF Workflows for Consultants (Proposals, Reports, Invoices)",
+    description:
+      "A consultant's PDF rhythm: proposals that close, reports that read clean on a phone, invoices that ship in seconds. The browser-based tools that keep it lean.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-workflows-for-agencies",
+    title: "PDF Workflows for Agencies (Decks, Briefs, Approvals)",
+    description:
+      "An agency's PDF chain — pitch decks, creative briefs, client approvals, deliverables — kept fast and predictable with free, private, browser-based tools.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
   // Compare
   {
     path: "/compare/pdf-vs-docx",

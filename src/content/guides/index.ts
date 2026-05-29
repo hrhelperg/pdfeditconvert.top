@@ -78,6 +78,20 @@ import fixFormatting from "@/content/guides/how-to-fix-pdf-formatting-problems";
 import fixScannedQuality from "@/content/guides/how-to-fix-scanned-pdf-quality";
 import fixFontIssues from "@/content/guides/how-to-fix-pdf-font-issues";
 
+// Wave 2 — Group 2: business & office workflow
+import toolsRemoteWork from "@/content/guides/best-pdf-tools-for-remote-work";
+import toolsOfficeDocuments from "@/content/guides/best-pdf-tools-for-office-documents";
+import workflowTeams from "@/content/guides/best-pdf-workflow-for-teams";
+import shareWithClients from "@/content/guides/how-to-share-pdfs-with-clients";
+import prepareForBusiness from "@/content/guides/how-to-prepare-pdf-for-business-use";
+import sendContractsAsPdf from "@/content/guides/how-to-send-contracts-as-pdf";
+import organizeWorkDocs from "@/content/guides/how-to-organize-work-documents-as-pdf";
+import manageInvoices from "@/content/guides/how-to-manage-invoices-as-pdf";
+import createClientReady from "@/content/guides/how-to-create-client-ready-pdf-files";
+import workflowSmallBusiness from "@/content/guides/pdf-workflows-for-small-business";
+import workflowConsultants from "@/content/guides/pdf-workflows-for-consultants";
+import workflowAgencies from "@/content/guides/pdf-workflows-for-agencies";
+
 export const GUIDES: Record<string, GuideContent> = {
   // Existing
   "how-to-edit-pdf-on-iphone": howToEditIphone,
@@ -156,4 +170,18 @@ export const GUIDES: Record<string, GuideContent> = {
   "how-to-fix-pdf-formatting-problems": fixFormatting,
   "how-to-fix-scanned-pdf-quality": fixScannedQuality,
   "how-to-fix-pdf-font-issues": fixFontIssues,
+
+  // Wave 2 — Group 2: business & office workflow
+  "best-pdf-tools-for-remote-work": toolsRemoteWork,
+  "best-pdf-tools-for-office-documents": toolsOfficeDocuments,
+  "best-pdf-workflow-for-teams": workflowTeams,
+  "how-to-share-pdfs-with-clients": shareWithClients,
+  "how-to-prepare-pdf-for-business-use": prepareForBusiness,
+  "how-to-send-contracts-as-pdf": sendContractsAsPdf,
+  "how-to-organize-work-documents-as-pdf": organizeWorkDocs,
+  "how-to-manage-invoices-as-pdf": manageInvoices,
+  "how-to-create-client-ready-pdf-files": createClientReady,
+  "pdf-workflows-for-small-business": workflowSmallBusiness,
+  "pdf-workflows-for-consultants": workflowConsultants,
+  "pdf-workflows-for-agencies": workflowAgencies,
 };
