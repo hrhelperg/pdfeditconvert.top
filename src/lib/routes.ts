@@ -140,6 +140,15 @@ export const ROUTES: RouteEntry[] = [
     priority: 0.7,
     changeFrequency: "monthly",
   },
+  {
+    path: "/pdf-forms",
+    title: "PDF Forms — Fill, Sign and Manage Fillable PDFs",
+    description:
+      "Learn how PDF forms work and how to fill, sign, create and fix them. The hub for interactive and flat fillable PDFs, on desktop and on mobile.",
+    category: "hub",
+    priority: 0.8,
+    changeFrequency: "monthly",
+  },
 
   // Guides
   {
@@ -1143,6 +1152,338 @@ export const ROUTES: RouteEntry[] = [
       "Free Android PDF tools picked for everyday tasks — compress, sign, scan, convert. Mobile browser routes and the PDF Editor app for offline use.",
     category: "guide",
     priority: 0.65,
+    changeFrequency: "monthly",
+  },
+
+  // Guides — Phase 3 Group 1: PDF forms fundamentals
+  {
+    path: "/guides/what-is-a-pdf-form",
+    title: "What Is a PDF Form? Interactive vs Flat Forms Explained",
+    description:
+      "A PDF form is a document built to collect answers — sometimes with real fields you type into, sometimes a flat page you write on top of. What that means and how to tell.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/editable-pdf-vs-fillable-pdf",
+    title: "Editable PDF vs Fillable PDF — What's the Difference?",
+    description:
+      "Editing a PDF changes its content; filling a PDF means entering answers in form fields. Why the two are different jobs, and which one you actually need.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-pdf-forms-work",
+    title: "How PDF Forms Work — Fields, AcroForms and Flat Scans",
+    description:
+      "Under the hood, a PDF form is either a set of interactive fields layered on the page or a flat image with none. How each is built and why it matters for filling.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/can-you-edit-a-pdf-form",
+    title: "Can You Edit a PDF Form? What You Can and Can't Change",
+    description:
+      "Editing a PDF form's questions is different from filling it in. What's editable, what's locked, and how to change a form you only have as a finished PDF.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fill-out-a-pdf-form",
+    title: "How to Fill Out a PDF Form (Interactive or Flat)",
+    description:
+      "Fill any PDF form, whether it has real fields or is a flat scan you write on top of. The complete walkthrough for computer and phone, plus signing and saving.",
+    category: "guide",
+    priority: 0.75,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-save-a-filled-pdf-form",
+    title: "How to Save a Filled PDF Form So Answers Stick",
+    description:
+      "Fill a form, then watch your answers disappear? How to save filled form data reliably, why some viewers don't, and when to flatten before sending.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/why-cant-i-type-in-a-pdf-form",
+    title: "Why Can't I Type in a PDF Form? Causes and Fixes",
+    description:
+      "You click a field and nothing happens. The three usual reasons — a flat form, the wrong viewer, or a locked file — and exactly what to do about each.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-create-a-fillable-pdf",
+    title: "How to Create a Fillable PDF — Honest Options and Limits",
+    description:
+      "What it really takes to make a PDF people can fill in — interactive fields versus a simple flat template — and which approach fits the tools you have.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-share-a-pdf-form",
+    title: "How to Share a PDF Form for Others to Fill In",
+    description:
+      "Sending a blank form to be completed is different from sending a finished document. How to share a form so recipients can actually fill it, and collect the results.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-print-a-filled-pdf-form",
+    title: "How to Print a Filled PDF Form With Answers Showing",
+    description:
+      "Printed your form and the fields came out blank? Why filled-in values sometimes don't print, and how to get a clean paper copy with every answer visible.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
+  // Guides — Phase 3 Group 2: mobile PDF forms
+  {
+    path: "/guides/how-to-fill-pdf-forms-on-iphone",
+    title: "How to Fill PDF Forms on iPhone (Files, Markup & Apps)",
+    description:
+      "Fill interactive and flat PDF forms on iPhone — using Files and Markup, or a dedicated PDF app. The iOS-specific steps, the share-sheet route, and where Markup falls short.",
+    category: "guide",
+    priority: 0.7,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fill-pdf-forms-on-android",
+    title: "How to Fill PDF Forms on Android (Any Phone)",
+    description:
+      "Fill interactive and flat PDF forms on Android. Why the built-in viewer often can't type, the reliable app route, and how device differences between brands affect forms.",
+    category: "guide",
+    priority: 0.7,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-send-a-completed-pdf-form",
+    title: "How to Send a Completed PDF Form (Flatten & Deliver)",
+    description:
+      "You filled the form — now return it cleanly. How to flatten so answers can't be changed, attach it the right way, and confirm it arrived without the data getting lost.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-fill-government-pdf-forms-on-phone",
+    title: "How to Fill Government PDF Forms on Your Phone",
+    description:
+      "Government forms are often flat scans with strict formatting. How to complete them on a phone, handle the awkward fields, and follow the agency's own instructions.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/mobile-pdf-form-workflow",
+    title: "The Mobile PDF Form Workflow (Receive to Sent)",
+    description:
+      "A repeatable phone-first routine for forms: receive, open in the right app, fill, sign, flatten, send. The end-to-end workflow that needs no computer.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/best-pdf-form-app-for-iphone",
+    title: "Best PDF Form App for iPhone (What to Look For)",
+    description:
+      "What actually matters in an iPhone PDF form app — field detection, flat-form text, signing, on-device privacy — and how to judge one for your own forms.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/best-pdf-form-app-for-android",
+    title: "Best PDF Form App for Android (How to Choose)",
+    description:
+      "How to choose an Android PDF form app: field detection, flat-form text, signing, and on-device privacy — and why a dedicated app beats the default viewer for forms.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
+  // Guides — Phase 3 Group 3: business PDF forms
+  {
+    path: "/guides/pdf-forms-for-small-business",
+    title: "PDF Forms for Small Business (Intake, Orders, HR)",
+    description:
+      "The everyday forms a small business runs on — intake, orders, bookings, simple HR — and how to fill, collect and manage them as PDFs without buying a forms platform.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-send-client-intake-forms",
+    title: "How to Send Client Intake Forms (Cleanly, Privately)",
+    description:
+      "Get a new client's details in one clean pass. How to send a PDF intake form so it's easy to fill, comes back complete, and keeps the client's information private.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-use-pdf-forms-for-contracts",
+    title: "How to Use PDF Forms for Contracts (Fields & Signing)",
+    description:
+      "Turn a contract into a fillable PDF: fields for names, dates and initials, a signature area, and a flatten step so the signed version can't be altered. Honest limits included.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/how-to-manage-pdf-application-forms",
+    title: "How to Manage PDF Application Forms (Collect & Review)",
+    description:
+      "Receiving applications as PDFs? How to collect, review, compare and archive them without losing track — a simple system for handling a stack of completed forms.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-forms-for-consultants",
+    title: "PDF Forms for Consultants (Questionnaires & Scoping)",
+    description:
+      "Discovery questionnaires, engagement scoping sheets and feedback forms — the form side of consulting, handled as fillable PDFs that clients can complete on any device.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-forms-for-agencies",
+    title: "PDF Forms for Agencies (Onboarding, Briefs, Approvals)",
+    description:
+      "Client onboarding packs, creative brief forms and approval sign-off sheets — the multi-stakeholder forms agencies run, handled as fillable PDFs anyone can complete.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-forms-for-freelancers",
+    title: "PDF Forms for Freelancers (Intake, Agreements, Deposits)",
+    description:
+      "Project intake, simple service agreements and deposit authorisations — the lean set of fillable PDF forms a freelancer needs, with no subscription and nothing to upload.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/document-collection-workflows-with-pdf",
+    title: "Document Collection Workflows With PDF",
+    description:
+      "Gathering files and signed forms from clients? Build a repeatable PDF collection workflow — a checklist, consistent formats, and a tidy way to track what's still missing.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-form-best-practices",
+    title: "PDF Form Best Practices (Design Forms People Finish)",
+    description:
+      "Design forms people actually finish: clear labels, real spacing, sensible fields, an obvious signature area, and a flatten step. Practical rules for makers and senders.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+
+  // Guides — Phase 3 Group 4: PDF form problems
+  {
+    path: "/guides/pdf-form-not-working",
+    title: "PDF Form Not Working? Triage and Fixes",
+    description:
+      "A PDF form misbehaving has a handful of usual causes. A quick triage to identify which one you've hit — fields missing, won't type, won't save, read-only — and where to fix it.",
+    category: "guide",
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-form-fields-missing",
+    title: "PDF Form Fields Missing? Why and How to Restore Them",
+    description:
+      "Opened a form and the fields aren't there? Why interactive fields disappear in some viewers, how to get them back, and what to do when there were never any to begin with.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/why-pdf-form-wont-save",
+    title: "Why a PDF Form Won't Save (And How to Fix It)",
+    description:
+      "Filled a form and the answers vanish on reopening? Why some viewers only print instead of saving field data, and the reliable ways to make your answers stick.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/why-pdf-form-is-read-only",
+    title: "Why a PDF Form Is Read-Only (And What to Do)",
+    description:
+      "Your form opens locked and greyed out? Why forms are set read-only, how to tell deliberate security from a viewer quirk, and the honest options for completing one.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-form-not-printing-correctly",
+    title: "PDF Form Not Printing Correctly? Fix Blank Fields",
+    description:
+      "Form prints with blank fields, shifted text or cut edges? The form-specific print problems — missing field values especially — and the settings that fix each one.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-form-font-problems",
+    title: "PDF Form Font Problems (Auto-Size, Clipping, Substitution)",
+    description:
+      "Field text too big, too small, or auto-shrinking as you type? The font quirks specific to form fields — auto-size, substitution, clipping — and how to get clean, legible answers.",
+    category: "guide",
+    priority: 0.55,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-form-formatting-issues",
+    title: "PDF Form Formatting Issues (Alignment & Overflow)",
+    description:
+      "Fields misaligned, answers overflowing, the form looking different on someone else's screen? The form-layout problems that vary by viewer, and how to get a consistent result.",
+    category: "guide",
+    priority: 0.55,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-form-submission-errors",
+    title: "PDF Form Submission Errors (When Submit Fails)",
+    description:
+      "A form's Submit button fails or does nothing? Why built-in submit buttons depend on the issuer's server, what the errors mean, and the reliable manual way to send your form.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/pdf-form-compatibility-problems",
+    title: "PDF Form Compatibility Problems (XFA & Dynamic Forms)",
+    description:
+      "A form that opens in one program and breaks in another usually uses features not every viewer supports. How to spot dynamic forms, what causes the mismatch, and your options.",
+    category: "guide",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/guides/fix-pdf-form-errors",
+    title: "Fix PDF Form Errors — A Quick First-Aid Checklist",
+    description:
+      "The universal first-aid steps for a misbehaving PDF form: switch viewers, re-download, update, add text on top, flatten. Run these before diving into a specific cause.",
+    category: "guide",
+    priority: 0.6,
     changeFrequency: "monthly",
   },
 

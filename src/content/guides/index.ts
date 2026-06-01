@@ -132,6 +132,51 @@ import bestPrivateTools from "@/content/guides/best-private-pdf-tools";
 import freeForIphone from "@/content/guides/free-pdf-tools-for-iphone";
 import freeForAndroid from "@/content/guides/free-pdf-tools-for-android";
 
+// Phase 3 — PDF Forms Authority Cluster
+// Group 1: forms fundamentals
+import whatIsPdfForm from "@/content/guides/what-is-a-pdf-form";
+import editableVsFillable from "@/content/guides/editable-pdf-vs-fillable-pdf";
+import howPdfFormsWork from "@/content/guides/how-pdf-forms-work";
+import canEditPdfForm from "@/content/guides/can-you-edit-a-pdf-form";
+import fillOutPdfForm from "@/content/guides/how-to-fill-out-a-pdf-form";
+import saveFilledForm from "@/content/guides/how-to-save-a-filled-pdf-form";
+import cantTypeInForm from "@/content/guides/why-cant-i-type-in-a-pdf-form";
+import createFillablePdf from "@/content/guides/how-to-create-a-fillable-pdf";
+import sharePdfForm from "@/content/guides/how-to-share-a-pdf-form";
+import printFilledForm from "@/content/guides/how-to-print-a-filled-pdf-form";
+
+// Group 2: mobile forms
+import fillFormsIphone from "@/content/guides/how-to-fill-pdf-forms-on-iphone";
+import fillFormsAndroid from "@/content/guides/how-to-fill-pdf-forms-on-android";
+import sendCompletedForm from "@/content/guides/how-to-send-a-completed-pdf-form";
+import fillGovFormsPhone from "@/content/guides/how-to-fill-government-pdf-forms-on-phone";
+import mobileFormWorkflow from "@/content/guides/mobile-pdf-form-workflow";
+import bestFormAppIphone from "@/content/guides/best-pdf-form-app-for-iphone";
+import bestFormAppAndroid from "@/content/guides/best-pdf-form-app-for-android";
+
+// Group 3: business forms
+import formsSmallBusiness from "@/content/guides/pdf-forms-for-small-business";
+import sendIntakeForms from "@/content/guides/how-to-send-client-intake-forms";
+import formsForContracts from "@/content/guides/how-to-use-pdf-forms-for-contracts";
+import manageApplicationForms from "@/content/guides/how-to-manage-pdf-application-forms";
+import formsConsultants from "@/content/guides/pdf-forms-for-consultants";
+import formsAgencies from "@/content/guides/pdf-forms-for-agencies";
+import formsFreelancers from "@/content/guides/pdf-forms-for-freelancers";
+import documentCollection from "@/content/guides/document-collection-workflows-with-pdf";
+import formBestPractices from "@/content/guides/pdf-form-best-practices";
+
+// Group 4: form problems
+import formNotWorking from "@/content/guides/pdf-form-not-working";
+import formFieldsMissing from "@/content/guides/pdf-form-fields-missing";
+import formWontSave from "@/content/guides/why-pdf-form-wont-save";
+import formReadOnly from "@/content/guides/why-pdf-form-is-read-only";
+import formNotPrinting from "@/content/guides/pdf-form-not-printing-correctly";
+import formFontProblems from "@/content/guides/pdf-form-font-problems";
+import formFormattingIssues from "@/content/guides/pdf-form-formatting-issues";
+import formSubmissionErrors from "@/content/guides/pdf-form-submission-errors";
+import formCompatibility from "@/content/guides/pdf-form-compatibility-problems";
+import fixFormErrors from "@/content/guides/fix-pdf-form-errors";
+
 export const GUIDES: Record<string, GuideContent> = {
   // Existing
   "how-to-edit-pdf-on-iphone": howToEditIphone,
@@ -264,4 +309,48 @@ export const GUIDES: Record<string, GuideContent> = {
   "best-private-pdf-tools": bestPrivateTools,
   "free-pdf-tools-for-iphone": freeForIphone,
   "free-pdf-tools-for-android": freeForAndroid,
+
+  // Phase 3 — Group 1: forms fundamentals
+  "what-is-a-pdf-form": whatIsPdfForm,
+  "editable-pdf-vs-fillable-pdf": editableVsFillable,
+  "how-pdf-forms-work": howPdfFormsWork,
+  "can-you-edit-a-pdf-form": canEditPdfForm,
+  "how-to-fill-out-a-pdf-form": fillOutPdfForm,
+  "how-to-save-a-filled-pdf-form": saveFilledForm,
+  "why-cant-i-type-in-a-pdf-form": cantTypeInForm,
+  "how-to-create-a-fillable-pdf": createFillablePdf,
+  "how-to-share-a-pdf-form": sharePdfForm,
+  "how-to-print-a-filled-pdf-form": printFilledForm,
+
+  // Phase 3 — Group 2: mobile forms
+  "how-to-fill-pdf-forms-on-iphone": fillFormsIphone,
+  "how-to-fill-pdf-forms-on-android": fillFormsAndroid,
+  "how-to-send-a-completed-pdf-form": sendCompletedForm,
+  "how-to-fill-government-pdf-forms-on-phone": fillGovFormsPhone,
+  "mobile-pdf-form-workflow": mobileFormWorkflow,
+  "best-pdf-form-app-for-iphone": bestFormAppIphone,
+  "best-pdf-form-app-for-android": bestFormAppAndroid,
+
+  // Phase 3 — Group 3: business forms
+  "pdf-forms-for-small-business": formsSmallBusiness,
+  "how-to-send-client-intake-forms": sendIntakeForms,
+  "how-to-use-pdf-forms-for-contracts": formsForContracts,
+  "how-to-manage-pdf-application-forms": manageApplicationForms,
+  "pdf-forms-for-consultants": formsConsultants,
+  "pdf-forms-for-agencies": formsAgencies,
+  "pdf-forms-for-freelancers": formsFreelancers,
+  "document-collection-workflows-with-pdf": documentCollection,
+  "pdf-form-best-practices": formBestPractices,
+
+  // Phase 3 — Group 4: form problems
+  "pdf-form-not-working": formNotWorking,
+  "pdf-form-fields-missing": formFieldsMissing,
+  "why-pdf-form-wont-save": formWontSave,
+  "why-pdf-form-is-read-only": formReadOnly,
+  "pdf-form-not-printing-correctly": formNotPrinting,
+  "pdf-form-font-problems": formFontProblems,
+  "pdf-form-formatting-issues": formFormattingIssues,
+  "pdf-form-submission-errors": formSubmissionErrors,
+  "pdf-form-compatibility-problems": formCompatibility,
+  "fix-pdf-form-errors": fixFormErrors,
 };
