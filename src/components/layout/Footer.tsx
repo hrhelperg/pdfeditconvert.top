@@ -13,8 +13,9 @@ const PRODUCT = [
 
 const LEARN = [
   { label: "All guides", href: "/guides" },
+  { label: "PDF Forms", href: "/pdf-forms" },
+  { label: "Fill out a PDF form", href: "/guides/how-to-fill-out-a-pdf-form" },
   { label: "Convert PDF to Word", href: "/guides/how-to-convert-pdf-to-word" },
-  { label: "Convert JPG to PDF", href: "/guides/how-to-convert-jpg-to-pdf" },
   {
     label: "Reduce PDF size for email",
     href: "/guides/how-to-reduce-pdf-file-size-for-email",
