@@ -6,7 +6,8 @@ export type RouteCategory =
   | "compare"
   | "use-case"
   | "legal"
-  | "meta";
+  | "meta"
+  | "reference";
 
 export interface RouteEntry {
   path: string;
@@ -138,4 +139,92 @@ export interface ToolContent {
   related: RelatedLink[];
   faq: FaqItem[];
   appCta: { heading: string; sub: string };
+}
+
+// ---------------------------------------------------------------------------
+// Knowledge Graph (domain-agnostic — reused by every future phase)
+// ---------------------------------------------------------------------------
+
+export type KnowledgeCluster =
+  | "foundations"
+  | "standards"
+  | "text-fonts"
+  | "graphics-color"
+  | "images-compression"
+  | "interactivity"
+  | "security"
+  | "accessibility"
+  | "metadata-tooling"
+  | "print-geometry";
+
+export type KnowledgeSearchIntent =
+  | "definition"
+  | "concept"
+  | "standard"
+  | "specification"
+  | "comparison"
+  | "security"
+  | "format"
+  | "history"
+  | "printing"
+  | "metadata"
+  | "rendering"
+  | "accessibility"
+  | "workflow";
+
+export type KnowledgeDifficulty = "Beginner" | "Intermediate" | "Advanced";
+
+export interface KnowledgeSection {
+  heading: string;
+  body: string[];
+}
+
+export interface KeyFact {
+  label: string;
+  value: string;
+}
+
+export interface KnowledgeMisconception {
+  claim: string; // the common but wrong belief
+  truth: string; // the correction
+}
+
+export interface SpecificationMeta {
+  iso?: string;
+  introduced?: string;
+  latestVersion?: string;
+  typicalUsage?: string;
+  relatedStandards?: string[]; // knowledge slugs
+}
+
+export interface KnowledgeGraphEdges {
+  parentConcept?: string; // knowledge slug
+  childConcepts?: string[]; // knowledge slugs
+  relatedConcepts?: string[]; // knowledge slugs
+  relatedStandards?: string[]; // knowledge slugs
+  relatedFormats?: string[]; // knowledge slugs
+  relatedTools?: RelatedLink[]; // existing site routes
+  relatedGuides?: RelatedLink[]; // existing site routes
+}
+
+export interface KnowledgeContent {
+  slug: string;
+  h1: string;
+  cluster: KnowledgeCluster;
+  aliases: string[];
+  definition: string;
+  description: string;
+  searchIntent: KnowledgeSearchIntent;
+  difficulty: KnowledgeDifficulty;
+  updated: string; // ISO date — publication / last content change
+  reviewed: string; // ISO date — editorial review
+  intro: string[];
+  sections: KnowledgeSection[];
+  keyFacts?: KeyFact[];
+  specification?: SpecificationMeta;
+  misconceptions?: KnowledgeMisconception[];
+  faq: FaqItem[];
+  graph: KnowledgeGraphEdges;
+  seeAlso: string[]; // 5–8 knowledge slugs
+  parentHub: RelatedLink;
 }

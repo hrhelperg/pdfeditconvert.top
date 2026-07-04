@@ -127,6 +127,32 @@ export function faqSchema(items: { q: string; a: string }[]) {
   };
 }
 
+export function definedTermSchema({
+  term,
+  aliases,
+  definition,
+  path,
+}: {
+  term: string;
+  aliases: string[];
+  definition: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: term,
+    alternateName: aliases,
+    description: definition,
+    url: `${SITE_URL}${path}`,
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      name: "PDF Encyclopedia",
+      url: `${SITE_URL}/pdf-encyclopedia`,
+    },
+  };
+}
+
 export function webApplicationSchema({
   name,
   description,

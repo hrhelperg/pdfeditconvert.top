@@ -149,6 +149,15 @@ export const ROUTES: RouteEntry[] = [
     priority: 0.8,
     changeFrequency: "monthly",
   },
+  {
+    path: "/pdf-encyclopedia",
+    title: "PDF Encyclopedia — How PDF Actually Works",
+    description:
+      "A plain-English reference to the PDF format: standards, fonts, color, compression, forms, security and accessibility. Definitions, specs and how each piece works.",
+    category: "hub",
+    priority: 0.8,
+    changeFrequency: "weekly",
+  },
 
   // Guides
   {
