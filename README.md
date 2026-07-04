@@ -26,4 +26,25 @@ npm run start
 npm test
 ```
 
+## IndexNow
+
+The site verifies IndexNow ownership via `public/<key>.txt`, served at
+`https://pdfeditconvert.top/<key>.txt`. To notify IndexNow-compatible search
+engines after content changes, run the submission script manually (it is
+never part of build or deploy):
+
+```bash
+INDEXNOW_KEY=your-indexnow-key npm run indexnow:submit
+```
+
+Add `--dry-run` (`npm run indexnow:submit -- --dry-run`) to preview the URL
+list without submitting. The script reads every non-hidden route from
+`src/lib/routes.ts` and submits canonical apex URLs only.
+
+Environment variables:
+
+```bash
+INDEXNOW_KEY=your-indexnow-key  # set in Vercel → Environment Variables
+```
+
 See `docs/superpowers/specs/` for the design spec and `docs/superpowers/plans/` for the build plan.
