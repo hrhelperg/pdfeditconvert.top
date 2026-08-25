@@ -14,7 +14,8 @@
     "indexnow:submit": "node scripts/submit-indexnow.mjs",
     "seo:crawl": "node scripts/seo/crawl-build.mjs",
     "seo:check": "node scripts/seo/check-build-seo.mjs",
-    "seo:check-host": "node scripts/seo/check-canonical-host.mjs"
+    "seo:check-host": "node scripts/seo/check-canonical-host.mjs",
+    "seo:crawl-server": "node scripts/seo/crawl-server.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
