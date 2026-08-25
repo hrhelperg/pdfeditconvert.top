@@ -10,6 +10,16 @@ export type RouteCategory =
 
 export interface RouteEntry {
   path: string;
+  /**
+   * Date this route's content last genuinely changed, `YYYY-MM-DD`.
+   *
+   * Feeds sitemap `<lastmod>`. It must track real content edits — never a
+   * build or deploy timestamp. Before Aug 2026 the sitemap stamped every URL
+   * with `new Date()` at build time, so each deploy told Google all 176 pages
+   * had just changed; that destroys the signal's usefulness and trains
+   * crawlers to ignore it.
+   */
+  lastModified: string;
   title: string;
   description: string;
   category: RouteCategory;

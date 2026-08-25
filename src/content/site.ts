@@ -1,7 +1,10 @@
+import { SITE_URL } from "@/lib/routes";
+
 export const SITE = {
   name: "PDF Editor",
   tagline: "All-in-One PDF Solution for Work, Study & Life",
-  url: "https://pdfeditconvert.top",
+  // Single source of truth — see the SITE_URL doc comment in src/lib/routes.ts.
+  url: SITE_URL,
   contactEmail: "info@hrhelperg.com",
   company: {
     legalName: "hrhelperg s.r.o.",
