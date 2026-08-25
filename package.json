@@ -11,7 +11,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "indexnow:submit": "node scripts/submit-indexnow.mjs"
+    "indexnow:submit": "node scripts/submit-indexnow.mjs",
+    "seo:crawl": "node scripts/seo/crawl-build.mjs",
+    "seo:check": "node scripts/seo/check-build-seo.mjs",
+    "seo:check-host": "node scripts/seo/check-canonical-host.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
