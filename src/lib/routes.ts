@@ -71,7 +71,7 @@ export const ROUTES: RouteEntry[] = [
   },
   {
     path: "/pdf-to-word",
-    lastModified: "2026-05-19",
+    lastModified: "2026-08-25",
     title: "PDF to Word — Convert PDF to Editable DOCX in Your Browser",
     description:
       "Extract a PDF's text into an editable Word (.docx) document directly in your browser. Free, no upload — an honest text conversion, not a fake layout promise.",
@@ -81,7 +81,7 @@ export const ROUTES: RouteEntry[] = [
   },
   {
     path: "/word-to-pdf",
-    lastModified: "2026-05-19",
+    lastModified: "2026-08-25",
     title: "Word to PDF — Convert DOCX or TXT to PDF in Your Browser",
     description:
       "Turn a Word .docx or .txt file into a clean PDF directly in your browser. Free, no signup, no upload — your document never leaves your device.",
