@@ -41,6 +41,10 @@ const content: ToolContent = {
     { label: "Image to PDF", path: "/image-to-pdf" },
     { label: "Merge PDFs", path: "/merge-pdf" },
     { label: "All free PDF tools", path: "/pdf-tools" },
+    {
+      label: "How to convert Word to PDF",
+      path: "/guides/how-to-convert-word-to-pdf",
+    },
   ],
   faq: [
     { q: "Is my file uploaded?", a: "No. The conversion runs entirely in your browser. Your document never leaves your device." },

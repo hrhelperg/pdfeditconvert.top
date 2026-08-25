@@ -105,7 +105,10 @@ const content: HubContent = {
     },
   ],
   related: [
-    { label: "Use cases — students", path: "/use-cases/students" },
+    {
+      label: "How to share study notes as a PDF",
+      path: "/guides/how-to-share-study-notes-as-pdf",
+    },
     {
       label: "Best PDF app for students",
       path: "/guides/best-pdf-app-for-students",

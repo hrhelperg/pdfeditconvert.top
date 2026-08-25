@@ -6,7 +6,9 @@
 //
 // Requires INDEXNOW_KEY in the environment (set in Vercel env vars; export
 // it locally to run from a shell). The key file must be live at
-// https://pdfeditconvert.top/<key>.txt for the submission to be accepted.
+// <SITE_URL>/<key>.txt for the submission to be accepted. IndexNow validates
+// keyLocation by fetching it, so SITE_URL must be the origin that answers 200
+// rather than one that redirects.
 //
 // Usage:
 //   INDEXNOW_KEY=... node scripts/submit-indexnow.mjs            # submit
@@ -18,7 +20,9 @@ import { dirname, resolve } from "node:path";
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..");
 
-const FALLBACK_SITE_URL = "https://pdfeditconvert.top";
+// Mirrors the default in src/lib/routes.ts. parseSiteUrl throws rather than
+// silently falling back, so this is only a documented reference value.
+const FALLBACK_SITE_URL = "https://www.pdfeditconvert.top";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 // IndexNow protocol cap per request.
 const MAX_URLS_PER_REQUEST = 10_000;
@@ -27,8 +31,24 @@ const MAX_URLS_PER_REQUEST = 10_000;
 // exports are read textually. Both parsers throw if the shape they rely on
 // disappears, rather than silently submitting an empty or partial list.
 export function parseSiteUrl(source) {
-  const match = source.match(/export const SITE_URL = "(https:\/\/[^"]+)";/);
-  return match ? match[1] : FALLBACK_SITE_URL;
+  // Matches the env-overridable form in src/lib/routes.ts:
+  //   export const SITE_URL = (
+  //     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.pdfeditconvert.top"
+  //   ).replace(/\/+$/, "");
+  // The env var wins here too, so a submission always targets the same origin
+  // the deployed build canonicalises to.
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/+$/, "");
+  }
+  const match = source.match(
+    /export const SITE_URL =[\s\S]*?NEXT_PUBLIC_SITE_URL \?\? "(https:\/\/[^"]+)"/,
+  );
+  if (!match) {
+    throw new Error(
+      `Could not parse SITE_URL from src/lib/routes.ts — update parseSiteUrl(). Expected default ${FALLBACK_SITE_URL}.`,
+    );
+  }
+  return match[1].replace(/\/+$/, "");
 }
 
 export function parseRoutes(source) {

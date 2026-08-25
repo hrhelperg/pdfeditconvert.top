@@ -82,7 +82,7 @@ const content: GuideContent = {
       label: "Edit the scanned PDF afterward",
       path: "/guides/how-to-edit-pdf-on-iphone",
     },
-    { label: "Business workflows for scans", path: "/use-cases/business" },
+    { label: "PDF for Business", path: "/pdf-for-business" },
   ],
   parentHub: { label: "Scan to PDF", path: "/scan-to-pdf" },
 };

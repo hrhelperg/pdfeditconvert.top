@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import { GUIDES } from "@/content/guides";
-import { ROUTES, getRoute } from "@/lib/routes";
-import sitemap from "@/app/sitemap";
+import { ROUTES, getRoute, SITE_URL } from "@/lib/routes";
+import { sitemapUrls } from "./helpers/sitemapUrls";
 import { HubPage } from "@/components/sections/HubPage";
 import formsHub from "@/content/hubs/pdf-forms";
 
@@ -74,17 +74,17 @@ describe("PDF Forms cluster — registration", () => {
   });
 
   it("registers a route + sitemap entry for every form guide and the hub", () => {
-    const urls = new Set(sitemap().map((e) => e.url));
+    const urls = new Set(sitemapUrls());
     for (const slug of [...PHASE3_SLUGS]) {
       const route = getRoute(`/guides/${slug}`);
       expect(route.category, `${slug} category`).toBe("guide");
       expect(
-        urls.has(`https://pdfeditconvert.top/guides/${slug}`),
+        urls.has(`${SITE_URL}/guides/${slug}`),
         `${slug} missing from sitemap`,
       ).toBe(true);
     }
     expect(
-      urls.has(`https://pdfeditconvert.top${HUB_PATH}`),
+      urls.has(`${SITE_URL}${HUB_PATH}`),
       "hub missing from sitemap",
     ).toBe(true);
   });

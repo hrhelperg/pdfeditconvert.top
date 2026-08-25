@@ -7,6 +7,8 @@ import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Steps } from "@/components/sections/Steps";
 import { AppCTA } from "@/components/sections/AppCTA";
 import { RelatedGuides } from "@/components/sections/RelatedGuides";
+import { ClusterGuides } from "@/components/sections/ClusterGuides";
+import { clusterLinks, guidesForHub } from "@/lib/cluster";
 import { FAQ } from "@/components/sections/FAQ";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -62,6 +64,18 @@ export function HubPage({ content }: { content: HubContent }) {
       </Section>
 
       <RelatedGuides items={content.related} />
+
+      {/*
+        Every guide declares this hub as its parentHub; surfacing that reverse
+        edge is the most contextually relevant internal link the site can give
+        those guides, and it turns the hub into a real cluster entry point.
+      */}
+      <ClusterGuides
+        heading={`All ${guidesForHub(hubPath).length} guides in this cluster`}
+        items={clusterLinks(hubPath)}
+        moreHref="/guides"
+        moreLabel="Browse every PDF guide"
+      />
 
       <FAQ items={content.faq} />
 

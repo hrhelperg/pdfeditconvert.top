@@ -115,8 +115,8 @@ const content: HubContent = {
     },
     { label: "Edit the scanned PDF after the fact", path: "/pdf-editor" },
     {
-      label: "Scanning workflows for business",
-      path: "/use-cases/business",
+      label: "PDF for Business",
+      path: "/pdf-for-business",
     },
   ],
   appCta: {

@@ -8,7 +8,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, it, expect } from "vitest";
-import { ROUTES, SITE_URL } from "@/lib/routes";
+import { ROUTES, SITE_HOST, SITE_URL } from "@/lib/routes";
 import {
   buildUrlList,
   parseRoutes,
@@ -52,8 +52,12 @@ describe("submit-indexnow.mjs source", () => {
     expect(scriptSource).not.toContain(INDEXNOW_KEY);
   });
 
-  it("never references the non-canonical www host", () => {
-    expect(scriptSource).not.toContain("www.pdfeditconvert.top");
+  it("derives the host from the registry rather than hardcoding one", () => {
+    // Regression guard for the Aug 2026 indexation incident: the submitted
+    // host must follow SITE_URL, so a canonical-host change can never leave
+    // IndexNow pointing at an origin that redirects.
+    expect(scriptSource).toContain("parseSiteUrl");
+    expect(scriptSource).toContain("NEXT_PUBLIC_SITE_URL");
   });
 });
 
@@ -73,12 +77,12 @@ describe("URL list generation", () => {
     expect(buildUrlList(routesSource).sort()).toEqual([...expected].sort());
   });
 
-  it("produces unique, canonical apex URLs only", () => {
+  it("produces unique URLs on the canonical host only", () => {
     const urls = buildUrlList(routesSource);
     expect(new Set(urls).size).toBe(urls.length);
     for (const url of urls) {
-      expect(new URL(url).host).toBe("pdfeditconvert.top");
-      expect(url.startsWith("https://pdfeditconvert.top")).toBe(true);
+      expect(new URL(url).host).toBe(SITE_HOST);
+      expect(url.startsWith(SITE_URL)).toBe(true);
     }
   });
 });

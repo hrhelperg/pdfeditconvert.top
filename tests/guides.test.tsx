@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import { GUIDES } from "@/content/guides";
-import { ROUTES, getRoute } from "@/lib/routes";
-import sitemap from "@/app/sitemap";
+import { ROUTES, getRoute, SITE_URL } from "@/lib/routes";
+import { sitemapUrls } from "./helpers/sitemapUrls";
 import { GuidePage } from "@/components/sections/GuidePage";
 
 const entries = Object.entries(GUIDES);
@@ -72,10 +72,10 @@ describe("guides routing & metadata", () => {
   });
 
   it("includes every guide URL in the sitemap", () => {
-    const urls = new Set(sitemap().map((e) => e.url));
+    const urls = new Set(sitemapUrls());
     for (const [slug] of entries) {
       expect(
-        urls.has(`https://pdfeditconvert.top/guides/${slug}`),
+        urls.has(`${SITE_URL}/guides/${slug}`),
         `${slug} missing from sitemap`,
       ).toBe(true);
     }

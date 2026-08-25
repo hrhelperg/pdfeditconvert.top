@@ -10,6 +10,8 @@ import { FAQ } from "@/components/sections/FAQ";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PrivacyNote } from "@/components/tools/primitives/PrivacyNote";
+import { ClusterGuides } from "@/components/sections/ClusterGuides";
+import { clusterLinks, guidesForHub } from "@/lib/cluster";
 import {
   breadcrumbSchema,
   faqSchema,
@@ -182,6 +184,22 @@ export function ToolPage({
           </ul>
         </Container>
       </Section>
+
+      {/*
+        Guides that name this tool as their parentHub. Tool pages are the
+        site's most differentiated asset but were the least editorially
+        linked; this connects each one to the guides written about it.
+      */}
+      <ClusterGuides
+        heading={
+          guidesForHub(path).length === 1
+            ? `${crumbLabel} guide`
+            : `${crumbLabel} guides`
+        }
+        items={clusterLinks(path)}
+        moreHref="/pdf-tools"
+        moreLabel="All free browser PDF tools"
+      />
 
       <AppCTA variant="inline" heading={content.appCta.heading} sub={content.appCta.sub} />
 

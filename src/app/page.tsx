@@ -10,6 +10,7 @@ import { FAQ } from "@/components/sections/FAQ";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
 import { softwareAppSchema, faqSchema } from "@/content/schema";
+import { GUIDES } from "@/content/guides";
 import {
   Check,
   Image as ImageIcon,
@@ -123,6 +124,7 @@ const HUBS = [
   { label: "PDF Security", href: "/pdf-security", desc: "Protect documents with a password." },
   { label: "PDF for Business", href: "/pdf-for-business", desc: "Contracts and invoices on the go." },
   { label: "PDF for Students", href: "/pdf-for-students", desc: "Notes, highlights and study guides." },
+  { label: "PDF Forms", href: "/pdf-forms", desc: "Fill, sign and save fillable PDFs." },
 ];
 
 const FEATURE_BAND: { icon: LucideIcon; label: string; sub: string }[] = [
@@ -132,6 +134,8 @@ const FEATURE_BAND: { icon: LucideIcon; label: string; sub: string }[] = [
   { icon: ScanLine, label: "Scan", sub: "Paper to PDF" },
   { icon: LayoutGrid, label: "Organize", sub: "Reorder, split" },
 ];
+
+const GUIDE_COUNT = Object.keys(GUIDES).length;
 
 const FEATURED_GUIDES = [
   { label: "How to edit a PDF on iPhone", href: "/guides/how-to-edit-pdf-on-iphone" },
@@ -372,6 +376,15 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
+          <p className="mt-10">
+            <Link
+              href="/guides"
+              className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white"
+              style={{ background: "var(--gradient-brand)" }}
+            >
+              Browse all {GUIDE_COUNT} PDF guides →
+            </Link>
+          </p>
         </Container>
       </Section>
 

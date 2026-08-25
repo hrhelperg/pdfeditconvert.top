@@ -41,6 +41,10 @@ const content: ToolContent = {
     { label: "PDF to images", path: "/pdf-to-images" },
     { label: "All free PDF tools", path: "/pdf-tools" },
     { label: "PDF vs DOCX — which to use", path: "/compare/pdf-vs-docx" },
+    {
+      label: "How to convert a PDF to Word",
+      path: "/guides/how-to-convert-pdf-to-word",
+    },
   ],
   faq: [
     { q: "Is my file uploaded?", a: "No. Text extraction runs entirely in your browser. Your PDF never leaves your device." },

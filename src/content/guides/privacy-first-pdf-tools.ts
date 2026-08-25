@@ -69,6 +69,10 @@ const content: GuideContent = {
     },
   ],
   related: [
+    {
+      label: "PDF apps vs online PDF tools",
+      path: "/compare/pdf-app-vs-online-pdf-tools",
+    },
     { label: "All free PDF tools — no upload, no account", path: "/pdf-tools" },
     { label: "Browser-based PDF tools vs upload tools", path: "/guides/browser-based-pdf-tools-vs-upload-tools" },
     { label: "PDF Security — protect documents", path: "/pdf-security" },
