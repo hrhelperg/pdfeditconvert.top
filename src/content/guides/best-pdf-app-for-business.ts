@@ -74,7 +74,10 @@ const content: GuideContent = {
   ],
   related: [
     { label: "PDF for Business — full overview", path: "/pdf-for-business" },
-    { label: "Use cases — business", path: "/use-cases/business" },
+    {
+      label: "PDF workflows for small business",
+      path: "/guides/pdf-workflows-for-small-business",
+    },
     { label: "PDF security", path: "/pdf-security" },
   ],
   parentHub: { label: "PDF for Business", path: "/pdf-for-business" },

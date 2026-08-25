@@ -73,8 +73,11 @@ const content: GuideContent = {
     },
   ],
   related: [
-    { label: "Use cases — students", path: "/use-cases/students" },
     { label: "PDF for Students — full overview", path: "/pdf-for-students" },
+    {
+      label: "Best PDF tools for students",
+      path: "/guides/best-pdf-tools-for-students",
+    },
     { label: "Scan textbook pages to PDF", path: "/scan-to-pdf" },
   ],
   parentHub: { label: "PDF for Students", path: "/pdf-for-students" },

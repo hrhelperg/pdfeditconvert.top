@@ -106,7 +106,10 @@ const content: HubContent = {
   ],
   related: [
     { label: "PDF security and encryption", path: "/pdf-security" },
-    { label: "Use cases — business teams", path: "/use-cases/business" },
+    {
+      label: "Secure PDF workflows for business",
+      path: "/guides/secure-pdf-workflows-for-business",
+    },
     { label: "Sign PDF on phone", path: "/sign-pdf" },
   ],
   appCta: {
