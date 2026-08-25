@@ -92,6 +92,20 @@ export function articleSchema({
   };
 }
 
+/**
+ * Whether a guide is procedural enough for HowTo markup.
+ *
+ * Every guide has a `steps` array, so HowTo used to be emitted on all 144 —
+ * including "PDF vs DOCX", "Best PDF App for Students" and "Why Is My PDF
+ * Blurry?", where the steps are explanation, not a procedure. Schema that
+ * misdescribes the page type is worse than no schema, and HowTo rich results
+ * were retired by Google in 2023, so there is nothing to lose by scoping it
+ * to pages that genuinely instruct.
+ */
+export function isProceduralGuide(h1: string): boolean {
+  return /^how to\b/i.test(h1.trim());
+}
+
 export function howToSchema({
   name,
   description,

@@ -11,6 +11,7 @@ import {
   breadcrumbSchema,
   faqSchema,
   howToSchema,
+  isProceduralGuide,
 } from "@/content/schema";
 
 export function GuidePage({ content }: { content: GuideContent }) {
@@ -73,11 +74,15 @@ export function GuidePage({ content }: { content: GuideContent }) {
             { label: "Guides", path: "/guides" },
             { label: content.h1, path },
           ]),
-          howToSchema({
-            name: content.h1,
-            description: content.description,
-            steps: content.steps,
-          }),
+          ...(isProceduralGuide(content.h1)
+            ? [
+                howToSchema({
+                  name: content.h1,
+                  description: content.description,
+                  steps: content.steps,
+                }),
+              ]
+            : []),
           faqSchema(content.faq),
         ]}
       />
