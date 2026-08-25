@@ -69,6 +69,7 @@ const content: GuideContent = {
     },
   ],
   related: [
+    { label: "PDF Editor for Remote Work", path: "/use-cases/remote-work" },
     { label: "PDF for Business — workflows and tools", path: "/pdf-for-business" },
     { label: "Sign PDF — add electronic signatures", path: "/sign-pdf" },
     { label: "Best PDF workflow for teams", path: "/guides/best-pdf-workflow-for-teams" },

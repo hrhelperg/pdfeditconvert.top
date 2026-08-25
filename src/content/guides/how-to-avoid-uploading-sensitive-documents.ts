@@ -69,6 +69,10 @@ const content: GuideContent = {
     },
   ],
   related: [
+    {
+      label: "PDF apps vs online PDF tools",
+      path: "/compare/pdf-app-vs-online-pdf-tools",
+    },
     { label: "PDF Security — password protect and encrypt", path: "/pdf-security" },
     { label: "How to protect sensitive PDF files", path: "/guides/how-to-protect-sensitive-pdf-files" },
     { label: "How to share PDF files privately", path: "/guides/how-to-share-pdf-files-privately" },

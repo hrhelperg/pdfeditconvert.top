@@ -69,6 +69,7 @@ const content: GuideContent = {
     },
   ],
   related: [
+    { label: "PDF Editor for Remote Work", path: "/use-cases/remote-work" },
     { label: "PDF Editor for Freelancers — overview", path: "/use-cases/freelancers" },
     { label: "All free PDF tools", path: "/pdf-tools" },
     { label: "How to sign a PDF on your phone", path: "/guides/how-to-sign-pdf-on-phone" },
