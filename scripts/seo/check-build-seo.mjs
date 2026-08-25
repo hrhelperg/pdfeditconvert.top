@@ -1,0 +1,84 @@
+#!/usr/bin/env node
+/**
+ * Post-build indexation gate. Runs against the HTML `next build` actually
+ * emitted, so it catches anything the unit gates cannot see: what the
+ * canonical tag renders to, whether primary content survives without
+ * JavaScript, whether a page is silently empty.
+ *
+ * Usage: npm run build && node scripts/seo/check-build-seo.mjs
+ */
+import { crawl } from "./crawl-build.mjs";
+import { readFileSync } from "node:fs";
+
+const routesSrc = readFileSync(new URL("../../src/lib/routes.ts", import.meta.url), "utf8");
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
+  routesSrc.match(/NEXT_PUBLIC_SITE_URL \?\? "(https:\/\/[^"]+)"/)[1];
+
+// Tiers are the pages the recovery commits to; they get the strictest checks.
+const tierSrc = readFileSync(new URL("../../src/lib/indexation.ts", import.meta.url), "utf8");
+const tierPaths = (name) =>
+  [...(tierSrc.match(new RegExp(`export const ${name}[\\s\\S]*?\\];`))?.[0] ?? "")
+    .matchAll(/"(\/[^"]*)"/g)].map((m) => m[1]);
+const TIER_1 = tierPaths("TIER_1");
+const TIER_2 = tierPaths("TIER_2");
+
+/** Minimum rendered text for a page to be more than a shell. Deliberately low:
+ *  this detects an empty or JS-only render, not "thin content", which word
+ *  counts cannot measure. */
+const MIN_RENDERED_CHARS = 600;
+
+const pages = crawl();
+const failures = [];
+const fail = (msg) => failures.push(msg);
+
+for (const [path, page] of pages) {
+  if (path.startsWith("/_")) continue;
+  const expected = `${SITE_URL}${path === "/" ? "" : path}`;
+
+  if (page.canonical !== expected) fail(`${path}: canonical is "${page.canonical}", expected "${expected}"`);
+  if (page.ogUrl && page.ogUrl !== expected) fail(`${path}: og:url is "${page.ogUrl}", expected "${expected}"`);
+  if (!page.robotsMeta) fail(`${path}: no robots meta tag`);
+  if (/noindex/i.test(page.robotsMeta)) fail(`${path}: robots meta is "${page.robotsMeta}"`);
+  if (!page.title.trim()) fail(`${path}: empty <title>`);
+  if (!page.description.trim()) fail(`${path}: empty meta description`);
+  if (page.h1s.length !== 1) fail(`${path}: ${page.h1s.length} <h1> elements, expected exactly 1`);
+  if (page.textLength < MIN_RENDERED_CHARS)
+    fail(`${path}: only ${page.textLength} chars of server-rendered text — possible soft 404 or JS-only render`);
+  if (page.depth === Infinity) fail(`${path}: unreachable by following links from "/"`);
+}
+
+// Sitewide uniqueness.
+for (const field of ["title", "description", "h1"]) {
+  const seen = new Map();
+  for (const [path, page] of pages) {
+    if (path.startsWith("/_")) continue;
+    const v = page[field];
+    if (!v) continue;
+    if (seen.has(v)) fail(`duplicate ${field}: ${path} and ${seen.get(v)} share "${v.slice(0, 60)}"`);
+    else seen.set(v, path);
+  }
+}
+
+// Tier commitments.
+for (const [tier, paths, minInbound] of [["Tier 1", TIER_1, 3], ["Tier 2", TIER_2, 2]]) {
+  for (const p of paths) {
+    const page = pages.get(p);
+    if (!page) { fail(`${tier} ${p}: not present in the build output`); continue; }
+    if (p !== "/" && page.editorialIn < minInbound)
+      fail(`${tier} ${p}: only ${page.editorialIn} in-content inbound link(s), minimum ${minInbound}`);
+    if (page.depth > 2) fail(`${tier} ${p}: click depth ${page.depth} from "/", maximum 2`);
+  }
+}
+
+const real = [...pages.values()].filter((p) => !p.path.startsWith("/_"));
+console.log(`crawled ${real.length} prerendered pages`);
+console.log(`click depth: ${JSON.stringify(real.reduce((a, p) => ({ ...a, [p.depth]: (a[p.depth] ?? 0) + 1 }), {}))}`);
+console.log(`in-content orphans: ${real.filter((p) => p.editorialIn === 0 && p.path !== "/").map((p) => p.path).join(", ") || "none"}`);
+
+if (failures.length) {
+  console.error(`\n${failures.length} failure(s):`);
+  for (const f of failures) console.error(`  - ${f}`);
+  process.exit(1);
+}
+console.log("\nAll build-output SEO checks passed.");
