@@ -38,28 +38,28 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
     slug: "editeur-pdf",
     title: "Éditeur PDF — modifier le texte, les images et les pages sur mobile",
     description:
-      "Modifiez vos PDF sur iPhone ou Android : corriger le texte, ajouter des images, réorganiser les pages et signer un document. Découvrez comment l'application PDF Editor rend la retouche mobile simple.",
+      "Modifiez vos PDF sur iPhone ou Android : corriger le texte, ajouter des images, réorganiser les pages et signer un document. Découvrez comment l’application PDF Editor rend la retouche mobile simple.",
   },
   {
     id: "pdf-converter",
     slug: "convertisseur-pdf",
     title: "Convertisseur PDF — convertir un PDF en Word, JPG, PNG et inversement",
     description:
-      "Convertissez vos PDF en Word, Excel, JPG, PNG et dans l'autre sens. La méthode la plus propre depuis un mobile, avec l'application PDF Editor sur iOS et Android.",
+      "Convertissez vos PDF en Word, Excel, JPG, PNG et dans l’autre sens. La méthode la plus propre depuis un mobile, avec l’application PDF Editor sur iOS et Android.",
   },
   {
     id: "sign-pdf",
     slug: "signer-pdf",
     title: "Signer un PDF — ajouter une signature électronique depuis son téléphone",
     description:
-      "Signez vos PDF depuis votre téléphone avec une vraie signature manuscrite ou un nom saisi. Accepté dans la plupart des échanges professionnels. Essayez l'application PDF Editor.",
+      "Signez vos PDF depuis votre téléphone avec une vraie signature manuscrite ou un nom saisi. Accepté dans la plupart des échanges professionnels. Essayez l’application PDF Editor.",
   },
   {
     id: "scan-to-pdf",
     slug: "numeriser-en-pdf",
     title: "Numériser en PDF — transformer un document papier en PDF net",
     description:
-      "Utilisez l'appareil photo de votre téléphone pour numériser documents, pièces d'identité et reçus en PDF nets et consultables. PDF Editor détecte les bords automatiquement.",
+      "Utilisez l’appareil photo de votre téléphone pour numériser documents, pièces d’identité et reçus en PDF nets et consultables. PDF Editor détecte les bords automatiquement.",
   },
   {
     id: "pdf-security",
@@ -73,7 +73,7 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
     slug: "pdf-pour-entreprise",
     title: "PDF en entreprise — contrats, factures et circuits de validation",
     description:
-      "Comment les petites équipes utilisent le PDF pour leurs contrats, factures et validations. Des méthodes modernes, pensées mobile, avec l'application PDF Editor.",
+      "Comment les petites équipes utilisent le PDF pour leurs contrats, factures et validations. Des méthodes modernes, pensées mobile, avec l’application PDF Editor.",
   },
   {
     id: "pdf-for-students",
@@ -94,7 +94,7 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
   {
     id: "guides",
     slug: "guides",
-    title: "Guides PDF — tutoriels et modes d'emploi",
+    title: "Guides PDF — tutoriels et modes d’emploi",
     description:
       "Des tutoriels PDF concrets, pensés pour le mobile : modifier, convertir, compresser, fusionner, signer et protéger vos documents sur iPhone et Android.",
   },
@@ -105,14 +105,14 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
     slug: "outils-pdf",
     title: "Outils PDF gratuits — dans le navigateur, sans rien envoyer",
     description:
-      "Des outils PDF gratuits qui fonctionnent entièrement dans votre navigateur. Fusionner, diviser, faire pivoter, ajouter un filigrane, convertir des images en PDF et l'inverse — vos fichiers ne quittent jamais votre appareil.",
+      "Des outils PDF gratuits qui fonctionnent entièrement dans votre navigateur. Fusionner, diviser, faire pivoter, ajouter un filigrane, convertir des images en PDF et l’inverse — vos fichiers ne quittent jamais votre appareil.",
   },
   {
     id: "compress-pdf",
     slug: "compresser-pdf",
-    title: "Compresser un PDF — réduire la taille d'un fichier dans le navigateur",
+    title: "Compresser un PDF — réduire la taille d’un fichier dans le navigateur",
     description:
-      "Réduisez la taille d'un PDF directement dans votre navigateur, avec plusieurs niveaux de compression. Gratuit, sans inscription et sans envoi : le fichier ne quitte pas votre appareil.",
+      "Réduisez la taille d’un PDF directement dans votre navigateur, avec plusieurs niveaux de compression. Gratuit, sans inscription et sans envoi : le fichier ne quitte pas votre appareil.",
   },
   {
     id: "merge-pdf",
@@ -131,9 +131,9 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
   {
     id: "rotate-pdf",
     slug: "faire-pivoter-pdf",
-    title: "Faire pivoter un PDF — corriger l'orientation des pages",
+    title: "Faire pivoter un PDF — corriger l’orientation des pages",
     description:
-      "Faites pivoter toutes les pages d'un PDF ou seulement certaines, de 90°, 180° ou 270°, directement dans votre navigateur. Gratuit et confidentiel : rien n'est envoyé.",
+      "Faites pivoter toutes les pages d’un PDF ou seulement certaines, de 90°, 180° ou 270°, directement dans votre navigateur. Gratuit et confidentiel : rien n’est envoyé.",
   },
   {
     id: "image-to-pdf",
@@ -145,16 +145,16 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
   {
     id: "pdf-to-images",
     slug: "pdf-vers-images",
-    title: "PDF en images — exporter les pages d'un PDF en PNG ou JPG",
+    title: "PDF en images — exporter les pages d’un PDF en PNG ou JPG",
     description:
-      "Transformez n'importe quel PDF en images PNG ou JPG, page par page, dans votre navigateur. Gratuit, sans envoi ni compte : tout se passe sur votre appareil.",
+      "Transformez n’importe quel PDF en images PNG ou JPG, page par page, dans votre navigateur. Gratuit, sans envoi ni compte : tout se passe sur votre appareil.",
   },
   {
     id: "pdf-to-word",
     slug: "pdf-vers-word",
     title: "PDF en Word — convertir un PDF en DOCX modifiable",
     description:
-      "Récupérez le texte d'un PDF dans un document Word (.docx) modifiable, directement dans votre navigateur. Gratuit et sans envoi : une conversion de texte honnête, sans promesse de mise en page parfaite.",
+      "Récupérez le texte d’un PDF dans un document Word (.docx) modifiable, directement dans votre navigateur. Gratuit et sans envoi : une conversion de texte honnête, sans promesse de mise en page parfaite.",
   },
   {
     id: "word-to-pdf",
@@ -168,19 +168,19 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
     slug: "ajouter-filigrane-pdf",
     title: "Ajouter un filigrane à un PDF — gratuit, confidentiel, dans le navigateur",
     description:
-      "Ajoutez un filigrane texte sur chaque page d'un PDF directement dans votre navigateur. Gratuit, sans envoi ni inscription : les fichiers restent sur votre appareil.",
+      "Ajoutez un filigrane texte sur chaque page d’un PDF directement dans votre navigateur. Gratuit, sans envoi ni inscription : les fichiers restent sur votre appareil.",
   },
   {
     id: "reorder-pdf-pages",
     slug: "reorganiser-pages-pdf",
-    title: "Réorganiser les pages d'un PDF — changer l'ordre dans le navigateur",
+    title: "Réorganiser les pages d’un PDF — changer l’ordre dans le navigateur",
     description:
-      "Prévisualisez chaque page et changez l'ordre d'un PDF avec des commandes simples, puis téléchargez le fichier réorganisé. Gratuit, sans inscription et sans envoi.",
+      "Prévisualisez chaque page et changez l’ordre d’un PDF avec des commandes simples, puis téléchargez le fichier réorganisé. Gratuit, sans inscription et sans envoi.",
   },
   {
     id: "extract-pdf-pages",
     slug: "extraire-pages-pdf",
-    title: "Extraire des pages d'un PDF — enregistrer une sélection en nouveau fichier",
+    title: "Extraire des pages d’un PDF — enregistrer une sélection en nouveau fichier",
     description:
       "Choisissez des pages ou des plages précises et téléchargez un PDF ne contenant que celles-là, directement dans votre navigateur. Gratuit, sans inscription et sans envoi.",
   },
@@ -191,7 +191,7 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
     slug: "comparatifs/pdf-ou-docx",
     title: "PDF ou DOCX — le comparatif point par point",
     description:
-      "PDF et DOCX comparés sur la modification, la fidélité de mise en page, la signature, la sécurité et le partage. Choisissez le bon format selon l'usage.",
+      "PDF et DOCX comparés sur la modification, la fidélité de mise en page, la signature, la sécurité et le partage. Choisissez le bon format selon l’usage.",
   },
   {
     id: "compare/pdf-vs-jpg",
@@ -221,7 +221,7 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
     slug: "cas-usage/teletravail",
     title: "PDF Editor en télétravail — vos documents partout",
     description:
-      "Travaillez vos documents où que vous soyez : numériser, signer et partager un PDF depuis n'importe quel appareil.",
+      "Travaillez vos documents où que vous soyez : numériser, signer et partager un PDF depuis n’importe quel appareil.",
   },
 
   // Legal and meta
@@ -235,7 +235,7 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
   {
     id: "terms",
     slug: "conditions-utilisation",
-    title: "Conditions d'utilisation",
+    title: "Conditions d’utilisation",
     description: "Les conditions qui encadrent votre utilisation de pdfeditconvert.top.",
   },
   {
@@ -243,7 +243,7 @@ export const FR_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
     slug: "contact",
     title: "Contact — PDF Editor par hrhelperg s.r.o.",
     description:
-      "Écrivez à l'équipe derrière PDF Editor. E-mail : info@hrhelperg.com.",
+      "Écrivez à l’équipe derrière PDF Editor. E-mail : info@hrhelperg.com.",
   },
 
   ...FR_GUIDE_ROUTES,
