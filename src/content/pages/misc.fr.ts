@@ -42,7 +42,7 @@ export const GUIDES_INDEX_FR: GuidesIndexContent = {
 };
 
 export const CONTACT_FR: ContactContent = {
-  h1: "Contact",
+  h1: "Nous contacter",
   lead: "Question, partenariat, presse ou avis sur l'application PDF Editor — nous lisons tous les e-mails.",
   emailLabel: "E-mail",
   officeLabel: "Siège social",
