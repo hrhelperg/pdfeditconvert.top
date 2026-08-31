@@ -18,8 +18,10 @@ import canYouEditAPdfForm from "@/content/pt-BR/guides/can-you-edit-a-pdf-form";
 import commonPdfMistakesToAvoid from "@/content/pt-BR/guides/common-pdf-mistakes-to-avoid";
 import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compress-pdf-without-losing-too-much-quality";
 import doOnlinePdfToolsStoreFiles from "@/content/pt-BR/guides/do-online-pdf-tools-store-files";
+import documentCollectionWorkflowsWithPdf from "@/content/pt-BR/guides/document-collection-workflows-with-pdf";
 import editablePdfVsFillablePdf from "@/content/pt-BR/guides/editable-pdf-vs-fillable-pdf";
 import editablePdfVsFlatPdf from "@/content/pt-BR/guides/editable-pdf-vs-flat-pdf";
+import fixPdfFormErrors from "@/content/pt-BR/guides/fix-pdf-form-errors";
 import howPdfFormsWork from "@/content/pt-BR/guides/how-pdf-forms-work";
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
 import howToAnnotatePdfOnMobile from "@/content/pt-BR/guides/how-to-annotate-pdf-on-mobile";
@@ -62,6 +64,7 @@ import howToFixSidewaysPdfPages from "@/content/pt-BR/guides/how-to-fix-sideways
 import howToMakePdfSmallerOnAndroid from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-android";
 import howToMakePdfSmallerOnIphone from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-iphone";
 import howToManageInvoicesAsPdf from "@/content/pt-BR/guides/how-to-manage-invoices-as-pdf";
+import howToManagePdfApplicationForms from "@/content/pt-BR/guides/how-to-manage-pdf-application-forms";
 import howToManagePdfsOnPhone from "@/content/pt-BR/guides/how-to-manage-pdfs-on-phone";
 import howToMergePdfFiles from "@/content/pt-BR/guides/how-to-merge-pdf-files";
 import howToOrganizePdfFiles from "@/content/pt-BR/guides/how-to-organize-pdf-files";
@@ -81,8 +84,10 @@ import howToSaveAFilledPdfForm from "@/content/pt-BR/guides/how-to-save-a-filled
 import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-documents-to-pdf";
 import howToScanNotesToPdf from "@/content/pt-BR/guides/how-to-scan-notes-to-pdf";
 import howToSendACompletedPdfForm from "@/content/pt-BR/guides/how-to-send-a-completed-pdf-form";
+import howToSendClientIntakeForms from "@/content/pt-BR/guides/how-to-send-client-intake-forms";
 import howToSendContractsAsPdf from "@/content/pt-BR/guides/how-to-send-contracts-as-pdf";
 import howToSendLargePdfFiles from "@/content/pt-BR/guides/how-to-send-large-pdf-files";
+import howToShareAPdfForm from "@/content/pt-BR/guides/how-to-share-a-pdf-form";
 import howToSharePdfFilesPrivately from "@/content/pt-BR/guides/how-to-share-pdf-files-privately";
 import howToSharePdfFromPhone from "@/content/pt-BR/guides/how-to-share-pdf-from-phone";
 import howToSharePdfsWithClients from "@/content/pt-BR/guides/how-to-share-pdfs-with-clients";
@@ -94,11 +99,14 @@ import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import howToSubmitHomeworkAsPdf from "@/content/pt-BR/guides/how-to-submit-homework-as-pdf";
 import localBrowserPdfProcessingExplained from "@/content/pt-BR/guides/local-browser-pdf-processing-explained";
 import mobilePdfFormWorkflow from "@/content/pt-BR/guides/mobile-pdf-form-workflow";
+import pdfFormBestPractices from "@/content/pt-BR/guides/pdf-form-best-practices";
 import pdfFormCompatibilityProblems from "@/content/pt-BR/guides/pdf-form-compatibility-problems";
 import pdfFormFieldsMissing from "@/content/pt-BR/guides/pdf-form-fields-missing";
 import pdfFormFontProblems from "@/content/pt-BR/guides/pdf-form-font-problems";
 import pdfFormFormattingIssues from "@/content/pt-BR/guides/pdf-form-formatting-issues";
+import pdfFormNotPrintingCorrectly from "@/content/pt-BR/guides/pdf-form-not-printing-correctly";
 import pdfFormNotWorking from "@/content/pt-BR/guides/pdf-form-not-working";
+import pdfFormSubmissionErrors from "@/content/pt-BR/guides/pdf-form-submission-errors";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsDocxForBusiness from "@/content/pt-BR/guides/pdf-vs-docx-for-business";
 import pdfVsGoogleDocs from "@/content/pt-BR/guides/pdf-vs-google-docs";
@@ -150,8 +158,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "common-pdf-mistakes-to-avoid": commonPdfMistakesToAvoid,
   "compress-pdf-without-losing-too-much-quality": compressPdfWithoutLosingTooMuchQuality,
   "do-online-pdf-tools-store-files": doOnlinePdfToolsStoreFiles,
+  "document-collection-workflows-with-pdf": documentCollectionWorkflowsWithPdf,
   "editable-pdf-vs-fillable-pdf": editablePdfVsFillablePdf,
   "editable-pdf-vs-flat-pdf": editablePdfVsFlatPdf,
+  "fix-pdf-form-errors": fixPdfFormErrors,
   "how-pdf-forms-work": howPdfFormsWork,
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
   "how-to-annotate-pdf-on-mobile": howToAnnotatePdfOnMobile,
@@ -194,6 +204,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-make-pdf-smaller-on-android": howToMakePdfSmallerOnAndroid,
   "how-to-make-pdf-smaller-on-iphone": howToMakePdfSmallerOnIphone,
   "how-to-manage-invoices-as-pdf": howToManageInvoicesAsPdf,
+  "how-to-manage-pdf-application-forms": howToManagePdfApplicationForms,
   "how-to-manage-pdfs-on-phone": howToManagePdfsOnPhone,
   "how-to-merge-pdf-files": howToMergePdfFiles,
   "how-to-organize-pdf-files": howToOrganizePdfFiles,
@@ -213,8 +224,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-scan-documents-to-pdf": howToScanDocumentsToPdf,
   "how-to-scan-notes-to-pdf": howToScanNotesToPdf,
   "how-to-send-a-completed-pdf-form": howToSendACompletedPdfForm,
+  "how-to-send-client-intake-forms": howToSendClientIntakeForms,
   "how-to-send-contracts-as-pdf": howToSendContractsAsPdf,
   "how-to-send-large-pdf-files": howToSendLargePdfFiles,
+  "how-to-share-a-pdf-form": howToShareAPdfForm,
   "how-to-share-pdf-files-privately": howToSharePdfFilesPrivately,
   "how-to-share-pdf-from-phone": howToSharePdfFromPhone,
   "how-to-share-pdfs-with-clients": howToSharePdfsWithClients,
@@ -226,11 +239,14 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-submit-homework-as-pdf": howToSubmitHomeworkAsPdf,
   "local-browser-pdf-processing-explained": localBrowserPdfProcessingExplained,
   "mobile-pdf-form-workflow": mobilePdfFormWorkflow,
+  "pdf-form-best-practices": pdfFormBestPractices,
   "pdf-form-compatibility-problems": pdfFormCompatibilityProblems,
   "pdf-form-fields-missing": pdfFormFieldsMissing,
   "pdf-form-font-problems": pdfFormFontProblems,
   "pdf-form-formatting-issues": pdfFormFormattingIssues,
+  "pdf-form-not-printing-correctly": pdfFormNotPrintingCorrectly,
   "pdf-form-not-working": pdfFormNotWorking,
+  "pdf-form-submission-errors": pdfFormSubmissionErrors,
   "pdf-vs-docx": pdfVsDocx,
   "pdf-vs-docx-for-business": pdfVsDocxForBusiness,
   "pdf-vs-google-docs": pdfVsGoogleDocs,
