@@ -2,9 +2,12 @@ import type { GuideContent } from "@/types/content";
 
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
+import bestPdfCompressionSettings from "@/content/pt-BR/guides/best-pdf-compression-settings";
+import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compress-pdf-without-losing-too-much-quality";
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
 import howToCompressPdf from "@/content/pt-BR/guides/how-to-compress-pdf";
 import howToCompressPdfOnline from "@/content/pt-BR/guides/how-to-compress-pdf-online";
+import howToCompressScannedPdf from "@/content/pt-BR/guides/how-to-compress-scanned-pdf";
 import howToConvertJpgToPdf from "@/content/pt-BR/guides/how-to-convert-jpg-to-pdf";
 import howToConvertPdfToJpg from "@/content/pt-BR/guides/how-to-convert-pdf-to-jpg";
 import howToConvertPdfToPng from "@/content/pt-BR/guides/how-to-convert-pdf-to-png";
@@ -19,19 +22,24 @@ import howToEditPdfOnAndroid from "@/content/pt-BR/guides/how-to-edit-pdf-on-and
 import howToEditPdfOnIphone from "@/content/pt-BR/guides/how-to-edit-pdf-on-iphone";
 import howToExtractPagesFromPdf from "@/content/pt-BR/guides/how-to-extract-pages-from-pdf";
 import howToFixSidewaysPdfPages from "@/content/pt-BR/guides/how-to-fix-sideways-pdf-pages";
+import howToMakePdfSmallerOnAndroid from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-android";
 import howToMakePdfSmallerOnIphone from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-iphone";
 import howToMergePdfFiles from "@/content/pt-BR/guides/how-to-merge-pdf-files";
 import howToOrganizePdfFiles from "@/content/pt-BR/guides/how-to-organize-pdf-files";
 import howToPreparePdfBeforeSharing from "@/content/pt-BR/guides/how-to-prepare-pdf-before-sharing";
 import howToProtectPdfFile from "@/content/pt-BR/guides/how-to-protect-pdf-file";
 import howToReducePdfFileSizeForEmail from "@/content/pt-BR/guides/how-to-reduce-pdf-file-size-for-email";
+import howToReducePdfSizeBeforeUploading from "@/content/pt-BR/guides/how-to-reduce-pdf-size-before-uploading";
 import howToRemoveUnwantedPagesFromPdf from "@/content/pt-BR/guides/how-to-remove-unwanted-pages-from-pdf";
 import howToReorderPdfPages from "@/content/pt-BR/guides/how-to-reorder-pdf-pages";
 import howToRotatePdfPages from "@/content/pt-BR/guides/how-to-rotate-pdf-pages";
 import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-documents-to-pdf";
+import howToSendLargePdfFiles from "@/content/pt-BR/guides/how-to-send-large-pdf-files";
+import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-iphone";
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
 import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
+import whyIsMyPdfSoLarge from "@/content/pt-BR/guides/why-is-my-pdf-so-large";
 
 /**
  * Brazilian Portuguese guides, keyed by the **English** slug.
@@ -46,9 +54,12 @@ import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
+  "best-pdf-compression-settings": bestPdfCompressionSettings,
+  "compress-pdf-without-losing-too-much-quality": compressPdfWithoutLosingTooMuchQuality,
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
   "how-to-compress-pdf": howToCompressPdf,
   "how-to-compress-pdf-online": howToCompressPdfOnline,
+  "how-to-compress-scanned-pdf": howToCompressScannedPdf,
   "how-to-convert-jpg-to-pdf": howToConvertJpgToPdf,
   "how-to-convert-pdf-to-jpg": howToConvertPdfToJpg,
   "how-to-convert-pdf-to-png": howToConvertPdfToPng,
@@ -63,17 +74,22 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-edit-pdf-on-iphone": howToEditPdfOnIphone,
   "how-to-extract-pages-from-pdf": howToExtractPagesFromPdf,
   "how-to-fix-sideways-pdf-pages": howToFixSidewaysPdfPages,
+  "how-to-make-pdf-smaller-on-android": howToMakePdfSmallerOnAndroid,
   "how-to-make-pdf-smaller-on-iphone": howToMakePdfSmallerOnIphone,
   "how-to-merge-pdf-files": howToMergePdfFiles,
   "how-to-organize-pdf-files": howToOrganizePdfFiles,
   "how-to-prepare-pdf-before-sharing": howToPreparePdfBeforeSharing,
   "how-to-protect-pdf-file": howToProtectPdfFile,
   "how-to-reduce-pdf-file-size-for-email": howToReducePdfFileSizeForEmail,
+  "how-to-reduce-pdf-size-before-uploading": howToReducePdfSizeBeforeUploading,
   "how-to-remove-unwanted-pages-from-pdf": howToRemoveUnwantedPagesFromPdf,
   "how-to-reorder-pdf-pages": howToReorderPdfPages,
   "how-to-rotate-pdf-pages": howToRotatePdfPages,
   "how-to-scan-documents-to-pdf": howToScanDocumentsToPdf,
+  "how-to-send-large-pdf-files": howToSendLargePdfFiles,
+  "how-to-sign-pdf-on-iphone": howToSignPdfOnIphone,
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
   "how-to-split-pdf-files": howToSplitPdfFiles,
   "pdf-vs-docx": pdfVsDocx,
+  "why-is-my-pdf-so-large": whyIsMyPdfSoLarge,
 };
