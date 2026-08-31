@@ -94,6 +94,11 @@ import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import howToSubmitHomeworkAsPdf from "@/content/pt-BR/guides/how-to-submit-homework-as-pdf";
 import localBrowserPdfProcessingExplained from "@/content/pt-BR/guides/local-browser-pdf-processing-explained";
 import mobilePdfFormWorkflow from "@/content/pt-BR/guides/mobile-pdf-form-workflow";
+import pdfFormCompatibilityProblems from "@/content/pt-BR/guides/pdf-form-compatibility-problems";
+import pdfFormFieldsMissing from "@/content/pt-BR/guides/pdf-form-fields-missing";
+import pdfFormFontProblems from "@/content/pt-BR/guides/pdf-form-font-problems";
+import pdfFormFormattingIssues from "@/content/pt-BR/guides/pdf-form-formatting-issues";
+import pdfFormNotWorking from "@/content/pt-BR/guides/pdf-form-not-working";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsDocxForBusiness from "@/content/pt-BR/guides/pdf-vs-docx-for-business";
 import pdfVsGoogleDocs from "@/content/pt-BR/guides/pdf-vs-google-docs";
@@ -108,9 +113,12 @@ import securePdfWorkflowsForBusiness from "@/content/pt-BR/guides/secure-pdf-wor
 import whatIsAPdfForm from "@/content/pt-BR/guides/what-is-a-pdf-form";
 import whenToUsePdfInsteadOfDocx from "@/content/pt-BR/guides/when-to-use-pdf-instead-of-docx";
 import whyCantIEditAPdf from "@/content/pt-BR/guides/why-cant-i-edit-a-pdf";
+import whyCantITypeInAPdfForm from "@/content/pt-BR/guides/why-cant-i-type-in-a-pdf-form";
 import whyIsMyPdfBlank from "@/content/pt-BR/guides/why-is-my-pdf-blank";
 import whyIsMyPdfBlurry from "@/content/pt-BR/guides/why-is-my-pdf-blurry";
 import whyIsMyPdfSoLarge from "@/content/pt-BR/guides/why-is-my-pdf-so-large";
+import whyPdfFormIsReadOnly from "@/content/pt-BR/guides/why-pdf-form-is-read-only";
+import whyPdfFormWontSave from "@/content/pt-BR/guides/why-pdf-form-wont-save";
 import whyWontMyPdfOpen from "@/content/pt-BR/guides/why-wont-my-pdf-open";
 
 /**
@@ -218,6 +226,11 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-submit-homework-as-pdf": howToSubmitHomeworkAsPdf,
   "local-browser-pdf-processing-explained": localBrowserPdfProcessingExplained,
   "mobile-pdf-form-workflow": mobilePdfFormWorkflow,
+  "pdf-form-compatibility-problems": pdfFormCompatibilityProblems,
+  "pdf-form-fields-missing": pdfFormFieldsMissing,
+  "pdf-form-font-problems": pdfFormFontProblems,
+  "pdf-form-formatting-issues": pdfFormFormattingIssues,
+  "pdf-form-not-working": pdfFormNotWorking,
   "pdf-vs-docx": pdfVsDocx,
   "pdf-vs-docx-for-business": pdfVsDocxForBusiness,
   "pdf-vs-google-docs": pdfVsGoogleDocs,
@@ -232,8 +245,11 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "what-is-a-pdf-form": whatIsAPdfForm,
   "when-to-use-pdf-instead-of-docx": whenToUsePdfInsteadOfDocx,
   "why-cant-i-edit-a-pdf": whyCantIEditAPdf,
+  "why-cant-i-type-in-a-pdf-form": whyCantITypeInAPdfForm,
   "why-is-my-pdf-blank": whyIsMyPdfBlank,
   "why-is-my-pdf-blurry": whyIsMyPdfBlurry,
   "why-is-my-pdf-so-large": whyIsMyPdfSoLarge,
+  "why-pdf-form-is-read-only": whyPdfFormIsReadOnly,
+  "why-pdf-form-wont-save": whyPdfFormWontSave,
   "why-wont-my-pdf-open": whyWontMyPdfOpen,
 };
