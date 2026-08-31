@@ -4,7 +4,7 @@ const content: UseCaseContent = {
   slug: "remote-work",
   h1: "PDF Editor en télétravail — vos documents partout",
   description:
-    "Travaillez vos documents où que vous soyez : numériser, signer et partager un PDF depuis n'importe quel appareil.",
+    "Travaillez vos documents où que vous soyez : numériser, signer et partager un PDF depuis n’importe quel appareil.",
   intro: [
     "Le télétravail dissocie le bureau de l’emploi. L’inconvénient, c’est que les opérations documentaires qui se faisaient autrefois à l’imprimante, au scanner ou sur un lecteur partagé doivent désormais se faire sur l’appareil du moment — souvent dans un train, un café ou chez un client. Un éditeur de PDF mobile natif comble cet écart.",
     "Le critère minimal pour tout outil de télétravail : fonctionner avec un wifi capricieux, fonctionner hors connexion quand il le faut, ne pas exiger l’envoi de documents sensibles à un tiers, et fonctionner sur l’appareil du moment. PDF Editor répond aux quatre exigences, car toutes les opérations lourdes s’exécutent directement sur l’appareil.",

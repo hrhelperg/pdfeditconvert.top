@@ -4,7 +4,7 @@ const content: CompareContent = {
   slug: "pdf-vs-docx",
   h1: "PDF ou DOCX — le comparatif point par point",
   description:
-    "PDF et DOCX comparés sur la modification, la fidélité de mise en page, la signature, la sécurité et le partage. Choisissez le bon format selon l'usage.",
+    "PDF et DOCX comparés sur la modification, la fidélité de mise en page, la signature, la sécurité et le partage. Choisissez le bon format selon l’usage.",
   intro: [
     "PDF et DOCX sont les deux formats dans lesquels finissent la plupart des documents. Chacun a un rôle précis à jouer — et choisir le bon pour chaque tâche évite l’essentiel des soucis de mise en forme et de partage que l’on associe généralement aux documents.",
     "Cette comparaison se veut pratique, pas théorique. Chaque ligne reflète le comportement réel des deux formats dans un usage quotidien, et non ce que prévoient les documents de normalisation. L’accent est mis sur ce que l’on remarque dès le premier mois d’utilisation intensive de l’un ou l’autre.",
