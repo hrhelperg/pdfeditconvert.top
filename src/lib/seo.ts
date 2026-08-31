@@ -58,7 +58,10 @@ export function seo({
   const url = `${SITE_URL}${path}`;
   const fullOg = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
 
-  const languages = routeId ? buildLanguageAlternates(routeId) : undefined;
+  // The home route id is the empty string, so test for presence rather than
+  // truthiness — `routeId ? …` silently dropped hreflang from both homepages.
+  const languages =
+    routeId === undefined ? undefined : buildLanguageAlternates(routeId);
 
   return {
     title,

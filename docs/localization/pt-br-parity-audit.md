@@ -33,7 +33,7 @@ partially translated.
 | `tool` | 12 | `/compress-pdf` | `/pt-br/comprimir-pdf` | 12 |
 | `guide` | 145 | `/guides/how-to-compress-pdf` | `/pt-br/guias/como-comprimir-pdf` | 145 |
 | `compare` | 3 | `/compare/pdf-vs-jpg` | `/pt-br/comparacoes/pdf-ou-jpg` | 3 |
-| `use-case` | 2 | `/use-cases/students` | `/pt-br/casos-de-uso/estudantes` | 2 |
+| `use-case` | 2 | `/use-cases/freelancers` | `/pt-br/casos-de-uso/freelancers` | 2 |
 | `legal` | 2 | `/privacy-policy` | `/pt-br/politica-de-privacidade` | 2 |
 | `meta` | 1 | `/contact` | `/pt-br/contato` | 1 |
 | **Total** | **174** | | | **174** |
@@ -60,8 +60,8 @@ for pt-BR — only the strings differ, resolved server-side from
 
 ### Comparisons (3/3) and use cases (2/2)
 
-`compare/pdf-vs-jpg`, `compare/pdf-vs-docx`, `compare/pdf-vs-png`;
-`use-cases/students`, `use-cases/small-business`.
+`compare/pdf-vs-docx`, `compare/pdf-vs-jpg`, `compare/pdf-app-vs-online-pdf-tools`;
+`use-cases/freelancers`, `use-cases/remote-work`.
 
 ### Legal and interface (3/3)
 
