@@ -10,6 +10,7 @@ import {
 import { ROUTE_IDS, isRouteId, type RouteId } from "@/lib/i18n/routeIds";
 import { PT_BR_ROUTE_MANIFEST } from "@/content/pt-BR/routes";
 import { FR_ROUTE_MANIFEST } from "@/content/fr/routes";
+import { ES_ROUTE_MANIFEST } from "@/content/es/routes";
 
 /**
  * The centralized locale route map.
@@ -136,6 +137,7 @@ export function buildLocaleRoutes(
 export const LOCALE_PUBLISHED_AT: Partial<Record<Locale, string>> = {
   "pt-BR": "2026-08-31",
   fr: "2026-08-31",
+  es: "2026-08-31",
 };
 
 const LOCALE_ROUTES: Partial<Record<Locale, LocalizedRoute[]>> = {
@@ -145,6 +147,9 @@ const LOCALE_ROUTES: Partial<Record<Locale, LocalizedRoute[]>> = {
   }),
   fr: buildLocaleRoutes("fr", FR_ROUTE_MANIFEST, {
     publishedAt: LOCALE_PUBLISHED_AT.fr,
+  }),
+  es: buildLocaleRoutes("es", ES_ROUTE_MANIFEST, {
+    publishedAt: LOCALE_PUBLISHED_AT.es,
   }),
 };
 

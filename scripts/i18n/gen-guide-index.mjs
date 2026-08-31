@@ -13,6 +13,7 @@ import { readdirSync, writeFileSync } from "node:fs";
 const LOCALE_NAMES = {
   "pt-BR": "Brazilian Portuguese",
   fr: "French",
+  es: "Spanish",
 };
 
 const locale = process.argv[2] ?? "pt-BR";
