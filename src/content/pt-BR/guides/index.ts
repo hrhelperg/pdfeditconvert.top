@@ -4,6 +4,8 @@ import areOnlinePdfToolsSafe from "@/content/pt-BR/guides/are-online-pdf-tools-s
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
 import bestPdfCompressionSettings from "@/content/pt-BR/guides/best-pdf-compression-settings";
+import bestPdfFormAppForAndroid from "@/content/pt-BR/guides/best-pdf-form-app-for-android";
+import bestPdfFormAppForIphone from "@/content/pt-BR/guides/best-pdf-form-app-for-iphone";
 import bestPdfToolsForOfficeDocuments from "@/content/pt-BR/guides/best-pdf-tools-for-office-documents";
 import bestPdfToolsForRemoteWork from "@/content/pt-BR/guides/best-pdf-tools-for-remote-work";
 import bestPdfToolsForSmallBusiness from "@/content/pt-BR/guides/best-pdf-tools-for-small-business";
@@ -45,7 +47,10 @@ import howToEditClassDocumentsAsPdf from "@/content/pt-BR/guides/how-to-edit-cla
 import howToEditPdfOnAndroid from "@/content/pt-BR/guides/how-to-edit-pdf-on-android";
 import howToEditPdfOnIphone from "@/content/pt-BR/guides/how-to-edit-pdf-on-iphone";
 import howToExtractPagesFromPdf from "@/content/pt-BR/guides/how-to-extract-pages-from-pdf";
+import howToFillGovernmentPdfFormsOnPhone from "@/content/pt-BR/guides/how-to-fill-government-pdf-forms-on-phone";
 import howToFillOutAPdfForm from "@/content/pt-BR/guides/how-to-fill-out-a-pdf-form";
+import howToFillPdfFormsOnAndroid from "@/content/pt-BR/guides/how-to-fill-pdf-forms-on-android";
+import howToFillPdfFormsOnIphone from "@/content/pt-BR/guides/how-to-fill-pdf-forms-on-iphone";
 import howToFillPdfFormsOnPhone from "@/content/pt-BR/guides/how-to-fill-pdf-forms-on-phone";
 import howToFixACorruptedPdf from "@/content/pt-BR/guides/how-to-fix-a-corrupted-pdf";
 import howToFixPdfFontIssues from "@/content/pt-BR/guides/how-to-fix-pdf-font-issues";
@@ -64,6 +69,7 @@ import howToOrganizeStudyMaterialsAsPdf from "@/content/pt-BR/guides/how-to-orga
 import howToOrganizeWorkDocumentsAsPdf from "@/content/pt-BR/guides/how-to-organize-work-documents-as-pdf";
 import howToPreparePdfBeforeSharing from "@/content/pt-BR/guides/how-to-prepare-pdf-before-sharing";
 import howToPreparePdfForBusinessUse from "@/content/pt-BR/guides/how-to-prepare-pdf-for-business-use";
+import howToPrintAFilledPdfForm from "@/content/pt-BR/guides/how-to-print-a-filled-pdf-form";
 import howToProtectPdfFile from "@/content/pt-BR/guides/how-to-protect-pdf-file";
 import howToProtectSensitivePdfFiles from "@/content/pt-BR/guides/how-to-protect-sensitive-pdf-files";
 import howToReducePdfFileSizeForEmail from "@/content/pt-BR/guides/how-to-reduce-pdf-file-size-for-email";
@@ -74,6 +80,7 @@ import howToRotatePdfPages from "@/content/pt-BR/guides/how-to-rotate-pdf-pages"
 import howToSaveAFilledPdfForm from "@/content/pt-BR/guides/how-to-save-a-filled-pdf-form";
 import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-documents-to-pdf";
 import howToScanNotesToPdf from "@/content/pt-BR/guides/how-to-scan-notes-to-pdf";
+import howToSendACompletedPdfForm from "@/content/pt-BR/guides/how-to-send-a-completed-pdf-form";
 import howToSendContractsAsPdf from "@/content/pt-BR/guides/how-to-send-contracts-as-pdf";
 import howToSendLargePdfFiles from "@/content/pt-BR/guides/how-to-send-large-pdf-files";
 import howToSharePdfFilesPrivately from "@/content/pt-BR/guides/how-to-share-pdf-files-privately";
@@ -86,6 +93,7 @@ import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone
 import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import howToSubmitHomeworkAsPdf from "@/content/pt-BR/guides/how-to-submit-homework-as-pdf";
 import localBrowserPdfProcessingExplained from "@/content/pt-BR/guides/local-browser-pdf-processing-explained";
+import mobilePdfFormWorkflow from "@/content/pt-BR/guides/mobile-pdf-form-workflow";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsDocxForBusiness from "@/content/pt-BR/guides/pdf-vs-docx-for-business";
 import pdfVsGoogleDocs from "@/content/pt-BR/guides/pdf-vs-google-docs";
@@ -120,6 +128,8 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
   "best-pdf-compression-settings": bestPdfCompressionSettings,
+  "best-pdf-form-app-for-android": bestPdfFormAppForAndroid,
+  "best-pdf-form-app-for-iphone": bestPdfFormAppForIphone,
   "best-pdf-tools-for-office-documents": bestPdfToolsForOfficeDocuments,
   "best-pdf-tools-for-remote-work": bestPdfToolsForRemoteWork,
   "best-pdf-tools-for-small-business": bestPdfToolsForSmallBusiness,
@@ -161,7 +171,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-edit-pdf-on-android": howToEditPdfOnAndroid,
   "how-to-edit-pdf-on-iphone": howToEditPdfOnIphone,
   "how-to-extract-pages-from-pdf": howToExtractPagesFromPdf,
+  "how-to-fill-government-pdf-forms-on-phone": howToFillGovernmentPdfFormsOnPhone,
   "how-to-fill-out-a-pdf-form": howToFillOutAPdfForm,
+  "how-to-fill-pdf-forms-on-android": howToFillPdfFormsOnAndroid,
+  "how-to-fill-pdf-forms-on-iphone": howToFillPdfFormsOnIphone,
   "how-to-fill-pdf-forms-on-phone": howToFillPdfFormsOnPhone,
   "how-to-fix-a-corrupted-pdf": howToFixACorruptedPdf,
   "how-to-fix-pdf-font-issues": howToFixPdfFontIssues,
@@ -180,6 +193,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-organize-work-documents-as-pdf": howToOrganizeWorkDocumentsAsPdf,
   "how-to-prepare-pdf-before-sharing": howToPreparePdfBeforeSharing,
   "how-to-prepare-pdf-for-business-use": howToPreparePdfForBusinessUse,
+  "how-to-print-a-filled-pdf-form": howToPrintAFilledPdfForm,
   "how-to-protect-pdf-file": howToProtectPdfFile,
   "how-to-protect-sensitive-pdf-files": howToProtectSensitivePdfFiles,
   "how-to-reduce-pdf-file-size-for-email": howToReducePdfFileSizeForEmail,
@@ -190,6 +204,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-save-a-filled-pdf-form": howToSaveAFilledPdfForm,
   "how-to-scan-documents-to-pdf": howToScanDocumentsToPdf,
   "how-to-scan-notes-to-pdf": howToScanNotesToPdf,
+  "how-to-send-a-completed-pdf-form": howToSendACompletedPdfForm,
   "how-to-send-contracts-as-pdf": howToSendContractsAsPdf,
   "how-to-send-large-pdf-files": howToSendLargePdfFiles,
   "how-to-share-pdf-files-privately": howToSharePdfFilesPrivately,
@@ -202,6 +217,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-split-pdf-files": howToSplitPdfFiles,
   "how-to-submit-homework-as-pdf": howToSubmitHomeworkAsPdf,
   "local-browser-pdf-processing-explained": localBrowserPdfProcessingExplained,
+  "mobile-pdf-form-workflow": mobilePdfFormWorkflow,
   "pdf-vs-docx": pdfVsDocx,
   "pdf-vs-docx-for-business": pdfVsDocxForBusiness,
   "pdf-vs-google-docs": pdfVsGoogleDocs,
