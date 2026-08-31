@@ -1,5 +1,6 @@
 import type { GuideContent } from "@/types/content";
 
+import areOnlinePdfToolsSafe from "@/content/pt-BR/guides/are-online-pdf-tools-safe";
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
 import bestPdfCompressionSettings from "@/content/pt-BR/guides/best-pdf-compression-settings";
@@ -30,7 +31,9 @@ import howToConvertScannedDocumentsToPdf from "@/content/pt-BR/guides/how-to-con
 import howToConvertWebpToPdf from "@/content/pt-BR/guides/how-to-convert-webp-to-pdf";
 import howToConvertWordToPdf from "@/content/pt-BR/guides/how-to-convert-word-to-pdf";
 import howToCreateClientReadyPdfFiles from "@/content/pt-BR/guides/how-to-create-client-ready-pdf-files";
+import howToCreateDigitalStudyPdfs from "@/content/pt-BR/guides/how-to-create-digital-study-pdfs";
 import howToCreatePdfFromCamera from "@/content/pt-BR/guides/how-to-create-pdf-from-camera";
+import howToEditClassDocumentsAsPdf from "@/content/pt-BR/guides/how-to-edit-class-documents-as-pdf";
 import howToEditPdfOnAndroid from "@/content/pt-BR/guides/how-to-edit-pdf-on-android";
 import howToEditPdfOnIphone from "@/content/pt-BR/guides/how-to-edit-pdf-on-iphone";
 import howToExtractPagesFromPdf from "@/content/pt-BR/guides/how-to-extract-pages-from-pdf";
@@ -48,10 +51,12 @@ import howToManageInvoicesAsPdf from "@/content/pt-BR/guides/how-to-manage-invoi
 import howToManagePdfsOnPhone from "@/content/pt-BR/guides/how-to-manage-pdfs-on-phone";
 import howToMergePdfFiles from "@/content/pt-BR/guides/how-to-merge-pdf-files";
 import howToOrganizePdfFiles from "@/content/pt-BR/guides/how-to-organize-pdf-files";
+import howToOrganizeStudyMaterialsAsPdf from "@/content/pt-BR/guides/how-to-organize-study-materials-as-pdf";
 import howToOrganizeWorkDocumentsAsPdf from "@/content/pt-BR/guides/how-to-organize-work-documents-as-pdf";
 import howToPreparePdfBeforeSharing from "@/content/pt-BR/guides/how-to-prepare-pdf-before-sharing";
 import howToPreparePdfForBusinessUse from "@/content/pt-BR/guides/how-to-prepare-pdf-for-business-use";
 import howToProtectPdfFile from "@/content/pt-BR/guides/how-to-protect-pdf-file";
+import howToProtectSensitivePdfFiles from "@/content/pt-BR/guides/how-to-protect-sensitive-pdf-files";
 import howToReducePdfFileSizeForEmail from "@/content/pt-BR/guides/how-to-reduce-pdf-file-size-for-email";
 import howToReducePdfSizeBeforeUploading from "@/content/pt-BR/guides/how-to-reduce-pdf-size-before-uploading";
 import howToRemoveUnwantedPagesFromPdf from "@/content/pt-BR/guides/how-to-remove-unwanted-pages-from-pdf";
@@ -61,8 +66,10 @@ import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-document
 import howToScanNotesToPdf from "@/content/pt-BR/guides/how-to-scan-notes-to-pdf";
 import howToSendContractsAsPdf from "@/content/pt-BR/guides/how-to-send-contracts-as-pdf";
 import howToSendLargePdfFiles from "@/content/pt-BR/guides/how-to-send-large-pdf-files";
+import howToSharePdfFilesPrivately from "@/content/pt-BR/guides/how-to-share-pdf-files-privately";
 import howToSharePdfFromPhone from "@/content/pt-BR/guides/how-to-share-pdf-from-phone";
 import howToSharePdfsWithClients from "@/content/pt-BR/guides/how-to-share-pdfs-with-clients";
+import howToShareStudyNotesAsPdf from "@/content/pt-BR/guides/how-to-share-study-notes-as-pdf";
 import howToSignPdfOnAndroid from "@/content/pt-BR/guides/how-to-sign-pdf-on-android";
 import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-iphone";
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
@@ -70,6 +77,7 @@ import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import howToSubmitHomeworkAsPdf from "@/content/pt-BR/guides/how-to-submit-homework-as-pdf";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsJpgForDocuments from "@/content/pt-BR/guides/pdf-vs-jpg-for-documents";
+import pdfWorkflowForUniversityStudents from "@/content/pt-BR/guides/pdf-workflow-for-university-students";
 import pdfWorkflowsForAgencies from "@/content/pt-BR/guides/pdf-workflows-for-agencies";
 import pdfWorkflowsForConsultants from "@/content/pt-BR/guides/pdf-workflows-for-consultants";
 import pdfWorkflowsForSmallBusiness from "@/content/pt-BR/guides/pdf-workflows-for-small-business";
@@ -92,6 +100,7 @@ import whyWontMyPdfOpen from "@/content/pt-BR/guides/why-wont-my-pdf-open";
  * are translated at render time — see src/content/registry.ts.
  */
 export const GUIDES_PT_BR: Record<string, GuideContent> = {
+  "are-online-pdf-tools-safe": areOnlinePdfToolsSafe,
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
   "best-pdf-compression-settings": bestPdfCompressionSettings,
@@ -122,7 +131,9 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-convert-webp-to-pdf": howToConvertWebpToPdf,
   "how-to-convert-word-to-pdf": howToConvertWordToPdf,
   "how-to-create-client-ready-pdf-files": howToCreateClientReadyPdfFiles,
+  "how-to-create-digital-study-pdfs": howToCreateDigitalStudyPdfs,
   "how-to-create-pdf-from-camera": howToCreatePdfFromCamera,
+  "how-to-edit-class-documents-as-pdf": howToEditClassDocumentsAsPdf,
   "how-to-edit-pdf-on-android": howToEditPdfOnAndroid,
   "how-to-edit-pdf-on-iphone": howToEditPdfOnIphone,
   "how-to-extract-pages-from-pdf": howToExtractPagesFromPdf,
@@ -140,10 +151,12 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-manage-pdfs-on-phone": howToManagePdfsOnPhone,
   "how-to-merge-pdf-files": howToMergePdfFiles,
   "how-to-organize-pdf-files": howToOrganizePdfFiles,
+  "how-to-organize-study-materials-as-pdf": howToOrganizeStudyMaterialsAsPdf,
   "how-to-organize-work-documents-as-pdf": howToOrganizeWorkDocumentsAsPdf,
   "how-to-prepare-pdf-before-sharing": howToPreparePdfBeforeSharing,
   "how-to-prepare-pdf-for-business-use": howToPreparePdfForBusinessUse,
   "how-to-protect-pdf-file": howToProtectPdfFile,
+  "how-to-protect-sensitive-pdf-files": howToProtectSensitivePdfFiles,
   "how-to-reduce-pdf-file-size-for-email": howToReducePdfFileSizeForEmail,
   "how-to-reduce-pdf-size-before-uploading": howToReducePdfSizeBeforeUploading,
   "how-to-remove-unwanted-pages-from-pdf": howToRemoveUnwantedPagesFromPdf,
@@ -153,8 +166,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-scan-notes-to-pdf": howToScanNotesToPdf,
   "how-to-send-contracts-as-pdf": howToSendContractsAsPdf,
   "how-to-send-large-pdf-files": howToSendLargePdfFiles,
+  "how-to-share-pdf-files-privately": howToSharePdfFilesPrivately,
   "how-to-share-pdf-from-phone": howToSharePdfFromPhone,
   "how-to-share-pdfs-with-clients": howToSharePdfsWithClients,
+  "how-to-share-study-notes-as-pdf": howToShareStudyNotesAsPdf,
   "how-to-sign-pdf-on-android": howToSignPdfOnAndroid,
   "how-to-sign-pdf-on-iphone": howToSignPdfOnIphone,
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
@@ -162,6 +177,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-submit-homework-as-pdf": howToSubmitHomeworkAsPdf,
   "pdf-vs-docx": pdfVsDocx,
   "pdf-vs-jpg-for-documents": pdfVsJpgForDocuments,
+  "pdf-workflow-for-university-students": pdfWorkflowForUniversityStudents,
   "pdf-workflows-for-agencies": pdfWorkflowsForAgencies,
   "pdf-workflows-for-consultants": pdfWorkflowsForConsultants,
   "pdf-workflows-for-small-business": pdfWorkflowsForSmallBusiness,
