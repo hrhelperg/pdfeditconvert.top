@@ -133,7 +133,7 @@ export function buildLocaleRoutes(
  * The day each translated locale first went live. See `publishedAt`.
  * pt-BR and fr shipped in the same release window.
  */
-const LOCALE_PUBLISHED_AT: Partial<Record<Locale, string>> = {
+export const LOCALE_PUBLISHED_AT: Partial<Record<Locale, string>> = {
   "pt-BR": "2026-08-31",
   fr: "2026-08-31",
 };

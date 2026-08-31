@@ -13,6 +13,7 @@ import {
 import {
   allPublishedRoutes,
   alternatesFor,
+  LOCALE_PUBLISHED_AT,
   pathFor,
   routeFor,
   routesForLocale,
@@ -130,8 +131,16 @@ describe("localized route manifests", () => {
 
   it.each(NON_DEFAULT_PUBLISHED)("%s never reuses an English slug verbatim", (locale) => {
     // A slug identical to the English one usually means the entry was copied
-    // and the URL never localized. Genuinely-shared tokens are allowlisted.
-    const SHARED = new Set(["pdf-ou-jpg", "pdf-ou-docx", "pdf-ou-png"]);
+    // and the URL never localized. Genuinely-shared tokens are allowlisted:
+    // pt-BR's product-name comparisons, and fr's "guides" (identical plural
+    // in French) and "contact" (a French word, not an untranslated English one).
+    const SHARED = new Set([
+      "pdf-ou-jpg",
+      "pdf-ou-docx",
+      "pdf-ou-png",
+      "guides",
+      "contact",
+    ]);
     const prefix = `/${LOCALES[locale].prefix}`;
     const suspicious = routesForLocale(locale)
       .filter((r) => {
@@ -149,7 +158,7 @@ describe("localized route manifests", () => {
   });
 
   it.each(NON_DEFAULT_PUBLISHED)(
-    "%s inherits category, priority and lastmod from its English source",
+    "%s inherits category, priority and change frequency from its English source",
     (locale) => {
       for (const route of routesForLocale(locale)) {
         const source = ROUTES.find((r) => r.path === `/${route.routeId}`);
@@ -157,7 +166,21 @@ describe("localized route manifests", () => {
         expect(route.category).toBe(source!.category);
         expect(route.priority).toBe(source!.priority);
         expect(route.changeFrequency).toBe(source!.changeFrequency);
-        expect(route.lastModified).toBe(source!.lastModified);
+      }
+    },
+  );
+
+  it.each(NON_DEFAULT_PUBLISHED)(
+    // Regression guard: lastModified used to inherit the English route's
+    // date unconditionally, which claimed a translation published today
+    // last changed months ago. It must now default to the locale's own
+    // launch date (see LOCALE_PUBLISHED_AT / publishedAt in routeMap.ts).
+    "%s defaults lastmod to its own publication date, not the English source's",
+    (locale) => {
+      const publishedAt = LOCALE_PUBLISHED_AT[locale];
+      expect(publishedAt).toBeDefined();
+      for (const route of routesForLocale(locale)) {
+        expect(route.lastModified).toBe(publishedAt);
       }
     },
   );
