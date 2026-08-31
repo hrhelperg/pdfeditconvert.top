@@ -3,9 +3,12 @@ import type { GuideContent } from "@/types/content";
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
 import bestPdfCompressionSettings from "@/content/pt-BR/guides/best-pdf-compression-settings";
+import bestPdfToolsForOfficeDocuments from "@/content/pt-BR/guides/best-pdf-tools-for-office-documents";
+import bestPdfToolsForRemoteWork from "@/content/pt-BR/guides/best-pdf-tools-for-remote-work";
 import bestPdfToolsForSmallBusiness from "@/content/pt-BR/guides/best-pdf-tools-for-small-business";
 import bestPdfToolsForStudents from "@/content/pt-BR/guides/best-pdf-tools-for-students";
 import bestPdfWorkflowForFreelancers from "@/content/pt-BR/guides/best-pdf-workflow-for-freelancers";
+import bestPdfWorkflowForTeams from "@/content/pt-BR/guides/best-pdf-workflow-for-teams";
 import browserBasedPdfToolsVsUploadTools from "@/content/pt-BR/guides/browser-based-pdf-tools-vs-upload-tools";
 import commonPdfMistakesToAvoid from "@/content/pt-BR/guides/common-pdf-mistakes-to-avoid";
 import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compress-pdf-without-losing-too-much-quality";
@@ -38,10 +41,13 @@ import howToFixScannedPdfQuality from "@/content/pt-BR/guides/how-to-fix-scanned
 import howToFixSidewaysPdfPages from "@/content/pt-BR/guides/how-to-fix-sideways-pdf-pages";
 import howToMakePdfSmallerOnAndroid from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-android";
 import howToMakePdfSmallerOnIphone from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-iphone";
+import howToManageInvoicesAsPdf from "@/content/pt-BR/guides/how-to-manage-invoices-as-pdf";
 import howToManagePdfsOnPhone from "@/content/pt-BR/guides/how-to-manage-pdfs-on-phone";
 import howToMergePdfFiles from "@/content/pt-BR/guides/how-to-merge-pdf-files";
 import howToOrganizePdfFiles from "@/content/pt-BR/guides/how-to-organize-pdf-files";
+import howToOrganizeWorkDocumentsAsPdf from "@/content/pt-BR/guides/how-to-organize-work-documents-as-pdf";
 import howToPreparePdfBeforeSharing from "@/content/pt-BR/guides/how-to-prepare-pdf-before-sharing";
+import howToPreparePdfForBusinessUse from "@/content/pt-BR/guides/how-to-prepare-pdf-for-business-use";
 import howToProtectPdfFile from "@/content/pt-BR/guides/how-to-protect-pdf-file";
 import howToReducePdfFileSizeForEmail from "@/content/pt-BR/guides/how-to-reduce-pdf-file-size-for-email";
 import howToReducePdfSizeBeforeUploading from "@/content/pt-BR/guides/how-to-reduce-pdf-size-before-uploading";
@@ -49,8 +55,10 @@ import howToRemoveUnwantedPagesFromPdf from "@/content/pt-BR/guides/how-to-remov
 import howToReorderPdfPages from "@/content/pt-BR/guides/how-to-reorder-pdf-pages";
 import howToRotatePdfPages from "@/content/pt-BR/guides/how-to-rotate-pdf-pages";
 import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-documents-to-pdf";
+import howToSendContractsAsPdf from "@/content/pt-BR/guides/how-to-send-contracts-as-pdf";
 import howToSendLargePdfFiles from "@/content/pt-BR/guides/how-to-send-large-pdf-files";
 import howToSharePdfFromPhone from "@/content/pt-BR/guides/how-to-share-pdf-from-phone";
+import howToSharePdfsWithClients from "@/content/pt-BR/guides/how-to-share-pdfs-with-clients";
 import howToSignPdfOnAndroid from "@/content/pt-BR/guides/how-to-sign-pdf-on-android";
 import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-iphone";
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
@@ -79,9 +87,12 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
   "best-pdf-compression-settings": bestPdfCompressionSettings,
+  "best-pdf-tools-for-office-documents": bestPdfToolsForOfficeDocuments,
+  "best-pdf-tools-for-remote-work": bestPdfToolsForRemoteWork,
   "best-pdf-tools-for-small-business": bestPdfToolsForSmallBusiness,
   "best-pdf-tools-for-students": bestPdfToolsForStudents,
   "best-pdf-workflow-for-freelancers": bestPdfWorkflowForFreelancers,
+  "best-pdf-workflow-for-teams": bestPdfWorkflowForTeams,
   "browser-based-pdf-tools-vs-upload-tools": browserBasedPdfToolsVsUploadTools,
   "common-pdf-mistakes-to-avoid": commonPdfMistakesToAvoid,
   "compress-pdf-without-losing-too-much-quality": compressPdfWithoutLosingTooMuchQuality,
@@ -114,10 +125,13 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-fix-sideways-pdf-pages": howToFixSidewaysPdfPages,
   "how-to-make-pdf-smaller-on-android": howToMakePdfSmallerOnAndroid,
   "how-to-make-pdf-smaller-on-iphone": howToMakePdfSmallerOnIphone,
+  "how-to-manage-invoices-as-pdf": howToManageInvoicesAsPdf,
   "how-to-manage-pdfs-on-phone": howToManagePdfsOnPhone,
   "how-to-merge-pdf-files": howToMergePdfFiles,
   "how-to-organize-pdf-files": howToOrganizePdfFiles,
+  "how-to-organize-work-documents-as-pdf": howToOrganizeWorkDocumentsAsPdf,
   "how-to-prepare-pdf-before-sharing": howToPreparePdfBeforeSharing,
+  "how-to-prepare-pdf-for-business-use": howToPreparePdfForBusinessUse,
   "how-to-protect-pdf-file": howToProtectPdfFile,
   "how-to-reduce-pdf-file-size-for-email": howToReducePdfFileSizeForEmail,
   "how-to-reduce-pdf-size-before-uploading": howToReducePdfSizeBeforeUploading,
@@ -125,8 +139,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-reorder-pdf-pages": howToReorderPdfPages,
   "how-to-rotate-pdf-pages": howToRotatePdfPages,
   "how-to-scan-documents-to-pdf": howToScanDocumentsToPdf,
+  "how-to-send-contracts-as-pdf": howToSendContractsAsPdf,
   "how-to-send-large-pdf-files": howToSendLargePdfFiles,
   "how-to-share-pdf-from-phone": howToSharePdfFromPhone,
+  "how-to-share-pdfs-with-clients": howToSharePdfsWithClients,
   "how-to-sign-pdf-on-android": howToSignPdfOnAndroid,
   "how-to-sign-pdf-on-iphone": howToSignPdfOnIphone,
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
