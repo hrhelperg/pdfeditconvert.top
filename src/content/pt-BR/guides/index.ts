@@ -1,6 +1,7 @@
 import type { GuideContent } from "@/types/content";
 
 import areOnlinePdfToolsSafe from "@/content/pt-BR/guides/are-online-pdf-tools-safe";
+import bestFreePdfTools from "@/content/pt-BR/guides/best-free-pdf-tools";
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
 import bestPdfCompressionSettings from "@/content/pt-BR/guides/best-pdf-compression-settings";
@@ -22,6 +23,8 @@ import documentCollectionWorkflowsWithPdf from "@/content/pt-BR/guides/document-
 import editablePdfVsFillablePdf from "@/content/pt-BR/guides/editable-pdf-vs-fillable-pdf";
 import editablePdfVsFlatPdf from "@/content/pt-BR/guides/editable-pdf-vs-flat-pdf";
 import fixPdfFormErrors from "@/content/pt-BR/guides/fix-pdf-form-errors";
+import freePdfToolsForAndroid from "@/content/pt-BR/guides/free-pdf-tools-for-android";
+import freePdfToolsForIphone from "@/content/pt-BR/guides/free-pdf-tools-for-iphone";
 import howPdfFormsWork from "@/content/pt-BR/guides/how-pdf-forms-work";
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
 import howToAnnotatePdfOnMobile from "@/content/pt-BR/guides/how-to-annotate-pdf-on-mobile";
@@ -97,6 +100,7 @@ import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-ipho
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
 import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import howToSubmitHomeworkAsPdf from "@/content/pt-BR/guides/how-to-submit-homework-as-pdf";
+import howToUsePdfFormsForContracts from "@/content/pt-BR/guides/how-to-use-pdf-forms-for-contracts";
 import localBrowserPdfProcessingExplained from "@/content/pt-BR/guides/local-browser-pdf-processing-explained";
 import mobilePdfFormWorkflow from "@/content/pt-BR/guides/mobile-pdf-form-workflow";
 import pdfFormBestPractices from "@/content/pt-BR/guides/pdf-form-best-practices";
@@ -107,6 +111,10 @@ import pdfFormFormattingIssues from "@/content/pt-BR/guides/pdf-form-formatting-
 import pdfFormNotPrintingCorrectly from "@/content/pt-BR/guides/pdf-form-not-printing-correctly";
 import pdfFormNotWorking from "@/content/pt-BR/guides/pdf-form-not-working";
 import pdfFormSubmissionErrors from "@/content/pt-BR/guides/pdf-form-submission-errors";
+import pdfFormsForAgencies from "@/content/pt-BR/guides/pdf-forms-for-agencies";
+import pdfFormsForConsultants from "@/content/pt-BR/guides/pdf-forms-for-consultants";
+import pdfFormsForFreelancers from "@/content/pt-BR/guides/pdf-forms-for-freelancers";
+import pdfFormsForSmallBusiness from "@/content/pt-BR/guides/pdf-forms-for-small-business";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsDocxForBusiness from "@/content/pt-BR/guides/pdf-vs-docx-for-business";
 import pdfVsGoogleDocs from "@/content/pt-BR/guides/pdf-vs-google-docs";
@@ -141,6 +149,7 @@ import whyWontMyPdfOpen from "@/content/pt-BR/guides/why-wont-my-pdf-open";
  */
 export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "are-online-pdf-tools-safe": areOnlinePdfToolsSafe,
+  "best-free-pdf-tools": bestFreePdfTools,
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
   "best-pdf-compression-settings": bestPdfCompressionSettings,
@@ -162,6 +171,8 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "editable-pdf-vs-fillable-pdf": editablePdfVsFillablePdf,
   "editable-pdf-vs-flat-pdf": editablePdfVsFlatPdf,
   "fix-pdf-form-errors": fixPdfFormErrors,
+  "free-pdf-tools-for-android": freePdfToolsForAndroid,
+  "free-pdf-tools-for-iphone": freePdfToolsForIphone,
   "how-pdf-forms-work": howPdfFormsWork,
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
   "how-to-annotate-pdf-on-mobile": howToAnnotatePdfOnMobile,
@@ -237,6 +248,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
   "how-to-split-pdf-files": howToSplitPdfFiles,
   "how-to-submit-homework-as-pdf": howToSubmitHomeworkAsPdf,
+  "how-to-use-pdf-forms-for-contracts": howToUsePdfFormsForContracts,
   "local-browser-pdf-processing-explained": localBrowserPdfProcessingExplained,
   "mobile-pdf-form-workflow": mobilePdfFormWorkflow,
   "pdf-form-best-practices": pdfFormBestPractices,
@@ -247,6 +259,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "pdf-form-not-printing-correctly": pdfFormNotPrintingCorrectly,
   "pdf-form-not-working": pdfFormNotWorking,
   "pdf-form-submission-errors": pdfFormSubmissionErrors,
+  "pdf-forms-for-agencies": pdfFormsForAgencies,
+  "pdf-forms-for-consultants": pdfFormsForConsultants,
+  "pdf-forms-for-freelancers": pdfFormsForFreelancers,
+  "pdf-forms-for-small-business": pdfFormsForSmallBusiness,
   "pdf-vs-docx": pdfVsDocx,
   "pdf-vs-docx-for-business": pdfVsDocxForBusiness,
   "pdf-vs-google-docs": pdfVsGoogleDocs,
