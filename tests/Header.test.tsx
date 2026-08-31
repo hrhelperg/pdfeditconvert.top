@@ -11,7 +11,7 @@ import { publishedLocales } from "@/lib/i18n/locales";
  * bundle carries one locale, not all of them. These props are built the
  * same way the root layout builds them.
  */
-function headerProps(locale: "en" | "pt-BR" = "en") {
+function headerProps(locale: "en" | "pt-BR" | "fr" = "en") {
   const d = getSiteDictionary(locale);
   return {
     nav: d.header.nav.map((n) => ({
@@ -55,6 +55,10 @@ describe("Header", () => {
     expect(
       screen.getByRole("link", { name: /Português \(Brasil\)/ }),
     ).toHaveAttribute("href", "/pt-br");
+    expect(screen.getByRole("link", { name: /Français/ })).toHaveAttribute(
+      "href",
+      "/fr",
+    );
   });
 
   it("renders Portuguese navigation when given the pt-BR dictionary", () => {
@@ -64,6 +68,15 @@ describe("Header", () => {
       "/pt-br/comprimir-pdf",
     );
     expect(screen.getByLabelText(/Abrir o menu/i)).toBeInTheDocument();
+  });
+
+  it("renders French navigation when given the fr dictionary", () => {
+    render(<Header {...headerProps("fr")} />);
+    expect(screen.getByRole("link", { name: "Compresser" })).toHaveAttribute(
+      "href",
+      "/fr/compresser-pdf",
+    );
+    expect(screen.getByLabelText(/Ouvrir le menu/i)).toBeInTheDocument();
   });
 
   it("clicking the toggle opens the mobile menu", async () => {

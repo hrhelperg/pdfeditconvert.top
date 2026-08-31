@@ -126,6 +126,7 @@ export function articleSchema({
 const PROCEDURAL_OPENERS: Partial<Record<Locale, RegExp>> = {
   en: /^how to\b/i,
   "pt-BR": /^como\b/i,
+  fr: /^comment\b/i,
 };
 
 export function isProceduralGuide(

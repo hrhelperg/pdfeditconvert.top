@@ -34,6 +34,8 @@ export const LOCALE_CODES = [
   "ru",
   "pl",
   "cs",
+  "it",
+  "tr",
 ] as const;
 
 export type Locale = (typeof LOCALE_CODES)[number];
@@ -112,7 +114,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "French",
     nativeName: "Français",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "fr-FR",
   },
   de: {
@@ -191,6 +193,28 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: false,
     intlLocale: "cs-CZ",
+  },
+  it: {
+    code: "it",
+    prefix: "it",
+    htmlLang: "it",
+    direction: "ltr",
+    name: "Italian",
+    nativeName: "Italiano",
+    fallback: "en",
+    published: false,
+    intlLocale: "it-IT",
+  },
+  tr: {
+    code: "tr",
+    prefix: "tr",
+    htmlLang: "tr",
+    direction: "ltr",
+    name: "Turkish",
+    nativeName: "Türkçe",
+    fallback: "en",
+    published: false,
+    intlLocale: "tr-TR",
   },
 };
 

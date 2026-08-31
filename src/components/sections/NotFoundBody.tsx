@@ -86,3 +86,17 @@ export const NOT_FOUND_PT_BR: NotFoundCopy = {
     { id: "sign-pdf", label: "Assinar PDF" },
   ],
 };
+
+export const NOT_FOUND_FR: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Page introuvable",
+  lead: "La page que vous cherchez n'existe pas ou a été déplacée. Essayez plutôt l'une de celles-ci :",
+  openLabel: "Ouvrir →",
+  homeLabel: "Retour à l'accueil",
+  suggestions: [
+    { id: "pdf-editor", label: "Éditeur PDF" },
+    { id: "compress-pdf", label: "Compresser un PDF" },
+    { id: "merge-pdf", label: "Fusionner un PDF" },
+    { id: "sign-pdf", label: "Signer un PDF" },
+  ],
+};

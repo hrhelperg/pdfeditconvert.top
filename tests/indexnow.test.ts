@@ -120,7 +120,7 @@ describe("locale coverage", () => {
 
   it("never submits a locale that isn't published", () => {
     const codes = parsePublishedLocales(localesSource).map((l: { code: string }) => l.code);
-    for (const unpublished of ["es", "fr", "de", "ja", "id", "ar", "ru", "pl", "cs"]) {
+    for (const unpublished of ["es", "de", "ja", "id", "ar", "ru", "pl", "cs", "it", "tr"]) {
       expect(codes).not.toContain(unpublished);
     }
   });
