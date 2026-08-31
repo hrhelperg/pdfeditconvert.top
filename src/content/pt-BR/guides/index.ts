@@ -10,11 +10,14 @@ import bestPdfToolsForSmallBusiness from "@/content/pt-BR/guides/best-pdf-tools-
 import bestPdfToolsForStudents from "@/content/pt-BR/guides/best-pdf-tools-for-students";
 import bestPdfWorkflowForFreelancers from "@/content/pt-BR/guides/best-pdf-workflow-for-freelancers";
 import bestPdfWorkflowForTeams from "@/content/pt-BR/guides/best-pdf-workflow-for-teams";
+import browserBasedDocumentProcessingBenefits from "@/content/pt-BR/guides/browser-based-document-processing-benefits";
 import browserBasedPdfToolsVsUploadTools from "@/content/pt-BR/guides/browser-based-pdf-tools-vs-upload-tools";
 import commonPdfMistakesToAvoid from "@/content/pt-BR/guides/common-pdf-mistakes-to-avoid";
 import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compress-pdf-without-losing-too-much-quality";
+import doOnlinePdfToolsStoreFiles from "@/content/pt-BR/guides/do-online-pdf-tools-store-files";
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
 import howToAnnotatePdfOnMobile from "@/content/pt-BR/guides/how-to-annotate-pdf-on-mobile";
+import howToAvoidUploadingSensitiveDocuments from "@/content/pt-BR/guides/how-to-avoid-uploading-sensitive-documents";
 import howToCompressPdf from "@/content/pt-BR/guides/how-to-compress-pdf";
 import howToCompressPdfForSchoolPortals from "@/content/pt-BR/guides/how-to-compress-pdf-for-school-portals";
 import howToCompressPdfOnline from "@/content/pt-BR/guides/how-to-compress-pdf-online";
@@ -75,13 +78,18 @@ import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-ipho
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
 import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import howToSubmitHomeworkAsPdf from "@/content/pt-BR/guides/how-to-submit-homework-as-pdf";
+import localBrowserPdfProcessingExplained from "@/content/pt-BR/guides/local-browser-pdf-processing-explained";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
+import pdfVsDocxForBusiness from "@/content/pt-BR/guides/pdf-vs-docx-for-business";
+import pdfVsGoogleDocs from "@/content/pt-BR/guides/pdf-vs-google-docs";
 import pdfVsJpgForDocuments from "@/content/pt-BR/guides/pdf-vs-jpg-for-documents";
 import pdfWorkflowForUniversityStudents from "@/content/pt-BR/guides/pdf-workflow-for-university-students";
 import pdfWorkflowsForAgencies from "@/content/pt-BR/guides/pdf-workflows-for-agencies";
 import pdfWorkflowsForConsultants from "@/content/pt-BR/guides/pdf-workflows-for-consultants";
 import pdfWorkflowsForSmallBusiness from "@/content/pt-BR/guides/pdf-workflows-for-small-business";
+import privacyFirstDocumentWorkflows from "@/content/pt-BR/guides/privacy-first-document-workflows";
 import privacyFirstPdfTools from "@/content/pt-BR/guides/privacy-first-pdf-tools";
+import securePdfWorkflowsForBusiness from "@/content/pt-BR/guides/secure-pdf-workflows-for-business";
 import whenToUsePdfInsteadOfDocx from "@/content/pt-BR/guides/when-to-use-pdf-instead-of-docx";
 import whyCantIEditAPdf from "@/content/pt-BR/guides/why-cant-i-edit-a-pdf";
 import whyIsMyPdfBlank from "@/content/pt-BR/guides/why-is-my-pdf-blank";
@@ -110,11 +118,14 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-tools-for-students": bestPdfToolsForStudents,
   "best-pdf-workflow-for-freelancers": bestPdfWorkflowForFreelancers,
   "best-pdf-workflow-for-teams": bestPdfWorkflowForTeams,
+  "browser-based-document-processing-benefits": browserBasedDocumentProcessingBenefits,
   "browser-based-pdf-tools-vs-upload-tools": browserBasedPdfToolsVsUploadTools,
   "common-pdf-mistakes-to-avoid": commonPdfMistakesToAvoid,
   "compress-pdf-without-losing-too-much-quality": compressPdfWithoutLosingTooMuchQuality,
+  "do-online-pdf-tools-store-files": doOnlinePdfToolsStoreFiles,
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
   "how-to-annotate-pdf-on-mobile": howToAnnotatePdfOnMobile,
+  "how-to-avoid-uploading-sensitive-documents": howToAvoidUploadingSensitiveDocuments,
   "how-to-compress-pdf": howToCompressPdf,
   "how-to-compress-pdf-for-school-portals": howToCompressPdfForSchoolPortals,
   "how-to-compress-pdf-online": howToCompressPdfOnline,
@@ -175,13 +186,18 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
   "how-to-split-pdf-files": howToSplitPdfFiles,
   "how-to-submit-homework-as-pdf": howToSubmitHomeworkAsPdf,
+  "local-browser-pdf-processing-explained": localBrowserPdfProcessingExplained,
   "pdf-vs-docx": pdfVsDocx,
+  "pdf-vs-docx-for-business": pdfVsDocxForBusiness,
+  "pdf-vs-google-docs": pdfVsGoogleDocs,
   "pdf-vs-jpg-for-documents": pdfVsJpgForDocuments,
   "pdf-workflow-for-university-students": pdfWorkflowForUniversityStudents,
   "pdf-workflows-for-agencies": pdfWorkflowsForAgencies,
   "pdf-workflows-for-consultants": pdfWorkflowsForConsultants,
   "pdf-workflows-for-small-business": pdfWorkflowsForSmallBusiness,
+  "privacy-first-document-workflows": privacyFirstDocumentWorkflows,
   "privacy-first-pdf-tools": privacyFirstPdfTools,
+  "secure-pdf-workflows-for-business": securePdfWorkflowsForBusiness,
   "when-to-use-pdf-instead-of-docx": whenToUsePdfInsteadOfDocx,
   "why-cant-i-edit-a-pdf": whyCantIEditAPdf,
   "why-is-my-pdf-blank": whyIsMyPdfBlank,
