@@ -9,6 +9,7 @@ import {
 } from "@/lib/i18n/locales";
 import { ROUTE_IDS, isRouteId, type RouteId } from "@/lib/i18n/routeIds";
 import { PT_BR_ROUTE_MANIFEST } from "@/content/pt-BR/routes";
+import { FR_ROUTE_MANIFEST } from "@/content/fr/routes";
 
 /**
  * The centralized locale route map.
@@ -44,10 +45,11 @@ export interface LocaleRouteEntry {
   /** Localized meta description. Must be unique within the locale. */
   readonly description: string;
   /**
-   * Date the localized copy last genuinely changed. Defaults to the English
-   * route's `lastModified` — a translation published today is not "fresher"
-   * content than the source, and lying to a crawler about it is the exact
-   * mistake the English sitemap already fixed once.
+   * Date this localized copy last genuinely changed.
+   *
+   * Set it when a page is re-translated after its English source moves.
+   * Left unset, it falls back to the locale's `publishedAt` (see
+   * `LocaleRouteDefaults`) and then to the English route's date.
    */
   readonly lastModified?: string;
 }
@@ -69,17 +71,38 @@ export const EN_ROUTES: LocalizedRoute[] = ROUTES.map((r) => ({
   routeId: r.path.replace(/^\//, "") as RouteId,
 }));
 
+/** Locale-wide defaults applied to every entry that does not override them. */
+export interface LocaleRouteDefaults {
+  /**
+   * The date this locale's pages first went live.
+   *
+   * Without it a translation inherits the English `lastModified`, which
+   * claims a French page last changed in May when it did not exist until
+   * August. That is false in the *understating* direction — it tells a
+   * crawler a brand-new page is four months stale — so it is still a lie,
+   * just a self-harming one.
+   *
+   * `publishedAt` is deliberately not `max(publishedAt, source)`: if the
+   * English source moves and the translation is not redone, the localized
+   * page genuinely has not changed, and the honest date is the older one.
+   * A page that *is* re-translated states its own `lastModified`.
+   */
+  readonly publishedAt?: string;
+}
+
 /**
  * Expands a locale manifest into full route entries.
  *
  * Category, priority and change frequency are inherited from the English
  * route rather than restated per locale: they describe the *page's role in
  * the site*, which translation does not change. Only the things translation
- * genuinely changes — path, title, description — are authored per locale.
+ * genuinely changes — path, title, description, and when the copy last moved
+ * — are authored per locale.
  */
 export function buildLocaleRoutes(
   locale: Locale,
   entries: readonly LocaleRouteEntry[],
+  defaults: LocaleRouteDefaults = {},
 ): LocalizedRoute[] {
   const prefix = localePathPrefix(locale);
   return entries.map((e) => {
@@ -93,7 +116,7 @@ export function buildLocaleRoutes(
       path: slug === "" ? prefix || "/" : `${prefix}/${slug}`,
       title: e.title,
       description: e.description,
-      lastModified: e.lastModified ?? source.lastModified,
+      lastModified: e.lastModified ?? defaults.publishedAt ?? source.lastModified,
       locale,
       routeId: e.id,
     };
@@ -106,9 +129,23 @@ export function buildLocaleRoutes(
  * A locale absent from this record — or present but unpublished — simply has
  * no pages. Adding Spanish means adding one manifest import here.
  */
+/**
+ * The day each translated locale first went live. See `publishedAt`.
+ * pt-BR and fr shipped in the same release window.
+ */
+const LOCALE_PUBLISHED_AT: Partial<Record<Locale, string>> = {
+  "pt-BR": "2026-08-31",
+  fr: "2026-08-31",
+};
+
 const LOCALE_ROUTES: Partial<Record<Locale, LocalizedRoute[]>> = {
   [DEFAULT_LOCALE]: EN_ROUTES,
-  "pt-BR": buildLocaleRoutes("pt-BR", PT_BR_ROUTE_MANIFEST),
+  "pt-BR": buildLocaleRoutes("pt-BR", PT_BR_ROUTE_MANIFEST, {
+    publishedAt: LOCALE_PUBLISHED_AT["pt-BR"],
+  }),
+  fr: buildLocaleRoutes("fr", FR_ROUTE_MANIFEST, {
+    publishedAt: LOCALE_PUBLISHED_AT.fr,
+  }),
 };
 
 /** All routes for one locale, or an empty list if the locale has none. */
