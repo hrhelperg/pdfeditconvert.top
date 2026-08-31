@@ -127,6 +127,10 @@ const PROCEDURAL_OPENERS: Partial<Record<Locale, RegExp>> = {
   en: /^how to\b/i,
   "pt-BR": /^como\b/i,
   fr: /^comment\b/i,
+  // Matches "Cómo …" only — the same "how to" opener EN/pt-BR/fr key off,
+  // not the "¿Por qué…?"/"¿Se puede…?" openers used by es's explanatory and
+  // troubleshooting guides, which aren't step-by-step procedures either.
+  es: /^cómo\b/i,
 };
 
 export function isProceduralGuide(
