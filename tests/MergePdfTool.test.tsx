@@ -2,10 +2,11 @@ import { describe, it, expect } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MergePdfTool } from "@/components/tools/MergePdfTool";
+import { toolProps } from "./helpers/toolProps";
 
 describe("MergePdfTool", () => {
   it("Merge button is disabled until at least 2 PDFs are added", async () => {
-    render(<MergePdfTool />);
+    render(<MergePdfTool {...toolProps("merge-pdf")} />);
     const btn = screen.getByRole("button", { name: /Merge PDFs/i });
     expect(btn).toBeDisabled();
 
@@ -20,14 +21,14 @@ describe("MergePdfTool", () => {
   });
 
   it("renders the 3-step indicator", () => {
-    render(<MergePdfTool />);
+    render(<MergePdfTool {...toolProps("merge-pdf")} />);
     expect(screen.getByText("Upload")).toBeInTheDocument();
     expect(screen.getByText("Adjust")).toBeInTheDocument();
     expect(screen.getByText("Download")).toBeInTheDocument();
   });
 
   it("supports reorder via Move up/down buttons", async () => {
-    render(<MergePdfTool />);
+    render(<MergePdfTool {...toolProps("merge-pdf")} />);
     const input = screen.getByLabelText(/Drop PDFs here/i) as HTMLInputElement;
     await userEvent.upload(input, [
       new File(["1"], "a.pdf", { type: "application/pdf" }),

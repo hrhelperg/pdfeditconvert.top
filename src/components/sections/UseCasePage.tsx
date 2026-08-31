@@ -6,17 +6,30 @@ import { Prose } from "@/components/primitives/Prose";
 import { AppCTA } from "@/components/sections/AppCTA";
 import { RelatedGuides } from "@/components/sections/RelatedGuides";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getSiteDictionary } from "@/lib/i18n/registry";
+import { localizeLinks } from "@/content/registry";
+import { pathForWithFallback } from "@/lib/i18n/routeMap";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
+import type { RouteId } from "@/lib/i18n/routeIds";
 import { breadcrumbSchema } from "@/content/schema";
 
-export function UseCasePage({ content }: { content: UseCaseContent }) {
-  const path = `/use-cases/${content.slug}`;
+export function UseCasePage({
+  content,
+  locale = DEFAULT_LOCALE,
+}: {
+  content: UseCaseContent;
+  locale?: Locale;
+}) {
+  const { sections, breadcrumbs } = getSiteDictionary(locale);
+  const homeHref = pathForWithFallback(locale, "");
+  const path = pathForWithFallback(locale, `use-cases/${content.slug}` as RouteId);
   return (
     <>
       <Container className="pt-6">
         <Breadcrumbs
           items={[
-            { label: "Home", href: "/" },
-            { label: "Use cases" },
+            { label: breadcrumbs.home, href: homeHref },
+            { label: breadcrumbs.useCases },
             { label: content.h1 },
           ]}
         />
@@ -34,7 +47,7 @@ export function UseCasePage({ content }: { content: UseCaseContent }) {
       <Section tone="muted">
         <Container size="md">
           <h2 className="text-3xl font-bold text-[--color-ink] mb-8">
-            Workflows that pay off
+            {sections.workflowsHeading}
           </h2>
           <ul className="space-y-6">
             {content.workflows.map((w) => (
@@ -54,17 +67,22 @@ export function UseCasePage({ content }: { content: UseCaseContent }) {
         <p className="text-lg text-[--color-muted] leading-relaxed">
           {content.appPitch}
         </p>
-        <AppCTA variant="inline" heading="Try it on your phone" />
+        <AppCTA variant="inline" heading={sections.tryOnPhone} locale={locale} />
       </Container>
-      <RelatedGuides items={content.related} />
+      <RelatedGuides
+        heading={sections.relatedGuides}
+        readMoreLabel={sections.readTheGuide}
+        items={localizeLinks(locale, content.related)}
+      />
       <AppCTA
         variant="final"
-        heading="Take PDF Editor with you."
-        sub="Free on iOS and Android."
+        heading={sections.takeWithYou}
+        sub={sections.freeOnBoth}
+        locale={locale}
       />
       <JsonLd
         data={breadcrumbSchema([
-          { label: "Home", path: "/" },
+          { label: breadcrumbs.home, path: homeHref },
           { label: content.h1, path },
         ])}
       />

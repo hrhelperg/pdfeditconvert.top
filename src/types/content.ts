@@ -149,3 +149,97 @@ export interface ToolContent {
   faq: FaqItem[];
   appCta: { heading: string; sub: string };
 }
+
+/**
+ * Content for the pages that are not driven by a shared template — the
+ * homepage, the tool index, the guides index, contact and the legal pages.
+ *
+ * These used to hold their copy inline in `page.tsx`. Lifting it into typed
+ * records is what lets a second language render the same layout: the
+ * alternative is a duplicated 400-line component per locale, which drifts
+ * the first time anyone edits one of them.
+ *
+ * Link targets are canonical route ids, never paths, so each locale's page
+ * links inside its own locale without the translator ever typing a URL.
+ */
+export interface LinkedItem {
+  /** Canonical route id (English path minus the leading slash). */
+  id: string;
+  label: string;
+  desc?: string;
+}
+
+export interface HomeContent {
+  heroEyebrow: string;
+  heroH1Before: string;
+  heroH1Highlight: string;
+  heroH1After: string;
+  heroLead: string;
+  trust: string[];
+  browseAllToolsLabel: string;
+  toolsEyebrow: string;
+  toolsHeading: string;
+  toolsLead: string;
+  toolBadge: string;
+  tools: LinkedItem[];
+  appBandEyebrow: string;
+  /** Keyed by feature id so the icon stays in code and the copy stays here. */
+  featureBand: { key: string; label: string; sub: string }[];
+  hubsHeading: string;
+  hubsLead: string;
+  hubs: LinkedItem[];
+  guidesHeading: string;
+  guideBadge: string;
+  featuredGuides: LinkedItem[];
+  /** Template with a {count} placeholder. */
+  browseAllGuidesLabel: string;
+  finalCtaHeading: string;
+  finalCtaSub: string;
+  faq: FaqItem[];
+}
+
+export interface ToolsIndexContent {
+  crumbLabel: string;
+  heroEyebrow: string;
+  heroH1: string;
+  heroHighlight: string;
+  heroLead: string;
+  privacyNote: string;
+  /** Template with a {count} placeholder. */
+  clusterHeading: string;
+  goingFurtherHeading: string;
+  goingFurtherBody: string;
+  hubs: LinkedItem[];
+  appCtaHeading: string;
+  appCtaSub: string;
+}
+
+export interface GuidesIndexContent {
+  h1: string;
+  /** Template with a {count} placeholder. */
+  lead: string;
+}
+
+export interface ContactSection {
+  heading: string;
+  body: string;
+}
+
+export interface ContactContent {
+  h1: string;
+  lead: string;
+  emailLabel: string;
+  officeLabel: string;
+  sections: ContactSection[];
+  /** Sentence containing {privacy} and {terms} link placeholders. */
+  legalSentence: string;
+  privacyLinkLabel: string;
+  termsLinkLabel: string;
+  tryAppHeading: string;
+}
+
+export interface LegalContent {
+  h1: string;
+  updated: string;
+  sections: { heading: string; body: string[] }[];
+}

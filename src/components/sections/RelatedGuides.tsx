@@ -5,9 +5,11 @@ import type { RelatedLink } from "@/types/content";
 
 export function RelatedGuides({
   heading = "Related guides",
+  readMoreLabel = "Read the guide →",
   items,
 }: {
   heading?: string;
+  readMoreLabel?: string;
   items: RelatedLink[];
 }) {
   if (!items.length) return null;
@@ -25,7 +27,7 @@ export function RelatedGuides({
                   {r.label}
                 </span>
                 <span className="block mt-3 text-sm text-[--color-muted]">
-                  Read the guide →
+                  {readMoreLabel}
                 </span>
               </CardLink>
             </li>

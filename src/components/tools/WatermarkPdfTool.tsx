@@ -17,12 +17,24 @@ import { mapToolError } from "@/components/tools/primitives/errors";
 import { assertPdf } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
 type Position = "center" | "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
-export function WatermarkPdfTool() {
+export function WatermarkPdfTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"add-watermark-to-pdf">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
-  const [text, setText] = useState("CONFIDENTIAL");
+  const [text, setText] = useState(t.textDefault);
   const [opacity, setOpacity] = useState(0.2);
   const [angleDeg, setAngleDeg] = useState(45);
   const [position, setPosition] = useState<Position>("center");
@@ -39,7 +51,7 @@ export function WatermarkPdfTool() {
       assertPdf(f);
       setFile(f);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -52,14 +64,14 @@ export function WatermarkPdfTool() {
   const run = async () => {
     if (!file) return;
     if (!text.trim()) {
-      setError("Watermark text can't be empty.");
+      setError(t.errorEmptyText);
       return;
     }
-    setBusy("Stamping pages…");
+    setBusy(t.busyStamping);
     try {
       const { PDFDocument, StandardFonts, degrees, rgb } = await loadPdfLib();
       const doc = await PDFDocument.load(new Uint8Array(await file.arrayBuffer())).catch(() => {
-        throw new Error("Could not read this PDF. It may be corrupted or password-protected.");
+        throw new ToolFailure("unreadable_pdf");
       });
       const font = await doc.embedFont(StandardFonts.HelveticaBold);
       for (const page of doc.getPages()) {
@@ -78,60 +90,62 @@ export function WatermarkPdfTool() {
       }
       const out = await doc.save();
       const blob = new Blob([new Uint8Array(out)], { type: "application/pdf" });
-      const filename = file.name.replace(/\.pdf$/i, "") + "-watermarked.pdf";
+      const filename = file.name.replace(/\.pdf$/i, "") + t.outputSuffix + ".pdf";
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="Add watermark to PDF"
-      subtitle="Add a simple text watermark before sharing your PDF."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your watermarked PDF is ready"
+          title={t.successTitle}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "Merge PDFs", path: "/merge-pdf" },
-            { label: "Rotate pages", path: "/rotate-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android stamps and signs documents too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept="application/pdf"
             onFiles={onFiles}
-            label="Drop a PDF here, or click to choose"
-            hint="One PDF · up to 100 MB"
+            label={t.common.dropPdfLabel}
+            hint={t.common.dropPdfHint}
+            privacyText={t.common.privacyText}
           />
           {file ? (
             <ul className="mt-4 space-y-2">
-              <FileChip name={file.name} size={file.size} onRemove={() => setFile(null)} />
+              <FileChip
+                name={file.name}
+                size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
+                onRemove={() => setFile(null)}
+              />
             </ul>
           ) : null}
 
           <div className="mt-5 grid gap-5 md:grid-cols-2">
             <div className="md:col-span-2">
               <OptionField
-                label="Watermark text"
+                label={t.textLabel}
                 type="text"
                 value={text}
                 onChange={(e) => setText(e.currentTarget.value)}
@@ -139,19 +153,19 @@ export function WatermarkPdfTool() {
               />
             </div>
             <OptionGroup<Position>
-              label="Position"
+              label={t.positionLabel}
               value={position}
               onChange={setPosition}
               options={[
-                { value: "center", label: "Center" },
-                { value: "top-left", label: "Top-left" },
-                { value: "top-right", label: "Top-right" },
-                { value: "bottom-left", label: "Bottom-left" },
-                { value: "bottom-right", label: "Bottom-right" },
+                { value: "center", label: t.positionCenter },
+                { value: "top-left", label: t.positionTopLeft },
+                { value: "top-right", label: t.positionTopRight },
+                { value: "bottom-left", label: t.positionBottomLeft },
+                { value: "bottom-right", label: t.positionBottomRight },
               ]}
             />
             <OptionRange
-              label="Font size"
+              label={t.fontSizeLabel}
               valueLabel={`${fontSize}pt`}
               min={16}
               max={120}
@@ -160,7 +174,7 @@ export function WatermarkPdfTool() {
               onChange={setFontSize}
             />
             <OptionRange
-              label="Opacity"
+              label={t.opacityLabel}
               valueLabel={`${Math.round(opacity * 100)}%`}
               min={0.05}
               max={0.6}
@@ -170,7 +184,7 @@ export function WatermarkPdfTool() {
             />
             {position === "center" ? (
               <OptionRange
-                label="Angle"
+                label={t.angleLabel}
                 valueLabel={`${angleDeg}°`}
                 min={0}
                 max={90}
@@ -187,7 +201,7 @@ export function WatermarkPdfTool() {
               onClick={run}
               disabled={!file || !text.trim()}
             >
-              {state.status === "busy" ? "Stamping…" : "Add watermark"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

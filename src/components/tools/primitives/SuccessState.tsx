@@ -16,6 +16,11 @@ export function SuccessState({
   onDownloadAgain,
   related,
   appCta,
+  downloadAgainLabel = "Download again",
+  startOverLabel = "Start over",
+  tryNextLabel = "Try next",
+  sizeText,
+  storeLabels,
 }: {
   title: string;
   description?: string;
@@ -25,6 +30,12 @@ export function SuccessState({
   onDownloadAgain?: () => void;
   related?: RelatedToolLink[];
   appCta?: { heading: string; sub?: string };
+  downloadAgainLabel?: string;
+  startOverLabel?: string;
+  tryNextLabel?: string;
+  /** Pre-formatted, locale-aware size. Falls back to the English format. */
+  sizeText?: string;
+  storeLabels?: { appStoreLabel: string; googlePlayLabel: string };
 }) {
   return (
     <div
@@ -47,7 +58,7 @@ export function SuccessState({
           <p className="mt-3 text-sm text-[--color-ink]">
             <span className="font-semibold break-all">{filename}</span>
             {sizeBytes > 0 ? (
-              <span className="text-[--color-muted]"> · {formatBytes(sizeBytes)}</span>
+              <span className="text-[--color-muted]"> · {sizeText ?? formatBytes(sizeBytes)}</span>
             ) : null}
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -59,7 +70,7 @@ export function SuccessState({
                 style={{ background: "var(--gradient-brand)" }}
               >
                 <Download className="h-4 w-4" aria-hidden />
-                Download again
+                {downloadAgainLabel}
               </button>
             ) : null}
             <button
@@ -68,7 +79,7 @@ export function SuccessState({
               className="inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold text-[--color-ink] border border-[--color-border] bg-[--color-surface] hover:border-[--color-brand]"
             >
               <RotateCcw className="h-4 w-4" aria-hidden />
-              Start over
+              {startOverLabel}
             </button>
           </div>
         </div>
@@ -77,7 +88,7 @@ export function SuccessState({
       {related && related.length > 0 ? (
         <div className="mt-5 border-t border-[--color-border]/60 pt-4">
           <p className="text-xs font-bold uppercase tracking-wider text-[--color-muted] mb-2">
-            Try next
+            {tryNextLabel}
           </p>
           <ul className="grid sm:grid-cols-2 gap-2">
             {related.map((r) => (
@@ -101,7 +112,7 @@ export function SuccessState({
             <p className="text-sm text-[--color-muted] mt-1">{appCta.sub}</p>
           ) : null}
           <div className="mt-3">
-            <StoreButtons size="md" />
+            <StoreButtons size="md" {...storeLabels} />
           </div>
         </div>
       ) : null}

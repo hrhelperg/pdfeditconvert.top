@@ -17,11 +17,23 @@ import { assertPdf } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
 import { parsePageRange } from "@/lib/tools/pageRange";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
 type Angle = "90" | "180" | "270";
 type Scope = "all" | "some";
 
-export function RotatePdfTool() {
+export function RotatePdfTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"rotate-pdf">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [angle, setAngle] = useState<Angle>("90");
@@ -39,12 +51,12 @@ export function RotatePdfTool() {
       assertPdf(f);
       const { PDFDocument } = await loadPdfLib();
       const doc = await PDFDocument.load(new Uint8Array(await f.arrayBuffer())).catch(() => {
-        throw new Error("Could not read this PDF. It may be corrupted or password-protected.");
+        throw new ToolFailure("unreadable_pdf");
       });
       setFile(f);
       setPageCount(doc.getPageCount());
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -60,7 +72,7 @@ export function RotatePdfTool() {
 
   const run = async () => {
     if (!file || !pageCount) return;
-    setBusy("Rotating pages…");
+    setBusy(t.busyRotating);
     try {
       const { PDFDocument, degrees } = await loadPdfLib();
       const doc = await PDFDocument.load(new Uint8Array(await file.arrayBuffer()));
@@ -76,49 +88,45 @@ export function RotatePdfTool() {
       }
       const out = await doc.save();
       const blob = new Blob([new Uint8Array(out)], { type: "application/pdf" });
-      const filename = file.name.replace(/\.pdf$/i, "") + "-rotated.pdf";
+      const filename = file.name.replace(/\.pdf$/i, "") + t.outputSuffix + ".pdf";
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="Rotate PDF"
-      subtitle="Rotate all pages or selected pages, then download a corrected PDF."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your rotated PDF is ready"
+          title={t.successTitle}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "Split a PDF", path: "/split-pdf" },
-            { label: "Add a watermark", path: "/add-watermark-to-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android rotates and reorders pages too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept="application/pdf"
             onFiles={onFiles}
-            label="Drop a PDF here, or click to choose"
-            hint="One PDF · up to 100 MB"
+            label={t.common.dropPdfLabel}
+            hint={t.common.dropPdfHint}
+            privacyText={t.common.privacyText}
           />
 
           {file ? (
@@ -126,6 +134,8 @@ export function RotatePdfTool() {
               <FileChip
                 name={file.name}
                 size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
                 onRemove={() => {
                   setFile(null);
                   setPageCount(null);
@@ -138,7 +148,7 @@ export function RotatePdfTool() {
           {pageCount ? (
             <div className="mt-5 grid gap-5 md:grid-cols-2">
               <OptionGroup<Angle>
-                label="Rotation"
+                label={t.angleLabel}
                 value={angle}
                 onChange={setAngle}
                 options={[
@@ -148,23 +158,23 @@ export function RotatePdfTool() {
                 ]}
               />
               <OptionGroup<Scope>
-                label="Apply to"
+                label={t.scopeLabel}
                 value={scope}
                 onChange={setScope}
                 options={[
-                  { value: "all", label: "All pages" },
-                  { value: "some", label: "Some pages" },
+                  { value: "all", label: t.scopeAll },
+                  { value: "some", label: t.scopeSome },
                 ]}
               />
               {scope === "some" ? (
                 <div className="md:col-span-2">
                   <OptionField
-                    label="Pages to rotate"
-                    hint="Examples: 1-3 or 2,4,6"
+                    label={t.rangeLabel}
+                    hint={t.rangeHint}
                     type="text"
                     value={range}
                     onChange={(e) => setRange(e.currentTarget.value)}
-                    placeholder="e.g. 1,3-5"
+                    placeholder={t.rangePlaceholder}
                     inputMode="numeric"
                   />
                 </div>
@@ -178,7 +188,7 @@ export function RotatePdfTool() {
               onClick={run}
               disabled={!file || (scope === "some" && !range.trim())}
             >
-              {state.status === "busy" ? "Rotating…" : "Rotate PDF"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

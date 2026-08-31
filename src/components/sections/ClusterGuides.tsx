@@ -5,19 +5,21 @@ import type { RelatedLink } from "@/types/content";
 
 /**
  * Compact, crawlable list of the guides that hang off a hub or tool page.
- * Rendered server-side as plain <a href> so the whole cluster is reachable
- * without JavaScript.
+ * Rendered server-side as plain links so the whole cluster is reachable
+ * without JavaScript — in every locale.
  */
 export function ClusterGuides({
   heading,
   items,
   moreHref,
   moreLabel,
+  seeAllLabel = "See all guides",
 }: {
   heading: string;
   items: RelatedLink[];
   moreHref?: string;
   moreLabel?: string;
+  seeAllLabel?: string;
 }) {
   if (!items.length) return null;
   return (
@@ -44,7 +46,7 @@ export function ClusterGuides({
               href={moreHref}
               className="font-semibold text-[--color-brand] hover:underline"
             >
-              {moreLabel ?? "See all guides"} →
+              {moreLabel ?? seeAllLabel} →
             </Link>
           </p>
         ) : null}

@@ -18,10 +18,22 @@ import { assertPdf } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfJs } from "@/lib/tools/pdfjs";
 import { parsePageRange } from "@/lib/tools/pageRange";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { fmt, plural, formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
 type Format = "png" | "jpeg";
 
-export function PdfToImagesTool() {
+export function PdfToImagesTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"pdf-to-images">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
   const [format, setFormat] = useState<Format>("png");
   const [scale, setScale] = useState(2);
@@ -45,7 +57,7 @@ export function PdfToImagesTool() {
       assertPdf(f);
       setFile(f);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -63,7 +75,7 @@ export function PdfToImagesTool() {
 
   const run = async () => {
     if (!file) return;
-    setBusy("Loading PDF…");
+    setBusy(t.busyLoading);
     try {
       const pdfjs = await loadPdfJs();
       const bytes = new Uint8Array(await file.arrayBuffer());
@@ -75,21 +87,21 @@ export function PdfToImagesTool() {
         : Array.from({ length: totalPages }, (_, i) => i + 1);
       const produced: { blob: Blob; filename: string; mime: string }[] = [];
       for (const i of pages) {
-        setBusy(`Rendering page ${i} of ${totalPages}…`);
+        setBusy(fmt(t.busyPage, { page: i, total: totalPages }));
         const page = await doc.getPage(i);
         const viewport = page.getViewport({ scale });
         const canvas = document.createElement("canvas");
         canvas.width = Math.ceil(viewport.width);
         canvas.height = Math.ceil(viewport.height);
         const ctx = canvas.getContext("2d");
-        if (!ctx) throw new Error("Canvas not supported.");
+        if (!ctx) throw new ToolFailure("canvas_unsupported");
         await page.render({ canvas, canvasContext: ctx, viewport }).promise;
         const mime = format === "png" ? "image/png" : "image/jpeg";
         const ext = format === "png" ? "png" : "jpg";
         const q = format === "jpeg" ? quality : undefined;
         const blob: Blob = await new Promise((resolve, reject) =>
           canvas.toBlob(
-            (b) => (b ? resolve(b) : reject(new Error("Encoding failed."))),
+            (b) => (b ? resolve(b) : reject(new ToolFailure("encode_failed"))),
             mime,
             q,
           ),
@@ -104,61 +116,65 @@ export function PdfToImagesTool() {
         const last = produced[produced.length - 1];
         const totalBytes = produced.reduce((n, o) => n + o.blob.size, 0);
         setSuccess({
-          filename: `${produced.length} image${produced.length === 1 ? "" : "s"} downloaded (last: ${last.filename})`,
+          filename: plural(locale, produced.length, t.downloadedSummary, {
+            filename: last.filename,
+          }),
           sizeBytes: totalBytes,
           blob: last.blob,
         });
       }
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="PDF to images"
-      subtitle="Turn PDF pages into downloadable image files."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your images are ready"
-          description="Each page downloaded as a separate file."
+          title={t.successTitle}
+          description={t.successDescription}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={downloadAll}
-          related={[
-            { label: "Image to PDF — the reverse", path: "/image-to-pdf" },
-            { label: "Split a PDF", path: "/split-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android renders pages with hardware acceleration.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept="application/pdf"
             onFiles={onFiles}
-            label="Drop a PDF here, or click to choose"
-            hint="One PDF · up to 100 MB"
+            label={t.common.dropPdfLabel}
+            hint={t.common.dropPdfHint}
+            privacyText={t.common.privacyText}
           />
           {file ? (
             <ul className="mt-4 space-y-2">
-              <FileChip name={file.name} size={file.size} onRemove={() => setFile(null)} />
+              <FileChip
+                name={file.name}
+                size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
+                onRemove={() => setFile(null)}
+              />
             </ul>
           ) : null}
 
           {file ? (
             <div className="mt-5 grid gap-5 md:grid-cols-2">
               <OptionGroup<Format>
-                label="Format"
+                label={t.formatLabel}
                 value={format}
                 onChange={setFormat}
                 options={[
@@ -167,7 +183,7 @@ export function PdfToImagesTool() {
                 ]}
               />
               <OptionRange
-                label="Scale"
+                label={t.scaleLabel}
                 valueLabel={`${scale}×`}
                 min={1}
                 max={3}
@@ -177,7 +193,7 @@ export function PdfToImagesTool() {
               />
               {format === "jpeg" ? (
                 <OptionRange
-                  label="JPEG quality"
+                  label={t.qualityLabel}
                   valueLabel={`${Math.round(quality * 100)}%`}
                   min={0.5}
                   max={1}
@@ -187,12 +203,12 @@ export function PdfToImagesTool() {
                 />
               ) : null}
               <OptionField
-                label="Pages (optional)"
-                hint="Leave blank to render all pages. Examples: 1-3 or 2,4,6"
+                label={t.rangeLabel}
+                hint={t.rangeHint}
                 type="text"
                 value={range}
                 onChange={(e) => setRange(e.currentTarget.value)}
-                placeholder="All pages"
+                placeholder={t.rangePlaceholder}
                 inputMode="numeric"
               />
             </div>
@@ -204,7 +220,7 @@ export function PdfToImagesTool() {
               onClick={run}
               disabled={!file}
             >
-              {state.status === "busy" ? "Converting…" : "Convert to images"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

@@ -2,17 +2,18 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { RotatePdfTool } from "@/components/tools/RotatePdfTool";
+import { toolProps } from "./helpers/toolProps";
 
 describe("RotatePdfTool", () => {
   it("renders the 3-step indicator", () => {
-    render(<RotatePdfTool />);
+    render(<RotatePdfTool {...toolProps("rotate-pdf")} />);
     expect(screen.getByText("Upload")).toBeInTheDocument();
     expect(screen.getByText("Adjust")).toBeInTheDocument();
     expect(screen.getByText("Download")).toBeInTheDocument();
   });
 
   it("Rotate button is disabled until a file is added", () => {
-    render(<RotatePdfTool />);
+    render(<RotatePdfTool {...toolProps("rotate-pdf")} />);
     expect(screen.getByRole("button", { name: /Rotate PDF/i })).toBeDisabled();
   });
 });

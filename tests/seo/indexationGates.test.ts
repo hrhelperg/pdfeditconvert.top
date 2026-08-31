@@ -16,6 +16,9 @@ import { GUIDES } from "@/content/guides";
 import { COMPARE } from "@/content/compare";
 import { USE_CASES } from "@/content/use-cases";
 import { guidesForHub } from "@/lib/cluster";
+import { SITE_EN } from "@/lib/i18n/dictionaries/site.en";
+import { HOME_EN } from "@/content/pages/home.en";
+import { TOOLS_INDEX_EN } from "@/content/pages/misc.en";
 
 const root = path.resolve(__dirname, "..", "..");
 const indexable = ROUTES.filter((r) => !r.hidden);
@@ -40,9 +43,36 @@ function declaredLinks(): { from: string; to: string }[] {
         out.push({ from: `/${file.replace(/\.ts$/, "")}`, to: m[1] });
     }
   }
-  // Links hardcoded in page and component sources (nav arrays, hero CTAs,
-  // "see all" links). Without these the graph would understate hub pages,
-  // which are linked from components rather than from content registries.
+  /*
+   * Navigation, footer and the link lists on the homepage and tool index.
+   *
+   * These used to be hardcoded `href="/guides"` strings in component
+   * source, and this gate found them by scanning for that literal. They are
+   * now declared as canonical route ids and resolved per locale, so the
+   * literal no longer exists anywhere — and the gate would have quietly
+   * reported /guides as an orphan while it was in fact linked from the
+   * header, the footer and the homepage. Reading the structured
+   * declarations is both accurate and immune to the next refactor.
+   */
+  const idLink = (from: string, id: string) => out.push({ from, to: `/${id}` });
+  for (const n of SITE_EN.header.nav) idLink("Header", n.id);
+  for (const group of [
+    SITE_EN.footer.product,
+    SITE_EN.footer.learn,
+    SITE_EN.footer.company,
+    SITE_EN.footer.tools,
+  ])
+    for (const n of group) idLink("Footer", n.id);
+  for (const group of [HOME_EN.tools, HOME_EN.hubs, HOME_EN.featuredGuides])
+    for (const n of group) idLink("HomePage", n.id);
+  for (const n of TOOLS_INDEX_EN.hubs) idLink("ToolsIndexPage", n.id);
+  // The homepage and tool index also link the guides index and tool index
+  // from their CTAs, which are rendered from route ids too.
+  idLink("HomePage", "guides");
+  idLink("HomePage", "pdf-tools");
+  idLink("ToolsIndexPage", "guides");
+
+  // Links still hardcoded in page and component sources.
   const walk = (dir: string) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, entry.name);

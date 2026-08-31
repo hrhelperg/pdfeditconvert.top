@@ -17,6 +17,17 @@ const REDIRECTS = [
 
 const config: NextConfig = {
   reactStrictMode: true,
+  /**
+   * The site has one root layout per locale (route groups `(en)` and
+   * `(pt-br)`), which is what makes `<html lang>` correct in served HTML.
+   * The cost is that Next.js no longer has a single layout to compose a
+   * global 404 from, so an unmatched URL would fall back to the framework's
+   * unstyled default. `globalNotFound` restores a branded 404 for those
+   * URLs — see src/app/global-not-found.tsx.
+   */
+  experimental: {
+    globalNotFound: true,
+  },
   poweredByHeader: false,
   trailingSlash: false,
   images: {

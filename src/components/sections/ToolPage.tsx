@@ -12,6 +12,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { PrivacyNote } from "@/components/tools/primitives/PrivacyNote";
 import { ClusterGuides } from "@/components/sections/ClusterGuides";
 import { clusterLinks, guidesForHub } from "@/lib/cluster";
+import { getSiteDictionary } from "@/lib/i18n/registry";
+import { localizeLinks } from "@/content/registry";
+import { pathForWithFallback } from "@/lib/i18n/routeMap";
+import { plural } from "@/lib/i18n/format";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
+import type { RouteId } from "@/lib/i18n/routeIds";
 import {
   breadcrumbSchema,
   faqSchema,
@@ -37,26 +43,33 @@ function renderH1(h1: string, highlight?: string): ReactNode {
   );
 }
 
-const TRUST = [
-  "Files are processed locally in your browser",
-  "No upload, no account, no watermark",
-  "Free — works on mobile and desktop",
-];
-
 export function ToolPage({
   content,
   toolSlot,
+  locale = DEFAULT_LOCALE,
 }: {
   content: ToolContent;
   toolSlot: ReactNode;
+  locale?: Locale;
 }) {
-  const path = `/${content.slug}`;
+  const dictionary = getSiteDictionary(locale);
+  const { sections, breadcrumbs } = dictionary;
+  // `content.slug` is the canonical (English) route id in every language;
+  // the localized URL comes from the route map, never from the content.
+  const englishPath = `/${content.slug}`;
+  const path = pathForWithFallback(locale, content.slug as RouteId);
   const crumbLabel = content.hero.eyebrow;
+  const clusterCount = guidesForHub(englishPath, locale).length;
 
   return (
     <>
       <Container className="pt-4">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: crumbLabel }]} />
+        <Breadcrumbs
+          items={[
+            { label: breadcrumbs.home, href: pathForWithFallback(locale, "") },
+            { label: crumbLabel },
+          ]}
+        />
       </Container>
 
       {/*
@@ -106,7 +119,7 @@ export function ToolPage({
                 {content.hero.lead}
               </p>
               <ul className="mt-6 space-y-2.5">
-                {TRUST.map((t) => (
+                {sections.trust.map((t) => (
                   <li key={t} className="flex items-start gap-2.5 text-sm font-medium text-[--color-ink]">
                     <span
                       aria-hidden
@@ -168,10 +181,10 @@ export function ToolPage({
       <Section>
         <Container size="md">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[--color-ink] mb-6">
-            Related PDF tools
+            {sections.relatedTools}
           </h2>
           <ul className="grid sm:grid-cols-2 gap-3">
-            {content.related.map((r) => (
+            {localizeLinks(locale, content.related).map((r) => (
               <li key={r.path}>
                 <Link
                   href={r.path}
@@ -191,33 +204,33 @@ export function ToolPage({
         linked; this connects each one to the guides written about it.
       */}
       <ClusterGuides
-        heading={
-          guidesForHub(path).length === 1
-            ? `${crumbLabel} guide`
-            : `${crumbLabel} guides`
-        }
-        items={clusterLinks(path)}
-        moreHref="/pdf-tools"
-        moreLabel="All free browser PDF tools"
+        heading={plural(locale, clusterCount, sections.toolGuidesHeading, {
+          label: crumbLabel,
+        })}
+        items={clusterLinks(englishPath, locale)}
+        moreHref={pathForWithFallback(locale, "pdf-tools")}
+        moreLabel={sections.allFreeTools}
+        seeAllLabel={sections.seeAllGuides}
       />
 
       <AppCTA variant="inline" heading={content.appCta.heading} sub={content.appCta.sub} />
 
-      <FAQ items={content.faq} />
+      <FAQ heading={sections.faqHeading} items={content.faq} />
 
       <AppCTA variant="final" heading={content.appCta.heading} sub={content.appCta.sub} />
 
       <JsonLd
         data={[
           breadcrumbSchema([
-            { label: "Home", path: "/" },
+            { label: breadcrumbs.home, path: pathForWithFallback(locale, "") },
             { label: crumbLabel, path },
           ]),
-          faqSchema(content.faq),
+          faqSchema(content.faq, locale),
           webApplicationSchema({
             name: content.hero.h1,
             description: content.hero.lead,
             path,
+            locale,
           }),
         ]}
       />

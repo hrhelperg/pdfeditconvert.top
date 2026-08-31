@@ -1,0 +1,138 @@
+import type {
+  CompareContent,
+  GuideContent,
+  HubContent,
+  RelatedLink,
+  ToolContent,
+  UseCaseContent,
+} from "@/types/content";
+import { GUIDES } from "@/content/guides";
+import { COMPARE } from "@/content/compare";
+import { USE_CASES } from "@/content/use-cases";
+import { GUIDES_PT_BR } from "@/content/pt-BR/guides";
+import { COMPARE_PT_BR } from "@/content/pt-BR/compare";
+import { USE_CASES_PT_BR } from "@/content/pt-BR/use-cases";
+import { HUBS_PT_BR } from "@/content/pt-BR/hubs";
+import { TOOL_CONTENT_PT_BR } from "@/content/pt-BR/tools";
+import { HUBS_EN } from "@/content/hubs";
+import { TOOL_CONTENT_EN } from "@/content/tools";
+import { DEFAULT_LOCALE, localeChain, type Locale } from "@/lib/i18n/locales";
+import { localizePath } from "@/lib/i18n/routeMap";
+
+/**
+ * Per-locale content registries.
+ *
+ * Localized content is keyed by the **English** slug, and every `slug` field
+ * holds the English slug too. The Portuguese URL is not stored in the
+ * content at all — it comes from the route map. One consequence matters:
+ * the same page cannot have two different ideas of its own URL, so a slug
+ * change is a one-line edit in the manifest rather than a hunt through
+ * content files.
+ *
+ * The same rule applies to internal links. `related` and `parentHub` in
+ * every content file, in every language, carry the **English** path. The
+ * renderer translates it for the page's locale. That means a translator
+ * never types a URL, a Portuguese page can never link to a Portuguese page
+ * that does not exist, and a route rename cannot silently break 500
+ * cross-links.
+ */
+
+interface LocaleContent {
+  readonly guides: Record<string, GuideContent>;
+  readonly hubs: Record<string, HubContent>;
+  readonly tools: Record<string, ToolContent>;
+  readonly compare: Record<string, CompareContent>;
+  readonly useCases: Record<string, UseCaseContent>;
+}
+
+const CONTENT: Partial<Record<Locale, LocaleContent>> = {
+  en: {
+    guides: GUIDES,
+    hubs: HUBS_EN,
+    tools: TOOL_CONTENT_EN,
+    compare: COMPARE,
+    useCases: USE_CASES,
+  },
+  "pt-BR": {
+    guides: GUIDES_PT_BR,
+    hubs: HUBS_PT_BR,
+    tools: TOOL_CONTENT_PT_BR,
+    compare: COMPARE_PT_BR,
+    useCases: USE_CASES_PT_BR,
+  },
+};
+
+function contentFor(locale: Locale): LocaleContent {
+  for (const candidate of localeChain(locale)) {
+    const hit = CONTENT[candidate];
+    if (hit) return hit;
+  }
+  throw new Error(`[i18n] no content registry for "${locale}"`);
+}
+
+/**
+ * Looks a record up in `locale`, falling back through the locale chain.
+ *
+ * A locale that has translated its tools but not yet a given guide serves
+ * the English guide at the English URL rather than a 404 or an empty page.
+ * The parity report names every page in that state.
+ */
+function lookup<T>(
+  locale: Locale,
+  pick: (c: LocaleContent) => Record<string, T>,
+  slug: string,
+): T | null {
+  for (const candidate of localeChain(locale)) {
+    const registry = CONTENT[candidate];
+    if (registry && pick(registry)[slug]) return pick(registry)[slug];
+  }
+  return null;
+}
+
+export function guidesFor(locale: Locale): Record<string, GuideContent> {
+  return contentFor(locale).guides;
+}
+
+export function getGuideContent(locale: Locale, slug: string): GuideContent | null {
+  return lookup(locale, (c) => c.guides, slug);
+}
+
+export function getHubContent(locale: Locale, slug: string): HubContent | null {
+  return lookup(locale, (c) => c.hubs, slug);
+}
+
+export function getToolContent(locale: Locale, slug: string): ToolContent | null {
+  return lookup(locale, (c) => c.tools, slug);
+}
+
+export function getCompareContent(locale: Locale, slug: string): CompareContent | null {
+  return lookup(locale, (c) => c.compare, slug);
+}
+
+export function getUseCaseContent(locale: Locale, slug: string): UseCaseContent | null {
+  return lookup(locale, (c) => c.useCases, slug);
+}
+
+/** Whether a locale has authored its own copy of a content record. */
+export function hasOwnContent(
+  locale: Locale,
+  kind: keyof LocaleContent,
+  slug: string,
+): boolean {
+  const own = CONTENT[locale];
+  return own !== undefined && own[kind][slug] !== undefined;
+}
+
+/** Translates a content file's English link paths into the page's locale. */
+export function localizeLinks(
+  locale: Locale,
+  links: readonly RelatedLink[],
+): RelatedLink[] {
+  return links.map((l) => ({ label: l.label, path: localizePath(locale, l.path) }));
+}
+
+export const CONTENT_LOCALES: Locale[] = (Object.keys(CONTENT) as Locale[]).filter(
+  (l) => CONTENT[l] !== undefined,
+);
+
+export { DEFAULT_LOCALE };

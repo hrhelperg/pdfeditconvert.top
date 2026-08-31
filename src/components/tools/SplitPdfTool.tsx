@@ -16,8 +16,20 @@ import { assertPdf } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
 import { parsePageRange } from "@/lib/tools/pageRange";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { fmt, formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
-export function SplitPdfTool() {
+export function SplitPdfTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"split-pdf">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [range, setRange] = useState("");
@@ -35,12 +47,12 @@ export function SplitPdfTool() {
       const { PDFDocument } = await loadPdfLib();
       const bytes = new Uint8Array(await f.arrayBuffer());
       const doc = await PDFDocument.load(bytes).catch(() => {
-        throw new Error("Could not read this PDF. It may be corrupted or password-protected.");
+        throw new ToolFailure("unreadable_pdf");
       });
       setFile(f);
       setPageCount(doc.getPageCount());
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -58,11 +70,11 @@ export function SplitPdfTool() {
     try {
       pages = parsePageRange(range, pageCount);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
       return;
     }
-    setBusy("Extracting pages…");
+    setBusy(t.busyExtracting);
     try {
       const { PDFDocument } = await loadPdfLib();
       const bytes = new Uint8Array(await file.arrayBuffer());
@@ -73,49 +85,48 @@ export function SplitPdfTool() {
       const result = await out.save();
       const blob = new Blob([new Uint8Array(result)], { type: "application/pdf" });
       const base = file.name.replace(/\.pdf$/i, "");
-      const filename = `${base}-pages-${pages[0]}-to-${pages[pages.length - 1]}.pdf`;
+      const filename = `${base}${fmt(t.outputSuffix, {
+        first: pages[0],
+        last: pages[pages.length - 1],
+      })}.pdf`;
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="Split PDF"
-      subtitle="Upload a PDF and select the page range you want to export. Examples: 1-3 or 2,4,6."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your extracted PDF is ready"
+          title={t.successTitle}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "Merge PDFs", path: "/merge-pdf" },
-            { label: "Rotate pages", path: "/rotate-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android splits and reorders pages too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept="application/pdf"
             onFiles={onFiles}
-            label="Drop a PDF here, or click to choose"
-            hint="One PDF · up to 100 MB"
+            label={t.common.dropPdfLabel}
+            hint={t.common.dropPdfHint}
+            privacyText={t.common.privacyText}
           />
 
           {file ? (
@@ -123,6 +134,8 @@ export function SplitPdfTool() {
               <FileChip
                 name={file.name}
                 size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
                 onRemove={() => {
                   setFile(null);
                   setPageCount(null);
@@ -135,12 +148,12 @@ export function SplitPdfTool() {
           {pageCount ? (
             <div className="mt-5">
               <OptionField
-                label={`Pages to keep (${pageCount} total)`}
-                hint="Examples: 1-3 or 2,4,6 or 1-3,5,8-10"
+                label={fmt(t.rangeLabel, { total: pageCount })}
+                hint={t.rangeHint}
                 type="text"
                 value={range}
                 onChange={(e) => setRange(e.currentTarget.value)}
-                placeholder="e.g. 1-3 or 2,4,6"
+                placeholder={t.rangePlaceholder}
                 inputMode="numeric"
               />
             </div>
@@ -152,7 +165,7 @@ export function SplitPdfTool() {
               onClick={split}
               disabled={!file || !range.trim()}
             >
-              {state.status === "busy" ? "Splitting…" : "Split PDF"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

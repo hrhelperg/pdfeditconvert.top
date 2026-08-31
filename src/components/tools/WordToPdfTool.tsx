@@ -13,6 +13,10 @@ import { useToolFlow } from "@/components/tools/primitives/useToolFlow";
 import { mapToolError } from "@/components/tools/primitives/errors";
 import { assertWordDoc, isPlainText } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
 import { loadMammoth } from "@/lib/tools/officeLib";
 
@@ -28,7 +32,15 @@ function toWinAnsi(text: string): string {
     .replace(/[^\x09\x0A\x0D\x20-\x7E\xA0-\xFF]/g, "?");
 }
 
-export function WordToPdfTool() {
+export function WordToPdfTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"word-to-pdf">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
   const { state, setBusy, setError, setSuccess, reset: resetFlow } = useToolFlow();
 
@@ -41,7 +53,7 @@ export function WordToPdfTool() {
       assertWordDoc(f);
       setFile(f);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -53,7 +65,7 @@ export function WordToPdfTool() {
 
   const run = async () => {
     if (!file) return;
-    setBusy("Reading document…");
+    setBusy(t.busyReading);
     try {
       let text: string;
       if (isPlainText(file)) {
@@ -63,18 +75,16 @@ export function WordToPdfTool() {
         const result = await extractRawText({
           arrayBuffer: await file.arrayBuffer(),
         }).catch(() => {
-          throw new Error(
-            "Could not read this .docx. It may be corrupted or password-protected.",
-          );
+          throw new ToolFailure("generic", {}, t.errorUnreadable);
         });
         text = result.value;
       }
 
       if (!text || text.trim().length === 0) {
-        throw new Error("The document appears to be empty — there's no text to convert.");
+        throw new ToolFailure("generic", {}, t.errorEmptyDocument);
       }
 
-      setBusy("Building PDF…");
+      setBusy(t.busyBuilding);
       const { PDFDocument, StandardFonts, rgb } = await loadPdfLib();
       const pdf = await PDFDocument.create();
       const font = await pdf.embedFont(StandardFonts.Helvetica);
@@ -124,46 +134,45 @@ export function WordToPdfTool() {
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
     <ToolShell
-      title="Word to PDF"
-      subtitle="Turn a .docx or .txt document into a clean PDF — in your browser."
+      title={t.title}
+      subtitle={t.subtitle}
     >
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Convert", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your PDF is ready"
-          description="Text was laid out into a clean A4 PDF. Original .docx fonts, images, tables and exact spacing are not reproduced."
+          title={t.successTitle}
+          description={t.successDescription}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "PDF to Word — the reverse", path: "/pdf-to-word" },
-            { label: "Image to PDF", path: "/image-to-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android converts and signs documents too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept=".docx,.txt,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
             onFiles={onFiles}
-            label="Drop a .docx or .txt file here, or click to choose"
-            hint="Word .docx or plain .txt · up to 100 MB"
+            label={t.dropLabel}
+            hint={t.dropHint}
+            privacyText={t.common.privacyText}
           />
 
           {file ? (
@@ -171,6 +180,8 @@ export function WordToPdfTool() {
               <FileChip
                 name={file.name}
                 size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
                 onRemove={() => setFile(null)}
               />
             </ul>
@@ -178,18 +189,14 @@ export function WordToPdfTool() {
 
           <div className="mt-5 rounded-xl border border-[--color-border] bg-[--color-bg] p-4 text-sm text-[--color-muted]">
             <p className="font-semibold text-[--color-ink] mb-1">
-              What this does
+              {t.explainerTitle}
             </p>
-            Reads the text from a Word (.docx) or plain text (.txt) file and
-            lays it into a clean, paginated A4 PDF. It is an honest text
-            conversion — original fonts, images, tables and exact formatting
-            are <strong>not</strong> reproduced. Legacy binary .doc isn&apos;t
-            supported; save as .docx first.
+            {t.explainerBody}
           </div>
 
           <div className="mt-6 flex items-center gap-3">
             <ProcessButton busy={state.status === "busy"} onClick={run} disabled={!file}>
-              {state.status === "busy" ? "Converting…" : "Convert to PDF"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

@@ -1,6 +1,8 @@
+import { ToolFailure } from "@/lib/tools/toolError";
+
 export function parsePageRange(input: string, totalPages: number): number[] {
   if (!input.trim()) {
-    throw new Error("Enter at least one page or range, e.g. 1-3,5.");
+    throw new ToolFailure("invalid_range", {}, "Enter at least one page or range, e.g. 1-3,5.");
   }
   const pages = new Set<number>();
   for (const raw of input.split(",")) {
@@ -19,10 +21,18 @@ export function parsePageRange(input: string, totalPages: number): number[] {
       if (n >= 1 && n <= totalPages) pages.add(n);
       continue;
     }
-    throw new Error(`"${part}" is not a valid page or range.`);
+    throw new ToolFailure(
+      "invalid_range",
+      { value: part },
+      `"${part}" is not a valid page or range.`,
+    );
   }
   if (pages.size === 0) {
-    throw new Error("No pages matched. Use values between 1 and " + totalPages + ".");
+    throw new ToolFailure(
+      "invalid_range",
+      { total: totalPages },
+      "No pages matched. Use values between 1 and " + totalPages + ".",
+    );
   }
   return [...pages].sort((a, b) => a - b);
 }

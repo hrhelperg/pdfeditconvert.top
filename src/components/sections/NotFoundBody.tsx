@@ -1,0 +1,88 @@
+import Link from "next/link";
+import { Container } from "@/components/primitives/Container";
+import { ButtonLink } from "@/components/primitives/Button";
+import { pathForWithFallback } from "@/lib/i18n/routeMap";
+import type { Locale } from "@/lib/i18n/locales";
+import type { RouteId } from "@/lib/i18n/routeIds";
+
+export interface NotFoundCopy {
+  eyebrow: string;
+  h1: string;
+  lead: string;
+  openLabel: string;
+  homeLabel: string;
+  suggestions: { id: RouteId; label: string }[];
+}
+
+/** Shared 404 body, so the locale route groups and the global 404 agree. */
+export function NotFoundBody({
+  copy,
+  locale,
+}: {
+  copy: NotFoundCopy;
+  locale: Locale;
+}) {
+  return (
+    <Container className="py-24">
+      <p className="text-sm font-semibold uppercase tracking-wide text-[--color-brand]">
+        {copy.eyebrow}
+      </p>
+      <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-[--color-ink]">
+        {copy.h1}
+      </h1>
+      <p className="mt-4 text-lg text-[--color-muted] max-w-xl">{copy.lead}</p>
+      <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md">
+        {copy.suggestions.map((s) => (
+          <li key={s.id}>
+            <Link
+              href={pathForWithFallback(locale, s.id)}
+              className="block rounded-xl border border-[--color-border] bg-[--color-surface] p-4 hover:border-[--color-brand]"
+            >
+              <span className="font-semibold text-[--color-ink]">{s.label}</span>
+              <span className="block text-sm text-[--color-muted]">
+                {copy.openLabel}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-10">
+        <ButtonLink
+          href={pathForWithFallback(locale, "")}
+          variant="primary"
+          size="lg"
+        >
+          {copy.homeLabel}
+        </ButtonLink>
+      </div>
+    </Container>
+  );
+}
+
+export const NOT_FOUND_EN: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Page not found",
+  lead: "The page you’re looking for doesn’t exist or has moved. Try one of these instead:",
+  openLabel: "Open guide →",
+  homeLabel: "Back to homepage",
+  suggestions: [
+    { id: "pdf-editor", label: "PDF Editor" },
+    { id: "compress-pdf", label: "Compress PDF" },
+    { id: "merge-pdf", label: "Merge PDF" },
+    { id: "sign-pdf", label: "Sign PDF" },
+  ],
+};
+
+export const NOT_FOUND_PT_BR: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Página não encontrada",
+  lead: "A página que você procura não existe ou foi movida. Tente uma destas:",
+  openLabel: "Abrir →",
+  homeLabel: "Voltar para a página inicial",
+  suggestions: [
+    { id: "pdf-editor", label: "Editor de PDF" },
+    { id: "compress-pdf", label: "Comprimir PDF" },
+    { id: "merge-pdf", label: "Juntar PDF" },
+    { id: "sign-pdf", label: "Assinar PDF" },
+  ],
+};
