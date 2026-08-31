@@ -21,8 +21,8 @@ export const SITE_FR: SiteDictionary = {
       { id: "sign-pdf", label: "Signer" },
       { id: "guides", label: "Guides" },
     ],
-    ctaLabel: "Télécharger l'app",
-    ctaAriaLabel: "Télécharger PDF Editor sur l'App Store",
+    ctaLabel: "Télécharger l’app",
+    ctaAriaLabel: "Télécharger PDF Editor sur l’App Store",
     openMenu: "Ouvrir le menu",
     closeMenu: "Fermer le menu",
   },
@@ -63,7 +63,7 @@ export const SITE_FR: SiteDictionary = {
       },
       {
         id: "guides/how-to-reduce-pdf-file-size-for-email",
-        label: "Réduire un PDF pour l'e-mail",
+        label: "Réduire un PDF pour l’e-mail",
       },
       {
         id: "guides/how-to-edit-pdf-on-iphone",
@@ -92,7 +92,7 @@ export const SITE_FR: SiteDictionary = {
   },
 
   store: {
-    appStoreAria: "Télécharger PDF Editor sur l'App Store",
+    appStoreAria: "Télécharger PDF Editor sur l’App Store",
     googlePlayAria: "Télécharger PDF Editor sur Google Play",
   },
 
@@ -100,7 +100,7 @@ export const SITE_FR: SiteDictionary = {
     home: "Accueil",
     guides: "Guides",
     compare: "Comparatifs",
-    useCases: "Cas d'usage",
+    useCases: "Cas d’usage",
     tools: "Outils",
   },
 
@@ -128,7 +128,7 @@ export const SITE_FR: SiteDictionary = {
       "Gratuit — sur téléphone comme sur ordinateur",
     ],
     clusterHeading: {
-      one: "L'unique guide de ce groupe",
+      one: "L’unique guide de ce groupe",
       other: "Les {count} guides de ce groupe",
     },
     toolGuidesHeading: {

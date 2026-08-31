@@ -11,7 +11,7 @@ import type { ToolDictionary } from "@/lib/i18n/toolStrings";
  *   exactly what these tools do not do — it would contradict the privacy
  *   sentence printed directly beneath the button.
  * - Output filenames are localized ("-compresse", "-pages") and kept
- *   ASCII — no accents — since the file lands in the reader's own downloads
+ *   ASCII — no accents — since the file lands in the reader’s own downloads
  *   folder and has to stay safe across every filesystem it might land on.
  */
 export const TOOLS_FR: ToolDictionary = {
@@ -24,17 +24,17 @@ export const TOOLS_FR: ToolDictionary = {
     startOver: "Recommencer",
     tryNext: "À essayer aussi",
     clearAll: "Tout effacer",
-    appCtaHeading: "Besoin d'outils PDF sur votre téléphone ?",
+    appCtaHeading: "Besoin d’outils PDF sur votre téléphone ?",
     dropPdfLabel: "Déposez un PDF ici ou cliquez pour le choisir",
     dropPdfHint: "Un PDF · 100 Mo maximum",
     genericErrorMessage: "Une erreur est survenue. Réessayez ou utilisez un fichier plus léger.",
     errors: {
-      not_pdf: { message: "« {name} » n'est pas un PDF." },
+      not_pdf: { message: "« {name} » n’est pas un PDF." },
       not_image: {
-        message: "« {name} » n'est pas un format d'image pris en charge. Utilisez un JPG, un PNG ou un WebP.",
+        message: "« {name} » n’est pas un format d’image pris en charge. Utilisez un JPG, un PNG ou un WebP.",
       },
       not_word: {
-        message: "« {name} » n'est ni un fichier Word (.docx) ni un .txt.",
+        message: "« {name} » n’est ni un fichier Word (.docx) ni un .txt.",
       },
       legacy_doc: {
         message: "Les anciens fichiers « .doc » ne peuvent pas être lus dans le navigateur.",
@@ -45,7 +45,7 @@ export const TOOLS_FR: ToolDictionary = {
         hint: "La limite est de {limit} Mo par fichier, car tout le traitement se fait dans votre navigateur.",
       },
       unreadable_pdf: {
-        message: "Impossible d'ouvrir ce fichier.",
+        message: "Impossible d’ouvrir ce fichier.",
         hint: "Il est peut-être endommagé ou protégé par un mot de passe. Débloquez ou réparez le fichier, puis réessayez.",
       },
       invalid_range: {
@@ -59,7 +59,7 @@ export const TOOLS_FR: ToolDictionary = {
       too_many_files: { message: "Ajoutez au maximum {limit} fichiers à la fois." },
       too_few_files: { message: "Ajoutez au moins deux PDF à fusionner." },
       canvas_unsupported: { message: "Ce navigateur ne prend pas en charge le canvas." },
-      encode_failed: { message: "Échec de l'encodage de l'image." },
+      encode_failed: { message: "Échec de l’encodage de l’image." },
       generic: {
         message: "Une erreur est survenue. Réessayez ou utilisez un fichier plus léger.",
       },
@@ -88,7 +88,7 @@ export const TOOLS_FR: ToolDictionary = {
       orientationAuto: "Automatique",
       orientationPortrait: "Portrait",
       orientationLandscape: "Paysage",
-      fitLabel: "Ajustement de l'image",
+      fitLabel: "Ajustement de l’image",
       fitFit: "Tenir dans la page",
       fitFill: "Remplir la page",
       marginLabel: "Marge",
@@ -138,7 +138,7 @@ export const TOOLS_FR: ToolDictionary = {
     "compress-pdf": {
       title: "Compresser un PDF",
       subtitle:
-        "Réduisez le poids d'un PDF pour l'envoyer par e-mail, le joindre à un dossier ou l'archiver — directement dans le navigateur.",
+        "Réduisez le poids d’un PDF pour l’envoyer par e-mail, le joindre à un dossier ou l’archiver — directement dans le navigateur.",
       steps: ["Ajouter", "Ajuster", "Télécharger"],
       successTitle: "Votre PDF compressé est prêt",
       actionIdle: "Compresser le PDF",
@@ -157,11 +157,11 @@ export const TOOLS_FR: ToolDictionary = {
       levelRecommended: "Recommandé",
       levelStrong: "Fort",
       levelNote:
-        "La compression forte transforme les pages en image (le texte n'est alors plus sélectionnable). C'est la meilleure option pour un PDF numérisé ou rempli d'images.",
+        "La compression forte transforme les pages en image (le texte n’est alors plus sélectionnable). C’est la meilleure option pour un PDF numérisé ou rempli d’images.",
       summaryAlreadyCompact:
-        "Ce PDF est presque entièrement composé de texte et de graphiques vectoriels, et il est déjà compact ({size}). Le compresser n'apporterait rien, le fichier d'origine a donc été conservé tel quel.",
+        "Ce PDF est presque entièrement composé de texte et de graphiques vectoriels, et il est déjà compact ({size}). Le compresser n’apporterait rien, le fichier d’origine a donc été conservé tel quel.",
       summaryReduced:
-        "Réduit de {from} à {to} (-{percent} %). Les pages ont été converties en image, le texte n'est donc plus sélectionnable.",
+        "Réduit de {from} à {to} (-{percent} %). Les pages ont été converties en image, le texte n’est donc plus sélectionnable.",
       outputSuffix: "-compresse",
     },
     "rotate-pdf": {
@@ -197,7 +197,7 @@ export const TOOLS_FR: ToolDictionary = {
       actionIdle: "Convertir en images",
       actionBusy: "Conversion en cours…",
       appCtaSub:
-        "PDF Editor pour iPhone et Android affiche les pages avec l'accélération matérielle.",
+        "PDF Editor pour iPhone et Android affiche les pages avec l’accélération matérielle.",
       related: [
         { id: "image-to-pdf", label: "Image en PDF — le chemin inverse" },
         { id: "split-pdf", label: "Diviser un PDF" },
@@ -247,11 +247,11 @@ export const TOOLS_FR: ToolDictionary = {
     "pdf-to-word": {
       title: "PDF en Word",
       subtitle:
-        "Récupérez le texte d'un PDF dans un document .docx modifiable — directement dans le navigateur.",
+        "Récupérez le texte d’un PDF dans un document .docx modifiable — directement dans le navigateur.",
       steps: ["Ajouter", "Convertir", "Télécharger"],
       successTitle: "Votre document Word est prêt",
       successDescription:
-        "Le texte modifiable a été extrait dans un fichier .docx. La mise en page, les colonnes et les images d'origine ne sont pas conservées.",
+        "Le texte modifiable a été extrait dans un fichier .docx. La mise en page, les colonnes et les images d’origine ne sont pas conservées.",
       actionIdle: "Convertir en Word",
       actionBusy: "Conversion en cours…",
       appCtaSub:
@@ -263,12 +263,12 @@ export const TOOLS_FR: ToolDictionary = {
       dropHint: "Un PDF · 100 Mo maximum · uniquement des PDF avec du texte",
       explainerTitle: "Ce que fait cet outil",
       explainerBody:
-        "Il extrait le texte sélectionnable de votre PDF et l'enregistre dans un fichier Word (.docx) modifiable. Il ne reproduit ni la mise en page, ni les polices, ni les colonnes, ni les tableaux, ni les images de l'original — c'est une conversion de texte honnête et pratique. Un PDF numérisé (simple image) n'a pas de couche de texte et ne peut pas être converti ici.",
+        "Il extrait le texte sélectionnable de votre PDF et l’enregistre dans un fichier Word (.docx) modifiable. Il ne reproduit ni la mise en page, ni les polices, ni les colonnes, ni les tableaux, ni les images de l’original — c’est une conversion de texte honnête et pratique. Un PDF numérisé (simple image) n’a pas de couche de texte et ne peut pas être converti ici.",
       busyReading: "Lecture du PDF…",
       busyPage: "Extraction du texte de la page {page} sur {total}…",
       busyBuilding: "Création du document Word…",
       errorNoText:
-        "Aucun texte sélectionnable n'a été trouvé. Ce PDF semble être une numérisation : il aurait besoin d'un OCR, et cet outil de navigateur n'en fait pas.",
+        "Aucun texte sélectionnable n’a été trouvé. Ce PDF semble être une numérisation : il aurait besoin d’un OCR, et cet outil de navigateur n’en fait pas.",
     },
     "word-to-pdf": {
       title: "Word en PDF",
@@ -277,7 +277,7 @@ export const TOOLS_FR: ToolDictionary = {
       steps: ["Ajouter", "Convertir", "Télécharger"],
       successTitle: "Votre PDF est prêt",
       successDescription:
-        "Le texte a été mis en page dans un PDF A4 net. Les polices, images, tableaux et l'espacement exact du .docx d'origine ne sont pas reproduits.",
+        "Le texte a été mis en page dans un PDF A4 net. Les polices, images, tableaux et l’espacement exact du .docx d’origine ne sont pas reproduits.",
       actionIdle: "Convertir en PDF",
       actionBusy: "Conversion en cours…",
       appCtaSub:
@@ -290,17 +290,17 @@ export const TOOLS_FR: ToolDictionary = {
       dropHint: "Word .docx ou .txt brut · 100 Mo maximum",
       explainerTitle: "Ce que fait cet outil",
       explainerBody:
-        "Il lit le texte d'un fichier Word (.docx) ou d'un texte brut (.txt) et le met en page dans un PDF A4 net et paginé. C'est une conversion de texte honnête — les polices, les images, les tableaux et la mise en forme exacte de l'original ne sont pas reproduits. L'ancien format binaire .doc n'est pas accepté ; enregistrez d'abord le fichier en .docx.",
+        "Il lit le texte d’un fichier Word (.docx) ou d’un texte brut (.txt) et le met en page dans un PDF A4 net et paginé. C’est une conversion de texte honnête — les polices, les images, les tableaux et la mise en forme exacte de l’original ne sont pas reproduits. L’ancien format binaire .doc n’est pas accepté ; enregistrez d’abord le fichier en .docx.",
       busyReading: "Lecture du document…",
       busyBuilding: "Création du PDF…",
-      errorEmptyDocument: "Le document semble vide — il n'y a pas de texte à convertir.",
+      errorEmptyDocument: "Le document semble vide — il n’y a pas de texte à convertir.",
       errorUnreadable:
         "Impossible de lire ce document. Enregistrez-le à nouveau en .docx et réessayez.",
     },
     "reorder-pdf-pages": {
       title: "Réorganiser les pages du PDF",
       subtitle:
-        "Prévisualisez chaque page, remettez-les dans l'ordre voulu, puis téléchargez le fichier.",
+        "Prévisualisez chaque page, remettez-les dans l’ordre voulu, puis téléchargez le fichier.",
       steps: ["Ajouter", "Réorganiser", "Télécharger"],
       successTitle: "Votre PDF réorganisé est prêt",
       actionIdle: "Réorganiser le PDF",
@@ -320,16 +320,16 @@ export const TOOLS_FR: ToolDictionary = {
       },
       positionLabel: "Position {position}",
       wasPageLabel: "était la page {page}",
-      originalPageAlt: "Page d'origine {page}",
+      originalPageAlt: "Page d’origine {page}",
       moveEarlier: "Avancer la position {position}",
       moveLater: "Reculer la position {position}",
-      resetOrder: "Rétablir l'ordre",
+      resetOrder: "Rétablir l’ordre",
       outputSuffix: "-reorganise",
     },
     "extract-pdf-pages": {
       title: "Extraire des pages du PDF",
       subtitle:
-        "Choisissez des pages ou des plages précises et téléchargez un nouveau PDF ne contenant qu'elles.",
+        "Choisissez des pages ou des plages précises et téléchargez un nouveau PDF ne contenant qu’elles.",
       steps: ["Ajouter", "Sélectionner", "Télécharger"],
       successTitle: "Votre PDF avec les pages extraites est prêt",
       actionIdle: "Extraire les pages",

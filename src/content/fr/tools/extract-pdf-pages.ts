@@ -4,14 +4,14 @@ const content: ToolContent = {
   slug: "extract-pdf-pages",
   hero: {
     eyebrow: "Extraire des pages du PDF",
-    h1: "Extrayez des pages d'un PDF — dans votre navigateur.",
+    h1: "Extrayez des pages d’un PDF — dans votre navigateur.",
     highlight: "dans votre navigateur",
-    lead: "Choisissez un PDF, indiquez les pages ou les plages voulues, et téléchargez un nouveau PDF ne contenant qu'elles. Tout se passe sur votre appareil.",
+    lead: "Choisissez un PDF, indiquez les pages ou les plages voulues, et téléchargez un nouveau PDF ne contenant qu’elles. Tout se passe sur votre appareil.",
   },
   privacyNote:
-    "Votre fichier est traité localement, dans votre navigateur, et n'est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
+    "Votre fichier est traité localement, dans votre navigateur, et n’est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
   howTo: {
-    heading: "Comment extraire des pages d'un PDF",
+    heading: "Comment extraire des pages d’un PDF",
     steps: [
       {
         title: "Choisissez le PDF",
@@ -29,7 +29,7 @@ const content: ToolContent = {
     ],
   },
   useCases: {
-    heading: "Quand l'extraction aide",
+    heading: "Quand l’extraction aide",
     items: [
       {
         title: "Ne partager que le nécessaire",
@@ -41,11 +41,11 @@ const content: ToolContent = {
       },
       {
         title: "Séparer un chapitre",
-        body: "Créez un PDF allégé à partir d'un long rapport ou d'un livre, pour étudier ou relire.",
+        body: "Créez un PDF allégé à partir d’un long rapport ou d’un livre, pour étudier ou relire.",
       },
       {
         title: "Composer un support sur mesure",
-        body: "Réordonnez la sélection en listant les pages dans l'ordre voulu.",
+        body: "Réordonnez la sélection en listant les pages dans l’ordre voulu.",
       },
     ],
   },
@@ -54,28 +54,28 @@ const content: ToolContent = {
     items: [
       {
         title: "PDF protégés par mot de passe",
-        body: "Les fichiers chiffrés ne peuvent pas être ouverts dans le navigateur. Déverrouillez-les avant, ou utilisez l'application PDF Editor.",
+        body: "Les fichiers chiffrés ne peuvent pas être ouverts dans le navigateur. Déverrouillez-les avant, ou utilisez l’application PDF Editor.",
       },
       {
         title: "Pages hors plage",
-        body: "Les numéros de page supérieurs au total du document sont ignorés ; si aucune page valide n'est sélectionnée, un message d'erreur clair s'affiche.",
+        body: "Les numéros de page supérieurs au total du document sont ignorés ; si aucune page valide n’est sélectionnée, un message d’erreur clair s’affiche.",
       },
       {
         title: "PDF très volumineux",
-        body: "Le navigateur manque de mémoire bien avant une application native. Pour des fichiers énormes, utilisez l'application PDF Editor.",
+        body: "Le navigateur manque de mémoire bien avant une application native. Pour des fichiers énormes, utilisez l’application PDF Editor.",
       },
     ],
   },
   related: [
     { label: "Diviser un PDF", path: "/split-pdf" },
-    { label: "Réorganiser les pages d'un PDF", path: "/reorder-pdf-pages" },
+    { label: "Réorganiser les pages d’un PDF", path: "/reorder-pdf-pages" },
     { label: "Compresser un PDF", path: "/compress-pdf" },
     { label: "Fusionner des PDF", path: "/merge-pdf" },
   ],
   faq: [
     {
       q: "Mes fichiers sont-ils envoyés sur un serveur ?",
-      a: "Non. L'extraction fonctionne entièrement dans votre navigateur. Votre fichier ne quitte jamais votre appareil.",
+      a: "Non. L’extraction fonctionne entièrement dans votre navigateur. Votre fichier ne quitte jamais votre appareil.",
     },
     {
       q: "Quels formats de page puis-je saisir ?",
@@ -83,19 +83,19 @@ const content: ToolContent = {
     },
     {
       q: "Que se passe-t-il avec une plage invalide ?",
-      a: "Une saisie invalide est refusée avec un message clair ; les numéros hors plage sont ignorés. S'il ne reste rien de valide, nous expliquons pourquoi.",
+      a: "Une saisie invalide est refusée avec un message clair ; les numéros hors plage sont ignorés. S’il ne reste rien de valide, nous expliquons pourquoi.",
     },
     {
       q: "Peut-on répéter ou réordonner des pages ?",
-      a: "Oui. Listez les pages dans l'ordre voulu ; répéter une page la fait apparaître plusieurs fois.",
+      a: "Oui. Listez les pages dans l’ordre voulu ; répéter une page la fait apparaître plusieurs fois.",
     },
     {
-      q: "L'extraction change-t-elle la qualité ?",
-      a: "Non. Les pages choisies sont copiées exactement telles quelles — le texte reste sélectionnable et rien n'est recompressé.",
+      q: "L’extraction change-t-elle la qualité ?",
+      a: "Non. Les pages choisies sont copiées exactement telles quelles — le texte reste sélectionnable et rien n’est recompressé.",
     },
   ],
   appCta: {
-    heading: "Besoin d'outils PDF dans l'urgence ?",
+    heading: "Besoin d’outils PDF dans l’urgence ?",
     sub: "PDF Editor pour iPhone et Android extrait, divise et signe vos PDF directement depuis votre téléphone.",
   },
 };

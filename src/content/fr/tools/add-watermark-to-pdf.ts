@@ -4,12 +4,12 @@ const content: ToolContent = {
   slug: "add-watermark-to-pdf",
   hero: {
     eyebrow: "Filigrane",
-    h1: "Posez un filigrane texte sur toutes les pages d'un PDF.",
+    h1: "Posez un filigrane texte sur toutes les pages d’un PDF.",
     highlight: "toutes les pages",
-    lead: "Ajoutez un filigrane texte simple avant de partager un PDF — choisissez la position, l'opacité, la taille de police et l'angle.",
+    lead: "Ajoutez un filigrane texte simple avant de partager un PDF — choisissez la position, l’opacité, la taille de police et l’angle.",
   },
   privacyNote:
-    "Votre fichier est traité localement, dans votre navigateur, et n'est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
+    "Votre fichier est traité localement, dans votre navigateur, et n’est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
   howTo: {
     heading: "Comment ajouter un filigrane",
     steps: [
@@ -22,7 +22,7 @@ const content: ToolContent = {
         body: "Une quarantaine de caractères maximum fonctionne mieux. Exemples : CONFIDENTIEL, BROUILLON, Échantillon.",
       },
       {
-        title: "Ajustez l'opacité et l'angle",
+        title: "Ajustez l’opacité et l’angle",
         body: "Une opacité faible rend le filigrane discret ; une opacité forte, bien visible. Un angle de 45° convient à la plupart des mises en page.",
       },
       {
@@ -43,12 +43,12 @@ const content: ToolContent = {
         body: "Apposez CONFIDENTIEL avant de partager un contrat ou des données financières sensibles.",
       },
       {
-        title: "Supports d'échantillon",
-        body: "Marquez les échantillons de portfolio pour éviter qu'ils soient réutilisés sans autorisation.",
+        title: "Supports d’échantillon",
+        body: "Marquez les échantillons de portfolio pour éviter qu’ils soient réutilisés sans autorisation.",
       },
       {
         title: "Documents à usage interne",
-        body: "Signalez ce qui ne doit pas circuler en dehors de l'entreprise.",
+        body: "Signalez ce qui ne doit pas circuler en dehors de l’entreprise.",
       },
     ],
   },
@@ -57,7 +57,7 @@ const content: ToolContent = {
     items: [
       {
         title: "Filigrane texte uniquement",
-        body: "Cet outil appose du texte. Pour un filigrane image ou logo, utilisez l'application PDF Editor.",
+        body: "Cet outil appose du texte. Pour un filigrane image ou logo, utilisez l’application PDF Editor.",
       },
       {
         title: "Seulement des polices standard",
@@ -65,7 +65,7 @@ const content: ToolContent = {
       },
       {
         title: "Un filigrane peut être retiré",
-        body: "Un filigrane n'est pas une protection juridique. Il décourage un usage abusif involontaire, pas une manipulation délibérée.",
+        body: "Un filigrane n’est pas une protection juridique. Il décourage un usage abusif involontaire, pas une manipulation délibérée.",
       },
     ],
   },
@@ -82,7 +82,7 @@ const content: ToolContent = {
     },
     {
       q: "Peut-on utiliser une autre police ?",
-      a: "Pas dans cet outil — nous utilisons Helvetica pour que le résultat reste portable. Pour des polices personnalisées, utilisez l'application PDF Editor.",
+      a: "Pas dans cet outil — nous utilisons Helvetica pour que le résultat reste portable. Pour des polices personnalisées, utilisez l’application PDF Editor.",
     },
     {
       q: "Le filigrane apparaît-il sur toutes les pages ?",
@@ -90,11 +90,11 @@ const content: ToolContent = {
     },
     {
       q: "Un filigrane peut-il être retiré ?",
-      a: "Par quelqu'un disposant des bons outils, oui. Il décourage un usage abusif involontaire, mais ce n'est pas une fonction de sécurité.",
+      a: "Par quelqu’un disposant des bons outils, oui. Il décourage un usage abusif involontaire, mais ce n’est pas une fonction de sécurité.",
     },
   ],
   appCta: {
-    heading: "Besoin d'un filigrane avec une image ou un logo ?",
+    heading: "Besoin d’un filigrane avec une image ou un logo ?",
     sub: "PDF Editor pour iPhone et Android accepte les polices personnalisées, les images et un positionnement par page.",
   },
 };

@@ -9,7 +9,7 @@ export const HOME_FR: HomeContent = {
   heroH1Highlight: "en quelques secondes",
   heroH1After: "",
   heroLead:
-    "Des outils PDF gratuits qui tournent dans votre navigateur, avec un traitement local et confidentiel — rien n'est jamais envoyé à un serveur.",
+    "Des outils PDF gratuits qui tournent dans votre navigateur, avec un traitement local et confidentiel — rien n’est jamais envoyé à un serveur.",
   trust: [
     "Les fichiers sont traités localement, dans votre navigateur",
     "Aucun envoi sur un serveur, aucun compte, aucun filigrane",
@@ -35,7 +35,7 @@ export const HOME_FR: HomeContent = {
     {
       id: "compress-pdf",
       label: "Compresser un PDF",
-      desc: "Réduisez le poids pour l'e-mail et l'envoi.",
+      desc: "Réduisez le poids pour l’e-mail et l’envoi.",
     },
     { id: "pdf-to-word", label: "PDF en Word", desc: "Extrayez le texte vers un .docx modifiable." },
     { id: "word-to-pdf", label: "Word en PDF", desc: "Transformez un .docx ou .txt en PDF net." },
@@ -58,7 +58,7 @@ export const HOME_FR: HomeContent = {
     { key: "scan", label: "Numériser", sub: "Du papier au PDF" },
     { key: "organize", label: "Organiser", sub: "Réordonner, diviser" },
   ],
-  hubsHeading: "Tout ce qu'on fait avec un PDF — expliqué.",
+  hubsHeading: "Tout ce qu’on fait avec un PDF — expliqué.",
   hubsLead:
     "Des guides pratiques et des méthodes concrètes pour ce que les gens font vraiment avec un PDF au quotidien.",
   hubs: [
@@ -113,8 +113,8 @@ export const HOME_FR: HomeContent = {
       a: "Oui. Les fonctions essentielles de modification, de numérisation, de compression et de signature sont gratuites. Certaines fonctions avancées sont réservées à PDF Editor Pro.",
     },
     {
-      q: "L'application fonctionne-t-elle sans connexion internet ?",
-      a: "La modification, l'organisation des pages, la signature et la compression fonctionnent hors connexion. La synchronisation avec le cloud et l'OCR peuvent nécessiter une connexion.",
+      q: "L’application fonctionne-t-elle sans connexion internet ?",
+      a: "La modification, l’organisation des pages, la signature et la compression fonctionnent hors connexion. La synchronisation avec le cloud et l’OCR peuvent nécessiter une connexion.",
     },
     {
       q: "Quels appareils sont compatibles ?",
@@ -122,10 +122,10 @@ export const HOME_FR: HomeContent = {
     },
     {
       q: "Mes fichiers restent-ils confidentiels ?",
-      a: "Oui. Vos fichiers restent sur votre appareil, sauf si vous choisissez de les partager. Nous n'envoyons pas vos documents vers nos serveurs.",
+      a: "Oui. Vos fichiers restent sur votre appareil, sauf si vous choisissez de les partager. Nous n’envoyons pas vos documents vers nos serveurs.",
     },
     {
-      q: "Puis-je m'en servir pour des documents juridiques ?",
+      q: "Puis-je m’en servir pour des documents juridiques ?",
       a: "Beaucoup de gens signent et transmettent des contrats avec PDF Editor. Nous ne donnons pas de conseil juridique : vérifiez les règles applicables à la signature électronique avant de vous y fier pour un document important.",
     },
   ],

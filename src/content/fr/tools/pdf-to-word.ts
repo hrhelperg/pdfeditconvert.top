@@ -6,10 +6,10 @@ const content: ToolContent = {
     eyebrow: "PDF en Word",
     h1: "Convertissez un PDF en Word modifiable — dans votre navigateur.",
     highlight: "dans votre navigateur",
-    lead: "Extrayez le texte d'un PDF vers un .docx modifiable que vous retravaillez dans Word, Google Docs ou Pages. Une conversion de texte honnête — sans fausse promesse de « mise en page parfaite ».",
+    lead: "Extrayez le texte d’un PDF vers un .docx modifiable que vous retravaillez dans Word, Google Docs ou Pages. Une conversion de texte honnête — sans fausse promesse de « mise en page parfaite ».",
   },
   privacyNote:
-    "Votre fichier est traité localement, dans votre navigateur, et n'est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
+    "Votre fichier est traité localement, dans votre navigateur, et n’est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
   howTo: {
     heading: "Comment convertir un PDF en Word",
     steps: [
@@ -36,11 +36,11 @@ const content: ToolContent = {
     items: [
       {
         title: "Réutiliser des clauses de contrat",
-        body: "Récupérez des passages d'un contrat en PDF vers une version modifiable, plutôt que de tout retaper.",
+        body: "Récupérez des passages d’un contrat en PDF vers une version modifiable, plutôt que de tout retaper.",
       },
       {
         title: "Réutiliser un rapport",
-        body: "Reprenez le corps de texte d'un rapport en PDF dans un document que vous pouvez restructurer.",
+        body: "Reprenez le corps de texte d’un rapport en PDF dans un document que vous pouvez restructurer.",
       },
       {
         title: "Citer et résumer",
@@ -48,7 +48,7 @@ const content: ToolContent = {
       },
       {
         title: "Récupérer un PDF sans fichier source",
-        body: "Retrouvez du texte modifiable quand le .docx d'origine a disparu depuis longtemps.",
+        body: "Retrouvez du texte modifiable quand le .docx d’origine a disparu depuis longtemps.",
       },
     ],
   },
@@ -56,12 +56,12 @@ const content: ToolContent = {
     heading: "Limites assumées",
     items: [
       {
-        title: "La mise en page n'est pas conservée",
-        body: "L'outil n'extrait que le texte. Colonnes, tableaux, espacement exact, polices et images ne sont pas reproduits — vous réappliquez la mise en forme dans votre éditeur.",
+        title: "La mise en page n’est pas conservée",
+        body: "L’outil n’extrait que le texte. Colonnes, tableaux, espacement exact, polices et images ne sont pas reproduits — vous réappliquez la mise en forme dans votre éditeur.",
       },
       {
         title: "Les PDF numérisés ne fonctionnent pas",
-        body: "Un PDF composé uniquement d'images n'a pas de couche de texte. L'OCR n'est pas disponible dans le navigateur ; utilisez l'application PDF Editor pour les numérisations.",
+        body: "Un PDF composé uniquement d’images n’a pas de couche de texte. L’OCR n’est pas disponible dans le navigateur ; utilisez l’application PDF Editor pour les numérisations.",
       },
       {
         title: "Les documents complexes demandent une reprise",
@@ -82,27 +82,27 @@ const content: ToolContent = {
   faq: [
     {
       q: "Mon fichier est-il envoyé sur un serveur ?",
-      a: "Non. L'extraction du texte fonctionne entièrement dans votre navigateur. Votre PDF ne quitte jamais votre appareil.",
+      a: "Non. L’extraction du texte fonctionne entièrement dans votre navigateur. Votre PDF ne quitte jamais votre appareil.",
     },
     {
       q: "Le fichier Word sera-t-il identique au PDF ?",
-      a: "Non — et nous ne prétendrons pas le contraire. C'est une conversion de texte pratique. La mise en page, les polices, les colonnes et les images ne sont pas conservées ; vous réappliquez la mise en forme dans votre éditeur.",
+      a: "Non — et nous ne prétendrons pas le contraire. C’est une conversion de texte pratique. La mise en page, les polices, les colonnes et les images ne sont pas conservées ; vous réappliquez la mise en forme dans votre éditeur.",
     },
     {
-      q: "« Aucun texte trouvé » s'affiche — pourquoi ?",
-      a: "Votre PDF est probablement une numérisation ou un fichier composé uniquement d'images, sans couche de texte. Les outils de navigateur ne font pas d'OCR ; l'application PDF Editor, si.",
+      q: "« Aucun texte trouvé » s’affiche — pourquoi ?",
+      a: "Votre PDF est probablement une numérisation ou un fichier composé uniquement d’images, sans couche de texte. Les outils de navigateur ne font pas d’OCR ; l’application PDF Editor, si.",
     },
     {
       q: "Quel format vais-je recevoir ?",
-      a: "Un fichier .docx standard, qui s'ouvre dans Microsoft Word, Google Docs, Pages et LibreOffice.",
+      a: "Un fichier .docx standard, qui s’ouvre dans Microsoft Word, Google Docs, Pages et LibreOffice.",
     },
     {
-      q: "Peut-on reconvertir dans l'autre sens ?",
-      a: "Oui — utilisez l'outil Word en PDF pour retransformer le .docx modifié en PDF.",
+      q: "Peut-on reconvertir dans l’autre sens ?",
+      a: "Oui — utilisez l’outil Word en PDF pour retransformer le .docx modifié en PDF.",
     },
   ],
   appCta: {
-    heading: "Besoin d'outils PDF dans l'urgence ?",
+    heading: "Besoin d’outils PDF dans l’urgence ?",
     sub: "PDF Editor pour iPhone et Android convertit, modifie et signe vos documents directement depuis votre téléphone.",
   },
 };

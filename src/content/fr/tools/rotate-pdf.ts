@@ -4,12 +4,12 @@ const content: ToolContent = {
   slug: "rotate-pdf",
   hero: {
     eyebrow: "Faire pivoter un PDF",
-    h1: "Redressez les pages couchées d'un PDF — dans votre navigateur.",
+    h1: "Redressez les pages couchées d’un PDF — dans votre navigateur.",
     highlight: "dans votre navigateur",
     lead: "Faites pivoter toutes les pages, ou seulement celles que vous choisissez, et téléchargez le PDF corrigé — tout se passe dans votre navigateur.",
   },
   privacyNote:
-    "Votre fichier est traité localement, dans votre navigateur, et n'est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
+    "Votre fichier est traité localement, dans votre navigateur, et n’est jamais envoyé à nos serveurs. Rien ne quitte votre appareil.",
   howTo: {
     heading: "Comment faire pivoter un PDF",
     steps: [
@@ -17,7 +17,7 @@ const content: ToolContent = {
         title: "Choisissez le PDF",
         body: "Glissez-déposez un seul PDF ou cliquez pour choisir le fichier.",
       },
-      { title: "Choisissez l'angle", body: "Sélectionnez 90°, 180° ou 270° (dans le sens horaire)." },
+      { title: "Choisissez l’angle", body: "Sélectionnez 90°, 180° ou 270° (dans le sens horaire)." },
       {
         title: "Choisissez les pages",
         body: "Faites pivoter toutes les pages ou indiquez des numéros (par exemple, 1,3-5).",
@@ -33,15 +33,15 @@ const content: ToolContent = {
     items: [
       {
         title: "Numérisations du téléphone couchées",
-        body: "Les photos de documents se retrouvent souvent enregistrées à l'horizontale — redressez-les en un clic.",
+        body: "Les photos de documents se retrouvent souvent enregistrées à l’horizontale — redressez-les en un clic.",
       },
       {
-        title: "Rapports à l'orientation mélangée",
-        body: "Un tableau large sur une page couchée au milieu d'un rapport en portrait ? Corrigez sans tout numériser à nouveau.",
+        title: "Rapports à l’orientation mélangée",
+        body: "Un tableau large sur une page couchée au milieu d’un rapport en portrait ? Corrigez sans tout numériser à nouveau.",
       },
       {
-        title: "Pièces d'identité",
-        body: "Assurez-vous que toutes les pages sont dans le même sens avant que le portail de l'organisme ne le refuse.",
+        title: "Pièces d’identité",
+        body: "Assurez-vous que toutes les pages sont dans le même sens avant que le portail de l’organisme ne le refuse.",
       },
       {
         title: "Reçus et notes",
@@ -54,15 +54,15 @@ const content: ToolContent = {
     items: [
       {
         title: "PDF protégés par mot de passe",
-        body: "Les fichiers verrouillés ne peuvent pas pivoter dans le navigateur. Déverrouillez-les avant, ou utilisez l'application PDF Editor.",
+        body: "Les fichiers verrouillés ne peuvent pas pivoter dans le navigateur. Déverrouillez-les avant, ou utilisez l’application PDF Editor.",
       },
       {
         title: "Angles différents par page",
-        body: "L'outil applique un seul angle à la fois. Pour des angles différents, relancez-le deux fois avec des sélections de pages distinctes.",
+        body: "L’outil applique un seul angle à la fois. Pour des angles différents, relancez-le deux fois avec des sélections de pages distinctes.",
       },
       {
         title: "Annotations et champs de formulaire",
-        body: "La rotation peut décaler visuellement les couches superposées. L'application mobile gère mieux les annotations.",
+        body: "La rotation peut décaler visuellement les couches superposées. L’application mobile gère mieux les annotations.",
       },
     ],
   },
@@ -70,7 +70,7 @@ const content: ToolContent = {
     { label: "Fusionner des fichiers PDF", path: "/merge-pdf" },
     { label: "Diviser un PDF", path: "/split-pdf" },
     { label: "Filigrane sur un PDF", path: "/add-watermark-to-pdf" },
-    { label: "Réorganiser les pages d'un PDF", path: "/reorder-pdf-pages" },
+    { label: "Réorganiser les pages d’un PDF", path: "/reorder-pdf-pages" },
     { label: "Tous les outils PDF gratuits", path: "/pdf-tools" },
   ],
   faq: [
@@ -84,11 +84,11 @@ const content: ToolContent = {
     },
     {
       q: "La rotation réduit-elle la qualité ?",
-      a: "Non. Les pages sont conservées octet pour octet ; seule l'information de rotation du fichier est ajustée.",
+      a: "Non. Les pages sont conservées octet pour octet ; seule l’information de rotation du fichier est ajustée.",
     },
     {
       q: "Peut-on faire pivoter un PDF protégé par mot de passe ?",
-      a: "Pas dans le navigateur. Retirez le mot de passe avant, ou utilisez l'application PDF Editor.",
+      a: "Pas dans le navigateur. Retirez le mot de passe avant, ou utilisez l’application PDF Editor.",
     },
   ],
   appCta: {

@@ -27,7 +27,7 @@ const content: ToolContent = {
       },
       {
         title: "Téléchargez",
-        body: "Le PDF assemblé se télécharge automatiquement. Vous pouvez le renommer après l'avoir enregistré.",
+        body: "Le PDF assemblé se télécharge automatiquement. Vous pouvez le renommer après l’avoir enregistré.",
       },
     ],
   },
@@ -44,7 +44,7 @@ const content: ToolContent = {
       },
       {
         title: "Réunir des pages numérisées",
-        body: "Combinez des numérisations page à page d'une pièce d'identité ou d'un contrat dans un fichier accepté par le portail.",
+        body: "Combinez des numérisations page à page d’une pièce d’identité ou d’un contrat dans un fichier accepté par le portail.",
       },
       {
         title: "Assembler un rapport",
@@ -57,15 +57,15 @@ const content: ToolContent = {
     items: [
       {
         title: "PDF protégés par mot de passe",
-        body: "Les fichiers verrouillés ne peuvent pas être fusionnés dans le navigateur. Déverrouillez-les d'abord dans l'application d'origine, ou utilisez l'application PDF Editor.",
+        body: "Les fichiers verrouillés ne peuvent pas être fusionnés dans le navigateur. Déverrouillez-les d’abord dans l’application d’origine, ou utilisez l’application PDF Editor.",
       },
       {
         title: "Lots très volumineux",
-        body: "Le navigateur manque de mémoire bien avant une application native. Au-delà de 50 fichiers ou pour des numérisations énormes, utilisez l'application PDF Editor.",
+        body: "Le navigateur manque de mémoire bien avant une application native. Au-delà de 50 fichiers ou pour des numérisations énormes, utilisez l’application PDF Editor.",
       },
       {
         title: "Signets et champs de formulaire",
-        body: "Certaines structures intégrées (champs de formulaire, annotations) peuvent être aplaties lors de la fusion. L'application mobile les préserve mieux.",
+        body: "Certaines structures intégrées (champs de formulaire, annotations) peuvent être aplaties lors de la fusion. L’application mobile les préserve mieux.",
       },
     ],
   },
@@ -73,7 +73,7 @@ const content: ToolContent = {
     { label: "Diviser un PDF — le chemin inverse", path: "/split-pdf" },
     { label: "Faire pivoter des pages", path: "/rotate-pdf" },
     { label: "Compresser un PDF", path: "/compress-pdf" },
-    { label: "Réorganiser les pages d'un PDF", path: "/reorder-pdf-pages" },
+    { label: "Réorganiser les pages d’un PDF", path: "/reorder-pdf-pages" },
     { label: "Tous les outils PDF gratuits", path: "/pdf-tools" },
     { label: "Guide : comment fusionner des PDF", path: "/guides/how-to-merge-pdf-files" },
   ],
@@ -84,23 +84,23 @@ const content: ToolContent = {
     },
     {
       q: "Y a-t-il une limite au nombre de PDF fusionnables ?",
-      a: "Il n'y a pas de plafond strict, mais nous recommandons de rester sous 30 fichiers ou environ 500 Mo au total pour que le navigateur reste réactif.",
+      a: "Il n’y a pas de plafond strict, mais nous recommandons de rester sous 30 fichiers ou environ 500 Mo au total pour que le navigateur reste réactif.",
     },
     {
       q: "Peut-on fusionner des PDF protégés par mot de passe ?",
-      a: "Pas dans le navigateur. Retirez le mot de passe avant, ou utilisez l'application PDF Editor, qui prend en charge les fichiers protégés.",
+      a: "Pas dans le navigateur. Retirez le mot de passe avant, ou utilisez l’application PDF Editor, qui prend en charge les fichiers protégés.",
     },
     {
-      q: "La mise en forme d'origine change-t-elle ?",
-      a: "Non. Chaque page source est préservée telle quelle. Seuls l'ordre des pages et le document qui les enveloppe changent.",
+      q: "La mise en forme d’origine change-t-elle ?",
+      a: "Non. Chaque page source est préservée telle quelle. Seuls l’ordre des pages et le document qui les enveloppe changent.",
     },
     {
       q: "Peut-on les reséparer plus tard ?",
-      a: "Oui. Utilisez l'outil Diviser un PDF pour redécouper n'importe quel fichier fusionné en pages ou en plages.",
+      a: "Oui. Utilisez l’outil Diviser un PDF pour redécouper n’importe quel fichier fusionné en pages ou en plages.",
     },
   ],
   appCta: {
-    heading: "Besoin d'outils PDF dans l'urgence ?",
+    heading: "Besoin d’outils PDF dans l’urgence ?",
     sub: "PDF Editor pour iPhone et Android fusionne, signe et numérise vos PDF directement depuis votre téléphone.",
   },
 };
