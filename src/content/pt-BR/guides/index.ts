@@ -1,6 +1,7 @@
 import type { GuideContent } from "@/types/content";
 
 import areOnlinePdfToolsSafe from "@/content/pt-BR/guides/are-online-pdf-tools-safe";
+import bestFormatForSharingDocuments from "@/content/pt-BR/guides/best-format-for-sharing-documents";
 import bestFreePdfTools from "@/content/pt-BR/guides/best-free-pdf-tools";
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
@@ -11,8 +12,10 @@ import bestPdfToolsForOfficeDocuments from "@/content/pt-BR/guides/best-pdf-tool
 import bestPdfToolsForRemoteWork from "@/content/pt-BR/guides/best-pdf-tools-for-remote-work";
 import bestPdfToolsForSmallBusiness from "@/content/pt-BR/guides/best-pdf-tools-for-small-business";
 import bestPdfToolsForStudents from "@/content/pt-BR/guides/best-pdf-tools-for-students";
+import bestPdfToolsWithoutUpload from "@/content/pt-BR/guides/best-pdf-tools-without-upload";
 import bestPdfWorkflowForFreelancers from "@/content/pt-BR/guides/best-pdf-workflow-for-freelancers";
 import bestPdfWorkflowForTeams from "@/content/pt-BR/guides/best-pdf-workflow-for-teams";
+import bestPrivatePdfTools from "@/content/pt-BR/guides/best-private-pdf-tools";
 import browserBasedDocumentProcessingBenefits from "@/content/pt-BR/guides/browser-based-document-processing-benefits";
 import browserBasedPdfToolsVsUploadTools from "@/content/pt-BR/guides/browser-based-pdf-tools-vs-upload-tools";
 import canYouEditAPdfForm from "@/content/pt-BR/guides/can-you-edit-a-pdf-form";
@@ -23,6 +26,7 @@ import documentCollectionWorkflowsWithPdf from "@/content/pt-BR/guides/document-
 import editablePdfVsFillablePdf from "@/content/pt-BR/guides/editable-pdf-vs-fillable-pdf";
 import editablePdfVsFlatPdf from "@/content/pt-BR/guides/editable-pdf-vs-flat-pdf";
 import fixPdfFormErrors from "@/content/pt-BR/guides/fix-pdf-form-errors";
+import freeBrowserBasedPdfTools from "@/content/pt-BR/guides/free-browser-based-pdf-tools";
 import freePdfToolsForAndroid from "@/content/pt-BR/guides/free-pdf-tools-for-android";
 import freePdfToolsForIphone from "@/content/pt-BR/guides/free-pdf-tools-for-iphone";
 import howPdfFormsWork from "@/content/pt-BR/guides/how-pdf-forms-work";
@@ -118,7 +122,9 @@ import pdfFormsForSmallBusiness from "@/content/pt-BR/guides/pdf-forms-for-small
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsDocxForBusiness from "@/content/pt-BR/guides/pdf-vs-docx-for-business";
 import pdfVsGoogleDocs from "@/content/pt-BR/guides/pdf-vs-google-docs";
+import pdfVsImagesForSharingDocuments from "@/content/pt-BR/guides/pdf-vs-images-for-sharing-documents";
 import pdfVsJpgForDocuments from "@/content/pt-BR/guides/pdf-vs-jpg-for-documents";
+import pdfVsPng from "@/content/pt-BR/guides/pdf-vs-png";
 import pdfWorkflowForUniversityStudents from "@/content/pt-BR/guides/pdf-workflow-for-university-students";
 import pdfWorkflowsForAgencies from "@/content/pt-BR/guides/pdf-workflows-for-agencies";
 import pdfWorkflowsForConsultants from "@/content/pt-BR/guides/pdf-workflows-for-consultants";
@@ -128,6 +134,7 @@ import privacyFirstPdfTools from "@/content/pt-BR/guides/privacy-first-pdf-tools
 import securePdfWorkflowsForBusiness from "@/content/pt-BR/guides/secure-pdf-workflows-for-business";
 import whatIsAPdfForm from "@/content/pt-BR/guides/what-is-a-pdf-form";
 import whenToUsePdfInsteadOfDocx from "@/content/pt-BR/guides/when-to-use-pdf-instead-of-docx";
+import whenToUseScannedPdf from "@/content/pt-BR/guides/when-to-use-scanned-pdf";
 import whyCantIEditAPdf from "@/content/pt-BR/guides/why-cant-i-edit-a-pdf";
 import whyCantITypeInAPdfForm from "@/content/pt-BR/guides/why-cant-i-type-in-a-pdf-form";
 import whyIsMyPdfBlank from "@/content/pt-BR/guides/why-is-my-pdf-blank";
@@ -135,6 +142,7 @@ import whyIsMyPdfBlurry from "@/content/pt-BR/guides/why-is-my-pdf-blurry";
 import whyIsMyPdfSoLarge from "@/content/pt-BR/guides/why-is-my-pdf-so-large";
 import whyPdfFormIsReadOnly from "@/content/pt-BR/guides/why-pdf-form-is-read-only";
 import whyPdfFormWontSave from "@/content/pt-BR/guides/why-pdf-form-wont-save";
+import whyPdfIsStillPopular from "@/content/pt-BR/guides/why-pdf-is-still-popular";
 import whyWontMyPdfOpen from "@/content/pt-BR/guides/why-wont-my-pdf-open";
 
 /**
@@ -149,6 +157,7 @@ import whyWontMyPdfOpen from "@/content/pt-BR/guides/why-wont-my-pdf-open";
  */
 export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "are-online-pdf-tools-safe": areOnlinePdfToolsSafe,
+  "best-format-for-sharing-documents": bestFormatForSharingDocuments,
   "best-free-pdf-tools": bestFreePdfTools,
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
@@ -159,8 +168,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-tools-for-remote-work": bestPdfToolsForRemoteWork,
   "best-pdf-tools-for-small-business": bestPdfToolsForSmallBusiness,
   "best-pdf-tools-for-students": bestPdfToolsForStudents,
+  "best-pdf-tools-without-upload": bestPdfToolsWithoutUpload,
   "best-pdf-workflow-for-freelancers": bestPdfWorkflowForFreelancers,
   "best-pdf-workflow-for-teams": bestPdfWorkflowForTeams,
+  "best-private-pdf-tools": bestPrivatePdfTools,
   "browser-based-document-processing-benefits": browserBasedDocumentProcessingBenefits,
   "browser-based-pdf-tools-vs-upload-tools": browserBasedPdfToolsVsUploadTools,
   "can-you-edit-a-pdf-form": canYouEditAPdfForm,
@@ -171,6 +182,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "editable-pdf-vs-fillable-pdf": editablePdfVsFillablePdf,
   "editable-pdf-vs-flat-pdf": editablePdfVsFlatPdf,
   "fix-pdf-form-errors": fixPdfFormErrors,
+  "free-browser-based-pdf-tools": freeBrowserBasedPdfTools,
   "free-pdf-tools-for-android": freePdfToolsForAndroid,
   "free-pdf-tools-for-iphone": freePdfToolsForIphone,
   "how-pdf-forms-work": howPdfFormsWork,
@@ -266,7 +278,9 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "pdf-vs-docx": pdfVsDocx,
   "pdf-vs-docx-for-business": pdfVsDocxForBusiness,
   "pdf-vs-google-docs": pdfVsGoogleDocs,
+  "pdf-vs-images-for-sharing-documents": pdfVsImagesForSharingDocuments,
   "pdf-vs-jpg-for-documents": pdfVsJpgForDocuments,
+  "pdf-vs-png": pdfVsPng,
   "pdf-workflow-for-university-students": pdfWorkflowForUniversityStudents,
   "pdf-workflows-for-agencies": pdfWorkflowsForAgencies,
   "pdf-workflows-for-consultants": pdfWorkflowsForConsultants,
@@ -276,6 +290,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "secure-pdf-workflows-for-business": securePdfWorkflowsForBusiness,
   "what-is-a-pdf-form": whatIsAPdfForm,
   "when-to-use-pdf-instead-of-docx": whenToUsePdfInsteadOfDocx,
+  "when-to-use-scanned-pdf": whenToUseScannedPdf,
   "why-cant-i-edit-a-pdf": whyCantIEditAPdf,
   "why-cant-i-type-in-a-pdf-form": whyCantITypeInAPdfForm,
   "why-is-my-pdf-blank": whyIsMyPdfBlank,
@@ -283,5 +298,6 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "why-is-my-pdf-so-large": whyIsMyPdfSoLarge,
   "why-pdf-form-is-read-only": whyPdfFormIsReadOnly,
   "why-pdf-form-wont-save": whyPdfFormWontSave,
+  "why-pdf-is-still-popular": whyPdfIsStillPopular,
   "why-wont-my-pdf-open": whyWontMyPdfOpen,
 };
