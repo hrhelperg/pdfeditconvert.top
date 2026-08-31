@@ -15,9 +15,11 @@ import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compr
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
 import howToAnnotatePdfOnMobile from "@/content/pt-BR/guides/how-to-annotate-pdf-on-mobile";
 import howToCompressPdf from "@/content/pt-BR/guides/how-to-compress-pdf";
+import howToCompressPdfForSchoolPortals from "@/content/pt-BR/guides/how-to-compress-pdf-for-school-portals";
 import howToCompressPdfOnline from "@/content/pt-BR/guides/how-to-compress-pdf-online";
 import howToCompressScannedPdf from "@/content/pt-BR/guides/how-to-compress-scanned-pdf";
 import howToConvertJpgToPdf from "@/content/pt-BR/guides/how-to-convert-jpg-to-pdf";
+import howToConvertLectureNotesToPdf from "@/content/pt-BR/guides/how-to-convert-lecture-notes-to-pdf";
 import howToConvertPdfToJpg from "@/content/pt-BR/guides/how-to-convert-pdf-to-jpg";
 import howToConvertPdfToPng from "@/content/pt-BR/guides/how-to-convert-pdf-to-png";
 import howToConvertPdfToWord from "@/content/pt-BR/guides/how-to-convert-pdf-to-word";
@@ -27,6 +29,7 @@ import howToConvertPngToPdf from "@/content/pt-BR/guides/how-to-convert-png-to-p
 import howToConvertScannedDocumentsToPdf from "@/content/pt-BR/guides/how-to-convert-scanned-documents-to-pdf";
 import howToConvertWebpToPdf from "@/content/pt-BR/guides/how-to-convert-webp-to-pdf";
 import howToConvertWordToPdf from "@/content/pt-BR/guides/how-to-convert-word-to-pdf";
+import howToCreateClientReadyPdfFiles from "@/content/pt-BR/guides/how-to-create-client-ready-pdf-files";
 import howToCreatePdfFromCamera from "@/content/pt-BR/guides/how-to-create-pdf-from-camera";
 import howToEditPdfOnAndroid from "@/content/pt-BR/guides/how-to-edit-pdf-on-android";
 import howToEditPdfOnIphone from "@/content/pt-BR/guides/how-to-edit-pdf-on-iphone";
@@ -55,6 +58,7 @@ import howToRemoveUnwantedPagesFromPdf from "@/content/pt-BR/guides/how-to-remov
 import howToReorderPdfPages from "@/content/pt-BR/guides/how-to-reorder-pdf-pages";
 import howToRotatePdfPages from "@/content/pt-BR/guides/how-to-rotate-pdf-pages";
 import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-documents-to-pdf";
+import howToScanNotesToPdf from "@/content/pt-BR/guides/how-to-scan-notes-to-pdf";
 import howToSendContractsAsPdf from "@/content/pt-BR/guides/how-to-send-contracts-as-pdf";
 import howToSendLargePdfFiles from "@/content/pt-BR/guides/how-to-send-large-pdf-files";
 import howToSharePdfFromPhone from "@/content/pt-BR/guides/how-to-share-pdf-from-phone";
@@ -63,8 +67,12 @@ import howToSignPdfOnAndroid from "@/content/pt-BR/guides/how-to-sign-pdf-on-and
 import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-iphone";
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
 import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
+import howToSubmitHomeworkAsPdf from "@/content/pt-BR/guides/how-to-submit-homework-as-pdf";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsJpgForDocuments from "@/content/pt-BR/guides/pdf-vs-jpg-for-documents";
+import pdfWorkflowsForAgencies from "@/content/pt-BR/guides/pdf-workflows-for-agencies";
+import pdfWorkflowsForConsultants from "@/content/pt-BR/guides/pdf-workflows-for-consultants";
+import pdfWorkflowsForSmallBusiness from "@/content/pt-BR/guides/pdf-workflows-for-small-business";
 import privacyFirstPdfTools from "@/content/pt-BR/guides/privacy-first-pdf-tools";
 import whenToUsePdfInsteadOfDocx from "@/content/pt-BR/guides/when-to-use-pdf-instead-of-docx";
 import whyCantIEditAPdf from "@/content/pt-BR/guides/why-cant-i-edit-a-pdf";
@@ -99,9 +107,11 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
   "how-to-annotate-pdf-on-mobile": howToAnnotatePdfOnMobile,
   "how-to-compress-pdf": howToCompressPdf,
+  "how-to-compress-pdf-for-school-portals": howToCompressPdfForSchoolPortals,
   "how-to-compress-pdf-online": howToCompressPdfOnline,
   "how-to-compress-scanned-pdf": howToCompressScannedPdf,
   "how-to-convert-jpg-to-pdf": howToConvertJpgToPdf,
+  "how-to-convert-lecture-notes-to-pdf": howToConvertLectureNotesToPdf,
   "how-to-convert-pdf-to-jpg": howToConvertPdfToJpg,
   "how-to-convert-pdf-to-png": howToConvertPdfToPng,
   "how-to-convert-pdf-to-word": howToConvertPdfToWord,
@@ -111,6 +121,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-convert-scanned-documents-to-pdf": howToConvertScannedDocumentsToPdf,
   "how-to-convert-webp-to-pdf": howToConvertWebpToPdf,
   "how-to-convert-word-to-pdf": howToConvertWordToPdf,
+  "how-to-create-client-ready-pdf-files": howToCreateClientReadyPdfFiles,
   "how-to-create-pdf-from-camera": howToCreatePdfFromCamera,
   "how-to-edit-pdf-on-android": howToEditPdfOnAndroid,
   "how-to-edit-pdf-on-iphone": howToEditPdfOnIphone,
@@ -139,6 +150,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-reorder-pdf-pages": howToReorderPdfPages,
   "how-to-rotate-pdf-pages": howToRotatePdfPages,
   "how-to-scan-documents-to-pdf": howToScanDocumentsToPdf,
+  "how-to-scan-notes-to-pdf": howToScanNotesToPdf,
   "how-to-send-contracts-as-pdf": howToSendContractsAsPdf,
   "how-to-send-large-pdf-files": howToSendLargePdfFiles,
   "how-to-share-pdf-from-phone": howToSharePdfFromPhone,
@@ -147,8 +159,12 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-sign-pdf-on-iphone": howToSignPdfOnIphone,
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
   "how-to-split-pdf-files": howToSplitPdfFiles,
+  "how-to-submit-homework-as-pdf": howToSubmitHomeworkAsPdf,
   "pdf-vs-docx": pdfVsDocx,
   "pdf-vs-jpg-for-documents": pdfVsJpgForDocuments,
+  "pdf-workflows-for-agencies": pdfWorkflowsForAgencies,
+  "pdf-workflows-for-consultants": pdfWorkflowsForConsultants,
+  "pdf-workflows-for-small-business": pdfWorkflowsForSmallBusiness,
   "privacy-first-pdf-tools": privacyFirstPdfTools,
   "when-to-use-pdf-instead-of-docx": whenToUsePdfInsteadOfDocx,
   "why-cant-i-edit-a-pdf": whyCantIEditAPdf,
