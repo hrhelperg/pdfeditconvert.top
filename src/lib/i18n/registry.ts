@@ -8,8 +8,10 @@ import type {
 } from "@/lib/i18n/toolStrings";
 import { SITE_EN } from "@/lib/i18n/dictionaries/site.en";
 import { SITE_PT_BR } from "@/lib/i18n/dictionaries/site.pt-BR";
+import { SITE_FR } from "@/lib/i18n/dictionaries/site.fr";
 import { TOOLS_EN } from "@/lib/i18n/dictionaries/tools.en";
 import { TOOLS_PT_BR } from "@/lib/i18n/dictionaries/tools.pt-BR";
+import { TOOLS_FR } from "@/lib/i18n/dictionaries/tools.fr";
 
 /**
  * Where every translated dictionary is wired in.
@@ -27,11 +29,13 @@ import { TOOLS_PT_BR } from "@/lib/i18n/dictionaries/tools.pt-BR";
 const SITE_DICTIONARIES: Partial<Record<Locale, SiteDictionary>> = {
   en: SITE_EN,
   "pt-BR": SITE_PT_BR,
+  fr: SITE_FR,
 };
 
 const TOOL_DICTIONARIES: Partial<Record<Locale, ToolDictionary>> = {
   en: TOOLS_EN,
   "pt-BR": TOOLS_PT_BR,
+  fr: TOOLS_FR,
 };
 
 function resolve<T>(
