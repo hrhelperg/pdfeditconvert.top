@@ -1,8 +1,14 @@
 // scripts/submit-indexnow.mjs
 //
-// Submit every public indexable URL from the route registry
-// (src/lib/routes.ts) to the IndexNow API. Manual-only: run via
-// `npm run indexnow:submit` — never wired into build or deploy.
+// Submit every public indexable URL, in every published locale, to the
+// IndexNow API. Manual-only: run via `npm run indexnow:submit` — never wired
+// into build or deploy.
+//
+// The default locale's paths come from the route registry (src/lib/routes.ts);
+// every other published locale's paths are its prefix plus the slugs in its
+// route manifest (src/content/<locale>/routes*.ts). Locale set and prefixes
+// come from src/lib/i18n/locales.ts, so publishing a locale needs no edit
+// here — the same rule as the sitemap generator.
 //
 // Requires INDEXNOW_KEY in the environment (set in Vercel env vars; export
 // it locally to run from a shell). The key file must be live at
@@ -24,6 +30,8 @@ const root = resolve(here, "..");
 // silently falling back, so this is only a documented reference value.
 const FALLBACK_SITE_URL = "https://www.pdfeditconvert.top";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
+// Mirrors DEFAULT_LOCALE in src/lib/i18n/locales.ts: the locale served at root.
+const DEFAULT_LOCALE = "en";
 // IndexNow protocol cap per request.
 const MAX_URLS_PER_REQUEST = 10_000;
 
@@ -74,6 +82,51 @@ export function parseRoutes(source) {
   return routes;
 }
 
+/**
+ * Published locales, parsed from src/lib/i18n/locales.ts.
+ *
+ * Same regex as scripts/i18n/gen-sitemap-routes.mjs: this is a plain Node
+ * script and the config is TypeScript. Unpublished locales are dropped here,
+ * so a locale that has no pages can never be submitted.
+ */
+export function parsePublishedLocales(source) {
+  const blocks = [
+    ...source.matchAll(
+      /code:\s*"([^"]+)",\s*prefix:\s*"([^"]*)"[\s\S]*?published:\s*(true|false),/g,
+    ),
+  ];
+  const locales = blocks
+    .map(([, code, prefix, published]) => ({ code, prefix, published: published === "true" }))
+    .filter((locale) => locale.published);
+  if (locales.length === 0) {
+    throw new Error(
+      "Parsed zero published locales from src/lib/i18n/locales.ts — update parsePublishedLocales().",
+    );
+  }
+  return locales;
+}
+
+/**
+ * Localized slugs for one locale, parsed from its route manifest sources.
+ *
+ * Entries are flat object literals keyed by the English route id, so
+ * non-nested brace matching is safe — the same assumption parseRoutes() makes.
+ */
+export function parseLocaleSlugs(sources) {
+  const slugs = [];
+  for (const source of sources) {
+    for (const block of source.match(/\{[^{}]*\}/g) ?? []) {
+      const slug = block.match(/\n\s*slug:\s*"([^"]*)"/);
+      if (slug && /\n\s*id:\s*"/.test(block)) slugs.push(slug[1]);
+    }
+  }
+  if (slugs.length === 0) {
+    throw new Error("Parsed zero slugs from a locale route manifest — refusing to continue.");
+  }
+  return slugs;
+}
+
+/** Default-locale URLs only. See buildAllLocaleUrls for the full submission. */
 export function buildUrlList(source) {
   const siteUrl = parseSiteUrl(source);
   const expectedHost = new URL(siteUrl).host;
@@ -83,6 +136,41 @@ export function buildUrlList(source) {
     // Same URL shape as src/app/sitemap.ts: homepage without trailing slash.
     urls.add(`${siteUrl}${path === "/" ? "" : path}`);
   }
+  const urlList = [...urls];
+  for (const url of urlList) {
+    if (new URL(url).host !== expectedHost) {
+      throw new Error(`Refusing to submit non-canonical URL: ${url}`);
+    }
+  }
+  return urlList;
+}
+
+/**
+ * Every URL to submit, across every published locale.
+ *
+ * `manifests` maps a locale code to its route-manifest sources. The default
+ * locale is not expected there — its paths come from the registry.
+ */
+export function buildAllLocaleUrls(routesSource, localesSource, manifests) {
+  const siteUrl = parseSiteUrl(routesSource);
+  const expectedHost = new URL(siteUrl).host;
+  const urls = new Set(buildUrlList(routesSource));
+
+  for (const { code, prefix } of parsePublishedLocales(localesSource)) {
+    if (code === DEFAULT_LOCALE) continue;
+    const sources = manifests[code];
+    if (!sources || sources.length === 0) {
+      throw new Error(
+        `Locale "${code}" is published but no route manifest was supplied — refusing to submit a partial URL set.`,
+      );
+    }
+    for (const slug of parseLocaleSlugs(sources)) {
+      // Same URL shape as src/lib/i18n/routeMap.ts: the locale home is the
+      // bare prefix, with no trailing slash.
+      urls.add(slug === "" ? `${siteUrl}/${prefix}` : `${siteUrl}/${prefix}/${slug}`);
+    }
+  }
+
   const urlList = [...urls];
   for (const url of urlList) {
     if (new URL(url).host !== expectedHost) {
@@ -104,9 +192,23 @@ async function main() {
 
   const dryRun = process.argv.includes("--dry-run");
   const source = await readFile(resolve(root, "src/lib/routes.ts"), "utf8");
+  const localesSource = await readFile(resolve(root, "src/lib/i18n/locales.ts"), "utf8");
   const siteUrl = parseSiteUrl(source);
   const host = new URL(siteUrl).host;
-  const urlList = buildUrlList(source);
+
+  // Manifest files follow one convention: src/content/<locale>/routes.ts, plus
+  // routes.guides.ts where a locale splits its guide library out.
+  const manifests = {};
+  for (const { code } of parsePublishedLocales(localesSource)) {
+    if (code === DEFAULT_LOCALE) continue;
+    manifests[code] = await Promise.all(
+      ["routes.ts", "routes.guides.ts"].map((file) =>
+        readFile(resolve(root, `src/content/${code}/${file}`), "utf8").catch(() => ""),
+      ),
+    );
+  }
+
+  const urlList = buildAllLocaleUrls(source, localesSource, manifests);
 
   if (urlList.length > MAX_URLS_PER_REQUEST) {
     console.error(
