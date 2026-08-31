@@ -3,8 +3,11 @@ import type { GuideContent } from "@/types/content";
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
 import bestPdfCompressionSettings from "@/content/pt-BR/guides/best-pdf-compression-settings";
+import bestPdfToolsForSmallBusiness from "@/content/pt-BR/guides/best-pdf-tools-for-small-business";
 import bestPdfToolsForStudents from "@/content/pt-BR/guides/best-pdf-tools-for-students";
 import bestPdfWorkflowForFreelancers from "@/content/pt-BR/guides/best-pdf-workflow-for-freelancers";
+import browserBasedPdfToolsVsUploadTools from "@/content/pt-BR/guides/browser-based-pdf-tools-vs-upload-tools";
+import commonPdfMistakesToAvoid from "@/content/pt-BR/guides/common-pdf-mistakes-to-avoid";
 import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compress-pdf-without-losing-too-much-quality";
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
 import howToAnnotatePdfOnMobile from "@/content/pt-BR/guides/how-to-annotate-pdf-on-mobile";
@@ -47,7 +50,12 @@ import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-ipho
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
 import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
 import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
+import pdfVsJpgForDocuments from "@/content/pt-BR/guides/pdf-vs-jpg-for-documents";
+import privacyFirstPdfTools from "@/content/pt-BR/guides/privacy-first-pdf-tools";
+import whenToUsePdfInsteadOfDocx from "@/content/pt-BR/guides/when-to-use-pdf-instead-of-docx";
+import whyIsMyPdfBlank from "@/content/pt-BR/guides/why-is-my-pdf-blank";
 import whyIsMyPdfSoLarge from "@/content/pt-BR/guides/why-is-my-pdf-so-large";
+import whyWontMyPdfOpen from "@/content/pt-BR/guides/why-wont-my-pdf-open";
 
 /**
  * Brazilian Portuguese guides, keyed by the **English** slug.
@@ -63,8 +71,11 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
   "best-pdf-compression-settings": bestPdfCompressionSettings,
+  "best-pdf-tools-for-small-business": bestPdfToolsForSmallBusiness,
   "best-pdf-tools-for-students": bestPdfToolsForStudents,
   "best-pdf-workflow-for-freelancers": bestPdfWorkflowForFreelancers,
+  "browser-based-pdf-tools-vs-upload-tools": browserBasedPdfToolsVsUploadTools,
+  "common-pdf-mistakes-to-avoid": commonPdfMistakesToAvoid,
   "compress-pdf-without-losing-too-much-quality": compressPdfWithoutLosingTooMuchQuality,
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
   "how-to-annotate-pdf-on-mobile": howToAnnotatePdfOnMobile,
@@ -107,5 +118,10 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
   "how-to-split-pdf-files": howToSplitPdfFiles,
   "pdf-vs-docx": pdfVsDocx,
+  "pdf-vs-jpg-for-documents": pdfVsJpgForDocuments,
+  "privacy-first-pdf-tools": privacyFirstPdfTools,
+  "when-to-use-pdf-instead-of-docx": whenToUsePdfInsteadOfDocx,
+  "why-is-my-pdf-blank": whyIsMyPdfBlank,
   "why-is-my-pdf-so-large": whyIsMyPdfSoLarge,
+  "why-wont-my-pdf-open": whyWontMyPdfOpen,
 };
