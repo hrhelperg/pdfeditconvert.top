@@ -103,7 +103,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "Spanish",
     nativeName: "Español",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "es-ES",
   },
   fr: {
