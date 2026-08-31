@@ -54,4 +54,18 @@ describe("ToolPage", () => {
       screen.getByRole("link", { name: /Início/ }),
     ).toHaveAttribute("href", "/pt-br");
   });
+
+  it("localizes chrome and internal links for fr", () => {
+    render(<ToolPage content={content} locale="fr" toolSlot={<div />} />);
+    // The content record still carries the English link path; the renderer
+    // translates it, so a translator never types a URL.
+    expect(screen.getByRole("link", { name: /Related/ })).toHaveAttribute(
+      "href",
+      "/fr/fusionner-pdf",
+    );
+    expect(screen.getByText("Questions fréquentes")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Accueil/ }),
+    ).toHaveAttribute("href", "/fr");
+  });
 });
