@@ -20,3 +20,7 @@ export function ptToolProps<K extends ToolKey>(key: K) {
 export function frToolProps<K extends ToolKey>(key: K) {
   return { strings: getToolStrings("fr", key), locale: "fr" as const };
 }
+
+export function esToolProps<K extends ToolKey>(key: K) {
+  return { strings: getToolStrings("es", key), locale: "es" as const };
+}
