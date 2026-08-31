@@ -3,8 +3,11 @@ import type { GuideContent } from "@/types/content";
 import bestPdfAppForBusiness from "@/content/pt-BR/guides/best-pdf-app-for-business";
 import bestPdfAppForStudents from "@/content/pt-BR/guides/best-pdf-app-for-students";
 import bestPdfCompressionSettings from "@/content/pt-BR/guides/best-pdf-compression-settings";
+import bestPdfToolsForStudents from "@/content/pt-BR/guides/best-pdf-tools-for-students";
+import bestPdfWorkflowForFreelancers from "@/content/pt-BR/guides/best-pdf-workflow-for-freelancers";
 import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compress-pdf-without-losing-too-much-quality";
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
+import howToAnnotatePdfOnMobile from "@/content/pt-BR/guides/how-to-annotate-pdf-on-mobile";
 import howToCompressPdf from "@/content/pt-BR/guides/how-to-compress-pdf";
 import howToCompressPdfOnline from "@/content/pt-BR/guides/how-to-compress-pdf-online";
 import howToCompressScannedPdf from "@/content/pt-BR/guides/how-to-compress-scanned-pdf";
@@ -18,12 +21,15 @@ import howToConvertPngToPdf from "@/content/pt-BR/guides/how-to-convert-png-to-p
 import howToConvertScannedDocumentsToPdf from "@/content/pt-BR/guides/how-to-convert-scanned-documents-to-pdf";
 import howToConvertWebpToPdf from "@/content/pt-BR/guides/how-to-convert-webp-to-pdf";
 import howToConvertWordToPdf from "@/content/pt-BR/guides/how-to-convert-word-to-pdf";
+import howToCreatePdfFromCamera from "@/content/pt-BR/guides/how-to-create-pdf-from-camera";
 import howToEditPdfOnAndroid from "@/content/pt-BR/guides/how-to-edit-pdf-on-android";
 import howToEditPdfOnIphone from "@/content/pt-BR/guides/how-to-edit-pdf-on-iphone";
 import howToExtractPagesFromPdf from "@/content/pt-BR/guides/how-to-extract-pages-from-pdf";
+import howToFillPdfFormsOnPhone from "@/content/pt-BR/guides/how-to-fill-pdf-forms-on-phone";
 import howToFixSidewaysPdfPages from "@/content/pt-BR/guides/how-to-fix-sideways-pdf-pages";
 import howToMakePdfSmallerOnAndroid from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-android";
 import howToMakePdfSmallerOnIphone from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-iphone";
+import howToManagePdfsOnPhone from "@/content/pt-BR/guides/how-to-manage-pdfs-on-phone";
 import howToMergePdfFiles from "@/content/pt-BR/guides/how-to-merge-pdf-files";
 import howToOrganizePdfFiles from "@/content/pt-BR/guides/how-to-organize-pdf-files";
 import howToPreparePdfBeforeSharing from "@/content/pt-BR/guides/how-to-prepare-pdf-before-sharing";
@@ -35,6 +41,8 @@ import howToReorderPdfPages from "@/content/pt-BR/guides/how-to-reorder-pdf-page
 import howToRotatePdfPages from "@/content/pt-BR/guides/how-to-rotate-pdf-pages";
 import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-documents-to-pdf";
 import howToSendLargePdfFiles from "@/content/pt-BR/guides/how-to-send-large-pdf-files";
+import howToSharePdfFromPhone from "@/content/pt-BR/guides/how-to-share-pdf-from-phone";
+import howToSignPdfOnAndroid from "@/content/pt-BR/guides/how-to-sign-pdf-on-android";
 import howToSignPdfOnIphone from "@/content/pt-BR/guides/how-to-sign-pdf-on-iphone";
 import howToSignPdfOnPhone from "@/content/pt-BR/guides/how-to-sign-pdf-on-phone";
 import howToSplitPdfFiles from "@/content/pt-BR/guides/how-to-split-pdf-files";
@@ -55,8 +63,11 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-app-for-business": bestPdfAppForBusiness,
   "best-pdf-app-for-students": bestPdfAppForStudents,
   "best-pdf-compression-settings": bestPdfCompressionSettings,
+  "best-pdf-tools-for-students": bestPdfToolsForStudents,
+  "best-pdf-workflow-for-freelancers": bestPdfWorkflowForFreelancers,
   "compress-pdf-without-losing-too-much-quality": compressPdfWithoutLosingTooMuchQuality,
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
+  "how-to-annotate-pdf-on-mobile": howToAnnotatePdfOnMobile,
   "how-to-compress-pdf": howToCompressPdf,
   "how-to-compress-pdf-online": howToCompressPdfOnline,
   "how-to-compress-scanned-pdf": howToCompressScannedPdf,
@@ -70,12 +81,15 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-convert-scanned-documents-to-pdf": howToConvertScannedDocumentsToPdf,
   "how-to-convert-webp-to-pdf": howToConvertWebpToPdf,
   "how-to-convert-word-to-pdf": howToConvertWordToPdf,
+  "how-to-create-pdf-from-camera": howToCreatePdfFromCamera,
   "how-to-edit-pdf-on-android": howToEditPdfOnAndroid,
   "how-to-edit-pdf-on-iphone": howToEditPdfOnIphone,
   "how-to-extract-pages-from-pdf": howToExtractPagesFromPdf,
+  "how-to-fill-pdf-forms-on-phone": howToFillPdfFormsOnPhone,
   "how-to-fix-sideways-pdf-pages": howToFixSidewaysPdfPages,
   "how-to-make-pdf-smaller-on-android": howToMakePdfSmallerOnAndroid,
   "how-to-make-pdf-smaller-on-iphone": howToMakePdfSmallerOnIphone,
+  "how-to-manage-pdfs-on-phone": howToManagePdfsOnPhone,
   "how-to-merge-pdf-files": howToMergePdfFiles,
   "how-to-organize-pdf-files": howToOrganizePdfFiles,
   "how-to-prepare-pdf-before-sharing": howToPreparePdfBeforeSharing,
@@ -87,6 +101,8 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-rotate-pdf-pages": howToRotatePdfPages,
   "how-to-scan-documents-to-pdf": howToScanDocumentsToPdf,
   "how-to-send-large-pdf-files": howToSendLargePdfFiles,
+  "how-to-share-pdf-from-phone": howToSharePdfFromPhone,
+  "how-to-sign-pdf-on-android": howToSignPdfOnAndroid,
   "how-to-sign-pdf-on-iphone": howToSignPdfOnIphone,
   "how-to-sign-pdf-on-phone": howToSignPdfOnPhone,
   "how-to-split-pdf-files": howToSplitPdfFiles,
