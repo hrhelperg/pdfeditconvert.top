@@ -15,10 +15,22 @@ import { assertPdf, MAX_FILES } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
 import { uuid } from "@/lib/tools/uuid";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
 type Item = { id: string; file: File };
 
-export function MergePdfTool() {
+export function MergePdfTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"merge-pdf">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [items, setItems] = useState<Item[]>([]);
   const { state, setBusy, setError, setSuccess, reset: resetFlow } = useToolFlow();
 
@@ -29,10 +41,10 @@ export function MergePdfTool() {
     try {
       for (const f of files) assertPdf(f);
       const next = [...items, ...files.map((file) => ({ id: uuid(), file }))];
-      if (next.length > MAX_FILES) throw new Error(`Add up to ${MAX_FILES} PDFs at a time.`);
+      if (next.length > MAX_FILES) throw new ToolFailure("too_many_files", { limit: MAX_FILES });
       setItems(next);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -55,58 +67,53 @@ export function MergePdfTool() {
 
   const merge = async () => {
     if (items.length < 2) {
-      setError("Add at least two PDFs to merge.");
+      setError(t.errorTooFew);
       return;
     }
-    setBusy("Combining PDFs…");
+    setBusy(t.busyMerging);
     try {
       const { PDFDocument } = await loadPdfLib();
       const out = await PDFDocument.create();
       for (const { file } of items) {
         const bytes = new Uint8Array(await file.arrayBuffer());
         const src = await PDFDocument.load(bytes, { ignoreEncryption: false }).catch(() => {
-          throw new Error(`"${file.name}" looks corrupted or password-protected.`);
+          throw new ToolFailure("unreadable_pdf", { name: file.name });
         });
         const copied = await out.copyPages(src, src.getPageIndices());
         for (const p of copied) out.addPage(p);
       }
       const bytes = await out.save();
       const blob = new Blob([new Uint8Array(bytes)], { type: "application/pdf" });
-      const filename = "merged.pdf";
+      const filename = t.outputFilename;
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="Merge PDFs"
-      subtitle="Upload two or more PDF files and combine them into one document."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your merged PDF is ready"
+          title={t.successTitle}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "Split a PDF", path: "/split-pdf" },
-            { label: "Rotate pages", path: "/rotate-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android handles merge and split too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
@@ -114,8 +121,9 @@ export function MergePdfTool() {
             accept="application/pdf"
             multiple
             onFiles={addFiles}
-            label="Drop PDFs here, or click to choose"
-            hint="PDF · up to 100 MB each"
+            label={t.dropLabel}
+            hint={t.dropHint}
+            privacyText={t.common.privacyText}
           />
 
           {items.length > 0 ? (
@@ -125,6 +133,10 @@ export function MergePdfTool() {
                   key={it.id}
                   name={it.file.name}
                   size={it.file.size}
+                  sizeText={size(it.file.size)}
+                  moveUpLabel={t.common.fileMoveUp}
+                  moveDownLabel={t.common.fileMoveDown}
+                  removeLabel={t.common.fileRemove}
                   onRemove={() => remove(it.id)}
                   onMoveUp={idx > 0 ? () => move(it.id, -1) : undefined}
                   onMoveDown={idx < items.length - 1 ? () => move(it.id, 1) : undefined}
@@ -139,7 +151,7 @@ export function MergePdfTool() {
               onClick={merge}
               disabled={items.length < 2}
             >
-              {state.status === "busy" ? "Merging…" : "Merge PDFs"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
             {items.length > 0 ? (
               <button
@@ -147,7 +159,7 @@ export function MergePdfTool() {
                 onClick={() => setItems([])}
                 className="text-sm font-semibold text-[--color-muted] hover:text-[--color-ink]"
               >
-                Clear all
+                {t.common.clearAll}
               </button>
             ) : null}
           </div>

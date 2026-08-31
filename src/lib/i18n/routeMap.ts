@@ -126,6 +126,16 @@ export function routeFor(locale: Locale, id: RouteId): LocalizedRoute | null {
   return routesForLocale(locale).find((r) => r.routeId === id) ?? null;
 }
 
+/**
+ * The route for a page that must exist. Throws at build time rather than
+ * rendering a page with an empty title if a manifest entry is missing.
+ */
+export function requireRoute(locale: Locale, id: RouteId): LocalizedRoute {
+  const route = routeFor(locale, id);
+  if (!route) throw new Error(`[i18n] ${locale} has no route for "${id}"`);
+  return route;
+}
+
 /** Path for a canonical page in one locale, or `null` when untranslated. */
 export function pathFor(locale: Locale, id: RouteId): string | null {
   return routeFor(locale, id)?.path ?? null;
@@ -163,6 +173,45 @@ export function hasTranslation(locale: Locale, englishPath: string): boolean {
 export function routeByPath(path: string): LocalizedRoute | null {
   const normalized = path === "" ? "/" : path;
   return allPublishedRoutes().find((r) => r.path === normalized) ?? null;
+}
+
+export interface SectionEntry {
+  /** Value Next.js will pass as the dynamic `[slug]` param, in this locale. */
+  readonly param: string;
+  /** The canonical route id, e.g. "guides/how-to-compress-pdf". */
+  readonly routeId: RouteId;
+  /** The English slug — the key content registries are indexed by. */
+  readonly englishSlug: string;
+  readonly route: LocalizedRoute;
+}
+
+/**
+ * Every page of a section in one locale, e.g. all guides in pt-BR.
+ *
+ * `section` is the English path prefix ("guides", "compare", "use-cases").
+ * This is what lets one dynamic segment serve a localized section: the URL
+ * carries the Portuguese slug, `englishSlug` finds the content, and neither
+ * has to know about the other.
+ */
+export function sectionEntries(locale: Locale, section: string): SectionEntry[] {
+  const prefix = `${section}/`;
+  return routesForLocale(locale)
+    .filter((r) => r.routeId.startsWith(prefix))
+    .map((r) => ({
+      param: r.path.split("/").pop() ?? "",
+      routeId: r.routeId,
+      englishSlug: r.routeId.slice(prefix.length),
+      route: r,
+    }));
+}
+
+/** The section entry a localized `[slug]` param refers to, if any. */
+export function sectionEntry(
+  locale: Locale,
+  section: string,
+  param: string,
+): SectionEntry | null {
+  return sectionEntries(locale, section).find((e) => e.param === param) ?? null;
 }
 
 /** Absolute URL for a route path, matching the canonical tag exactly. */

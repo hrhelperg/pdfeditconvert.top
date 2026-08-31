@@ -244,6 +244,9 @@ export const TOOLS_EN: ToolDictionary = {
         { id: "pdf-to-images", label: "PDF to images" },
       ],
       dropHint: "One PDF · up to 100 MB · text-based PDFs only",
+      explainerTitle: "What this does",
+      explainerBody:
+        "Extracts the selectable text from your PDF and writes it into an editable Word (.docx) file. It does not reproduce the original layout, fonts, columns, tables or images — it's a practical, honest text conversion. Scanned (image-only) PDFs have no text layer and can't be converted here.",
       busyReading: "Reading PDF…",
       busyPage: "Extracting text from page {page} of {total}…",
       busyBuilding: "Building Word document…",
@@ -266,6 +269,9 @@ export const TOOLS_EN: ToolDictionary = {
       ],
       dropLabel: "Drop a .docx or .txt file here, or click to choose",
       dropHint: "Word .docx or plain .txt · up to 100 MB",
+      explainerTitle: "What this does",
+      explainerBody:
+        "Reads the text from a Word (.docx) or plain text (.txt) file and lays it into a clean, paginated A4 PDF. It is an honest text conversion — original fonts, images, tables and exact formatting are not reproduced. Legacy binary .doc isn't supported; save as .docx first.",
       busyReading: "Reading document…",
       busyBuilding: "Building PDF…",
       errorEmptyDocument: "The document appears to be empty — there's no text to convert.",

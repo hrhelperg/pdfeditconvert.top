@@ -152,6 +152,8 @@ export interface WatermarkPdfStrings extends BaseToolStrings {
 
 export interface PdfToWordStrings extends BaseToolStrings {
   readonly dropHint: string;
+  readonly explainerTitle: string;
+  readonly explainerBody: string;
   readonly busyReading: string;
   readonly busyPage: string;
   readonly busyBuilding: string;
@@ -161,6 +163,8 @@ export interface PdfToWordStrings extends BaseToolStrings {
 export interface WordToPdfStrings extends BaseToolStrings {
   readonly dropLabel: string;
   readonly dropHint: string;
+  readonly explainerTitle: string;
+  readonly explainerBody: string;
   readonly busyReading: string;
   readonly busyBuilding: string;
   readonly errorEmptyDocument: string;

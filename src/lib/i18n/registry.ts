@@ -1,0 +1,84 @@
+import { localeChain, type Locale } from "@/lib/i18n/locales";
+import { pathForWithFallback } from "@/lib/i18n/routeMap";
+import type { SiteDictionary } from "@/lib/i18n/dictionary";
+import type {
+  ResolvedToolStrings,
+  ToolDictionary,
+  ToolKey,
+} from "@/lib/i18n/toolStrings";
+import { SITE_EN } from "@/lib/i18n/dictionaries/site.en";
+import { SITE_PT_BR } from "@/lib/i18n/dictionaries/site.pt-BR";
+import { TOOLS_EN } from "@/lib/i18n/dictionaries/tools.en";
+import { TOOLS_PT_BR } from "@/lib/i18n/dictionaries/tools.pt-BR";
+
+/**
+ * Where every translated dictionary is wired in.
+ *
+ * Static objects rather than imperative registration: a module that has to
+ * be imported for its side effects before anything else works is a bug
+ * waiting for the first import-order change. Adding a locale here is two
+ * lines, and the compiler checks both.
+ *
+ * These modules are only ever imported by Server Components. Next.js
+ * therefore never sends them to the browser, which is what keeps an English
+ * page from shipping the Portuguese corpus — and keeps locale eleven from
+ * costing locales one through ten a single byte.
+ */
+const SITE_DICTIONARIES: Partial<Record<Locale, SiteDictionary>> = {
+  en: SITE_EN,
+  "pt-BR": SITE_PT_BR,
+};
+
+const TOOL_DICTIONARIES: Partial<Record<Locale, ToolDictionary>> = {
+  en: TOOLS_EN,
+  "pt-BR": TOOLS_PT_BR,
+};
+
+function resolve<T>(
+  locale: Locale,
+  registry: Partial<Record<Locale, T>>,
+  kind: string,
+): T {
+  for (const candidate of localeChain(locale)) {
+    const hit = registry[candidate];
+    if (hit) return hit;
+  }
+  throw new Error(`[i18n] no ${kind} dictionary for "${locale}"`);
+}
+
+/**
+ * Site chrome for a locale, walking the fallback chain.
+ *
+ * Falling back rather than throwing means a half-translated locale renders
+ * a working page with a visible English gap — which the parity report
+ * lists — instead of taking the site down over one missing string.
+ */
+export function getSiteDictionary(locale: Locale): SiteDictionary {
+  return resolve(locale, SITE_DICTIONARIES, "site");
+}
+
+/** Tool copy for a locale, with related-tool ids resolved to local paths. */
+export function getToolStrings<K extends ToolKey>(
+  locale: Locale,
+  key: K,
+): ResolvedToolStrings<K> {
+  const dictionary = resolve(locale, TOOL_DICTIONARIES, "tool");
+  const { related, ...rest } = dictionary.tools[key];
+  return {
+    ...rest,
+    related: related.map((r) => ({
+      label: r.label,
+      path: pathForWithFallback(locale, r.id),
+    })),
+    common: dictionary.common,
+  } as ResolvedToolStrings<K>;
+}
+
+/** Whether a locale has its own dictionary rather than inheriting one. */
+export function hasOwnSiteDictionary(locale: Locale): boolean {
+  return SITE_DICTIONARIES[locale] !== undefined;
+}
+
+export function hasOwnToolDictionary(locale: Locale): boolean {
+  return TOOL_DICTIONARIES[locale] !== undefined;
+}

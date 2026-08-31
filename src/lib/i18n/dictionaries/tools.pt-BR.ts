@@ -259,6 +259,9 @@ export const TOOLS_PT_BR: ToolDictionary = {
         { id: "pdf-to-images", label: "PDF para imagens" },
       ],
       dropHint: "Um PDF · até 100 MB · somente PDFs com texto",
+      explainerTitle: "O que esta ferramenta faz",
+      explainerBody:
+        "Extrai o texto selecionável do seu PDF e grava tudo em um arquivo do Word (.docx) editável. Ela não reproduz o layout, as fontes, as colunas, as tabelas nem as imagens do original — é uma conversão de texto honesta e prática. PDFs digitalizados (só imagem) não têm camada de texto e não podem ser convertidos aqui.",
       busyReading: "Lendo o PDF…",
       busyPage: "Extraindo o texto da página {page} de {total}…",
       busyBuilding: "Montando o documento do Word…",
@@ -283,6 +286,9 @@ export const TOOLS_PT_BR: ToolDictionary = {
       ],
       dropLabel: "Solte um arquivo .docx ou .txt aqui ou clique para escolher",
       dropHint: "Word .docx ou .txt simples · até 100 MB",
+      explainerTitle: "O que esta ferramenta faz",
+      explainerBody:
+        "Lê o texto de um arquivo do Word (.docx) ou de texto simples (.txt) e o distribui em um PDF A4 limpo e paginado. É uma conversão de texto honesta — fontes, imagens, tabelas e a formatação exata do original não são reproduzidas. O .doc binário antigo não é aceito; salve como .docx antes.",
       busyReading: "Lendo o documento…",
       busyBuilding: "Montando o PDF…",
       errorEmptyDocument: "O documento parece vazio — não há texto para converter.",

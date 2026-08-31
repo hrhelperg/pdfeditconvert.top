@@ -2,48 +2,41 @@ import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
 import { StoreButtons } from "@/components/sections/StoreButtons";
 import { BrandMark } from "@/components/primitives/BrandMark";
+import { getSiteDictionary } from "@/lib/i18n/registry";
+import { pathForWithFallback } from "@/lib/i18n/routeMap";
+import { fmt } from "@/lib/i18n/format";
+import type { NavLink } from "@/lib/i18n/dictionary";
+import type { Locale } from "@/lib/i18n/locales";
+import { SITE } from "@/content/site";
 
-const PRODUCT = [
-  { label: "PDF Editor", href: "/pdf-editor" },
-  { label: "PDF Converter", href: "/pdf-converter" },
-  { label: "Compress PDF", href: "/compress-pdf" },
-  { label: "Sign PDF", href: "/sign-pdf" },
-  { label: "Scan to PDF", href: "/scan-to-pdf" },
-];
-
-const LEARN = [
-  { label: "All guides", href: "/guides" },
-  { label: "PDF Forms", href: "/pdf-forms" },
-  { label: "Fill out a PDF form", href: "/guides/how-to-fill-out-a-pdf-form" },
-  { label: "Convert PDF to Word", href: "/guides/how-to-convert-pdf-to-word" },
-  {
-    label: "Reduce PDF size for email",
-    href: "/guides/how-to-reduce-pdf-file-size-for-email",
-  },
-  { label: "Edit PDF on iPhone", href: "/guides/how-to-edit-pdf-on-iphone" },
-  { label: "Merge PDFs", href: "/guides/how-to-merge-pdf-files" },
-  { label: "PDF vs DOCX", href: "/compare/pdf-vs-docx" },
-];
-
-const COMPANY = [
-  { label: "Contact", href: "/contact" },
-  { label: "Privacy", href: "/privacy-policy" },
-  { label: "Terms", href: "/terms" },
-  { label: "Sitemap", href: "/sitemap.xml" },
-];
-
-const TOOLS = [
-  { label: "All free tools", href: "/pdf-tools" },
-  { label: "Image to PDF", href: "/image-to-pdf" },
-  { label: "Merge PDF", href: "/merge-pdf" },
-  { label: "Split PDF", href: "/split-pdf" },
-  { label: "Rotate PDF", href: "/rotate-pdf" },
-  { label: "PDF to images", href: "/pdf-to-images" },
-  { label: "Add watermark", href: "/add-watermark-to-pdf" },
-];
-
-export function Footer() {
+/**
+ * Site footer.
+ *
+ * Link targets are route ids resolved through the locale's route map, so a
+ * Portuguese page's footer links to Portuguese pages. Sending a reader from
+ * a translated page back into English is the fastest way to make a locale
+ * feel like a veneer over an English site — and it strands the localized
+ * pages with no internal links pointing at them.
+ *
+ * The company address, the legal entity, the contact address and the two
+ * store URLs are identical in every locale. They are facts, not copy.
+ */
+export function Footer({ locale }: { locale: Locale }) {
+  const dictionary = getSiteDictionary(locale);
+  const { footer } = dictionary;
   const year = new Date().getFullYear();
+
+  const resolve = (items: readonly NavLink[]) =>
+    items.map((item) => ({
+      label: item.label,
+      href: pathForWithFallback(locale, item.id),
+    }));
+
+  const company = [
+    ...resolve(footer.company),
+    { label: footer.sitemapLabel, href: footer.sitemapHref },
+  ];
+
   return (
     <footer className="bg-[--color-ink] text-white">
       <div aria-hidden className="h-1 w-full bg-[var(--gradient-brand)]" />
@@ -67,18 +60,20 @@ export function Footer() {
             <BrandMark size={56} className="h-14 w-14" />
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/85">
-                PDF Editor app
+                {footer.appEyebrow}
               </p>
               <p className="mt-1 text-xl md:text-2xl font-extrabold tracking-tight">
-                Take PDF Editor with you.
+                {footer.appHeading}
               </p>
-              <p className="mt-1 text-sm text-white/80">
-                Free on iPhone and Android. No account required.
-              </p>
+              <p className="mt-1 text-sm text-white/80">{footer.appSub}</p>
             </div>
           </div>
           <div className="md:shrink-0">
-            <StoreButtons size="lg" />
+            <StoreButtons
+              size="lg"
+              appStoreLabel={dictionary.store.appStoreAria}
+              googlePlayLabel={dictionary.store.googlePlayAria}
+            />
           </div>
         </Container>
       </div>
@@ -86,7 +81,10 @@ export function Footer() {
       <Container className="py-16">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-10">
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-2.5">
+            <Link
+              href={pathForWithFallback(locale, "")}
+              className="flex items-center gap-2.5"
+            >
               <BrandMark size={32} className="h-8 w-8" />
               <span className="text-lg font-bold">
                 <span className="text-[--color-brand]">PDF</span>{" "}
@@ -94,26 +92,23 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xs">
-              All-in-One PDF Solution for Work, Study &amp; Life. Edit, convert,
-              sign and scan PDFs from your phone.
+              {footer.tagline}
             </p>
           </div>
 
-          <FooterCol title="Product" items={PRODUCT} />
-          <FooterCol title="Learn" items={LEARN} />
-          <FooterCol title="Company" items={COMPANY} />
-          <FooterCol title="Free tools" items={TOOLS} />
+          <FooterCol title={footer.columnProduct} items={resolve(footer.product)} />
+          <FooterCol title={footer.columnLearn} items={resolve(footer.learn)} />
+          <FooterCol title={footer.columnCompany} items={company} />
+          <FooterCol title={footer.columnTools} items={resolve(footer.tools)} />
         </div>
 
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-white/60">
-          <p>© {year} hrhelperg s.r.o. All rights reserved.</p>
+          <p>{fmt(footer.rights, { year })}</p>
           <p>
-            Husitská 502/36, Žižkov, 130 00 Praha 3 ·{" "}
-            <a
-              href="mailto:info@hrhelperg.com"
-              className="hover:text-white"
-            >
-              info@hrhelperg.com
+            {SITE.company.address.street}, {SITE.company.address.district},{" "}
+            {SITE.company.address.postalCode} {SITE.company.address.city} ·{" "}
+            <a href={`mailto:${SITE.contactEmail}`} className="hover:text-white">
+              {SITE.contactEmail}
             </a>
           </p>
         </div>
@@ -135,10 +130,7 @@ function FooterCol({
       <ul className="mt-4 space-y-2.5">
         {items.map((i) => (
           <li key={i.href}>
-            <Link
-              href={i.href}
-              className="text-sm text-white/70 hover:text-white"
-            >
+            <Link href={i.href} className="text-sm text-white/70 hover:text-white">
               {i.label}
             </Link>
           </li>

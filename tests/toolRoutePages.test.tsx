@@ -18,57 +18,57 @@ type RouteCase = {
 const CASES: RouteCase[] = [
   {
     path: "/image-to-pdf",
-    load: () => import("@/app/image-to-pdf/page"),
+    load: () => import("@/app/(en)/image-to-pdf/page"),
     actionButton: /Convert to PDF/i,
   },
   {
     path: "/merge-pdf",
-    load: () => import("@/app/merge-pdf/page"),
+    load: () => import("@/app/(en)/merge-pdf/page"),
     actionButton: /Merge PDFs?/i,
   },
   {
     path: "/split-pdf",
-    load: () => import("@/app/split-pdf/page"),
+    load: () => import("@/app/(en)/split-pdf/page"),
     actionButton: /Split PDF/i,
   },
   {
     path: "/rotate-pdf",
-    load: () => import("@/app/rotate-pdf/page"),
+    load: () => import("@/app/(en)/rotate-pdf/page"),
     actionButton: /Rotate PDF/i,
   },
   {
     path: "/pdf-to-images",
-    load: () => import("@/app/pdf-to-images/page"),
+    load: () => import("@/app/(en)/pdf-to-images/page"),
     actionButton: /Convert to images/i,
   },
   {
     path: "/add-watermark-to-pdf",
-    load: () => import("@/app/add-watermark-to-pdf/page"),
+    load: () => import("@/app/(en)/add-watermark-to-pdf/page"),
     actionButton: /Add watermark/i,
   },
   {
     path: "/compress-pdf",
-    load: () => import("@/app/compress-pdf/page"),
+    load: () => import("@/app/(en)/compress-pdf/page"),
     actionButton: /Compress PDF/i,
   },
   {
     path: "/pdf-to-word",
-    load: () => import("@/app/pdf-to-word/page"),
+    load: () => import("@/app/(en)/pdf-to-word/page"),
     actionButton: /Convert to Word/i,
   },
   {
     path: "/word-to-pdf",
-    load: () => import("@/app/word-to-pdf/page"),
+    load: () => import("@/app/(en)/word-to-pdf/page"),
     actionButton: /Convert to PDF/i,
   },
   {
     path: "/reorder-pdf-pages",
-    load: () => import("@/app/reorder-pdf-pages/page"),
+    load: () => import("@/app/(en)/reorder-pdf-pages/page"),
     actionButton: /Reorder PDF/i,
   },
   {
     path: "/extract-pdf-pages",
-    load: () => import("@/app/extract-pdf-pages/page"),
+    load: () => import("@/app/(en)/extract-pdf-pages/page"),
     actionButton: /Extract pages/i,
   },
 ];

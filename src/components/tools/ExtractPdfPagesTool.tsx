@@ -17,8 +17,20 @@ import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
 import { parsePageRange } from "@/lib/tools/pageRange";
 import { buildPdfFromPages } from "@/lib/tools/pdfPages";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { plural, formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
-export function ExtractPdfPagesTool() {
+export function ExtractPdfPagesTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"extract-pdf-pages">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [range, setRange] = useState("");
@@ -43,15 +55,13 @@ export function ExtractPdfPagesTool() {
       const { PDFDocument } = await loadPdfLib();
       const doc = await PDFDocument.load(new Uint8Array(await f.arrayBuffer())).catch(
         () => {
-          throw new Error(
-            "Could not read this PDF. It may be corrupted or password-protected.",
-          );
+          throw new ToolFailure("unreadable_pdf");
         },
       );
       setFile(f);
       setPageCount(doc.getPageCount());
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -65,55 +75,51 @@ export function ExtractPdfPagesTool() {
 
   const run = async () => {
     if (!file || !pageCount) return;
-    setBusy("Extracting pages…");
+    setBusy(t.busyExtracting);
     try {
       const pages = parsePageRange(range, pageCount); // throws on invalid
       const srcBytes = new Uint8Array(await file.arrayBuffer());
       const outBytes = await buildPdfFromPages(srcBytes, pages);
       const blob = new Blob([new Uint8Array(outBytes)], { type: "application/pdf" });
-      const filename = file.name.replace(/\.pdf$/i, "") + "-pages.pdf";
+      const filename = file.name.replace(/\.pdf$/i, "") + t.outputSuffix + ".pdf";
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="Extract PDF pages"
-      subtitle="Pick specific pages or ranges and download a new PDF with only those pages."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Select", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your extracted PDF is ready"
+          title={t.successTitle}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "Split a PDF", path: "/split-pdf" },
-            { label: "Reorder PDF pages", path: "/reorder-pdf-pages" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android extracts and reorders pages too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept="application/pdf"
             onFiles={onFiles}
-            label="Drop a PDF here, or click to choose"
-            hint="One PDF · up to 100 MB"
+            label={t.common.dropPdfLabel}
+            hint={t.common.dropPdfHint}
+            privacyText={t.common.privacyText}
           />
 
           {file ? (
@@ -121,6 +127,8 @@ export function ExtractPdfPagesTool() {
               <FileChip
                 name={file.name}
                 size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
                 onRemove={() => {
                   setFile(null);
                   setPageCount(null);
@@ -133,23 +141,20 @@ export function ExtractPdfPagesTool() {
           {pageCount ? (
             <div className="mt-5">
               <p className="text-sm text-[--color-muted] mb-2">
-                This PDF has{" "}
-                <strong className="text-[--color-ink]">{pageCount}</strong>{" "}
-                page{pageCount === 1 ? "" : "s"}.
+                {plural(locale, pageCount, t.pageCountNote)}
               </p>
               <OptionField
-                label="Pages to extract"
-                hint="Examples: 1-3 · 2,4,6 · 1-2,5,8-10"
+                label={t.rangeLabel}
+                hint={t.rangeHint}
                 type="text"
                 value={range}
                 onChange={(e) => setRange(e.currentTarget.value)}
-                placeholder="e.g. 1-3,5"
+                placeholder={t.rangePlaceholder}
                 inputMode="numeric"
               />
               {selectedCount !== null ? (
                 <p className="mt-2 text-sm font-medium text-[--color-ink]">
-                  {selectedCount} of {pageCount} page
-                  {selectedCount === 1 ? "" : "s"} selected.
+                  {plural(locale, selectedCount, t.selectedNote, { total: pageCount })}
                 </p>
               ) : null}
             </div>
@@ -161,7 +166,7 @@ export function ExtractPdfPagesTool() {
               onClick={run}
               disabled={!file || !range.trim()}
             >
-              {state.status === "busy" ? "Extracting…" : "Extract pages"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

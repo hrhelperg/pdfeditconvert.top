@@ -12,17 +12,35 @@ import { clusterLinks, guidesForHub } from "@/lib/cluster";
 import { FAQ } from "@/components/sections/FAQ";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getSiteDictionary } from "@/lib/i18n/registry";
+import { localizeLinks } from "@/content/registry";
+import { pathForWithFallback } from "@/lib/i18n/routeMap";
+import { plural } from "@/lib/i18n/format";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
+import type { RouteId } from "@/lib/i18n/routeIds";
 import { breadcrumbSchema, faqSchema } from "@/content/schema";
 
-export function HubPage({ content }: { content: HubContent }) {
+export function HubPage({
+  content,
+  locale = DEFAULT_LOCALE,
+}: {
+  content: HubContent;
+  locale?: Locale;
+}) {
+  const { sections, breadcrumbs } = getSiteDictionary(locale);
   const crumbLabel = content.hero.eyebrow ?? content.hero.h1;
-  const hubPath = `/${content.slug}`;
+  // The English hub path identifies the cluster in every language; the
+  // reader-facing URL is resolved from the route map.
+  const englishHubPath = `/${content.slug}`;
+  const hubPath = pathForWithFallback(locale, content.slug as RouteId);
+  const homeHref = pathForWithFallback(locale, "");
+  const clusterCount = guidesForHub(englishHubPath, locale).length;
 
   return (
     <>
       <Container className="pt-6">
         <Breadcrumbs
-          items={[{ label: "Home", href: "/" }, { label: crumbLabel }]}
+          items={[{ label: breadcrumbs.home, href: homeHref }, { label: crumbLabel }]}
         />
       </Container>
 
@@ -59,11 +77,16 @@ export function HubPage({ content }: { content: HubContent }) {
             variant="inline"
             heading={content.appCta.heading}
             sub={content.appCta.sub}
+            locale={locale}
           />
         </Container>
       </Section>
 
-      <RelatedGuides items={content.related} />
+      <RelatedGuides
+        heading={sections.relatedGuides}
+        readMoreLabel={sections.readTheGuide}
+        items={localizeLinks(locale, content.related)}
+      />
 
       {/*
         Every guide declares this hub as its parentHub; surfacing that reverse
@@ -71,27 +94,29 @@ export function HubPage({ content }: { content: HubContent }) {
         those guides, and it turns the hub into a real cluster entry point.
       */}
       <ClusterGuides
-        heading={`All ${guidesForHub(hubPath).length} guides in this cluster`}
-        items={clusterLinks(hubPath)}
-        moreHref="/guides"
-        moreLabel="Browse every PDF guide"
+        heading={plural(locale, clusterCount, sections.clusterHeading)}
+        items={clusterLinks(englishHubPath, locale)}
+        moreHref={pathForWithFallback(locale, "guides")}
+        moreLabel={sections.browseEveryGuide}
+        seeAllLabel={sections.seeAllGuides}
       />
 
-      <FAQ items={content.faq} />
+      <FAQ heading={sections.faqHeading} items={content.faq} />
 
       <AppCTA
         variant="final"
         heading={content.appCta.heading}
         sub={content.appCta.sub}
+        locale={locale}
       />
 
       <JsonLd
         data={[
           breadcrumbSchema([
-            { label: "Home", path: "/" },
+            { label: breadcrumbs.home, path: homeHref },
             { label: crumbLabel, path: hubPath },
           ]),
-          faqSchema(content.faq),
+          faqSchema(content.faq, locale),
         ]}
       />
     </>

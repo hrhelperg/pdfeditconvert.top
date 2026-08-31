@@ -12,6 +12,10 @@ import { ProcessingStatus } from "@/components/tools/primitives/ProcessingStatus
 import { useToolFlow } from "@/components/tools/primitives/useToolFlow";
 import { mapToolError } from "@/components/tools/primitives/errors";
 import { assertPdf } from "@/lib/tools/validate";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { fmt, formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfJs } from "@/lib/tools/pdfjs";
 import { loadDocx } from "@/lib/tools/officeLib";
@@ -44,7 +48,15 @@ function linesFromItems(items: TextItem[]): string[] {
     .filter((l) => l.length > 0);
 }
 
-export function PdfToWordTool() {
+export function PdfToWordTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"pdf-to-word">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
   const { state, setBusy, setError, setSuccess, reset: resetFlow } = useToolFlow();
 
@@ -57,7 +69,7 @@ export function PdfToWordTool() {
       assertPdf(f);
       setFile(f);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -69,17 +81,17 @@ export function PdfToWordTool() {
 
   const run = async () => {
     if (!file) return;
-    setBusy("Reading PDF…");
+    setBusy(t.busyReading);
     try {
       const pdfjs = await loadPdfJs();
       const bytes = new Uint8Array(await file.arrayBuffer());
       const doc = await pdfjs.getDocument({ data: bytes }).promise.catch(() => {
-        throw new Error("Could not read this PDF. It may be corrupted or password-protected.");
+        throw new ToolFailure("unreadable_pdf");
       });
 
       const blocks: string[][] = [];
       for (let i = 1; i <= doc.numPages; i++) {
-        setBusy(`Extracting text from page ${i} of ${doc.numPages}…`);
+        setBusy(fmt(t.busyPage, { page: i, total: doc.numPages }));
         const page = await doc.getPage(i);
         const tc = await page.getTextContent();
         blocks.push(linesFromItems(tc.items as TextItem[]));
@@ -87,12 +99,10 @@ export function PdfToWordTool() {
 
       const allLines = blocks.flat();
       if (allLines.join("").trim().length === 0) {
-        throw new Error(
-          "No selectable text found — this looks like a scanned or image-only PDF. OCR isn't available in the browser; try the PDF Editor mobile app.",
-        );
+        throw new ToolFailure("generic", {}, t.errorNoText);
       }
 
-      setBusy("Building Word document…");
+      setBusy(t.busyBuilding);
       const { Document, Packer, Paragraph, TextRun } = await loadDocx();
       const children = blocks.flatMap((lines, idx) => {
         const paras = lines.map(
@@ -110,46 +120,45 @@ export function PdfToWordTool() {
       downloadBlob(blob, filename, DOCX_MIME);
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
     <ToolShell
-      title="PDF to Word"
-      subtitle="Extract a PDF's text into an editable .docx document — in your browser."
+      title={t.title}
+      subtitle={t.subtitle}
     >
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Convert", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your Word document is ready"
-          description="Editable text was extracted into a .docx file. Original layout, columns and images are not preserved."
+          title={t.successTitle}
+          description={t.successDescription}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, DOCX_MIME)
           }
-          related={[
-            { label: "Word to PDF — the reverse", path: "/word-to-pdf" },
-            { label: "PDF to images", path: "/pdf-to-images" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android converts and edits documents too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept="application/pdf"
             onFiles={onFiles}
-            label="Drop a PDF here, or click to choose"
-            hint="One PDF · up to 100 MB · text-based PDFs only"
+            label={t.common.dropPdfLabel}
+            hint={t.dropHint}
+            privacyText={t.common.privacyText}
           />
 
           {file ? (
@@ -157,6 +166,8 @@ export function PdfToWordTool() {
               <FileChip
                 name={file.name}
                 size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
                 onRemove={() => setFile(null)}
               />
             </ul>
@@ -164,18 +175,14 @@ export function PdfToWordTool() {
 
           <div className="mt-5 rounded-xl border border-[--color-border] bg-[--color-bg] p-4 text-sm text-[--color-muted]">
             <p className="font-semibold text-[--color-ink] mb-1">
-              What this does
+              {t.explainerTitle}
             </p>
-            Extracts the selectable text from your PDF and writes it into an
-            editable Word (.docx) file. It does <strong>not</strong> reproduce
-            the original layout, fonts, columns, tables or images — it&apos;s a
-            practical, honest text conversion. Scanned (image-only) PDFs have no
-            text layer and can&apos;t be converted here.
+            {t.explainerBody}
           </div>
 
           <div className="mt-6 flex items-center gap-3">
             <ProcessButton busy={state.status === "busy"} onClick={run} disabled={!file}>
-              {state.status === "busy" ? "Converting…" : "Convert to Word"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

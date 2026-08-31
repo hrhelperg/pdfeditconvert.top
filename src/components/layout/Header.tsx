@@ -6,20 +6,47 @@ import { Menu, X } from "lucide-react";
 import { Container } from "@/components/primitives/Container";
 import { ButtonLink } from "@/components/primitives/Button";
 import { BrandMark } from "@/components/primitives/BrandMark";
+import {
+  LanguageSwitcher,
+  type LanguageSwitcherProps,
+} from "@/components/layout/LanguageSwitcher";
 import { cn } from "@/lib/cn";
 
-const NAV = [
-  { label: "PDF Editor", href: "/pdf-editor" },
-  { label: "Convert", href: "/pdf-converter" },
-  { label: "Compress", href: "/compress-pdf" },
-  { label: "Merge", href: "/merge-pdf" },
-  { label: "Sign", href: "/sign-pdf" },
-  { label: "Guides", href: "/guides" },
-];
+export interface HeaderNavItem {
+  label: string;
+  href: string;
+}
 
-const APP_STORE = "https://apps.apple.com/app/id6747341672";
-
-export function Header() {
+/**
+ * Site header.
+ *
+ * Every string and every href arrives as a prop from the locale's root
+ * layout. Nothing is looked up here, which is deliberate: this is a Client
+ * Component, so anything it imported would be shipped to the browser. Props
+ * mean the bundle carries exactly the one locale the page is published in,
+ * and adding a locale adds nothing to any other locale's payload.
+ */
+export function Header({
+  nav,
+  homeHref,
+  homeAriaLabel,
+  ctaLabel,
+  ctaAriaLabel,
+  ctaHref,
+  openMenu,
+  closeMenu,
+  switcher,
+}: {
+  nav: HeaderNavItem[];
+  homeHref: string;
+  homeAriaLabel: string;
+  ctaLabel: string;
+  ctaAriaLabel: string;
+  ctaHref: string;
+  openMenu: string;
+  closeMenu: string;
+  switcher: LanguageSwitcherProps;
+}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -34,11 +61,7 @@ export function Header() {
       {/* Red brand accent stripe */}
       <div aria-hidden className="h-1 w-full bg-[var(--gradient-brand)]" />
       <Container className="flex items-center justify-between h-16">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5"
-          aria-label="PDF Editor home"
-        >
+        <Link href={homeHref} className="flex items-center gap-2.5" aria-label={homeAriaLabel}>
           <BrandMark size={36} className="h-9 w-9" />
           <span className="text-lg font-extrabold tracking-tight">
             <span className="text-[--color-brand]">PDF</span>
@@ -47,7 +70,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-7">
-          {NAV.map((n) => (
+          {nav.map((n) => (
             <Link
               key={n.href}
               href={n.href}
@@ -58,22 +81,23 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageSwitcher {...switcher} />
           <ButtonLink
-            href={APP_STORE}
+            href={ctaHref}
             external
             variant="primary"
             size="md"
-            ariaLabel="Download PDF Editor on the App Store"
+            ariaLabel={ctaAriaLabel}
           >
-            Get the app
+            {ctaLabel}
           </ButtonLink>
         </div>
 
         <button
           type="button"
           className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg hover:bg-[--color-bg]"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? closeMenu : openMenu}
           aria-expanded={open ? "true" : "false"}
           onClick={() => setOpen((v) => !v)}
         >
@@ -82,14 +106,12 @@ export function Header() {
       </Container>
 
       <div
-        className={cn(
-          "md:hidden border-t border-[--color-border] bg-[--color-surface]",
-        )}
+        className={cn("md:hidden border-t border-[--color-border] bg-[--color-surface]")}
         hidden={!open}
       >
         <Container className="py-4">
           <ul className="flex flex-col gap-1">
-            {NAV.map((n) => (
+            {nav.map((n) => (
               <li key={n.href}>
                 <Link
                   href={n.href}
@@ -101,15 +123,18 @@ export function Header() {
               </li>
             ))}
             <li className="mt-2">
+              <LanguageSwitcher {...switcher} className="w-full" />
+            </li>
+            <li className="mt-2">
               <ButtonLink
-                href={APP_STORE}
+                href={ctaHref}
                 external
                 variant="primary"
                 size="md"
                 className="w-full"
-                ariaLabel="Download PDF Editor on the App Store"
+                ariaLabel={ctaAriaLabel}
               >
-                Get the app
+                {ctaLabel}
               </ButtonLink>
             </li>
           </ul>

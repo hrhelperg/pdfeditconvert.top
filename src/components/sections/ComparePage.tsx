@@ -7,17 +7,31 @@ import { AppCTA } from "@/components/sections/AppCTA";
 import { FAQ } from "@/components/sections/FAQ";
 import { RelatedGuides } from "@/components/sections/RelatedGuides";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getSiteDictionary } from "@/lib/i18n/registry";
+import { localizeLinks } from "@/content/registry";
+import { pathForWithFallback } from "@/lib/i18n/routeMap";
+import { fmt } from "@/lib/i18n/format";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
+import type { RouteId } from "@/lib/i18n/routeIds";
 import { breadcrumbSchema, faqSchema } from "@/content/schema";
 
-export function ComparePage({ content }: { content: CompareContent }) {
-  const path = `/compare/${content.slug}`;
+export function ComparePage({
+  content,
+  locale = DEFAULT_LOCALE,
+}: {
+  content: CompareContent;
+  locale?: Locale;
+}) {
+  const { sections, breadcrumbs } = getSiteDictionary(locale);
+  const homeHref = pathForWithFallback(locale, "");
+  const path = pathForWithFallback(locale, `compare/${content.slug}` as RouteId);
   return (
     <>
       <Container className="pt-6">
         <Breadcrumbs
           items={[
-            { label: "Home", href: "/" },
-            { label: "Compare" },
+            { label: breadcrumbs.home, href: homeHref },
+            { label: breadcrumbs.compare },
             { label: content.h1 },
           ]}
         />
@@ -39,7 +53,7 @@ export function ComparePage({ content }: { content: CompareContent }) {
         <div className="grid md:grid-cols-2 gap-8 my-10">
           <div>
             <h2 className="text-xl font-bold text-[--color-ink] mb-3">
-              When to pick {content.leftLabel}
+              {fmt(sections.whenToPick, { label: content.leftLabel })}
             </h2>
             <ul className="list-disc pl-5 text-[--color-muted] space-y-1.5">
               {content.whenLeft.map((s) => (
@@ -49,7 +63,7 @@ export function ComparePage({ content }: { content: CompareContent }) {
           </div>
           <div>
             <h2 className="text-xl font-bold text-[--color-ink] mb-3">
-              When to pick {content.rightLabel}
+              {fmt(sections.whenToPick, { label: content.rightLabel })}
             </h2>
             <ul className="list-disc pl-5 text-[--color-muted] space-y-1.5">
               {content.whenRight.map((s) => (
@@ -59,20 +73,25 @@ export function ComparePage({ content }: { content: CompareContent }) {
           </div>
         </div>
       </Container>
-      <FAQ items={content.faq} />
-      <RelatedGuides items={content.related} />
+      <FAQ heading={sections.faqHeading} items={content.faq} />
+      <RelatedGuides
+        heading={sections.relatedGuides}
+        readMoreLabel={sections.readTheGuide}
+        items={localizeLinks(locale, content.related)}
+      />
       <AppCTA
         variant="final"
-        heading="Edit PDFs on your phone."
-        sub="Free on iOS and Android."
+        heading={sections.editOnPhoneHeading}
+        sub={sections.freeOnBoth}
+        locale={locale}
       />
       <JsonLd
         data={[
           breadcrumbSchema([
-            { label: "Home", path: "/" },
+            { label: breadcrumbs.home, path: homeHref },
             { label: content.h1, path },
           ]),
-          faqSchema(content.faq),
+          faqSchema(content.faq, locale),
         ]}
       />
     </>

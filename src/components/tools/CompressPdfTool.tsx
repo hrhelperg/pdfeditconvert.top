@@ -12,10 +12,14 @@ import { ProcessingStatus } from "@/components/tools/primitives/ProcessingStatus
 import { OptionGroup } from "@/components/tools/primitives/OptionGroup";
 import { useToolFlow } from "@/components/tools/primitives/useToolFlow";
 import { mapToolError } from "@/components/tools/primitives/errors";
-import { assertPdf, formatBytes } from "@/lib/tools/validate";
+import { assertPdf } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
 import { loadPdfJs } from "@/lib/tools/pdfjs";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { fmt, formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
 type Preset = "low" | "recommended" | "strong";
 
@@ -25,7 +29,15 @@ const PRESETS: Record<Preset, { scale: number; quality: number }> = {
   strong: { scale: 1.0, quality: 0.5 },
 };
 
-export function CompressPdfTool() {
+export function CompressPdfTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"compress-pdf">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [file, setFile] = useState<File | null>(null);
   const [preset, setPreset] = useState<Preset>("recommended");
   const [summary, setSummary] = useState<string>("");
@@ -40,7 +52,7 @@ export function CompressPdfTool() {
       assertPdf(f);
       setFile(f);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -54,7 +66,7 @@ export function CompressPdfTool() {
   const run = async () => {
     if (!file) return;
     const originalSize = file.size;
-    setBusy("Reading PDF…");
+    setBusy(t.busyReading);
     try {
       const { scale, quality } = PRESETS[preset];
       const { PDFDocument } = await loadPdfLib();
@@ -62,14 +74,14 @@ export function CompressPdfTool() {
 
       const srcBytes = new Uint8Array(await file.arrayBuffer());
       const srcDoc = await PDFDocument.load(srcBytes).catch(() => {
-        throw new Error("Could not read this PDF. It may be corrupted or password-protected.");
+        throw new ToolFailure("unreadable_pdf");
       });
       const jsDoc = await pdfjs.getDocument({ data: new Uint8Array(srcBytes) }).promise;
 
       const out = await PDFDocument.create();
       const total = jsDoc.numPages;
       for (let i = 0; i < total; i++) {
-        setBusy(`Compressing page ${i + 1} of ${total}…`);
+        setBusy(fmt(t.busyPage, { page: i + 1, total }));
         const { width, height } = srcDoc.getPage(i).getSize();
         const page = await jsDoc.getPage(i + 1);
         const viewport = page.getViewport({ scale });
@@ -77,13 +89,13 @@ export function CompressPdfTool() {
         canvas.width = Math.ceil(viewport.width);
         canvas.height = Math.ceil(viewport.height);
         const ctx = canvas.getContext("2d");
-        if (!ctx) throw new Error("Canvas not supported in this browser.");
+        if (!ctx) throw new ToolFailure("canvas_unsupported");
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         await page.render({ canvas, canvasContext: ctx, viewport }).promise;
         const jpeg: Blob = await new Promise((resolve, reject) =>
           canvas.toBlob(
-            (b) => (b ? resolve(b) : reject(new Error("Image encoding failed."))),
+            (b) => (b ? resolve(b) : reject(new ToolFailure("encode_failed"))),
             "image/jpeg",
             quality,
           ),
@@ -93,7 +105,7 @@ export function CompressPdfTool() {
         p.drawImage(img, { x: 0, y: 0, width, height });
       }
 
-      setBusy("Finalizing…");
+      setBusy(t.busyFinalizing);
       const outBytes = await out.save({ useObjectStreams: true });
       const base = file.name.replace(/\.pdf$/i, "");
 
@@ -105,62 +117,58 @@ export function CompressPdfTool() {
         // back a larger file — keep the user's original untouched.
         blob = new Blob([new Uint8Array(srcBytes)], { type: "application/pdf" });
         filename = `${base}.pdf`;
-        description = `This PDF is mostly text or vector graphics and is already compact (${formatBytes(
-          originalSize,
-        )}). Compression wouldn't help, so your original file is unchanged.`;
+        description = fmt(t.summaryAlreadyCompact, { size: size(originalSize) });
       } else {
         blob = new Blob([new Uint8Array(outBytes)], { type: "application/pdf" });
-        filename = `${base}-compressed.pdf`;
+        filename = `${base}${t.outputSuffix}.pdf`;
         const pct = Math.round((1 - outBytes.byteLength / originalSize) * 100);
-        description = `Reduced ${formatBytes(originalSize)} → ${formatBytes(
-          blob.size,
-        )} (${pct}% smaller). Pages were re-rendered as images, so text is no longer selectable.`;
+        description = fmt(t.summaryReduced, {
+          from: size(originalSize),
+          to: size(blob.size),
+          percent: pct,
+        });
       }
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
       // stash the human-readable summary on the flow via description prop below
       setSummary(description);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="Compress PDF"
-      subtitle="Shrink a PDF's file size for email, upload or storage — in your browser."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your compressed PDF is ready"
+          title={t.successTitle}
           description={summary}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "Merge PDFs", path: "/merge-pdf" },
-            { label: "Split a PDF", path: "/split-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android compresses and shares PDFs too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
           <DropZone
             accept="application/pdf"
             onFiles={onFiles}
-            label="Drop a PDF here, or click to choose"
-            hint="One PDF · up to 100 MB"
+            label={t.common.dropPdfLabel}
+            hint={t.common.dropPdfHint}
+            privacyText={t.common.privacyText}
           />
 
           {file ? (
@@ -168,6 +176,8 @@ export function CompressPdfTool() {
               <FileChip
                 name={file.name}
                 size={file.size}
+                sizeText={size(file.size)}
+                removeLabel={t.common.fileRemove}
                 onRemove={() => setFile(null)}
               />
             </ul>
@@ -176,25 +186,22 @@ export function CompressPdfTool() {
           {file ? (
             <div className="mt-5">
               <OptionGroup<Preset>
-                label="Compression level"
+                label={t.levelLabel}
                 value={preset}
                 onChange={setPreset}
                 options={[
-                  { value: "low", label: "Low" },
-                  { value: "recommended", label: "Recommended" },
-                  { value: "strong", label: "Strong" },
+                  { value: "low", label: t.levelLow },
+                  { value: "recommended", label: t.levelRecommended },
+                  { value: "strong", label: t.levelStrong },
                 ]}
               />
-              <p className="mt-2 text-xs text-[--color-muted]">
-                Stronger compression rasterizes pages (text becomes an image,
-                no longer selectable). Best for scanned or image-heavy PDFs.
-              </p>
+              <p className="mt-2 text-xs text-[--color-muted]">{t.levelNote}</p>
             </div>
           ) : null}
 
           <div className="mt-6 flex items-center gap-3">
             <ProcessButton busy={state.status === "busy"} onClick={run} disabled={!file}>
-              {state.status === "busy" ? "Compressing…" : "Compress PDF"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
           </div>
 

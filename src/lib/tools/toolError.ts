@@ -28,18 +28,23 @@ export type ToolErrorCode =
 
 export type ToolErrorParams = Record<string, string | number>;
 
-export class ToolError extends Error {
+/**
+ * Named `ToolFailure`, not `ToolError`, because `ToolError` is already the
+ * alert component every tool renders. Two `ToolError`s in one file is a
+ * rename waiting to go wrong.
+ */
+export class ToolFailure extends Error {
   readonly code: ToolErrorCode;
   readonly params: ToolErrorParams;
 
   constructor(code: ToolErrorCode, params: ToolErrorParams = {}, message?: string) {
     super(message ?? code);
-    this.name = "ToolError";
+    this.name = "ToolFailure";
     this.code = code;
     this.params = params;
   }
 }
 
-export function isToolError(err: unknown): err is ToolError {
-  return err instanceof ToolError;
+export function isToolFailure(err: unknown): err is ToolFailure {
+  return err instanceof ToolFailure;
 }

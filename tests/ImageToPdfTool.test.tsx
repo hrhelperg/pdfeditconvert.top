@@ -2,23 +2,24 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
+import { toolProps } from "./helpers/toolProps";
 
 describe("ImageToPdfTool", () => {
   it("disables Convert to PDF until images are added", () => {
-    render(<ImageToPdfTool />);
+    render(<ImageToPdfTool {...toolProps("image-to-pdf")} />);
     const btn = screen.getByRole("button", { name: /Convert to PDF/i });
     expect(btn).toBeDisabled();
   });
 
   it("renders the 3-step indicator with Upload active by default", () => {
-    render(<ImageToPdfTool />);
+    render(<ImageToPdfTool {...toolProps("image-to-pdf")} />);
     expect(screen.getByText("Upload")).toBeInTheDocument();
     expect(screen.getByText("Adjust")).toBeInTheDocument();
     expect(screen.getByText("Download")).toBeInTheDocument();
   });
 
   it("shows file list with reorder + remove after a valid image is added", async () => {
-    render(<ImageToPdfTool />);
+    render(<ImageToPdfTool {...toolProps("image-to-pdf")} />);
     const file = new File(["x"], "a.png", { type: "image/png" });
     const input = screen.getByLabelText(/Drop images here/i) as HTMLInputElement;
     await userEvent.upload(input, file);
@@ -27,7 +28,7 @@ describe("ImageToPdfTool", () => {
   });
 
   it("shows page size, orientation, image fit, and margin options once a file is added", async () => {
-    render(<ImageToPdfTool />);
+    render(<ImageToPdfTool {...toolProps("image-to-pdf")} />);
     const file = new File(["x"], "a.png", { type: "image/png" });
     const input = screen.getByLabelText(/Drop images here/i) as HTMLInputElement;
     await userEvent.upload(input, file);

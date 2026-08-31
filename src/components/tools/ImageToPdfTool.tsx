@@ -16,6 +16,10 @@ import { assertImage, MAX_FILES } from "@/lib/tools/validate";
 import { downloadBlob } from "@/lib/tools/download";
 import { loadPdfLib } from "@/lib/tools/pdfLib";
 import { uuid } from "@/lib/tools/uuid";
+import { ToolFailure } from "@/lib/tools/toolError";
+import { formatBytesLocalized } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/locales";
+import type { ResolvedToolStrings } from "@/lib/i18n/toolStrings";
 
 type Item = { id: string; file: File };
 
@@ -36,7 +40,15 @@ const MARGINS: Record<Margin, number> = {
   medium: 48,
 };
 
-export function ImageToPdfTool() {
+export function ImageToPdfTool({
+  strings,
+  locale,
+}: {
+  strings: ResolvedToolStrings<"image-to-pdf">;
+  locale: Locale;
+}) {
+  const t = strings;
+  const size = (bytes: number) => formatBytesLocalized(locale, bytes);
   const [items, setItems] = useState<Item[]>([]);
   const [pageSize, setPageSize] = useState<PageSize>("auto");
   const [orientation, setOrientation] = useState<Orientation>("auto");
@@ -52,11 +64,11 @@ export function ImageToPdfTool() {
       for (const f of files) assertImage(f);
       const next = [...items, ...files.map((file) => ({ id: uuid(), file }))];
       if (next.length > MAX_FILES) {
-        throw new Error(`Add up to ${MAX_FILES} images at a time.`);
+        throw new ToolFailure("too_many_files", { limit: MAX_FILES });
       }
       setItems(next);
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
@@ -79,10 +91,10 @@ export function ImageToPdfTool() {
 
   const create = async () => {
     if (items.length === 0) {
-      setError("Add at least one image first.");
+      setError(t.errorNoImages);
       return;
     }
-    setBusy("Creating your PDF…");
+    setBusy(t.busyCreating);
     try {
       const { PDFDocument } = await loadPdfLib();
       const pdf = await PDFDocument.create();
@@ -112,41 +124,36 @@ export function ImageToPdfTool() {
       }
       const out = await pdf.save();
       const blob = new Blob([new Uint8Array(out)], { type: "application/pdf" });
-      const filename = "images.pdf";
+      const filename = t.outputFilename;
       downloadBlob(blob, filename, "application/pdf");
       setSuccess({ filename, sizeBytes: blob.size, blob });
     } catch (e) {
-      const m = mapToolError(e);
+      const m = mapToolError(e, t.common);
       setError(m.message, m.hint);
     }
   };
 
   return (
-    <ToolShell
-      title="Image to PDF"
-      subtitle="Upload JPG, PNG, or WebP images and combine them into one PDF."
-    >
+    <ToolShell title={t.title} subtitle={t.subtitle}>
       <div className="mb-5">
-        <StepIndicator steps={["Upload", "Adjust", "Download"]} current={current} />
+        <StepIndicator steps={t.steps} current={current} />
       </div>
 
       {state.status === "success" ? (
         <SuccessState
-          title="Your PDF is ready"
+          title={t.successTitle}
           filename={state.success.filename}
           sizeBytes={state.success.sizeBytes}
+          sizeText={size(state.success.sizeBytes)}
           onReset={startOver}
           onDownloadAgain={() =>
             downloadBlob(state.success.blob, state.success.filename, "application/pdf")
           }
-          related={[
-            { label: "Merge two PDFs", path: "/merge-pdf" },
-            { label: "Add a watermark", path: "/add-watermark-to-pdf" },
-          ]}
-          appCta={{
-            heading: "Need PDF tools on your phone?",
-            sub: "PDF Editor for iPhone and Android works offline too.",
-          }}
+          related={[...t.related]}
+          downloadAgainLabel={t.common.downloadAgain}
+          startOverLabel={t.common.startOver}
+          tryNextLabel={t.common.tryNext}
+          appCta={{ heading: t.common.appCtaHeading, sub: t.appCtaSub }}
         />
       ) : (
         <>
@@ -154,8 +161,9 @@ export function ImageToPdfTool() {
             accept="image/jpeg,image/png,image/webp"
             multiple
             onFiles={addFiles}
-            label="Drop images here, or click to choose"
-            hint="JPG, PNG or WebP · up to 100 MB each"
+            label={t.dropLabel}
+            hint={t.dropHint}
+            privacyText={t.common.privacyText}
           />
 
           {items.length > 0 ? (
@@ -165,6 +173,10 @@ export function ImageToPdfTool() {
                   key={it.id}
                   name={it.file.name}
                   size={it.file.size}
+                  sizeText={size(it.file.size)}
+                  moveUpLabel={t.common.fileMoveUp}
+                  moveDownLabel={t.common.fileMoveDown}
+                  removeLabel={t.common.fileRemove}
                   onRemove={() => remove(it.id)}
                   onMoveUp={idx > 0 ? () => move(it.id, -1) : undefined}
                   onMoveDown={idx < items.length - 1 ? () => move(it.id, 1) : undefined}
@@ -176,42 +188,42 @@ export function ImageToPdfTool() {
           {items.length > 0 ? (
             <div className="mt-6 grid gap-5 md:grid-cols-2">
               <OptionGroup<PageSize>
-                label="Page size"
+                label={t.pageSizeLabel}
                 value={pageSize}
                 onChange={setPageSize}
                 options={[
-                  { value: "auto", label: "Auto" },
+                  { value: "auto", label: t.pageSizeAuto },
                   { value: "a4", label: "A4" },
                   { value: "letter", label: "Letter" },
                 ]}
               />
               <OptionGroup<Orientation>
-                label="Orientation"
+                label={t.orientationLabel}
                 value={orientation}
                 onChange={setOrientation}
                 options={[
-                  { value: "auto", label: "Auto" },
-                  { value: "portrait", label: "Portrait" },
-                  { value: "landscape", label: "Landscape" },
+                  { value: "auto", label: t.orientationAuto },
+                  { value: "portrait", label: t.orientationPortrait },
+                  { value: "landscape", label: t.orientationLandscape },
                 ]}
               />
               <OptionGroup<Fit>
-                label="Image fit"
+                label={t.fitLabel}
                 value={fit}
                 onChange={setFit}
                 options={[
-                  { value: "fit", label: "Fit page" },
-                  { value: "fill", label: "Fill page" },
+                  { value: "fit", label: t.fitFit },
+                  { value: "fill", label: t.fitFill },
                 ]}
               />
               <OptionGroup<Margin>
-                label="Margin"
+                label={t.marginLabel}
                 value={margin}
                 onChange={setMargin}
                 options={[
-                  { value: "none", label: "None" },
-                  { value: "small", label: "Small" },
-                  { value: "medium", label: "Medium" },
+                  { value: "none", label: t.marginNone },
+                  { value: "small", label: t.marginSmall },
+                  { value: "medium", label: t.marginMedium },
                 ]}
               />
             </div>
@@ -223,7 +235,7 @@ export function ImageToPdfTool() {
               onClick={create}
               disabled={items.length === 0}
             >
-              {state.status === "busy" ? "Converting…" : "Convert to PDF"}
+              {state.status === "busy" ? t.actionBusy : t.actionIdle}
             </ProcessButton>
             {items.length > 0 ? (
               <button
@@ -231,7 +243,7 @@ export function ImageToPdfTool() {
                 onClick={() => setItems([])}
                 className="text-sm font-semibold text-[--color-muted] hover:text-[--color-ink]"
               >
-                Clear all
+                {t.common.clearAll}
               </button>
             ) : null}
           </div>
@@ -294,10 +306,10 @@ async function webpToPng(file: File): Promise<Uint8Array> {
   canvas.width = bitmap.width;
   canvas.height = bitmap.height;
   const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("Canvas not supported in this browser.");
+  if (!ctx) throw new ToolFailure("canvas_unsupported");
   ctx.drawImage(bitmap, 0, 0);
   const blob: Blob = await new Promise((resolve, reject) =>
-    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Failed to encode PNG."))), "image/png"),
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new ToolFailure("encode_failed"))), "image/png"),
   );
   return new Uint8Array(await blob.arrayBuffer());
 }
