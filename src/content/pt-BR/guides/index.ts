@@ -29,6 +29,12 @@ import howToEditPdfOnAndroid from "@/content/pt-BR/guides/how-to-edit-pdf-on-and
 import howToEditPdfOnIphone from "@/content/pt-BR/guides/how-to-edit-pdf-on-iphone";
 import howToExtractPagesFromPdf from "@/content/pt-BR/guides/how-to-extract-pages-from-pdf";
 import howToFillPdfFormsOnPhone from "@/content/pt-BR/guides/how-to-fill-pdf-forms-on-phone";
+import howToFixACorruptedPdf from "@/content/pt-BR/guides/how-to-fix-a-corrupted-pdf";
+import howToFixPdfFontIssues from "@/content/pt-BR/guides/how-to-fix-pdf-font-issues";
+import howToFixPdfFormattingProblems from "@/content/pt-BR/guides/how-to-fix-pdf-formatting-problems";
+import howToFixPdfPrintingIssues from "@/content/pt-BR/guides/how-to-fix-pdf-printing-issues";
+import howToFixPdfUploadErrors from "@/content/pt-BR/guides/how-to-fix-pdf-upload-errors";
+import howToFixScannedPdfQuality from "@/content/pt-BR/guides/how-to-fix-scanned-pdf-quality";
 import howToFixSidewaysPdfPages from "@/content/pt-BR/guides/how-to-fix-sideways-pdf-pages";
 import howToMakePdfSmallerOnAndroid from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-android";
 import howToMakePdfSmallerOnIphone from "@/content/pt-BR/guides/how-to-make-pdf-smaller-on-iphone";
@@ -53,7 +59,9 @@ import pdfVsDocx from "@/content/pt-BR/guides/pdf-vs-docx";
 import pdfVsJpgForDocuments from "@/content/pt-BR/guides/pdf-vs-jpg-for-documents";
 import privacyFirstPdfTools from "@/content/pt-BR/guides/privacy-first-pdf-tools";
 import whenToUsePdfInsteadOfDocx from "@/content/pt-BR/guides/when-to-use-pdf-instead-of-docx";
+import whyCantIEditAPdf from "@/content/pt-BR/guides/why-cant-i-edit-a-pdf";
 import whyIsMyPdfBlank from "@/content/pt-BR/guides/why-is-my-pdf-blank";
+import whyIsMyPdfBlurry from "@/content/pt-BR/guides/why-is-my-pdf-blurry";
 import whyIsMyPdfSoLarge from "@/content/pt-BR/guides/why-is-my-pdf-so-large";
 import whyWontMyPdfOpen from "@/content/pt-BR/guides/why-wont-my-pdf-open";
 
@@ -97,6 +105,12 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-edit-pdf-on-iphone": howToEditPdfOnIphone,
   "how-to-extract-pages-from-pdf": howToExtractPagesFromPdf,
   "how-to-fill-pdf-forms-on-phone": howToFillPdfFormsOnPhone,
+  "how-to-fix-a-corrupted-pdf": howToFixACorruptedPdf,
+  "how-to-fix-pdf-font-issues": howToFixPdfFontIssues,
+  "how-to-fix-pdf-formatting-problems": howToFixPdfFormattingProblems,
+  "how-to-fix-pdf-printing-issues": howToFixPdfPrintingIssues,
+  "how-to-fix-pdf-upload-errors": howToFixPdfUploadErrors,
+  "how-to-fix-scanned-pdf-quality": howToFixScannedPdfQuality,
   "how-to-fix-sideways-pdf-pages": howToFixSidewaysPdfPages,
   "how-to-make-pdf-smaller-on-android": howToMakePdfSmallerOnAndroid,
   "how-to-make-pdf-smaller-on-iphone": howToMakePdfSmallerOnIphone,
@@ -121,7 +135,9 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "pdf-vs-jpg-for-documents": pdfVsJpgForDocuments,
   "privacy-first-pdf-tools": privacyFirstPdfTools,
   "when-to-use-pdf-instead-of-docx": whenToUsePdfInsteadOfDocx,
+  "why-cant-i-edit-a-pdf": whyCantIEditAPdf,
   "why-is-my-pdf-blank": whyIsMyPdfBlank,
+  "why-is-my-pdf-blurry": whyIsMyPdfBlurry,
   "why-is-my-pdf-so-large": whyIsMyPdfSoLarge,
   "why-wont-my-pdf-open": whyWontMyPdfOpen,
 };
