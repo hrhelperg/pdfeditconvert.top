@@ -12,9 +12,13 @@ import bestPdfWorkflowForFreelancers from "@/content/pt-BR/guides/best-pdf-workf
 import bestPdfWorkflowForTeams from "@/content/pt-BR/guides/best-pdf-workflow-for-teams";
 import browserBasedDocumentProcessingBenefits from "@/content/pt-BR/guides/browser-based-document-processing-benefits";
 import browserBasedPdfToolsVsUploadTools from "@/content/pt-BR/guides/browser-based-pdf-tools-vs-upload-tools";
+import canYouEditAPdfForm from "@/content/pt-BR/guides/can-you-edit-a-pdf-form";
 import commonPdfMistakesToAvoid from "@/content/pt-BR/guides/common-pdf-mistakes-to-avoid";
 import compressPdfWithoutLosingTooMuchQuality from "@/content/pt-BR/guides/compress-pdf-without-losing-too-much-quality";
 import doOnlinePdfToolsStoreFiles from "@/content/pt-BR/guides/do-online-pdf-tools-store-files";
+import editablePdfVsFillablePdf from "@/content/pt-BR/guides/editable-pdf-vs-fillable-pdf";
+import editablePdfVsFlatPdf from "@/content/pt-BR/guides/editable-pdf-vs-flat-pdf";
+import howPdfFormsWork from "@/content/pt-BR/guides/how-pdf-forms-work";
 import howToAddWatermarkToPdf from "@/content/pt-BR/guides/how-to-add-watermark-to-pdf";
 import howToAnnotatePdfOnMobile from "@/content/pt-BR/guides/how-to-annotate-pdf-on-mobile";
 import howToAvoidUploadingSensitiveDocuments from "@/content/pt-BR/guides/how-to-avoid-uploading-sensitive-documents";
@@ -33,6 +37,7 @@ import howToConvertPngToPdf from "@/content/pt-BR/guides/how-to-convert-png-to-p
 import howToConvertScannedDocumentsToPdf from "@/content/pt-BR/guides/how-to-convert-scanned-documents-to-pdf";
 import howToConvertWebpToPdf from "@/content/pt-BR/guides/how-to-convert-webp-to-pdf";
 import howToConvertWordToPdf from "@/content/pt-BR/guides/how-to-convert-word-to-pdf";
+import howToCreateAFillablePdf from "@/content/pt-BR/guides/how-to-create-a-fillable-pdf";
 import howToCreateClientReadyPdfFiles from "@/content/pt-BR/guides/how-to-create-client-ready-pdf-files";
 import howToCreateDigitalStudyPdfs from "@/content/pt-BR/guides/how-to-create-digital-study-pdfs";
 import howToCreatePdfFromCamera from "@/content/pt-BR/guides/how-to-create-pdf-from-camera";
@@ -40,6 +45,7 @@ import howToEditClassDocumentsAsPdf from "@/content/pt-BR/guides/how-to-edit-cla
 import howToEditPdfOnAndroid from "@/content/pt-BR/guides/how-to-edit-pdf-on-android";
 import howToEditPdfOnIphone from "@/content/pt-BR/guides/how-to-edit-pdf-on-iphone";
 import howToExtractPagesFromPdf from "@/content/pt-BR/guides/how-to-extract-pages-from-pdf";
+import howToFillOutAPdfForm from "@/content/pt-BR/guides/how-to-fill-out-a-pdf-form";
 import howToFillPdfFormsOnPhone from "@/content/pt-BR/guides/how-to-fill-pdf-forms-on-phone";
 import howToFixACorruptedPdf from "@/content/pt-BR/guides/how-to-fix-a-corrupted-pdf";
 import howToFixPdfFontIssues from "@/content/pt-BR/guides/how-to-fix-pdf-font-issues";
@@ -65,6 +71,7 @@ import howToReducePdfSizeBeforeUploading from "@/content/pt-BR/guides/how-to-red
 import howToRemoveUnwantedPagesFromPdf from "@/content/pt-BR/guides/how-to-remove-unwanted-pages-from-pdf";
 import howToReorderPdfPages from "@/content/pt-BR/guides/how-to-reorder-pdf-pages";
 import howToRotatePdfPages from "@/content/pt-BR/guides/how-to-rotate-pdf-pages";
+import howToSaveAFilledPdfForm from "@/content/pt-BR/guides/how-to-save-a-filled-pdf-form";
 import howToScanDocumentsToPdf from "@/content/pt-BR/guides/how-to-scan-documents-to-pdf";
 import howToScanNotesToPdf from "@/content/pt-BR/guides/how-to-scan-notes-to-pdf";
 import howToSendContractsAsPdf from "@/content/pt-BR/guides/how-to-send-contracts-as-pdf";
@@ -90,6 +97,7 @@ import pdfWorkflowsForSmallBusiness from "@/content/pt-BR/guides/pdf-workflows-f
 import privacyFirstDocumentWorkflows from "@/content/pt-BR/guides/privacy-first-document-workflows";
 import privacyFirstPdfTools from "@/content/pt-BR/guides/privacy-first-pdf-tools";
 import securePdfWorkflowsForBusiness from "@/content/pt-BR/guides/secure-pdf-workflows-for-business";
+import whatIsAPdfForm from "@/content/pt-BR/guides/what-is-a-pdf-form";
 import whenToUsePdfInsteadOfDocx from "@/content/pt-BR/guides/when-to-use-pdf-instead-of-docx";
 import whyCantIEditAPdf from "@/content/pt-BR/guides/why-cant-i-edit-a-pdf";
 import whyIsMyPdfBlank from "@/content/pt-BR/guides/why-is-my-pdf-blank";
@@ -120,9 +128,13 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "best-pdf-workflow-for-teams": bestPdfWorkflowForTeams,
   "browser-based-document-processing-benefits": browserBasedDocumentProcessingBenefits,
   "browser-based-pdf-tools-vs-upload-tools": browserBasedPdfToolsVsUploadTools,
+  "can-you-edit-a-pdf-form": canYouEditAPdfForm,
   "common-pdf-mistakes-to-avoid": commonPdfMistakesToAvoid,
   "compress-pdf-without-losing-too-much-quality": compressPdfWithoutLosingTooMuchQuality,
   "do-online-pdf-tools-store-files": doOnlinePdfToolsStoreFiles,
+  "editable-pdf-vs-fillable-pdf": editablePdfVsFillablePdf,
+  "editable-pdf-vs-flat-pdf": editablePdfVsFlatPdf,
+  "how-pdf-forms-work": howPdfFormsWork,
   "how-to-add-watermark-to-pdf": howToAddWatermarkToPdf,
   "how-to-annotate-pdf-on-mobile": howToAnnotatePdfOnMobile,
   "how-to-avoid-uploading-sensitive-documents": howToAvoidUploadingSensitiveDocuments,
@@ -141,6 +153,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-convert-scanned-documents-to-pdf": howToConvertScannedDocumentsToPdf,
   "how-to-convert-webp-to-pdf": howToConvertWebpToPdf,
   "how-to-convert-word-to-pdf": howToConvertWordToPdf,
+  "how-to-create-a-fillable-pdf": howToCreateAFillablePdf,
   "how-to-create-client-ready-pdf-files": howToCreateClientReadyPdfFiles,
   "how-to-create-digital-study-pdfs": howToCreateDigitalStudyPdfs,
   "how-to-create-pdf-from-camera": howToCreatePdfFromCamera,
@@ -148,6 +161,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-edit-pdf-on-android": howToEditPdfOnAndroid,
   "how-to-edit-pdf-on-iphone": howToEditPdfOnIphone,
   "how-to-extract-pages-from-pdf": howToExtractPagesFromPdf,
+  "how-to-fill-out-a-pdf-form": howToFillOutAPdfForm,
   "how-to-fill-pdf-forms-on-phone": howToFillPdfFormsOnPhone,
   "how-to-fix-a-corrupted-pdf": howToFixACorruptedPdf,
   "how-to-fix-pdf-font-issues": howToFixPdfFontIssues,
@@ -173,6 +187,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "how-to-remove-unwanted-pages-from-pdf": howToRemoveUnwantedPagesFromPdf,
   "how-to-reorder-pdf-pages": howToReorderPdfPages,
   "how-to-rotate-pdf-pages": howToRotatePdfPages,
+  "how-to-save-a-filled-pdf-form": howToSaveAFilledPdfForm,
   "how-to-scan-documents-to-pdf": howToScanDocumentsToPdf,
   "how-to-scan-notes-to-pdf": howToScanNotesToPdf,
   "how-to-send-contracts-as-pdf": howToSendContractsAsPdf,
@@ -198,6 +213,7 @@ export const GUIDES_PT_BR: Record<string, GuideContent> = {
   "privacy-first-document-workflows": privacyFirstDocumentWorkflows,
   "privacy-first-pdf-tools": privacyFirstPdfTools,
   "secure-pdf-workflows-for-business": securePdfWorkflowsForBusiness,
+  "what-is-a-pdf-form": whatIsAPdfForm,
   "when-to-use-pdf-instead-of-docx": whenToUsePdfInsteadOfDocx,
   "why-cant-i-edit-a-pdf": whyCantIEditAPdf,
   "why-is-my-pdf-blank": whyIsMyPdfBlank,
