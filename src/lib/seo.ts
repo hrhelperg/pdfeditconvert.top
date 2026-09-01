@@ -212,4 +212,10 @@ const ROOT_COPY: Record<string, RootCopy> & { en: RootCopy } = {
     description:
       "Solusi PDF all-in-one untuk kerja, belajar, dan kehidupan sehari-hari. Edit, konversi, kompres, gabungkan, tanda tangani, dan pindai PDF dari ponsel Anda.",
   },
+  tr: {
+    defaultTitle: "PDF Editor — PDF Düzenle, Dönüştür, İmzala ve Tara",
+    template: "%s | PDF Editor",
+    description:
+      "İş, okul ve günlük hayat için hepsi bir arada PDF çözümü. Telefonundan PDF'leri düzenle, dönüştür, sıkıştır, birleştir, imzala ve tara.",
+  },
 };

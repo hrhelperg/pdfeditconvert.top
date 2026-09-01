@@ -194,4 +194,18 @@ describe("ToolPage", () => {
       screen.getByRole("link", { name: /ホーム/ }),
     ).toHaveAttribute("href", "/ja");
   });
+
+  it("localizes chrome and internal links for tr", () => {
+    render(<ToolPage content={content} locale="tr" toolSlot={<div />} />);
+    // The content record still carries the English link path; the renderer
+    // translates it, so a translator never types a URL.
+    expect(screen.getByRole("link", { name: /Related/ })).toHaveAttribute(
+      "href",
+      "/tr/pdf-birlestir",
+    );
+    expect(screen.getByText("Sıkça sorulan sorular")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Ana sayfa/ }),
+    ).toHaveAttribute("href", "/tr");
+  });
 });

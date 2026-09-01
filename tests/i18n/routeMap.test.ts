@@ -59,9 +59,12 @@ describe("locale configuration", () => {
   it("resolves a locale from its prefix, and refuses unpublished ones", () => {
     expect(localeFromPrefix("")).toBe(DEFAULT_LOCALE);
     expect(localeFromPrefix("pt-br")).toBe("pt-BR");
-    // `tr` is configured but not published: it must not resolve to a locale.
-    expect(LOCALES.tr.published).toBe(false);
-    expect(localeFromPrefix("tr")).toBeNull();
+    // Whichever locale is currently configured but not yet published must
+    // not resolve to a locale — derived, not hardcoded, so this keeps
+    // holding no matter which locale is currently mid-rollout.
+    for (const code of LOCALE_CODES.filter((c) => !LOCALES[c].published)) {
+      expect(localeFromPrefix(LOCALES[code].prefix)).toBeNull();
+    }
     expect(localeFromPrefix("nope")).toBeNull();
   });
 
@@ -163,7 +166,9 @@ describe("localized route manifests", () => {
   });
 
   it("does not publish routes for unpublished locales", () => {
-    expect(routesForLocale("tr")).toEqual([]);
+    for (const code of LOCALE_CODES.filter((c) => !LOCALES[c].published)) {
+      expect(routesForLocale(code)).toEqual([]);
+    }
     expect(allPublishedRoutes().every((r) => PUBLISHED.includes(r.locale))).toBe(true);
   });
 

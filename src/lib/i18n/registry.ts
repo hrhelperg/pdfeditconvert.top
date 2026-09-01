@@ -18,6 +18,7 @@ import { SITE_PL } from "@/lib/i18n/dictionaries/site.pl";
 import { SITE_CS } from "@/lib/i18n/dictionaries/site.cs";
 import { SITE_ID } from "@/lib/i18n/dictionaries/site.id";
 import { SITE_JA } from "@/lib/i18n/dictionaries/site.ja";
+import { SITE_TR } from "@/lib/i18n/dictionaries/site.tr";
 import { TOOLS_EN } from "@/lib/i18n/dictionaries/tools.en";
 import { TOOLS_PT_BR } from "@/lib/i18n/dictionaries/tools.pt-BR";
 import { TOOLS_FR } from "@/lib/i18n/dictionaries/tools.fr";
@@ -30,6 +31,7 @@ import { TOOLS_PL } from "@/lib/i18n/dictionaries/tools.pl";
 import { TOOLS_CS } from "@/lib/i18n/dictionaries/tools.cs";
 import { TOOLS_ID } from "@/lib/i18n/dictionaries/tools.id";
 import { TOOLS_JA } from "@/lib/i18n/dictionaries/tools.ja";
+import { TOOLS_TR } from "@/lib/i18n/dictionaries/tools.tr";
 
 /**
  * Where every translated dictionary is wired in.
@@ -57,6 +59,7 @@ const SITE_DICTIONARIES: Partial<Record<Locale, SiteDictionary>> = {
   cs: SITE_CS,
   id: SITE_ID,
   ja: SITE_JA,
+  tr: SITE_TR,
 };
 
 const TOOL_DICTIONARIES: Partial<Record<Locale, ToolDictionary>> = {
@@ -72,6 +75,7 @@ const TOOL_DICTIONARIES: Partial<Record<Locale, ToolDictionary>> = {
   cs: TOOLS_CS,
   id: TOOLS_ID,
   ja: TOOLS_JA,
+  tr: TOOLS_TR,
 };
 
 function resolve<T>(
