@@ -108,6 +108,14 @@ letters), the opener check is kept consistent with the other locales'
 proven-safe pattern rather than risk an edge case with diacritics
 immediately following the opener word.
 
+> **Correction (2026-09-01, multilingual SEO audit).** This section was
+> wrong: `cs: /^jak\s/i` was never actually added to `PROCEDURAL_OPENERS`.
+> A parse of the built HTML found **zero `HowTo` nodes in `cs`** across all
+> 144 guides — Czech fell through to the *English* regex, which cannot
+> match "Jak…". `isProceduralGuide()` has since been rewritten to key off
+> the English slug for every locale identically, and
+> `tests/seo/multilingualSeo.test.ts` now pins that behaviour.
+
 ### Formal "vy" register found and fixed — twice
 
 The terminology policy (§7) mandates the informal **ty** register

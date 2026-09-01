@@ -122,6 +122,15 @@ relies on the `PROCEDURAL_LOCALES_BY_ROUTE_ID` route-id-based fallback the
 same way German already does, rather than a fragile locale-specific
 opener regex. No regex was added or needed.
 
+> **Correction (2026-09-01, multilingual SEO audit).** This section was
+> wrong. Japanese was never actually added to `PROCEDURAL_LOCALES_BY_ROUTE_ID`, which contained only `de`. A parse of the built HTML found **zero `HowTo` nodes in
+> `ja`** across all 144 guides — the locale was in neither
+> `PROCEDURAL_OPENERS` nor `PROCEDURAL_LOCALES_BY_ROUTE_ID`, so it fell
+> through to the *English* regex, which cannot match a Japanese title.
+> `isProceduralGuide()` has since been rewritten to key off the English
+> slug for every locale identically, and
+> `tests/seo/multilingualSeo.test.ts` now pins that behaviour.
+
 ### Untranslated-slug defect — found and fixed (15 instances)
 
 `tests/i18n/routeMap.test.ts` has a standing regression test, "never
