@@ -28,6 +28,30 @@ const TIER_2 = tierPaths("TIER_2");
  *  counts cannot measure. */
 const MIN_RENDERED_CHARS = 600;
 
+/**
+ * Title width in Latin-character equivalents. Mirrors `titleWidth` in
+ * src/lib/seo.ts — a plain character count over-flags Arabic and badly
+ * under-flags Japanese, where every glyph is full-width.
+ */
+function titleWidth(title) {
+  let units = 0;
+  for (const ch of title) {
+    const cp = ch.codePointAt(0);
+    const isCJK =
+      (cp >= 0x3000 && cp <= 0x30ff) ||
+      (cp >= 0x3400 && cp <= 0x4dbf) ||
+      (cp >= 0x4e00 && cp <= 0x9fff) ||
+      (cp >= 0xac00 && cp <= 0xd7af) ||
+      (cp >= 0xff00 && cp <= 0xff60);
+    const isArabic = cp >= 0x0600 && cp <= 0x06ff;
+    units += isCJK ? 2 : isArabic ? 0.5 : 1;
+  }
+  return units;
+}
+
+/** Where Google starts truncating the desktop title, in the same units. */
+const TITLE_BUDGET = 60;
+
 const pages = crawl();
 const failures = [];
 const fail = (msg) => failures.push(msg);
@@ -43,6 +67,11 @@ for (const [path, page] of pages) {
   if (!page.title.trim()) fail(`${path}: empty <title>`);
   if (!page.description.trim()) fail(`${path}: empty meta description`);
   if (page.h1s.length !== 1) fail(`${path}: ${page.h1s.length} <h1> elements, expected exactly 1`);
+  // The brand belongs in a title once. It used to be appended
+  // unconditionally by the layout template, double-branding any title that
+  // already opened with the product name.
+  const brandHits = (page.title.match(/PDF Editor/g) ?? []).length;
+  if (brandHits > 1) fail(`${path}: title names the brand ${brandHits} times — "${page.title}"`);
   if (page.textLength < MIN_RENDERED_CHARS)
     fail(`${path}: only ${page.textLength} chars of server-rendered text — possible soft 404 or JS-only render`);
   if (page.depth === Infinity) fail(`${path}: unreachable by following links from "/"`);
@@ -71,8 +100,22 @@ for (const [tier, paths, minInbound] of [["Tier 1", TIER_1, 3], ["Tier 2", TIER_
   }
 }
 
+// Title width. Reported rather than failed: the budget is a truncation
+// threshold, not a correctness rule, and the copy work to bring every locale
+// under it is content editing rather than a code change. Surfacing the count
+// keeps it from drifting silently the way it did before.
+const overBudget = [...pages.values()]
+  .filter((p) => !p.path.startsWith("/_") && titleWidth(p.title) > TITLE_BUDGET)
+  .sort((a, b) => titleWidth(b.title) - titleWidth(a.title));
+
 const real = [...pages.values()].filter((p) => !p.path.startsWith("/_"));
 console.log(`crawled ${real.length} prerendered pages`);
+console.log(
+  `titles over the ${TITLE_BUDGET}-unit SERP width budget: ${overBudget.length}/${real.length}` +
+    (overBudget.length
+      ? ` (widest: ${overBudget[0].path} at ${titleWidth(overBudget[0].title)})`
+      : ""),
+);
 console.log(`click depth: ${JSON.stringify(real.reduce((a, p) => ({ ...a, [p.depth]: (a[p.depth] ?? 0) + 1 }), {}))}`);
 console.log(`in-content orphans: ${real.filter((p) => p.editorialIn === 0 && p.path !== "/").map((p) => p.path).join(", ") || "none"}`);
 

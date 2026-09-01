@@ -36,3 +36,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # The sitewide title/description/H1 uniqueness and hreflang gates only
+      # exist against built output, so they have to run after the build. They
+      # were previously local-only, which is how 70% of titles drifted over
+      # the SERP width budget without anything failing.
+      - name: SEO build checks
+        run: npm run seo:check
