@@ -34,6 +34,11 @@ import { TOOL_CONTENT_IT } from "@/content/it/tools";
 import { COMPARE_IT } from "@/content/it/compare";
 import { USE_CASES_IT } from "@/content/it/use-cases";
 import { HUBS_IT } from "@/content/it/hubs";
+import { TOOL_CONTENT_AR } from "@/content/ar/tools";
+import { COMPARE_AR } from "@/content/ar/compare";
+import { USE_CASES_AR } from "@/content/ar/use-cases";
+import { HUBS_AR } from "@/content/ar/hubs";
+import { GUIDES_AR } from "@/content/ar/guides";
 import { HUBS_EN } from "@/content/hubs";
 import { TOOL_CONTENT_EN } from "@/content/tools";
 import { DEFAULT_LOCALE, localeChain, type Locale } from "@/lib/i18n/locales";
@@ -107,6 +112,13 @@ const CONTENT: Partial<Record<Locale, LocaleContent>> = {
     tools: TOOL_CONTENT_IT,
     compare: COMPARE_IT,
     useCases: USE_CASES_IT,
+  },
+  ar: {
+    guides: GUIDES_AR,
+    hubs: HUBS_AR,
+    tools: TOOL_CONTENT_AR,
+    compare: COMPARE_AR,
+    useCases: USE_CASES_AR,
   },
 };
 
