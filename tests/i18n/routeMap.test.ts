@@ -59,9 +59,9 @@ describe("locale configuration", () => {
   it("resolves a locale from its prefix, and refuses unpublished ones", () => {
     expect(localeFromPrefix("")).toBe(DEFAULT_LOCALE);
     expect(localeFromPrefix("pt-br")).toBe("pt-BR");
-    // `de` is configured but not published: it must not resolve to a locale.
-    expect(LOCALES.de.published).toBe(false);
-    expect(localeFromPrefix("de")).toBeNull();
+    // `ja` is configured but not published: it must not resolve to a locale.
+    expect(LOCALES.ja.published).toBe(false);
+    expect(localeFromPrefix("ja")).toBeNull();
     expect(localeFromPrefix("nope")).toBeNull();
   });
 
@@ -132,14 +132,18 @@ describe("localized route manifests", () => {
   it.each(NON_DEFAULT_PUBLISHED)("%s never reuses an English slug verbatim", (locale) => {
     // A slug identical to the English one usually means the entry was copied
     // and the URL never localized. Genuinely-shared tokens are allowlisted:
-    // pt-BR's product-name comparisons, and fr's "guides" (identical plural
-    // in French) and "contact" (a French word, not an untranslated English one).
+    // pt-BR's product-name comparisons, fr's "guides" (identical plural
+    // in French) and "contact" (a French word, not an untranslated English
+    // one), and de's "pdf-editor" ("Editor" is standard German tech
+    // vocabulary — "PDF-Editor" is the term a German reader actually
+    // searches, not an untranslated leftover).
     const SHARED = new Set([
       "pdf-ou-jpg",
       "pdf-ou-docx",
       "pdf-ou-png",
       "guides",
       "contact",
+      "pdf-editor",
     ]);
     const prefix = `/${LOCALES[locale].prefix}`;
     const suspicious = routesForLocale(locale)
@@ -153,7 +157,7 @@ describe("localized route manifests", () => {
   });
 
   it("does not publish routes for unpublished locales", () => {
-    expect(routesForLocale("de")).toEqual([]);
+    expect(routesForLocale("ja")).toEqual([]);
     expect(allPublishedRoutes().every((r) => PUBLISHED.includes(r.locale))).toBe(true);
   });
 

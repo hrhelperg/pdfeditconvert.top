@@ -100,7 +100,7 @@ export function GuidePage({
             { label: breadcrumbs.guides, path: guidesHref },
             { label: content.h1, path },
           ]),
-          ...(isProceduralGuide(content.h1, locale)
+          ...(isProceduralGuide(content.h1, locale, content.slug)
             ? [
                 howToSchema({
                   name: content.h1,
