@@ -111,7 +111,6 @@ describe("sitemap URL entries", () => {
 
   it("never annotates an unpublished locale", () => {
     expect(allXml).not.toContain('hreflang="tr"');
-    expect(allXml).not.toContain('hreflang="id"');
   });
 
   it("priority stays within the 0..1 range the protocol allows", () => {

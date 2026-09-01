@@ -147,7 +147,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "Indonesian",
     nativeName: "Bahasa Indonesia",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "id-ID",
   },
   ar: {

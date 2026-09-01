@@ -20,6 +20,7 @@ const LOCALE_NAMES = {
   ru: "Russian",
   pl: "Polish",
   cs: "Czech",
+  id: "Indonesian",
   ja: "Japanese",
 };
 

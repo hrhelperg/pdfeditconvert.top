@@ -16,6 +16,7 @@ import { IT_ROUTE_MANIFEST } from "@/content/it/routes";
 import { AR_ROUTE_MANIFEST } from "@/content/ar/routes";
 import { RU_ROUTE_MANIFEST } from "@/content/ru/routes";
 import { PL_ROUTE_MANIFEST } from "@/content/pl/routes";
+import { ID_ROUTE_MANIFEST } from "@/content/id/routes";
 import { CS_ROUTE_MANIFEST } from "@/content/cs/routes";
 import { JA_ROUTE_MANIFEST } from "@/content/ja/routes";
 
@@ -151,6 +152,7 @@ export const LOCALE_PUBLISHED_AT: Partial<Record<Locale, string>> = {
   ru: "2026-09-01",
   pl: "2026-09-01",
   cs: "2026-09-01",
+  id: "2026-09-01",
   ja: "2026-09-01",
 };
 
@@ -182,6 +184,9 @@ const LOCALE_ROUTES: Partial<Record<Locale, LocalizedRoute[]>> = {
   }),
   cs: buildLocaleRoutes("cs", CS_ROUTE_MANIFEST, {
     publishedAt: LOCALE_PUBLISHED_AT.cs,
+  }),
+  id: buildLocaleRoutes("id", ID_ROUTE_MANIFEST, {
+    publishedAt: LOCALE_PUBLISHED_AT.id,
   }),
   ja: buildLocaleRoutes("ja", JA_ROUTE_MANIFEST, {
     publishedAt: LOCALE_PUBLISHED_AT.ja,
