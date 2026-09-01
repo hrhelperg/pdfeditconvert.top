@@ -1,10 +1,72 @@
 import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/routes";
-import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/i18n/locales";
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  publishedLocaleCodes,
+  type Locale,
+} from "@/lib/i18n/locales";
 import type { RouteId } from "@/lib/i18n/routeIds";
 import { alternatesFor, xDefaultFor } from "@/lib/i18n/routeMap";
 
 const BRAND = "PDF Editor";
+const BRAND_SUFFIX = ` | ${BRAND}`;
+
+/**
+ * Budget for a `<title>`, in Latin-character equivalents.
+ *
+ * Google truncates the desktop title around 580px, which is roughly 60
+ * average Latin characters at the size it renders. This is a width budget,
+ * not a character count — see `titleWidth`.
+ */
+const TITLE_BUDGET = 60;
+
+/**
+ * Approximate rendered width of a title, in Latin-character equivalents.
+ *
+ * A plain `.length` misjudges two of this site's scripts in opposite
+ * directions. Japanese titles are short in characters but every CJK glyph
+ * is full-width, so a 56-character ja title can render wider than a
+ * 100-character English one. Arabic is the reverse: it renders narrower
+ * than Latin per character, so a character count over-flags it. Counting
+ * CJK as two units and Arabic as roughly half keeps one budget honest
+ * across all 13 locales.
+ */
+function titleWidth(title: string): number {
+  let units = 0;
+  for (const ch of title) {
+    const cp = ch.codePointAt(0)!;
+    const isCJK =
+      (cp >= 0x3000 && cp <= 0x30ff) || // CJK punctuation, kana
+      (cp >= 0x3400 && cp <= 0x4dbf) || // CJK ext A
+      (cp >= 0x4e00 && cp <= 0x9fff) || // CJK unified
+      (cp >= 0xac00 && cp <= 0xd7af) || // Hangul
+      (cp >= 0xff00 && cp <= 0xff60); // full-width forms
+    const isArabic = cp >= 0x0600 && cp <= 0x06ff;
+    units += isCJK ? 2 : isArabic ? 0.5 : 1;
+  }
+  return units;
+}
+
+/**
+ * The page title as it should actually be emitted.
+ *
+ * The brand suffix is appended only when it fits. It used to be applied
+ * unconditionally through Next's `title.template`, which produced two
+ * problems at once: 52 titles that already opened with "PDF Editor" came
+ * out double-branded ("PDF Editor — … | PDF Editor"), and the suffix spent
+ * 13 characters of budget on titles that were already over it, pushing 70%
+ * of the site past the point where Google truncates or rewrites the
+ * snippet. The domain already identifies the brand in the SERP, so on a
+ * long title the suffix is the first thing worth dropping.
+ */
+export function brandedTitle(title: string): string {
+  const trimmed = title.trim();
+  if (trimmed.includes(BRAND)) return trimmed;
+  return titleWidth(trimmed + BRAND_SUFFIX) <= TITLE_BUDGET
+    ? trimmed + BRAND_SUFFIX
+    : trimmed;
+}
 
 interface SeoInput {
   title: string;
@@ -64,7 +126,9 @@ export function seo({
     routeId === undefined ? undefined : buildLanguageAlternates(routeId);
 
   return {
-    title,
+    // Absolute, so the root layout's `title.template` cannot re-append a
+    // brand suffix that `brandedTitle` deliberately withheld.
+    title: { absolute: brandedTitle(title) },
     description,
     alternates: {
       canonical: url,
@@ -76,7 +140,17 @@ export function seo({
       url,
       siteName: BRAND,
       type,
-      locale: LOCALES[locale].htmlLang,
+      // og:locale is `language_TERRITORY`, not BCP-47 — see LocaleConfig.
+      locale: LOCALES[locale].ogLocale,
+      // Only claim sibling editions on pages that actually have them, which
+      // is the same condition that turns on hreflang.
+      ...(languages
+        ? {
+            alternateLocale: publishedLocaleCodes()
+              .filter((l) => l !== locale)
+              .map((l) => LOCALES[l].ogLocale),
+          }
+        : {}),
       images: [{ url: fullOg, width: 1200, height: 630, alt: BRAND }],
       ...(publishedTime ? { publishedTime } : {}),
       ...(modifiedTime ? { modifiedTime } : {}),
