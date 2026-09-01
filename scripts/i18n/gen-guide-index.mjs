@@ -18,6 +18,7 @@ const LOCALE_NAMES = {
   it: "Italian",
   ar: "Arabic",
   ru: "Russian",
+  cs: "Czech",
 };
 
 const locale = process.argv[2] ?? "pt-BR";

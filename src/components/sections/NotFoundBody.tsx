@@ -143,6 +143,20 @@ export const NOT_FOUND_IT: NotFoundCopy = {
   ],
 };
 
+export const NOT_FOUND_CS: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Stránka nenalezena",
+  lead: "Stránka, kterou hledáš, neexistuje nebo byla přesunuta. Zkus místo toho některou z těchto:",
+  openLabel: "Otevřít →",
+  homeLabel: "Zpět na úvodní stránku",
+  suggestions: [
+    { id: "pdf-editor", label: "PDF Editor" },
+    { id: "compress-pdf", label: "Komprimovat PDF" },
+    { id: "merge-pdf", label: "Sloučit PDF" },
+    { id: "sign-pdf", label: "Podepsat PDF" },
+  ],
+};
+
 export const NOT_FOUND_AR: NotFoundCopy = {
   eyebrow: "404",
   h1: "الصفحة غير موجودة",
