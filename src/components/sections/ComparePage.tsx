@@ -55,7 +55,7 @@ export function ComparePage({
             <h2 className="text-xl font-bold text-[--color-ink] mb-3">
               {fmt(sections.whenToPick, { label: content.leftLabel })}
             </h2>
-            <ul className="list-disc pl-5 text-[--color-muted] space-y-1.5">
+            <ul className="list-disc ps-5 text-[--color-muted] space-y-1.5">
               {content.whenLeft.map((s) => (
                 <li key={s}>{s}</li>
               ))}
@@ -65,7 +65,7 @@ export function ComparePage({
             <h2 className="text-xl font-bold text-[--color-ink] mb-3">
               {fmt(sections.whenToPick, { label: content.rightLabel })}
             </h2>
-            <ul className="list-disc pl-5 text-[--color-muted] space-y-1.5">
+            <ul className="list-disc ps-5 text-[--color-muted] space-y-1.5">
               {content.whenRight.map((s) => (
                 <li key={s}>{s}</li>
               ))}

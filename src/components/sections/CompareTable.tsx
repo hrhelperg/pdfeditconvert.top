@@ -21,7 +21,7 @@ export function CompareTable({
 
   return (
     <div className="overflow-x-auto rounded-2xl border border-[--color-border] bg-[--color-surface] shadow-[var(--shadow-card)] my-10">
-      <table className="w-full text-left">
+      <table className="w-full text-start">
         <thead className="bg-[--color-bg] text-sm">
           <tr>
             <th className="p-4 font-semibold text-[--color-ink]">Feature</th>

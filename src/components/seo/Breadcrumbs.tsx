@@ -12,7 +12,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
       <ol className="flex flex-wrap items-center gap-1.5 text-[--color-muted]">
         {items.map((c, i) => (
           <li key={i} className="flex items-center gap-1.5">
-            {i > 0 && <ChevronRight className="h-3.5 w-3.5" aria-hidden />}
+            {i > 0 && <ChevronRight className="h-3.5 w-3.5 rtl:rotate-180" aria-hidden />}
             {c.href ? (
               <Link href={c.href} className="hover:text-[--color-brand]">
                 {c.label}
