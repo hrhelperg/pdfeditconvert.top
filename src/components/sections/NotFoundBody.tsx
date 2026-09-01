@@ -212,3 +212,17 @@ export const NOT_FOUND_PL: NotFoundCopy = {
     { id: "sign-pdf", label: "Podpisz PDF" },
   ],
 };
+
+export const NOT_FOUND_TR: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Sayfa bulunamadı",
+  lead: "Aradığın sayfa artık yok ya da taşındı. Bunlardan birini dene:",
+  openLabel: "Aç →",
+  homeLabel: "Ana sayfaya dön",
+  suggestions: [
+    { id: "pdf-editor", label: "PDF Düzenleyici" },
+    { id: "compress-pdf", label: "PDF Sıkıştır" },
+    { id: "merge-pdf", label: "PDF Birleştir" },
+    { id: "sign-pdf", label: "PDF İmzala" },
+  ],
+};

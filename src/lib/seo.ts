@@ -206,4 +206,10 @@ const ROOT_COPY: Record<string, RootCopy> & { en: RootCopy } = {
     description:
       "Kompleksowe rozwiązanie PDF do pracy, nauki i życia codziennego. Edytuj, konwertuj, kompresuj, scalaj, podpisuj i skanuj pliki PDF prosto z telefonu.",
   },
+  tr: {
+    defaultTitle: "PDF Editor — PDF Düzenle, Dönüştür, İmzala ve Tara",
+    template: "%s | PDF Editor",
+    description:
+      "İş, okul ve günlük hayat için hepsi bir arada PDF çözümü. Telefonundan PDF'leri düzenle, dönüştür, sıkıştır, birleştir, imzala ve tara.",
+  },
 };
