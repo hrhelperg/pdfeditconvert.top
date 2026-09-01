@@ -11,6 +11,7 @@ import { ROUTE_IDS, isRouteId, type RouteId } from "@/lib/i18n/routeIds";
 import { PT_BR_ROUTE_MANIFEST } from "@/content/pt-BR/routes";
 import { FR_ROUTE_MANIFEST } from "@/content/fr/routes";
 import { ES_ROUTE_MANIFEST } from "@/content/es/routes";
+import { DE_ROUTE_MANIFEST } from "@/content/de/routes";
 import { IT_ROUTE_MANIFEST } from "@/content/it/routes";
 
 /**
@@ -139,6 +140,7 @@ export const LOCALE_PUBLISHED_AT: Partial<Record<Locale, string>> = {
   "pt-BR": "2026-08-31",
   fr: "2026-08-31",
   es: "2026-08-31",
+  de: "2026-09-01",
   it: "2026-09-01",
 };
 
@@ -152,6 +154,9 @@ const LOCALE_ROUTES: Partial<Record<Locale, LocalizedRoute[]>> = {
   }),
   es: buildLocaleRoutes("es", ES_ROUTE_MANIFEST, {
     publishedAt: LOCALE_PUBLISHED_AT.es,
+  }),
+  de: buildLocaleRoutes("de", DE_ROUTE_MANIFEST, {
+    publishedAt: LOCALE_PUBLISHED_AT.de,
   }),
   it: buildLocaleRoutes("it", IT_ROUTE_MANIFEST, {
     publishedAt: LOCALE_PUBLISHED_AT.it,

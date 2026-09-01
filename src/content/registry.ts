@@ -24,6 +24,11 @@ import { COMPARE_ES } from "@/content/es/compare";
 import { USE_CASES_ES } from "@/content/es/use-cases";
 import { HUBS_ES } from "@/content/es/hubs";
 import { TOOL_CONTENT_ES } from "@/content/es/tools";
+import { GUIDES_DE } from "@/content/de/guides";
+import { COMPARE_DE } from "@/content/de/compare";
+import { USE_CASES_DE } from "@/content/de/use-cases";
+import { HUBS_DE } from "@/content/de/hubs";
+import { TOOL_CONTENT_DE } from "@/content/de/tools";
 import { GUIDES_IT } from "@/content/it/guides";
 import { TOOL_CONTENT_IT } from "@/content/it/tools";
 import { COMPARE_IT } from "@/content/it/compare";
@@ -88,6 +93,13 @@ const CONTENT: Partial<Record<Locale, LocaleContent>> = {
     tools: TOOL_CONTENT_ES,
     compare: COMPARE_ES,
     useCases: USE_CASES_ES,
+  },
+  de: {
+    guides: GUIDES_DE,
+    hubs: HUBS_DE,
+    tools: TOOL_CONTENT_DE,
+    compare: COMPARE_DE,
+    useCases: USE_CASES_DE,
   },
   it: {
     guides: GUIDES_IT,
