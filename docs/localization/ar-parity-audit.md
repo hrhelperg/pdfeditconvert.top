@@ -24,6 +24,12 @@ localizations. **This is the site's first right-to-left (RTL) locale.**
 | Arabic parity | **100.0% (174/174)** |
 | Exclusions | 0 |
 
+Figures above describe this branch's own scope (ar vs. the 6 locales already
+in `main` when this branch started). `ru` merged to `main` separately (PR
+#15) while this branch was in flight; after both are live the site carries
+**8** published locales × 174 = **1392** indexable URLs. See the Locale
+registry section below.
+
 ## Inventory by route family
 
 | Category | Route ids | EN example | ar example | ar count |
@@ -148,13 +154,12 @@ handlers, `opengraph-image`, `icon`, `apple-icon`.
 
 ## Locale registry
 
-Published: `en`, `pt-BR`, `fr`, `es`, `de`, `it`, `ar`. Declared but
-unpublished (architectural readiness only, zero pages/hreflang/sitemap
+Published (after merging this branch's `origin/main` sync): `en`, `pt-BR`,
+`fr`, `es`, `de`, `it`, `ar`, `ru` — `ru` merged to `main` via PR #15 while
+this branch was in flight, and this branch was updated to match. Declared
+but unpublished (architectural readiness only, zero pages/hreflang/sitemap
 entries — asserted by `tests/i18n/routeMap.test.ts` and
-`tests/indexnow.test.ts`): `ja`, `id`, `ru`, `pl`, `cs`, `tr`. (`ru` ships in
-a parallel branch, `feat/localization-ru`, from the same base — not yet
-merged as of this audit, so it still reads as unpublished from `ar`'s point
-of view.)
+`tests/indexnow.test.ts`): `ja`, `id`, `pl`, `cs`, `tr`.
 
 ## Verification performed
 

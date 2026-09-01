@@ -1,0 +1,345 @@
+import type { ToolDictionary } from "@/lib/i18n/toolStrings";
+
+/**
+ * Russian tool copy. Terminology policy: docs/localization/ru-terminology.md.
+ *
+ * The first step is "Добавить", never "Загрузить". "Загрузить" reads as
+ * *upload to a server* to a Russian speaker, which is exactly what these
+ * tools do not do — it would contradict the privacy sentence printed
+ * directly beneath the button. Output filenames are localized and kept
+ * ASCII — no Cyrillic — since the file lands in the reader's own downloads
+ * folder and has to stay safe across every filesystem.
+ */
+export const TOOLS_RU: ToolDictionary = {
+  common: {
+    privacyText: "Ваши файлы обрабатываются локально, в вашем браузере.",
+    fileMoveUp: "Переместить {name} вверх в списке",
+    fileMoveDown: "Переместить {name} вниз в списке",
+    fileRemove: "Удалить {name}",
+    downloadAgain: "Скачать ещё раз",
+    startOver: "Начать заново",
+    tryNext: "Попробуйте также",
+    clearAll: "Очистить всё",
+    appCtaHeading: "Нужны инструменты PDF в дороге?",
+    dropPdfLabel: "Перетащите PDF сюда или нажмите, чтобы выбрать",
+    dropPdfHint: "Один PDF · до 100 МБ",
+    genericErrorMessage: "Что-то пошло не так. Попробуйте снова или используйте файл поменьше.",
+    errors: {
+      not_pdf: { message: "«{name}» не является PDF-файлом." },
+      not_image: {
+        message: "«{name}» не поддерживаемый формат изображения. Используйте JPG, PNG или WebP.",
+      },
+      not_word: {
+        message: "«{name}» не файл Word (.docx) и не файл .txt.",
+      },
+      legacy_doc: {
+        message: "Старые файлы «.doc» нельзя прочитать в браузере.",
+        hint: "Сохраните документ как «.docx» и попробуйте снова.",
+      },
+      too_large: {
+        message: "«{name}» слишком большой ({size} МБ).",
+        hint: "Лимит составляет {limit} МБ на файл, потому что вся обработка происходит в вашем браузере.",
+      },
+      unreadable_pdf: {
+        message: "Не удалось открыть этот файл.",
+        hint: "Возможно, он повреждён или защищён паролем. Снимите защиту или восстановите файл и попробуйте снова.",
+      },
+      invalid_range: {
+        message: "Укажите корректный диапазон страниц.",
+        hint: "Например, 1-3 или 2,4,6.",
+      },
+      memory: {
+        message: "Этот файл может быть слишком большим для обработки в браузере.",
+        hint: "Попробуйте файл PDF поменьше или сначала разделите его на части.",
+      },
+      too_many_files: { message: "Добавляйте не более {limit} файлов за раз." },
+      too_few_files: { message: "Добавьте минимум два PDF-файла, чтобы их объединить." },
+      canvas_unsupported: { message: "Этот браузер не поддерживает canvas." },
+      encode_failed: { message: "Не удалось закодировать изображение." },
+      generic: {
+        message: "Что-то пошло не так. Попробуйте снова или используйте файл поменьше.",
+      },
+    },
+  },
+  tools: {
+    "image-to-pdf": {
+      title: "Изображение в PDF",
+      subtitle: "Выберите изображения JPG, PNG или WebP и объедините их в один PDF.",
+      steps: ["Добавить", "Настроить", "Скачать"],
+      successTitle: "Ваш PDF готов",
+      actionIdle: "Конвертировать в PDF",
+      actionBusy: "Конвертация…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже работает без подключения к интернету.",
+      related: [
+        { id: "merge-pdf", label: "Объединить два PDF" },
+        { id: "add-watermark-to-pdf", label: "Добавить водяной знак" },
+      ],
+      dropLabel: "Перетащите изображения сюда или нажмите, чтобы выбрать",
+      dropHint: "JPG, PNG или WebP · до 100 МБ каждое",
+      busyCreating: "Создаём ваш PDF…",
+      errorNoImages: "Добавьте хотя бы одно изображение.",
+      pageSizeLabel: "Размер страницы",
+      pageSizeAuto: "Автоматически",
+      orientationLabel: "Ориентация",
+      orientationAuto: "Автоматически",
+      orientationPortrait: "Портретная",
+      orientationLandscape: "Альбомная",
+      fitLabel: "Подгонка изображения",
+      fitFit: "Вписать в страницу",
+      fitFill: "Заполнить страницу",
+      marginLabel: "Поле",
+      marginNone: "Нет",
+      marginSmall: "Маленькое",
+      marginMedium: "Среднее",
+      outputFilename: "izobrazheniya.pdf",
+    },
+    "merge-pdf": {
+      title: "Объединить PDF",
+      subtitle: "Выберите два или более PDF-файлов и объедините их в один документ.",
+      steps: ["Добавить", "Настроить", "Скачать"],
+      successTitle: "Ваш объединённый PDF готов",
+      actionIdle: "Объединить PDF",
+      actionBusy: "Объединяем…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже объединяет и разделяет ваши файлы.",
+      related: [
+        { id: "split-pdf", label: "Разделить PDF" },
+        { id: "rotate-pdf", label: "Повернуть страницы" },
+      ],
+      dropLabel: "Перетащите PDF-файлы сюда или нажмите, чтобы выбрать",
+      dropHint: "PDF · до 100 МБ каждый",
+      busyMerging: "Объединяем PDF-файлы…",
+      errorTooFew: "Добавьте минимум два PDF-файла, чтобы их объединить.",
+      outputFilename: "obedinyonnyi-pdf.pdf",
+    },
+    "split-pdf": {
+      title: "Разделить PDF",
+      subtitle:
+        "Выберите PDF и укажите диапазон страниц, который хотите экспортировать. Примеры: 1-3 или 2,4,6.",
+      steps: ["Добавить", "Настроить", "Скачать"],
+      successTitle: "Ваш PDF с выбранными страницами готов",
+      actionIdle: "Разделить PDF",
+      actionBusy: "Разделяем…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже разделяет и меняет порядок страниц.",
+      related: [
+        { id: "merge-pdf", label: "Объединить PDF" },
+        { id: "rotate-pdf", label: "Повернуть страницы" },
+      ],
+      busyExtracting: "Извлекаем страницы…",
+      rangeLabel: "Остающиеся страницы (всего {total})",
+      rangeHint: "Примеры: 1-3 или 2,4,6 или 1-3,5,8-10",
+      rangePlaceholder: "напр. 1-3 или 2,4,6",
+      outputSuffix: "-stranitsy-{first}-{last}",
+    },
+    "compress-pdf": {
+      title: "Сжать PDF",
+      subtitle:
+        "Уменьшите размер PDF-файла для отправки по почте, прикрепления к форме или хранения — прямо в браузере.",
+      steps: ["Добавить", "Настроить", "Скачать"],
+      successTitle: "Ваш сжатый PDF готов",
+      actionIdle: "Сжать PDF",
+      actionBusy: "Сжимаем…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже сжимает и делится вашими PDF.",
+      related: [
+        { id: "merge-pdf", label: "Объединить PDF" },
+        { id: "split-pdf", label: "Разделить PDF" },
+      ],
+      busyReading: "Читаем PDF…",
+      busyPage: "Сжимаем страницу {page} из {total}…",
+      busyFinalizing: "Завершаем…",
+      levelLabel: "Уровень сжатия",
+      levelLow: "Низкий",
+      levelRecommended: "Рекомендуемый",
+      levelStrong: "Сильный",
+      levelNote:
+        "При сильном сжатии страницы превращаются в изображения (текст перестаёт быть выделяемым). Это лучший вариант для отсканированных PDF или файлов с большим количеством изображений.",
+      summaryAlreadyCompact:
+        "Этот PDF состоит в основном из текста и векторной графики и уже компактен ({size}). Сжатие ничего бы не дало, поэтому мы оставили исходный файл без изменений.",
+      summaryReduced:
+        "Уменьшено с {from} до {to} (меньше на {percent}%). Страницы были превращены в изображения, поэтому текст больше не выделяется.",
+      outputSuffix: "-szhatyi",
+    },
+    "rotate-pdf": {
+      title: "Повернуть PDF",
+      subtitle:
+        "Поверните все страницы или только выбранные и скачайте исправленный PDF.",
+      steps: ["Добавить", "Настроить", "Скачать"],
+      successTitle: "Ваш повёрнутый PDF готов",
+      actionIdle: "Повернуть PDF",
+      actionBusy: "Поворачиваем…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже поворачивает и меняет порядок страниц.",
+      related: [
+        { id: "split-pdf", label: "Разделить PDF" },
+        { id: "add-watermark-to-pdf", label: "Добавить водяной знак" },
+      ],
+      busyRotating: "Поворачиваем страницы…",
+      angleLabel: "Поворот",
+      scopeLabel: "Применить к",
+      scopeAll: "Все страницы",
+      scopeSome: "Некоторые страницы",
+      rangeLabel: "Страницы для поворота",
+      rangeHint: "Примеры: 1-3 или 2,4,6",
+      rangePlaceholder: "напр. 1,3-5",
+      outputSuffix: "-povernutyi",
+    },
+    "pdf-to-images": {
+      title: "PDF в изображения",
+      subtitle: "Превратите страницы PDF в файлы изображений для скачивания.",
+      steps: ["Добавить", "Настроить", "Скачать"],
+      successTitle: "Ваши изображения готовы",
+      successDescription: "Каждая страница была скачана как отдельный файл.",
+      actionIdle: "Конвертировать в изображения",
+      actionBusy: "Конвертация…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android отрисовывает страницы с аппаратным ускорением.",
+      related: [
+        { id: "image-to-pdf", label: "Изображение в PDF — обратное направление" },
+        { id: "split-pdf", label: "Разделить PDF" },
+      ],
+      busyLoading: "Загружаем PDF…",
+      busyPage: "Создаём страницу {page} из {total}…",
+      formatLabel: "Формат",
+      scaleLabel: "Масштаб",
+      qualityLabel: "Качество JPEG",
+      rangeLabel: "Страницы (необязательно)",
+      rangeHint: "Оставьте пустым, чтобы конвертировать все страницы. Примеры: 1-3 или 2,4,6",
+      rangePlaceholder: "Все страницы",
+      downloadedSummary: {
+        one: "Скачано {count} изображение (последнее: {filename})",
+        other: "Скачано {count} изображений (последнее: {filename})",
+      },
+    },
+    "add-watermark-to-pdf": {
+      title: "Добавить водяной знак на PDF",
+      subtitle: "Поставьте текстовый водяной знак перед тем, как поделиться PDF.",
+      steps: ["Добавить", "Настроить", "Скачать"],
+      successTitle: "Ваш PDF с водяным знаком готов",
+      actionIdle: "Добавить водяной знак",
+      actionBusy: "Применяем…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже ставит штампы и подписывает ваши документы.",
+      related: [
+        { id: "merge-pdf", label: "Объединить PDF" },
+        { id: "rotate-pdf", label: "Повернуть страницы" },
+      ],
+      busyStamping: "Наносим знак на страницы…",
+      textLabel: "Текст водяного знака",
+      textDefault: "КОНФИДЕНЦИАЛЬНО",
+      errorEmptyText: "Текст водяного знака не может быть пустым.",
+      positionLabel: "Положение",
+      positionCenter: "По центру",
+      positionTopLeft: "Сверху слева",
+      positionTopRight: "Сверху справа",
+      positionBottomLeft: "Снизу слева",
+      positionBottomRight: "Снизу справа",
+      fontSizeLabel: "Размер шрифта",
+      opacityLabel: "Непрозрачность",
+      angleLabel: "Угол",
+      outputSuffix: "-vodyanoi-znak",
+    },
+    "pdf-to-word": {
+      title: "PDF в Word",
+      subtitle:
+        "Извлеките текст PDF в редактируемый документ .docx — прямо в браузере.",
+      steps: ["Добавить", "Конвертировать", "Скачать"],
+      successTitle: "Ваш документ Word готов",
+      successDescription:
+        "Редактируемый текст был извлечён в файл .docx. Исходное оформление, столбцы и изображения не сохраняются.",
+      actionIdle: "Конвертировать в Word",
+      actionBusy: "Конвертация…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже конвертирует и редактирует документы.",
+      related: [
+        { id: "word-to-pdf", label: "Word в PDF — обратное направление" },
+        { id: "pdf-to-images", label: "PDF в изображения" },
+      ],
+      dropHint: "Один PDF · до 100 МБ · только PDF с текстом",
+      explainerTitle: "Что делает этот инструмент",
+      explainerBody:
+        "Извлекает выделяемый текст из вашего PDF и сохраняет его в редактируемый файл Word (.docx). Не воспроизводит оформление, шрифты, столбцы, таблицы и изображения оригинала — это честная и практичная текстовая конвертация. Отсканированный PDF (просто изображение) не имеет текстового слоя и не может быть конвертирован здесь.",
+      busyReading: "Читаем PDF…",
+      busyPage: "Извлекаем текст со страницы {page} из {total}…",
+      busyBuilding: "Собираем документ Word…",
+      errorNoText:
+        "Не найден выделяемый текст. Похоже, это скан: потребуется OCR, а этот инструмент в браузере его не выполняет.",
+    },
+    "word-to-pdf": {
+      title: "Word в PDF",
+      subtitle:
+        "Конвертируйте документ .docx или .txt в чистый PDF — прямо в браузере.",
+      steps: ["Добавить", "Конвертировать", "Скачать"],
+      successTitle: "Ваш PDF готов",
+      successDescription:
+        "Текст был размещён в чистом PDF формата A4. Шрифты, изображения, таблицы и точные интервалы исходного .docx не сохраняются.",
+      actionIdle: "Конвертировать в PDF",
+      actionBusy: "Конвертация…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже конвертирует и подписывает документы.",
+      related: [
+        { id: "pdf-to-word", label: "PDF в Word — обратное направление" },
+        { id: "image-to-pdf", label: "Изображение в PDF" },
+      ],
+      dropLabel: "Перетащите файл .docx или .txt сюда или нажмите, чтобы выбрать",
+      dropHint: "Word .docx или обычный текст .txt · до 100 МБ",
+      explainerTitle: "Что делает этот инструмент",
+      explainerBody:
+        "Читает текст из файла Word (.docx) или обычного текстового файла (.txt) и размещает его в чистом PDF формата A4 с разбивкой на страницы. Это честная текстовая конвертация — шрифты, изображения, таблицы и точное форматирование оригинала не сохраняются. Старый бинарный формат .doc не поддерживается; сначала сохраните файл как .docx.",
+      busyReading: "Читаем документ…",
+      busyBuilding: "Собираем PDF…",
+      errorEmptyDocument: "Документ выглядит пустым — нет текста для конвертации.",
+      errorUnreadable:
+        "Не удалось прочитать этот документ. Сохраните его снова как .docx и попробуйте ещё раз.",
+    },
+    "reorder-pdf-pages": {
+      title: "Изменить порядок страниц PDF",
+      subtitle:
+        "Просмотрите каждую страницу, расположите их в нужном порядке и скачайте файл.",
+      steps: ["Добавить", "Изменить порядок", "Скачать"],
+      successTitle: "Ваш PDF с новым порядком страниц готов",
+      actionIdle: "Изменить порядок PDF",
+      actionBusy: "Собираем…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже меняет порядок страниц и объединяет их.",
+      related: [
+        { id: "merge-pdf", label: "Объединить PDF" },
+        { id: "extract-pdf-pages", label: "Извлечь страницы" },
+      ],
+      busyBuilding: "Собираем PDF с новым порядком страниц…",
+      prepRendering: "Создаём превью страниц…",
+      prepRenderingProgress: "Создаём превью страниц… ({done}/{total})",
+      instructions: {
+        one: "{count} страница. Используйте стрелки, чтобы переместить страницу вперёд или назад, затем создайте PDF.",
+        other:
+          "{count} страниц. Используйте стрелки, чтобы переместить страницу вперёд или назад, затем создайте PDF.",
+      },
+      positionLabel: "Позиция {position}",
+      wasPageLabel: "была страницей {page}",
+      originalPageAlt: "Исходная страница {page}",
+      moveEarlier: "Переместить позицию {position} раньше",
+      moveLater: "Переместить позицию {position} позже",
+      resetOrder: "Восстановить порядок",
+      outputSuffix: "-novyi-poryadok",
+    },
+    "extract-pdf-pages": {
+      title: "Извлечь страницы из PDF",
+      subtitle:
+        "Выберите конкретные страницы или диапазоны и скачайте новый PDF только с ними.",
+      steps: ["Добавить", "Выбрать", "Скачать"],
+      successTitle: "Ваш PDF с извлечёнными страницами готов",
+      actionIdle: "Извлечь страницы",
+      actionBusy: "Извлекаем…",
+      appCtaSub: "Приложение PDF Editor для iPhone и Android тоже извлекает и меняет порядок страниц.",
+      related: [
+        { id: "split-pdf", label: "Разделить PDF" },
+        { id: "reorder-pdf-pages", label: "Изменить порядок страниц PDF" },
+      ],
+      busyExtracting: "Извлекаем страницы…",
+      pageCountNote: {
+        one: "В этом PDF {count} страница.",
+        other: "В этом PDF {count} страниц.",
+      },
+      rangeLabel: "Страницы для извлечения",
+      rangeHint: "Примеры: 1-3 · 2,4,6 · 1-2,5,8-10",
+      rangePlaceholder: "напр. 1-3,5",
+      selectedNote: {
+        one: "Выбрана {count} страница из {total}.",
+        other: "Выбрано {count} страниц из {total}.",
+      },
+      outputSuffix: "-stranitsy",
+    },
+  },
+};

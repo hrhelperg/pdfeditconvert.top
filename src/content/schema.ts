@@ -141,6 +141,12 @@ const PROCEDURAL_OPENERS: Partial<Record<Locale, RegExp>> = {
   // silently failing to match anything at all. \s after the literal prefix
   // sidesteps that entirely.
   ar: /^كيفية\s/,
+  // Matches "Как …" only. Deliberately \s, not \b: JS regex \b is a
+  // transition between \w ([A-Za-z0-9_]) and non-\w, and Cyrillic letters
+  // are not in \w — so \b never matches on either side of an all-Cyrillic
+  // word, silently failing to match anything at all. \s after the literal
+  // prefix sidesteps that entirely.
+  ru: /^как\s/i,
 };
 
 /**
