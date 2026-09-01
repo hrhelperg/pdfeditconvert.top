@@ -164,4 +164,10 @@ const ROOT_COPY: Record<string, RootCopy> & { en: RootCopy } = {
     description:
       "La solución PDF completa para el trabajo, los estudios y el día a día. Edita, convierte, comprime, une, firma y escanea tus PDF desde el móvil.",
   },
+  it: {
+    defaultTitle: "PDF Editor — modifica, converti, firma e scansiona i tuoi PDF",
+    template: "%s | PDF Editor",
+    description:
+      "La soluzione PDF completa per lavoro, studio e vita quotidiana. Modifica, converti, comprimi, unisci, firma e scansiona i tuoi PDF dal telefono.",
+  },
 };

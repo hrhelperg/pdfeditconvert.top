@@ -114,3 +114,17 @@ export const NOT_FOUND_ES: NotFoundCopy = {
     { id: "sign-pdf", label: "Firmar PDF" },
   ],
 };
+
+export const NOT_FOUND_IT: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Pagina non trovata",
+  lead: "La pagina che cerchi non esiste più o è stata spostata. Prova una di queste:",
+  openLabel: "Apri →",
+  homeLabel: "Torna alla home",
+  suggestions: [
+    { id: "pdf-editor", label: "Editor di PDF" },
+    { id: "compress-pdf", label: "Comprimi PDF" },
+    { id: "merge-pdf", label: "Unisci PDF" },
+    { id: "sign-pdf", label: "Firma PDF" },
+  ],
+};

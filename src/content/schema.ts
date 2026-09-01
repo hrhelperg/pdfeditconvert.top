@@ -131,6 +131,10 @@ const PROCEDURAL_OPENERS: Partial<Record<Locale, RegExp>> = {
   // not the "¿Por qué…?"/"¿Se puede…?" openers used by es's explanatory and
   // troubleshooting guides, which aren't step-by-step procedures either.
   es: /^cómo\b/i,
+  // Matches "Come …" only — not the "Perché…?"/"Cos'è…?" openers used by
+  // it's explanatory and troubleshooting guides, which aren't step-by-step
+  // procedures either.
+  it: /^come\b/i,
 };
 
 export function isProceduralGuide(

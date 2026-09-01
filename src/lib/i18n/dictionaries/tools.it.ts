@@ -1,0 +1,345 @@
+import type { ToolDictionary } from "@/lib/i18n/toolStrings";
+
+/**
+ * Italian tool copy. Terminology policy: docs/localization/it-terminology.md.
+ *
+ * The first step is "Aggiungi", never "Carica". "Carica" reads as *upload
+ * to a server* to an Italian speaker, which is exactly what these tools do
+ * not do — it would contradict the privacy sentence printed directly
+ * beneath the button. Output filenames are localized and kept ASCII — no
+ * accents — since the file lands in the reader's own downloads folder and
+ * has to stay safe across every filesystem.
+ */
+export const TOOLS_IT: ToolDictionary = {
+  common: {
+    privacyText: "I tuoi file vengono elaborati in locale, nel tuo browser.",
+    fileMoveUp: "Sposta {name} in alto nell’elenco",
+    fileMoveDown: "Sposta {name} in basso nell’elenco",
+    fileRemove: "Rimuovi {name}",
+    downloadAgain: "Scarica di nuovo",
+    startOver: "Ricomincia",
+    tryNext: "Prova anche questo",
+    clearAll: "Cancella tutto",
+    appCtaHeading: "Ti servono strumenti PDF sul telefono?",
+    dropPdfLabel: "Trascina qui un PDF o fai clic per selezionarlo",
+    dropPdfHint: "Un PDF · fino a 100 MB",
+    genericErrorMessage: "Qualcosa è andato storto. Riprova o usa un file più leggero.",
+    errors: {
+      not_pdf: { message: "«{name}» non è un PDF." },
+      not_image: {
+        message: "«{name}» non è un formato immagine supportato. Usa JPG, PNG o WebP.",
+      },
+      not_word: {
+        message: "«{name}» non è un file Word (.docx) né un file .txt.",
+      },
+      legacy_doc: {
+        message: "I vecchi file «.doc» non possono essere letti nel browser.",
+        hint: "Salva il documento come «.docx» e riprova.",
+      },
+      too_large: {
+        message: "«{name}» è troppo grande ({size} MB).",
+        hint: "Il limite è di {limit} MB per file, perché tutta l’elaborazione avviene nel tuo browser.",
+      },
+      unreadable_pdf: {
+        message: "Non è stato possibile aprire questo file.",
+        hint: "Potrebbe essere danneggiato o protetto da password. Sbloccalo o riparalo e riprova.",
+      },
+      invalid_range: {
+        message: "Indica un intervallo di pagine valido.",
+        hint: "Usa ad esempio 1-3 o 2,4,6.",
+      },
+      memory: {
+        message: "Questo file potrebbe essere troppo grande per essere elaborato nel browser.",
+        hint: "Prova con un PDF più leggero oppure dividilo in più parti prima.",
+      },
+      too_many_files: { message: "Aggiungi al massimo {limit} file alla volta." },
+      too_few_files: { message: "Aggiungi almeno due PDF per unirli." },
+      canvas_unsupported: { message: "Questo browser non supporta canvas." },
+      encode_failed: { message: "Non è stato possibile codificare l’immagine." },
+      generic: {
+        message: "Qualcosa è andato storto. Riprova o usa un file più leggero.",
+      },
+    },
+  },
+  tools: {
+    "image-to-pdf": {
+      title: "Immagine a PDF",
+      subtitle: "Scegli immagini JPG, PNG o WebP e riuniscile in un unico PDF.",
+      steps: ["Aggiungi", "Regola", "Scarica"],
+      successTitle: "Il tuo PDF è pronto",
+      actionIdle: "Converti in PDF",
+      actionBusy: "Conversione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android funziona anche offline.",
+      related: [
+        { id: "merge-pdf", label: "Unisci due PDF" },
+        { id: "add-watermark-to-pdf", label: "Aggiungi una filigrana" },
+      ],
+      dropLabel: "Trascina qui le tue immagini o fai clic per selezionarle",
+      dropHint: "JPG, PNG o WebP · fino a 100 MB ciascuna",
+      busyCreating: "Creazione del tuo PDF in corso…",
+      errorNoImages: "Aggiungi almeno un’immagine.",
+      pageSizeLabel: "Formato pagina",
+      pageSizeAuto: "Automatico",
+      orientationLabel: "Orientamento",
+      orientationAuto: "Automatico",
+      orientationPortrait: "Verticale",
+      orientationLandscape: "Orizzontale",
+      fitLabel: "Adattamento immagine",
+      fitFit: "Adatta alla pagina",
+      fitFill: "Riempi la pagina",
+      marginLabel: "Margine",
+      marginNone: "Nessuno",
+      marginSmall: "Piccolo",
+      marginMedium: "Medio",
+      outputFilename: "immagini.pdf",
+    },
+    "merge-pdf": {
+      title: "Unisci PDF",
+      subtitle: "Scegli due o più file PDF e combinali in un unico documento.",
+      steps: ["Aggiungi", "Regola", "Scarica"],
+      successTitle: "Il tuo PDF unito è pronto",
+      actionIdle: "Unisci i PDF",
+      actionBusy: "Unione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android unisce e divide i tuoi file anche in mobilità.",
+      related: [
+        { id: "split-pdf", label: "Dividi un PDF" },
+        { id: "rotate-pdf", label: "Ruota le pagine" },
+      ],
+      dropLabel: "Trascina qui i tuoi PDF o fai clic per selezionarli",
+      dropHint: "PDF · fino a 100 MB ciascuno",
+      busyMerging: "Combinazione dei PDF in corso…",
+      errorTooFew: "Aggiungi almeno due PDF per unirli.",
+      outputFilename: "pdf-unito.pdf",
+    },
+    "split-pdf": {
+      title: "Dividi un PDF",
+      subtitle:
+        "Scegli un PDF e indica l’intervallo di pagine da esportare. Esempi: 1-3 o 2,4,6.",
+      steps: ["Aggiungi", "Regola", "Scarica"],
+      successTitle: "Il tuo PDF con le pagine scelte è pronto",
+      actionIdle: "Dividi il PDF",
+      actionBusy: "Divisione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android divide e riordina le pagine anche in mobilità.",
+      related: [
+        { id: "merge-pdf", label: "Unisci PDF" },
+        { id: "rotate-pdf", label: "Ruota le pagine" },
+      ],
+      busyExtracting: "Estrazione delle pagine in corso…",
+      rangeLabel: "Pagine da mantenere (su {total} totali)",
+      rangeHint: "Esempi: 1-3 o 2,4,6 o 1-3,5,8-10",
+      rangePlaceholder: "es. 1-3 o 2,4,6",
+      outputSuffix: "-pagine-{first}-{last}",
+    },
+    "compress-pdf": {
+      title: "Comprimi un PDF",
+      subtitle:
+        "Riduci la dimensione di un PDF per inviarlo via mail, allegarlo a una pratica o archiviarlo — direttamente nel browser.",
+      steps: ["Aggiungi", "Regola", "Scarica"],
+      successTitle: "Il tuo PDF compresso è pronto",
+      actionIdle: "Comprimi il PDF",
+      actionBusy: "Compressione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android comprime e condivide i tuoi PDF anche in mobilità.",
+      related: [
+        { id: "merge-pdf", label: "Unisci PDF" },
+        { id: "split-pdf", label: "Dividi un PDF" },
+      ],
+      busyReading: "Lettura del PDF in corso…",
+      busyPage: "Compressione della pagina {page} di {total}…",
+      busyFinalizing: "Completamento in corso…",
+      levelLabel: "Livello di compressione",
+      levelLow: "Basso",
+      levelRecommended: "Consigliato",
+      levelStrong: "Forte",
+      levelNote:
+        "La compressione forte trasforma le pagine in immagini (il testo non sarà più selezionabile). È la scelta migliore per PDF scansionati o pieni di immagini.",
+      summaryAlreadyCompact:
+        "Questo PDF è composto quasi solo da testo e grafica vettoriale ed è già compatto ({size}). Comprimerlo non porterebbe alcun vantaggio, quindi abbiamo mantenuto il file originale così com’è.",
+      summaryReduced:
+        "Ridotto da {from} a {to} ({percent}% in meno). Le pagine sono state trasformate in immagini, quindi il testo non è più selezionabile.",
+      outputSuffix: "-compresso",
+    },
+    "rotate-pdf": {
+      title: "Ruota un PDF",
+      subtitle:
+        "Ruota tutte le pagine o solo quelle che scegli, e scarica il PDF corretto.",
+      steps: ["Aggiungi", "Regola", "Scarica"],
+      successTitle: "Il tuo PDF ruotato è pronto",
+      actionIdle: "Ruota il PDF",
+      actionBusy: "Rotazione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android ruota e riordina le pagine anche in mobilità.",
+      related: [
+        { id: "split-pdf", label: "Dividi un PDF" },
+        { id: "add-watermark-to-pdf", label: "Aggiungi una filigrana" },
+      ],
+      busyRotating: "Rotazione delle pagine in corso…",
+      angleLabel: "Rotazione",
+      scopeLabel: "Applica a",
+      scopeAll: "Tutte le pagine",
+      scopeSome: "Alcune pagine",
+      rangeLabel: "Pagine da ruotare",
+      rangeHint: "Esempi: 1-3 o 2,4,6",
+      rangePlaceholder: "es. 1,3-5",
+      outputSuffix: "-ruotato",
+    },
+    "pdf-to-images": {
+      title: "PDF a immagini",
+      subtitle: "Converti le pagine del PDF in file immagine da scaricare.",
+      steps: ["Aggiungi", "Regola", "Scarica"],
+      successTitle: "Le tue immagini sono pronte",
+      successDescription: "Ogni pagina è stata scaricata come file separato.",
+      actionIdle: "Converti in immagini",
+      actionBusy: "Conversione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android disegna le pagine con accelerazione hardware.",
+      related: [
+        { id: "image-to-pdf", label: "Immagine a PDF — il percorso inverso" },
+        { id: "split-pdf", label: "Dividi un PDF" },
+      ],
+      busyLoading: "Caricamento del PDF in corso…",
+      busyPage: "Creazione della pagina {page} di {total}…",
+      formatLabel: "Formato",
+      scaleLabel: "Scala",
+      qualityLabel: "Qualità JPEG",
+      rangeLabel: "Pagine (facoltativo)",
+      rangeHint: "Lascia vuoto per convertire tutte le pagine. Esempi: 1-3 o 2,4,6",
+      rangePlaceholder: "Tutte le pagine",
+      downloadedSummary: {
+        one: "{count} immagine scaricata (ultima: {filename})",
+        other: "{count} immagini scaricate (ultima: {filename})",
+      },
+    },
+    "add-watermark-to-pdf": {
+      title: "Aggiungi una filigrana a un PDF",
+      subtitle: "Inserisci una filigrana di testo prima di condividere il PDF.",
+      steps: ["Aggiungi", "Regola", "Scarica"],
+      successTitle: "Il tuo PDF con la filigrana è pronto",
+      actionIdle: "Aggiungi la filigrana",
+      actionBusy: "Applicazione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android timbra e firma i tuoi documenti anche in mobilità.",
+      related: [
+        { id: "merge-pdf", label: "Unisci PDF" },
+        { id: "rotate-pdf", label: "Ruota le pagine" },
+      ],
+      busyStamping: "Applicazione della filigrana alle pagine in corso…",
+      textLabel: "Testo della filigrana",
+      textDefault: "RISERVATO",
+      errorEmptyText: "Il testo della filigrana non può essere vuoto.",
+      positionLabel: "Posizione",
+      positionCenter: "Centro",
+      positionTopLeft: "In alto a sinistra",
+      positionTopRight: "In alto a destra",
+      positionBottomLeft: "In basso a sinistra",
+      positionBottomRight: "In basso a destra",
+      fontSizeLabel: "Dimensione del carattere",
+      opacityLabel: "Opacità",
+      angleLabel: "Angolo",
+      outputSuffix: "-filigrana",
+    },
+    "pdf-to-word": {
+      title: "PDF a Word",
+      subtitle:
+        "Recupera il testo di un PDF in un documento .docx modificabile — direttamente nel browser.",
+      steps: ["Aggiungi", "Converti", "Scarica"],
+      successTitle: "Il tuo documento Word è pronto",
+      successDescription:
+        "Il testo modificabile è stato estratto in un file .docx. L’impaginazione originale, le colonne e le immagini non vengono conservate.",
+      actionIdle: "Converti in Word",
+      actionBusy: "Conversione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android converte e modifica documenti anche in mobilità.",
+      related: [
+        { id: "word-to-pdf", label: "Word a PDF — il percorso inverso" },
+        { id: "pdf-to-images", label: "PDF a immagini" },
+      ],
+      dropHint: "Un PDF · fino a 100 MB · solo PDF con testo",
+      explainerTitle: "Cosa fa questo strumento",
+      explainerBody:
+        "Estrae il testo selezionabile dal tuo PDF e lo salva in un file Word (.docx) modificabile. Non riproduce l’impaginazione, i font, le colonne, le tabelle né le immagini dell’originale — è una conversione del testo onesta e pratica. Un PDF scansionato (solo immagine) non ha un livello di testo e non può essere convertito qui.",
+      busyReading: "Lettura del PDF in corso…",
+      busyPage: "Estrazione del testo dalla pagina {page} di {total}…",
+      busyBuilding: "Creazione del documento Word in corso…",
+      errorNoText:
+        "Non è stato trovato testo selezionabile. Questo PDF sembra una scansione: servirebbe l’OCR, e questo strumento del browser non fa OCR.",
+    },
+    "word-to-pdf": {
+      title: "Word a PDF",
+      subtitle:
+        "Converti un documento .docx o .txt in un PDF pulito — direttamente nel browser.",
+      steps: ["Aggiungi", "Converti", "Scarica"],
+      successTitle: "Il tuo PDF è pronto",
+      successDescription:
+        "Il testo è stato impaginato in un PDF A4 pulito. I font, le immagini, le tabelle e la spaziatura esatta del .docx originale non vengono conservati.",
+      actionIdle: "Converti in PDF",
+      actionBusy: "Conversione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android converte e firma documenti anche in mobilità.",
+      related: [
+        { id: "pdf-to-word", label: "PDF a Word — il percorso inverso" },
+        { id: "image-to-pdf", label: "Immagine a PDF" },
+      ],
+      dropLabel: "Trascina qui un file .docx o .txt o fai clic per selezionarlo",
+      dropHint: "Word .docx o .txt semplice · fino a 100 MB",
+      explainerTitle: "Cosa fa questo strumento",
+      explainerBody:
+        "Legge il testo da un file Word (.docx) o da un file di testo semplice (.txt) e lo impagina in un PDF A4 pulito e paginato. È una conversione del testo onesta — i font, le immagini, le tabelle e la formattazione esatta dell’originale non vengono conservati. Il vecchio formato binario .doc non è supportato; salva prima il file come .docx.",
+      busyReading: "Lettura del documento in corso…",
+      busyBuilding: "Creazione del PDF in corso…",
+      errorEmptyDocument: "Il documento sembra vuoto: non c’è testo da convertire.",
+      errorUnreadable:
+        "Non è stato possibile leggere questo documento. Salvalo di nuovo come .docx e riprova.",
+    },
+    "reorder-pdf-pages": {
+      title: "Riordina le pagine del PDF",
+      subtitle:
+        "Guarda l’anteprima di ogni pagina, mettile nell’ordine che preferisci e scarica il file.",
+      steps: ["Aggiungi", "Riordina", "Scarica"],
+      successTitle: "Il tuo PDF riordinato è pronto",
+      actionIdle: "Riordina il PDF",
+      actionBusy: "Creazione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android riordina e unisce le pagine anche in mobilità.",
+      related: [
+        { id: "merge-pdf", label: "Unisci PDF" },
+        { id: "extract-pdf-pages", label: "Estrai pagine" },
+      ],
+      busyBuilding: "Creazione del PDF riordinato in corso…",
+      prepRendering: "Creazione delle anteprime delle pagine in corso…",
+      prepRenderingProgress: "Creazione delle anteprime delle pagine in corso… ({done}/{total})",
+      instructions: {
+        one: "{count} pagina. Usa le frecce per spostare una pagina avanti o indietro, poi crea il PDF.",
+        other:
+          "{count} pagine. Usa le frecce per spostare una pagina avanti o indietro, poi crea il PDF.",
+      },
+      positionLabel: "Posizione {position}",
+      wasPageLabel: "era la pagina {page}",
+      originalPageAlt: "Pagina originale {page}",
+      moveEarlier: "Anticipa la posizione {position}",
+      moveLater: "Posticipa la posizione {position}",
+      resetOrder: "Ripristina l’ordine",
+      outputSuffix: "-riordinato",
+    },
+    "extract-pdf-pages": {
+      title: "Estrai pagine dal PDF",
+      subtitle:
+        "Scegli pagine o intervalli specifici e scarica un nuovo PDF che contiene solo quelle.",
+      steps: ["Aggiungi", "Seleziona", "Scarica"],
+      successTitle: "Il tuo PDF con le pagine estratte è pronto",
+      actionIdle: "Estrai pagine",
+      actionBusy: "Estrazione in corso…",
+      appCtaSub: "PDF Editor per iPhone e Android estrae e riordina le pagine anche in mobilità.",
+      related: [
+        { id: "split-pdf", label: "Dividi un PDF" },
+        { id: "reorder-pdf-pages", label: "Riordina le pagine del PDF" },
+      ],
+      busyExtracting: "Estrazione delle pagine in corso…",
+      pageCountNote: {
+        one: "Questo PDF ha {count} pagina.",
+        other: "Questo PDF ha {count} pagine.",
+      },
+      rangeLabel: "Pagine da estrarre",
+      rangeHint: "Esempi: 1-3 · 2,4,6 · 1-2,5,8-10",
+      rangePlaceholder: "es. 1-3,5",
+      selectedNote: {
+        one: "{count} di {total} pagina selezionata.",
+        other: "{count} di {total} pagine selezionate.",
+      },
+      outputSuffix: "-pagine",
+    },
+  },
+};
