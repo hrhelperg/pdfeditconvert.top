@@ -11,11 +11,13 @@ import { SITE_PT_BR } from "@/lib/i18n/dictionaries/site.pt-BR";
 import { SITE_FR } from "@/lib/i18n/dictionaries/site.fr";
 import { SITE_ES } from "@/lib/i18n/dictionaries/site.es";
 import { SITE_DE } from "@/lib/i18n/dictionaries/site.de";
+import { SITE_IT } from "@/lib/i18n/dictionaries/site.it";
 import { TOOLS_EN } from "@/lib/i18n/dictionaries/tools.en";
 import { TOOLS_PT_BR } from "@/lib/i18n/dictionaries/tools.pt-BR";
 import { TOOLS_FR } from "@/lib/i18n/dictionaries/tools.fr";
 import { TOOLS_ES } from "@/lib/i18n/dictionaries/tools.es";
 import { TOOLS_DE } from "@/lib/i18n/dictionaries/tools.de";
+import { TOOLS_IT } from "@/lib/i18n/dictionaries/tools.it";
 
 /**
  * Where every translated dictionary is wired in.
@@ -36,6 +38,7 @@ const SITE_DICTIONARIES: Partial<Record<Locale, SiteDictionary>> = {
   fr: SITE_FR,
   es: SITE_ES,
   de: SITE_DE,
+  it: SITE_IT,
 };
 
 const TOOL_DICTIONARIES: Partial<Record<Locale, ToolDictionary>> = {
@@ -44,6 +47,7 @@ const TOOL_DICTIONARIES: Partial<Record<Locale, ToolDictionary>> = {
   fr: TOOLS_FR,
   es: TOOLS_ES,
   de: TOOLS_DE,
+  it: TOOLS_IT,
 };
 
 function resolve<T>(
