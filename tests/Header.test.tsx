@@ -21,6 +21,7 @@ function headerProps(
     | "it"
     | "ar"
     | "ru"
+    | "pl"
     | "cs"
     | "ja" = "en",
 ) {
@@ -90,6 +91,10 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: /Русский/ })).toHaveAttribute(
       "href",
       "/ru",
+    );
+    expect(screen.getByRole("link", { name: /Polski/ })).toHaveAttribute(
+      "href",
+      "/pl",
     );
     expect(screen.getByRole("link", { name: /Čeština/ })).toHaveAttribute(
       "href",
@@ -162,6 +167,15 @@ describe("Header", () => {
       "/ru/szhat-pdf",
     );
     expect(screen.getByLabelText(/Открыть меню/i)).toBeInTheDocument();
+  });
+
+  it("renders Polish navigation when given the pl dictionary", () => {
+    render(<Header {...headerProps("pl")} />);
+    expect(screen.getByRole("link", { name: "Kompresuj" })).toHaveAttribute(
+      "href",
+      "/pl/kompresuj-pdf",
+    );
+    expect(screen.getByLabelText(/Otwórz menu/i)).toBeInTheDocument();
   });
 
   it("renders Czech navigation when given the cs dictionary", () => {

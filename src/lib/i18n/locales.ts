@@ -180,7 +180,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "Polish",
     nativeName: "Polski",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "pl-PL",
   },
   cs: {

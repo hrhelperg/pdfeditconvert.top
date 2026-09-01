@@ -200,4 +200,10 @@ const ROOT_COPY: Record<string, RootCopy> & { en: RootCopy } = {
     description:
       "仕事、学業、日常生活のためのオールインワンPDFソリューション。スマホからPDFの編集・変換・圧縮・結合・署名・スキャンができます。",
   },
+  pl: {
+    defaultTitle: "PDF Editor — edytuj, konwertuj, podpisuj i skanuj pliki PDF",
+    template: "%s | PDF Editor",
+    description:
+      "Kompleksowe rozwiązanie PDF do pracy, nauki i życia codziennego. Edytuj, konwertuj, kompresuj, scalaj, podpisuj i skanuj pliki PDF prosto z telefonu.",
+  },
 };
