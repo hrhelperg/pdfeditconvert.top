@@ -22,7 +22,8 @@ function headerProps(
     | "ar"
     | "ru"
     | "pl"
-    | "cs" = "en",
+    | "cs"
+    | "id" = "en",
 ) {
   const d = getSiteDictionary(locale);
   return {
@@ -98,6 +99,10 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: /Čeština/ })).toHaveAttribute(
       "href",
       "/cs",
+    );
+    expect(screen.getByRole("link", { name: /Bahasa Indonesia/ })).toHaveAttribute(
+      "href",
+      "/id",
     );
   });
 
@@ -180,6 +185,15 @@ describe("Header", () => {
       "/cs/zkomprimovat-pdf",
     );
     expect(screen.getByLabelText(/Otevřít nabídku/i)).toBeInTheDocument();
+  });
+
+  it("renders Indonesian navigation when given the id dictionary", () => {
+    render(<Header {...headerProps("id")} />);
+    expect(screen.getByRole("link", { name: "Kompres" })).toHaveAttribute(
+      "href",
+      "/id/kompres-pdf",
+    );
+    expect(screen.getByLabelText(/Buka menu/i)).toBeInTheDocument();
   });
 
   it("clicking the toggle opens the mobile menu", async () => {

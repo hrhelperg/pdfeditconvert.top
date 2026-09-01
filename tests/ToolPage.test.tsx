@@ -166,4 +166,18 @@ describe("ToolPage", () => {
       screen.getByRole("link", { name: /Domů/ }),
     ).toHaveAttribute("href", "/cs");
   });
+
+  it("localizes chrome and internal links for id", () => {
+    render(<ToolPage content={content} locale="id" toolSlot={<div />} />);
+    // The content record still carries the English link path; the renderer
+    // translates it, so a translator never types a URL.
+    expect(screen.getByRole("link", { name: /Related/ })).toHaveAttribute(
+      "href",
+      "/id/gabung-pdf",
+    );
+    expect(screen.getByText("Pertanyaan yang sering diajukan")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Beranda/ }),
+    ).toHaveAttribute("href", "/id");
+  });
 });
