@@ -133,10 +133,30 @@ const PROCEDURAL_OPENERS: Partial<Record<Locale, RegExp>> = {
   es: /^cómo\b/i,
 };
 
+/**
+ * Locales with no reliable "how to" title opener to test for.
+ *
+ * The Romance locales above all phrase a how-to guide as "Cómo/Comment/Como
+ * …", so a lexical prefix works. German infinitive-phrase titles put the
+ * verb at the end ("PDF-Dateien kundenfertig gestalten" — OV word order),
+ * which reads naturally but leaves no stable prefix to test, and forcing an
+ * artificial "Wie …" opener onto every title would be worse copy than the
+ * schema is worth. These locales fall back to the English route id instead:
+ * every "how-to-*" id is a genuine step-by-step procedure by construction
+ * (see docs/localization/de-terminology.md), and every other id is not —
+ * the same distinction the title regex draws for other locales, just keyed
+ * off a signal that survives translation instead of prose.
+ */
+const PROCEDURAL_LOCALES_BY_ROUTE_ID = new Set<Locale>(["de"]);
+
 export function isProceduralGuide(
   h1: string,
   locale: Locale = DEFAULT_LOCALE,
+  englishSlug?: string,
 ): boolean {
+  if (PROCEDURAL_LOCALES_BY_ROUTE_ID.has(locale)) {
+    return (englishSlug ?? "").startsWith("how-to-");
+  }
   const pattern = PROCEDURAL_OPENERS[locale] ?? PROCEDURAL_OPENERS.en!;
   return pattern.test(h1.trim());
 }
