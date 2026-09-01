@@ -18,6 +18,7 @@ export function LegalPage({
   return (
     <Container size="md" className="py-12">
       <Breadcrumbs
+        ariaLabel={breadcrumbs.ariaLabel}
         items={[
           { label: breadcrumbs.home, href: pathForWithFallback(locale, "") },
           { label: content.h1 },

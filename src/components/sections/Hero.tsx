@@ -10,6 +10,8 @@ export function Hero({
   secondaryHref,
   secondaryLabel,
   showLockup = false,
+  storeLabels,
+  availabilityText,
 }: {
   eyebrow?: string;
   h1: string;
@@ -18,6 +20,14 @@ export function Hero({
   secondaryHref?: string;
   secondaryLabel?: string;
   showLockup?: boolean;
+  /** Localized aria-labels for the two store badges. */
+  storeLabels?: { appStoreLabel: string; googlePlayLabel: string };
+  /**
+   * Caption under the store badges. Supplied by the caller from the site
+   * dictionary — it used to be a hardcoded English sentence, which shipped
+   * visibly untranslated on every non-English hub and tools-index page.
+   */
+  availabilityText?: string;
 }) {
   const renderH1 = () => {
     if (!highlight || !h1.includes(highlight)) return h1;
@@ -56,7 +66,7 @@ export function Hero({
               {lead}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-              <StoreButtons size="lg" />
+              <StoreButtons size="lg" {...storeLabels} />
               {secondaryHref ? (
                 <Link
                   href={secondaryHref}
@@ -66,9 +76,9 @@ export function Hero({
                 </Link>
               ) : null}
             </div>
-            <p className="mt-6 text-sm text-[--color-muted]">
-              Available on iOS and Android · Free to try
-            </p>
+            {availabilityText ? (
+              <p className="mt-6 text-sm text-[--color-muted]">{availabilityText}</p>
+            ) : null}
           </div>
 
           {showLockup ? (

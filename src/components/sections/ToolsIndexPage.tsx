@@ -31,7 +31,7 @@ export function ToolsIndexPage({
   content: ToolsIndexContent;
   locale: Locale;
 }) {
-  const { sections, breadcrumbs } = getSiteDictionary(locale);
+  const { sections, breadcrumbs, store } = getSiteDictionary(locale);
   const href = (id: string) => pathForWithFallback(locale, id as RouteId);
   const selfPath = href("pdf-tools");
 
@@ -52,6 +52,7 @@ export function ToolsIndexPage({
       />
       <Container className="pt-4">
         <Breadcrumbs
+          ariaLabel={breadcrumbs.ariaLabel}
           items={[
             { label: breadcrumbs.home, href: href("") },
             { label: content.crumbLabel },
@@ -63,6 +64,11 @@ export function ToolsIndexPage({
         h1={content.heroH1}
         highlight={content.heroHighlight}
         lead={content.heroLead}
+        availabilityText={store.availability}
+        storeLabels={{
+          appStoreLabel: store.appStoreAria,
+          googlePlayLabel: store.googlePlayAria,
+        }}
       />
       <Section>
         <Container size="md">

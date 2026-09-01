@@ -65,6 +65,7 @@ export function ToolPage({
     <>
       <Container className="pt-4">
         <Breadcrumbs
+          ariaLabel={dictionary.breadcrumbs.ariaLabel}
           items={[
             { label: breadcrumbs.home, href: pathForWithFallback(locale, "") },
             { label: crumbLabel },

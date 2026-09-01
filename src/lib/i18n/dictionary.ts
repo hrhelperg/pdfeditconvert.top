@@ -59,6 +59,13 @@ export interface SiteDictionary {
   readonly store: {
     readonly appStoreAria: string;
     readonly googlePlayAria: string;
+    /**
+     * Caption under the hero's store badges. Lives here rather than in the
+     * Hero component because it was the one visible string the component
+     * hardcoded in English, which shipped untranslated on every locale's
+     * hub and tools-index pages.
+     */
+    readonly availability: string;
   };
 
   readonly breadcrumbs: {
@@ -67,6 +74,8 @@ export interface SiteDictionary {
     readonly compare: string;
     readonly useCases: string;
     readonly tools: string;
+    /** Accessible name for the breadcrumb <nav> landmark. */
+    readonly ariaLabel: string;
   };
 
   readonly sections: {
