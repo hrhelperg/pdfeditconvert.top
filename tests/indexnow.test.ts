@@ -10,7 +10,7 @@ import path from "node:path";
 import { describe, it, expect } from "vitest";
 import { ROUTES, SITE_HOST, SITE_URL } from "@/lib/routes";
 import { allPublishedRoutes } from "@/lib/i18n/routeMap";
-import { publishedLocaleCodes } from "@/lib/i18n/locales";
+import { LOCALES, LOCALE_CODES, publishedLocaleCodes } from "@/lib/i18n/locales";
 import {
   buildAllLocaleUrls,
   buildUrlList,
@@ -120,7 +120,10 @@ describe("locale coverage", () => {
 
   it("never submits a locale that isn't published", () => {
     const codes = parsePublishedLocales(localesSource).map((l: { code: string }) => l.code);
-    for (const unpublished of ["id", "tr"]) {
+    // Derived rather than a hardcoded locale: whichever locale is currently
+    // declared but not yet published, this must never see it — no manual
+    // swap needed the next time the roster changes.
+    for (const unpublished of LOCALE_CODES.filter((c) => !LOCALES[c].published)) {
       expect(codes).not.toContain(unpublished);
     }
   });

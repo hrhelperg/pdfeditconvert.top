@@ -23,7 +23,8 @@ function headerProps(
     | "ru"
     | "pl"
     | "cs"
-    | "ja" = "en",
+    | "ja"
+    | "tr" = "en",
 ) {
   const d = getSiteDictionary(locale);
   return {
@@ -103,6 +104,10 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: /日本語/ })).toHaveAttribute(
       "href",
       "/ja",
+    );
+    expect(screen.getByRole("link", { name: /Türkçe/ })).toHaveAttribute(
+      "href",
+      "/tr",
     );
   });
 
@@ -194,6 +199,15 @@ describe("Header", () => {
       "/ja/pdf-asshuku",
     );
     expect(screen.getByLabelText(/メニューを開く/i)).toBeInTheDocument();
+  });
+
+  it("renders Turkish navigation when given the tr dictionary", () => {
+    render(<Header {...headerProps("tr")} />);
+    expect(screen.getByRole("link", { name: "Sıkıştır" })).toHaveAttribute(
+      "href",
+      "/tr/pdf-sikistir",
+    );
+    expect(screen.getByLabelText(/Menüyü aç/i)).toBeInTheDocument();
   });
 
   it("clicking the toggle opens the mobile menu", async () => {

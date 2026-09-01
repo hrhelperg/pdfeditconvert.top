@@ -10,7 +10,7 @@ import {
   sitemapName,
   urlsetXml,
 } from "@/lib/sitemap";
-import { DEFAULT_LOCALE, LOCALES, publishedLocaleCodes } from "@/lib/i18n/locales";
+import { DEFAULT_LOCALE, LOCALES, LOCALE_CODES, publishedLocaleCodes } from "@/lib/i18n/locales";
 import { routesForLocale } from "@/lib/i18n/routeMap";
 
 const PUBLISHED = publishedLocaleCodes();
@@ -46,9 +46,12 @@ describe("sitemap segmentation", () => {
   });
 
   it("never publishes a sitemap for an unpublished locale", () => {
-    expect(LOCALES.tr.published).toBe(false);
     expect(sitemapFiles().every((f) => LOCALES[f.locale].published)).toBe(true);
-    expect(sitemapIndexXml()).not.toContain("-tr.xml");
+    // Derived rather than a hardcoded locale, so this keeps holding no
+    // matter which locale is currently mid-rollout.
+    for (const code of LOCALE_CODES.filter((c) => !LOCALES[c].published)) {
+      expect(sitemapIndexXml()).not.toContain(`-${code}.xml`);
+    }
   });
 
   it("index lastmod for a group is the newest lastModified inside it", () => {
@@ -110,8 +113,9 @@ describe("sitemap URL entries", () => {
   });
 
   it("never annotates an unpublished locale", () => {
-    expect(allXml).not.toContain('hreflang="tr"');
-    expect(allXml).not.toContain('hreflang="id"');
+    for (const code of LOCALE_CODES.filter((c) => !LOCALES[c].published)) {
+      expect(allXml).not.toContain(`hreflang="${code}"`);
+    }
   });
 
   it("priority stays within the 0..1 range the protocol allows", () => {
