@@ -14,6 +14,7 @@ import { SITE_DE } from "@/lib/i18n/dictionaries/site.de";
 import { SITE_IT } from "@/lib/i18n/dictionaries/site.it";
 import { SITE_AR } from "@/lib/i18n/dictionaries/site.ar";
 import { SITE_RU } from "@/lib/i18n/dictionaries/site.ru";
+import { SITE_PL } from "@/lib/i18n/dictionaries/site.pl";
 import { SITE_CS } from "@/lib/i18n/dictionaries/site.cs";
 import { TOOLS_EN } from "@/lib/i18n/dictionaries/tools.en";
 import { TOOLS_PT_BR } from "@/lib/i18n/dictionaries/tools.pt-BR";
@@ -23,6 +24,7 @@ import { TOOLS_DE } from "@/lib/i18n/dictionaries/tools.de";
 import { TOOLS_IT } from "@/lib/i18n/dictionaries/tools.it";
 import { TOOLS_AR } from "@/lib/i18n/dictionaries/tools.ar";
 import { TOOLS_RU } from "@/lib/i18n/dictionaries/tools.ru";
+import { TOOLS_PL } from "@/lib/i18n/dictionaries/tools.pl";
 import { TOOLS_CS } from "@/lib/i18n/dictionaries/tools.cs";
 
 /**
@@ -47,6 +49,7 @@ const SITE_DICTIONARIES: Partial<Record<Locale, SiteDictionary>> = {
   it: SITE_IT,
   ar: SITE_AR,
   ru: SITE_RU,
+  pl: SITE_PL,
   cs: SITE_CS,
 };
 
@@ -59,6 +62,7 @@ const TOOL_DICTIONARIES: Partial<Record<Locale, ToolDictionary>> = {
   it: TOOLS_IT,
   ar: TOOLS_AR,
   ru: TOOLS_RU,
+  pl: TOOLS_PL,
   cs: TOOLS_CS,
 };
 

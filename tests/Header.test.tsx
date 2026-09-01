@@ -12,7 +12,17 @@ import { publishedLocales } from "@/lib/i18n/locales";
  * same way the root layout builds them.
  */
 function headerProps(
-  locale: "en" | "pt-BR" | "fr" | "es" | "de" | "it" | "ar" | "ru" | "cs" = "en",
+  locale:
+    | "en"
+    | "pt-BR"
+    | "fr"
+    | "es"
+    | "de"
+    | "it"
+    | "ar"
+    | "ru"
+    | "pl"
+    | "cs" = "en",
 ) {
   const d = getSiteDictionary(locale);
   return {
@@ -81,6 +91,10 @@ describe("Header", () => {
       "href",
       "/ru",
     );
+    expect(screen.getByRole("link", { name: /Polski/ })).toHaveAttribute(
+      "href",
+      "/pl",
+    );
     expect(screen.getByRole("link", { name: /Čeština/ })).toHaveAttribute(
       "href",
       "/cs",
@@ -148,6 +162,15 @@ describe("Header", () => {
       "/ru/szhat-pdf",
     );
     expect(screen.getByLabelText(/Открыть меню/i)).toBeInTheDocument();
+  });
+
+  it("renders Polish navigation when given the pl dictionary", () => {
+    render(<Header {...headerProps("pl")} />);
+    expect(screen.getByRole("link", { name: "Kompresuj" })).toHaveAttribute(
+      "href",
+      "/pl/kompresuj-pdf",
+    );
+    expect(screen.getByLabelText(/Otwórz menu/i)).toBeInTheDocument();
   });
 
   it("renders Czech navigation when given the cs dictionary", () => {

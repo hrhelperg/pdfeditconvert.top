@@ -139,6 +139,20 @@ describe("ToolPage", () => {
     ).toHaveAttribute("href", "/ru");
   });
 
+  it("localizes chrome and internal links for pl", () => {
+    render(<ToolPage content={content} locale="pl" toolSlot={<div />} />);
+    // The content record still carries the English link path; the renderer
+    // translates it, so a translator never types a URL.
+    expect(screen.getByRole("link", { name: /Related/ })).toHaveAttribute(
+      "href",
+      "/pl/polacz-pdf",
+    );
+    expect(screen.getByText("Najczęściej zadawane pytania")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Strona główna/ }),
+    ).toHaveAttribute("href", "/pl");
+  });
+
   it("localizes chrome and internal links for cs", () => {
     render(<ToolPage content={content} locale="cs" toolSlot={<div />} />);
     // The content record still carries the English link path; the renderer

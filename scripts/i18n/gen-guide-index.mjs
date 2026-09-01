@@ -18,6 +18,7 @@ const LOCALE_NAMES = {
   it: "Italian",
   ar: "Arabic",
   ru: "Russian",
+  pl: "Polish",
   cs: "Czech",
 };
 
