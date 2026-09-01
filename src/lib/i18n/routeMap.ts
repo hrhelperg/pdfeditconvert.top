@@ -15,6 +15,7 @@ import { DE_ROUTE_MANIFEST } from "@/content/de/routes";
 import { IT_ROUTE_MANIFEST } from "@/content/it/routes";
 import { AR_ROUTE_MANIFEST } from "@/content/ar/routes";
 import { RU_ROUTE_MANIFEST } from "@/content/ru/routes";
+import { CS_ROUTE_MANIFEST } from "@/content/cs/routes";
 
 /**
  * The centralized locale route map.
@@ -146,6 +147,7 @@ export const LOCALE_PUBLISHED_AT: Partial<Record<Locale, string>> = {
   it: "2026-09-01",
   ar: "2026-09-01",
   ru: "2026-09-01",
+  cs: "2026-09-01",
 };
 
 const LOCALE_ROUTES: Partial<Record<Locale, LocalizedRoute[]>> = {
@@ -170,6 +172,9 @@ const LOCALE_ROUTES: Partial<Record<Locale, LocalizedRoute[]>> = {
   }),
   ru: buildLocaleRoutes("ru", RU_ROUTE_MANIFEST, {
     publishedAt: LOCALE_PUBLISHED_AT.ru,
+  }),
+  cs: buildLocaleRoutes("cs", CS_ROUTE_MANIFEST, {
+    publishedAt: LOCALE_PUBLISHED_AT.cs,
   }),
 };
 
