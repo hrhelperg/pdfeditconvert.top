@@ -9,6 +9,7 @@ import {
 import {
   alternatesFor,
   routesForLocale,
+  xDefaultFor,
   type LocalizedRoute,
 } from "@/lib/i18n/routeMap";
 
@@ -109,6 +110,10 @@ export function urlsetXml(
   const entries = routesInGroup(group, locale)
     .map((r) => {
       const alternates = alternatesFor(r.routeId);
+      // x-default belongs here too. Omitting it made the sitemap declare
+      // one fewer annotation than the page's own head does, so the two
+      // sources disagreed and the sitemap was not self-sufficient.
+      const xDefault = alternates.length > 1 ? xDefaultFor(r.routeId) : null;
       const links =
         alternates.length > 1
           ? alternates
@@ -116,7 +121,10 @@ export function urlsetXml(
                 (a) =>
                   `\n    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${xmlEscape(a.url)}" />`,
               )
-              .join("")
+              .join("") +
+            (xDefault
+              ? `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(xDefault)}" />`
+              : "")
           : "";
       return (
         `  <url>\n` +
