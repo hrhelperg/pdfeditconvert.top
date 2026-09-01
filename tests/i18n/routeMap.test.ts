@@ -59,9 +59,9 @@ describe("locale configuration", () => {
   it("resolves a locale from its prefix, and refuses unpublished ones", () => {
     expect(localeFromPrefix("")).toBe(DEFAULT_LOCALE);
     expect(localeFromPrefix("pt-br")).toBe("pt-BR");
-    // `ja` is configured but not published: it must not resolve to a locale.
-    expect(LOCALES.ja.published).toBe(false);
-    expect(localeFromPrefix("ja")).toBeNull();
+    // `tr` is configured but not published: it must not resolve to a locale.
+    expect(LOCALES.tr.published).toBe(false);
+    expect(localeFromPrefix("tr")).toBeNull();
     expect(localeFromPrefix("nope")).toBeNull();
   });
 
@@ -134,9 +134,14 @@ describe("localized route manifests", () => {
     // and the URL never localized. Genuinely-shared tokens are allowlisted:
     // pt-BR's product-name comparisons, fr's "guides" (identical plural
     // in French) and "contact" (a French word, not an untranslated English
-    // one), and de's "pdf-editor" ("Editor" is standard German tech
+    // one), de's "pdf-editor" ("Editor" is standard German tech
     // vocabulary — "PDF-Editor" is the term a German reader actually
-    // searches, not an untranslated leftover).
+    // searches, not an untranslated leftover), and ja's "guides" and
+    // "privacy-policy" (both direct katakana loanword phrases — ガイド and
+    // プライバシーポリシー — that Japanese readers search in their English
+    // spelling, the same class of exception as pdf-editor; every other ja
+    // English-looking slug in this file was a real bug and was rewritten
+    // to genuine romaji instead of allowlisted).
     const SHARED = new Set([
       "pdf-ou-jpg",
       "pdf-ou-docx",
@@ -144,6 +149,7 @@ describe("localized route manifests", () => {
       "guides",
       "contact",
       "pdf-editor",
+      "privacy-policy",
     ]);
     const prefix = `/${LOCALES[locale].prefix}`;
     const suspicious = routesForLocale(locale)
@@ -157,7 +163,7 @@ describe("localized route manifests", () => {
   });
 
   it("does not publish routes for unpublished locales", () => {
-    expect(routesForLocale("ja")).toEqual([]);
+    expect(routesForLocale("tr")).toEqual([]);
     expect(allPublishedRoutes().every((r) => PUBLISHED.includes(r.locale))).toBe(true);
   });
 

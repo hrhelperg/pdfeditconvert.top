@@ -22,7 +22,8 @@ function headerProps(
     | "ar"
     | "ru"
     | "pl"
-    | "cs" = "en",
+    | "cs"
+    | "ja" = "en",
 ) {
   const d = getSiteDictionary(locale);
   return {
@@ -98,6 +99,10 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: /Čeština/ })).toHaveAttribute(
       "href",
       "/cs",
+    );
+    expect(screen.getByRole("link", { name: /日本語/ })).toHaveAttribute(
+      "href",
+      "/ja",
     );
   });
 
@@ -180,6 +185,15 @@ describe("Header", () => {
       "/cs/zkomprimovat-pdf",
     );
     expect(screen.getByLabelText(/Otevřít nabídku/i)).toBeInTheDocument();
+  });
+
+  it("renders Japanese navigation when given the ja dictionary", () => {
+    render(<Header {...headerProps("ja")} />);
+    expect(screen.getByRole("link", { name: "圧縮" })).toHaveAttribute(
+      "href",
+      "/ja/pdf-asshuku",
+    );
+    expect(screen.getByLabelText(/メニューを開く/i)).toBeInTheDocument();
   });
 
   it("clicking the toggle opens the mobile menu", async () => {

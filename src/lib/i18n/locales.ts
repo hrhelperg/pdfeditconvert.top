@@ -136,7 +136,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "Japanese",
     nativeName: "日本語",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "ja-JP",
   },
   id: {
