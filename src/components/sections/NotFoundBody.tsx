@@ -170,3 +170,17 @@ export const NOT_FOUND_RU: NotFoundCopy = {
     { id: "sign-pdf", label: "Подписать PDF" },
   ],
 };
+
+export const NOT_FOUND_PL: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Nie znaleziono strony",
+  lead: "Strona, której szukasz, nie istnieje lub została przeniesiona. Spróbuj jednej z poniższych:",
+  openLabel: "Otwórz →",
+  homeLabel: "Powrót do strony głównej",
+  suggestions: [
+    { id: "pdf-editor", label: "PDF Editor" },
+    { id: "compress-pdf", label: "Kompresuj PDF" },
+    { id: "merge-pdf", label: "Scal PDF" },
+    { id: "sign-pdf", label: "Podpisz PDF" },
+  ],
+};
