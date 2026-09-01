@@ -213,7 +213,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "Turkish",
     nativeName: "Türkçe",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "tr-TR",
   },
 };
