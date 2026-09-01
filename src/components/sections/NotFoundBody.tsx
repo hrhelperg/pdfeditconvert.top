@@ -171,6 +171,20 @@ export const NOT_FOUND_AR: NotFoundCopy = {
   ],
 };
 
+export const NOT_FOUND_JA: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "ページが見つかりません",
+  lead: "お探しのページは存在しないか、移動しました。代わりに次のいずれかをお試しください。",
+  openLabel: "開く →",
+  homeLabel: "ホームに戻る",
+  suggestions: [
+    { id: "pdf-editor", label: "PDFエディター" },
+    { id: "compress-pdf", label: "PDFを圧縮" },
+    { id: "merge-pdf", label: "PDFを結合" },
+    { id: "sign-pdf", label: "PDFに署名" },
+  ],
+};
+
 export const NOT_FOUND_RU: NotFoundCopy = {
   eyebrow: "404",
   h1: "Страница не найдена",

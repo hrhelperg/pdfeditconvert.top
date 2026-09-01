@@ -46,9 +46,9 @@ describe("sitemap segmentation", () => {
   });
 
   it("never publishes a sitemap for an unpublished locale", () => {
-    expect(LOCALES.ja.published).toBe(false);
+    expect(LOCALES.tr.published).toBe(false);
     expect(sitemapFiles().every((f) => LOCALES[f.locale].published)).toBe(true);
-    expect(sitemapIndexXml()).not.toContain("-ja.xml");
+    expect(sitemapIndexXml()).not.toContain("-tr.xml");
   });
 
   it("index lastmod for a group is the newest lastModified inside it", () => {
@@ -110,7 +110,6 @@ describe("sitemap URL entries", () => {
   });
 
   it("never annotates an unpublished locale", () => {
-    expect(allXml).not.toContain('hreflang="ja"');
     expect(allXml).not.toContain('hreflang="tr"');
   });
 
