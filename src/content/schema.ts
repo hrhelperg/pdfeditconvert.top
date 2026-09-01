@@ -135,6 +135,12 @@ const PROCEDURAL_OPENERS: Partial<Record<Locale, RegExp>> = {
   // it's explanatory and troubleshooting guides, which aren't step-by-step
   // procedures either.
   it: /^come\b/i,
+  // Matches "كيفية …" only. Deliberately \s, not \b: JS regex \b is a
+  // transition between \w ([A-Za-z0-9_]) and non-\w, and Arabic letters are
+  // not in \w — so \b never matches on either side of an all-Arabic word,
+  // silently failing to match anything at all. \s after the literal prefix
+  // sidesteps that entirely.
+  ar: /^كيفية\s/,
   // Matches "Как …" only. Deliberately \s, not \b: JS regex \b is a
   // transition between \w ([A-Za-z0-9_]) and non-\w, and Cyrillic letters
   // are not in \w — so \b never matches on either side of an all-Cyrillic

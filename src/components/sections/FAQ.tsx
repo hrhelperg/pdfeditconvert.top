@@ -30,7 +30,7 @@ export function FAQ({
                   type="button"
                   aria-expanded={isOpen ? "true" : "false"}
                   aria-controls={`faq-panel-${idx}`}
-                  className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-semibold text-[--color-ink] hover:bg-[--color-bg]"
+                  className="w-full flex items-center justify-between gap-4 text-start px-6 py-5 font-semibold text-[--color-ink] hover:bg-[--color-bg]"
                   onClick={() => setOpen(isOpen ? null : idx)}
                 >
                   <span>{it.q}</span>

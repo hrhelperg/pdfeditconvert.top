@@ -143,6 +143,20 @@ export const NOT_FOUND_IT: NotFoundCopy = {
   ],
 };
 
+export const NOT_FOUND_AR: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "الصفحة غير موجودة",
+  lead: "الصفحة التي تبحث عنها لم تعد موجودة أو تم نقلها. جرّب واحدة من هذه بدلاً منها:",
+  openLabel: "فتح ←",
+  homeLabel: "العودة إلى الصفحة الرئيسية",
+  suggestions: [
+    { id: "pdf-editor", label: "محرر PDF" },
+    { id: "compress-pdf", label: "ضغط PDF" },
+    { id: "merge-pdf", label: "دمج PDF" },
+    { id: "sign-pdf", label: "توقيع PDF" },
+  ],
+};
+
 export const NOT_FOUND_RU: NotFoundCopy = {
   eyebrow: "404",
   h1: "Страница не найдена",
