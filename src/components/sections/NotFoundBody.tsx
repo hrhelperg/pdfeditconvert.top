@@ -213,6 +213,20 @@ export const NOT_FOUND_PL: NotFoundCopy = {
   ],
 };
 
+export const NOT_FOUND_ID: NotFoundCopy = {
+  eyebrow: "404",
+  h1: "Halaman tidak ditemukan",
+  lead: "Halaman yang Anda cari tidak ada atau telah dipindahkan. Coba salah satu berikut:",
+  openLabel: "Buka →",
+  homeLabel: "Kembali ke beranda",
+  suggestions: [
+    { id: "pdf-editor", label: "PDF Editor" },
+    { id: "compress-pdf", label: "Kompres PDF" },
+    { id: "merge-pdf", label: "Gabungkan PDF" },
+    { id: "sign-pdf", label: "Tanda Tangan PDF" },
+  ],
+};
+
 export const NOT_FOUND_TR: NotFoundCopy = {
   eyebrow: "404",
   h1: "Sayfa bulunamadı",

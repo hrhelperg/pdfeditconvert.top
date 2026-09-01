@@ -23,6 +23,7 @@ function headerProps(
     | "ru"
     | "pl"
     | "cs"
+    | "id"
     | "ja"
     | "tr" = "en",
 ) {
@@ -100,6 +101,10 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: /Čeština/ })).toHaveAttribute(
       "href",
       "/cs",
+    );
+    expect(screen.getByRole("link", { name: /Bahasa Indonesia/ })).toHaveAttribute(
+      "href",
+      "/id",
     );
     expect(screen.getByRole("link", { name: /日本語/ })).toHaveAttribute(
       "href",
@@ -190,6 +195,15 @@ describe("Header", () => {
       "/cs/zkomprimovat-pdf",
     );
     expect(screen.getByLabelText(/Otevřít nabídku/i)).toBeInTheDocument();
+  });
+
+  it("renders Indonesian navigation when given the id dictionary", () => {
+    render(<Header {...headerProps("id")} />);
+    expect(screen.getByRole("link", { name: "Kompres" })).toHaveAttribute(
+      "href",
+      "/id/kompres-pdf",
+    );
+    expect(screen.getByLabelText(/Buka menu/i)).toBeInTheDocument();
   });
 
   it("renders Japanese navigation when given the ja dictionary", () => {
