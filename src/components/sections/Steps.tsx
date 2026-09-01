@@ -37,7 +37,7 @@ export function Steps({
   if (variant === "inline") {
     return (
       <div className="my-10">
-        <h3 className="text-xl font-bold text-[--color-ink] mb-6">{heading}</h3>
+        <h2 className="text-xl font-bold text-[--color-ink] mb-6">{heading}</h2>
         {list}
       </div>
     );

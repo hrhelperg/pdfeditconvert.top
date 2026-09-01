@@ -70,6 +70,15 @@ export interface LocaleConfig {
   readonly published: boolean;
   /** Locale tag passed to `Intl` for dates and numbers. */
   readonly intlLocale: string;
+  /**
+   * Value for `og:locale`, which is NOT BCP-47: Open Graph wants
+   * `language_TERRITORY` (`pt_BR`, not `pt-BR`). An unrecognized value is
+   * discarded by Facebook/LinkedIn and silently treated as `en_US`, so a
+   * localized share preview would claim to be English. Declared per locale
+   * rather than derived from `intlLocale`, because `ar` carries a bare
+   * language tag with no territory and derivation would produce `ar`.
+   */
+  readonly ogLocale: string;
 }
 
 export const LOCALES: Record<Locale, LocaleConfig> = {
@@ -83,6 +92,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: null,
     published: true,
     intlLocale: "en-US",
+    ogLocale: "en_US",
   },
   "pt-BR": {
     code: "pt-BR",
@@ -94,6 +104,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "pt-BR",
+    ogLocale: "pt_BR",
   },
   es: {
     code: "es",
@@ -105,6 +116,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "es-ES",
+    ogLocale: "es_ES",
   },
   fr: {
     code: "fr",
@@ -116,6 +128,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "fr-FR",
+    ogLocale: "fr_FR",
   },
   de: {
     code: "de",
@@ -127,6 +140,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "de-DE",
+    ogLocale: "de_DE",
   },
   ja: {
     code: "ja",
@@ -138,6 +152,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "ja-JP",
+    ogLocale: "ja_JP",
   },
   id: {
     code: "id",
@@ -149,6 +164,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "id-ID",
+    ogLocale: "id_ID",
   },
   ar: {
     code: "ar",
@@ -160,6 +176,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "ar",
+    ogLocale: "ar_AR",
   },
   ru: {
     code: "ru",
@@ -171,6 +188,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "ru-RU",
+    ogLocale: "ru_RU",
   },
   pl: {
     code: "pl",
@@ -182,6 +200,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "pl-PL",
+    ogLocale: "pl_PL",
   },
   cs: {
     code: "cs",
@@ -193,6 +212,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "cs-CZ",
+    ogLocale: "cs_CZ",
   },
   it: {
     code: "it",
@@ -204,6 +224,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "it-IT",
+    ogLocale: "it_IT",
   },
   tr: {
     code: "tr",
@@ -215,6 +236,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     fallback: "en",
     published: true,
     intlLocale: "tr-TR",
+    ogLocale: "tr_TR",
   },
 };
 

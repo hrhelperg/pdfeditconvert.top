@@ -10,8 +10,17 @@ const GOOGLE_PLAY =
 const ORG = {
   "@type": "Organization",
   name: "hrhelperg s.r.o.",
+  // The legal entity and the product are different names. Without this the
+  // publisher on every page reads as a Czech s.r.o. with no stated relation
+  // to "PDF Editor", which is the name everything else on the site uses.
+  brand: { "@type": "Brand", name: BRAND },
   url: SITE_URL,
   logo: `${SITE_URL}/pdf-editor-mark.svg`,
+  // The two store listings are the site's only other first-party profiles,
+  // and they are what an entity resolver needs to connect this site to the
+  // app it exists to promote. They were previously stated only as
+  // `downloadUrl` on the 13 home pages.
+  sameAs: [APP_STORE, GOOGLE_PLAY],
   address: {
     "@type": "PostalAddress",
     streetAddress: "Husitská 502/36",
@@ -123,58 +132,41 @@ export function articleSchema({
  * were retired by Google in 2023, so there is nothing to lose by scoping it
  * to pages that genuinely instruct.
  */
-const PROCEDURAL_OPENERS: Partial<Record<Locale, RegExp>> = {
-  en: /^how to\b/i,
-  "pt-BR": /^como\b/i,
-  fr: /^comment\b/i,
-  // Matches "Cómo …" only — the same "how to" opener EN/pt-BR/fr key off,
-  // not the "¿Por qué…?"/"¿Se puede…?" openers used by es's explanatory and
-  // troubleshooting guides, which aren't step-by-step procedures either.
-  es: /^cómo\b/i,
-  // Matches "Come …" only — not the "Perché…?"/"Cos'è…?" openers used by
-  // it's explanatory and troubleshooting guides, which aren't step-by-step
-  // procedures either.
-  it: /^come\b/i,
-  // Matches "كيفية …" only. Deliberately \s, not \b: JS regex \b is a
-  // transition between \w ([A-Za-z0-9_]) and non-\w, and Arabic letters are
-  // not in \w — so \b never matches on either side of an all-Arabic word,
-  // silently failing to match anything at all. \s after the literal prefix
-  // sidesteps that entirely.
-  ar: /^كيفية\s/,
-  // Matches "Как …" only. Deliberately \s, not \b: JS regex \b is a
-  // transition between \w ([A-Za-z0-9_]) and non-\w, and Cyrillic letters
-  // are not in \w — so \b never matches on either side of an all-Cyrillic
-  // word, silently failing to match anything at all. \s after the literal
-  // prefix sidesteps that entirely.
-  ru: /^как\s/i,
-};
+/**
+ * Procedural guides whose English slug does not start with `how-to-`.
+ *
+ * The slug prefix carries the distinction for 75 of the 76 procedures. This
+ * one is phrased as a qualifier ("…Without Losing Too Much Quality") but is
+ * a genuine step-by-step procedure, so it is named explicitly rather than
+ * loosening the prefix rule for everything.
+ */
+const PROCEDURAL_EXCEPTIONS = new Set<string>([
+  "compress-pdf-without-losing-too-much-quality",
+]);
 
 /**
- * Locales with no reliable "how to" title opener to test for.
+ * Decided by English slug, identically for every locale.
  *
- * The Romance locales above all phrase a how-to guide as "Cómo/Comment/Como
- * …", so a lexical prefix works. German infinitive-phrase titles put the
- * verb at the end ("PDF-Dateien kundenfertig gestalten" — OV word order),
- * which reads naturally but leaves no stable prefix to test, and forcing an
- * artificial "Wie …" opener onto every title would be worse copy than the
- * schema is worth. These locales fall back to the English route id instead:
- * every "how-to-*" id is a genuine step-by-step procedure by construction
- * (see docs/localization/de-terminology.md), and every other id is not —
- * the same distinction the title regex draws for other locales, just keyed
- * off a signal that survives translation instead of prose.
+ * This used to test a per-language title opener (`^how to`, `^cómo`, `^как`
+ * …), with a route-id fallback for locales whose word order leaves no
+ * stable prefix. That approach failed in both directions. Any locale absent
+ * from both tables silently fell through to the *English* regex, which
+ * cannot match a Japanese, Indonesian, Polish, Czech or Turkish title — so
+ * those five locales emitted zero HowTo across ~380 pages. And where a
+ * prefix did match, it over-matched: "Cómo funcionan los formularios PDF"
+ * ("how PDF forms work") is an explainer, not a procedure, yet it took
+ * HowTo in es and ru while the same page took none in en, de or ar.
+ *
+ * The English slug is the one signal that survives translation intact — it
+ * is what every localized guide already stores in `slug` — so keying off it
+ * makes the answer identical across all 13 locales by construction, which
+ * is the correct invariant: whether a page is a procedure is a property of
+ * the page, not of the language it is written in.
  */
-const PROCEDURAL_LOCALES_BY_ROUTE_ID = new Set<Locale>(["de"]);
-
-export function isProceduralGuide(
-  h1: string,
-  locale: Locale = DEFAULT_LOCALE,
-  englishSlug?: string,
-): boolean {
-  if (PROCEDURAL_LOCALES_BY_ROUTE_ID.has(locale)) {
-    return (englishSlug ?? "").startsWith("how-to-");
-  }
-  const pattern = PROCEDURAL_OPENERS[locale] ?? PROCEDURAL_OPENERS.en!;
-  return pattern.test(h1.trim());
+export function isProceduralGuide(englishSlug: string): boolean {
+  return (
+    englishSlug.startsWith("how-to-") || PROCEDURAL_EXCEPTIONS.has(englishSlug)
+  );
 }
 
 export function howToSchema({

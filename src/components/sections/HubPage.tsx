@@ -27,7 +27,7 @@ export function HubPage({
   content: HubContent;
   locale?: Locale;
 }) {
-  const { sections, breadcrumbs } = getSiteDictionary(locale);
+  const { sections, breadcrumbs, store } = getSiteDictionary(locale);
   const crumbLabel = content.hero.eyebrow ?? content.hero.h1;
   // The English hub path identifies the cluster in every language; the
   // reader-facing URL is resolved from the route map.
@@ -40,6 +40,7 @@ export function HubPage({
     <>
       <Container className="pt-6">
         <Breadcrumbs
+          ariaLabel={breadcrumbs.ariaLabel}
           items={[{ label: breadcrumbs.home, href: homeHref }, { label: crumbLabel }]}
         />
       </Container>
@@ -49,6 +50,11 @@ export function HubPage({
         h1={content.hero.h1}
         highlight={content.hero.highlight}
         lead={content.hero.lead}
+        availabilityText={store.availability}
+        storeLabels={{
+          appStoreLabel: store.appStoreAria,
+          googlePlayLabel: store.googlePlayAria,
+        }}
       />
 
       <SEOContentSection

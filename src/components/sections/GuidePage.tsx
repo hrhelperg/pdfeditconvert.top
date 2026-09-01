@@ -54,9 +54,9 @@ export function GuidePage({
 
         {content.tips.length ? (
           <div className="my-10">
-            <h3 className="text-xl font-bold text-[--color-ink] mb-4">
+            <h2 className="text-xl font-bold text-[--color-ink] mb-4">
               {sections.tips}
-            </h3>
+            </h2>
             <ul className="space-y-2 list-disc ps-5 text-[--color-muted]">
               {content.tips.map((t) => (
                 <li key={t}>{t}</li>
@@ -100,7 +100,7 @@ export function GuidePage({
             { label: breadcrumbs.guides, path: guidesHref },
             { label: content.h1, path },
           ]),
-          ...(isProceduralGuide(content.h1, locale, content.slug)
+          ...(isProceduralGuide(content.slug)
             ? [
                 howToSchema({
                   name: content.h1,

@@ -1,6 +1,7 @@
 import { Container } from "@/components/primitives/Container";
 import { Breadcrumbs, type Crumb } from "@/components/seo/Breadcrumbs";
 import { formatDate } from "@/lib/i18n/format";
+import { getSiteDictionary } from "@/lib/i18n/registry";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
 
 export function ArticleLayout({
@@ -18,10 +19,11 @@ export function ArticleLayout({
   locale?: Locale;
   children: React.ReactNode;
 }) {
+  const { breadcrumbs } = getSiteDictionary(locale);
   return (
     <article className="pt-10 pb-4">
       <Container size="md">
-        <Breadcrumbs items={crumbs} />
+        <Breadcrumbs ariaLabel={breadcrumbs.ariaLabel} items={crumbs} />
         <div className="brand-stripe mt-6" aria-hidden />
         <h1 className="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1] text-[--color-ink]">
           {h1}

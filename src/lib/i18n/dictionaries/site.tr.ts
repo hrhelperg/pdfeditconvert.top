@@ -86,6 +86,7 @@ export const SITE_TR: SiteDictionary = {
   store: {
     appStoreAria: "PDF Editor uygulamasını App Store'dan indir",
     googlePlayAria: "PDF Editor uygulamasını Google Play'den al",
+    availability: "iOS ve Android'de mevcut · Ücretsiz dene",
   },
 
   breadcrumbs: {
@@ -94,6 +95,7 @@ export const SITE_TR: SiteDictionary = {
     compare: "Karşılaştırma",
     useCases: "Kullanım senaryoları",
     tools: "Araçlar",
+    ariaLabel: "Gezinme yolu",
   },
 
   sections: {

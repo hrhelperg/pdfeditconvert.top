@@ -95,6 +95,7 @@ export const SITE_IT: SiteDictionary = {
   store: {
     appStoreAria: "Scarica PDF Editor su App Store",
     googlePlayAria: "Scarica PDF Editor su Google Play",
+    availability: "Disponibile su iOS e Android · Prova gratis",
   },
 
   breadcrumbs: {
@@ -103,6 +104,7 @@ export const SITE_IT: SiteDictionary = {
     compare: "Confronti",
     useCases: "Casi d’uso",
     tools: "Strumenti",
+    ariaLabel: "Percorso di navigazione",
   },
 
   sections: {

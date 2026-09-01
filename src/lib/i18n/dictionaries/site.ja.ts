@@ -95,6 +95,7 @@ export const SITE_JA: SiteDictionary = {
   store: {
     appStoreAria: "App StoreでPDF Editorをダウンロード",
     googlePlayAria: "Google PlayでPDF Editorを入手",
+    availability: "iOSとAndroidで利用可能 · 無料でお試し",
   },
 
   breadcrumbs: {
@@ -103,6 +104,7 @@ export const SITE_JA: SiteDictionary = {
     compare: "比較",
     useCases: "活用事例",
     tools: "ツール",
+    ariaLabel: "パンくずリスト",
   },
 
   sections: {

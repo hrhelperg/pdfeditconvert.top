@@ -45,6 +45,7 @@ export function ContactPage({
   return (
     <Container size="md" className="py-12">
       <Breadcrumbs
+        ariaLabel={breadcrumbs.ariaLabel}
         items={[
           { label: breadcrumbs.home, href: homeHref },
           { label: content.h1 },

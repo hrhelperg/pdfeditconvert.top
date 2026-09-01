@@ -86,6 +86,7 @@ export const SITE_ID: SiteDictionary = {
   store: {
     appStoreAria: "Unduh PDF Editor di App Store",
     googlePlayAria: "Dapatkan PDF Editor di Google Play",
+    availability: "Tersedia di iOS dan Android · Coba gratis",
   },
 
   breadcrumbs: {
@@ -94,6 +95,7 @@ export const SITE_ID: SiteDictionary = {
     compare: "Perbandingan",
     useCases: "Kasus penggunaan",
     tools: "Alat",
+    ariaLabel: "Navigasi breadcrumb",
   },
 
   sections: {

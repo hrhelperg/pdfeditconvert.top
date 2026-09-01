@@ -95,6 +95,7 @@ export const SITE_DE: SiteDictionary = {
   store: {
     appStoreAria: "PDF Editor im App Store herunterladen",
     googlePlayAria: "PDF Editor bei Google Play herunterladen",
+    availability: "Verfügbar für iOS und Android · Kostenlos testen",
   },
 
   breadcrumbs: {
@@ -103,6 +104,7 @@ export const SITE_DE: SiteDictionary = {
     compare: "Vergleiche",
     useCases: "Anwendungsfälle",
     tools: "Tools",
+    ariaLabel: "Navigationspfad",
   },
 
   sections: {

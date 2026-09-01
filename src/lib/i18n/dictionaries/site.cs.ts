@@ -86,6 +86,7 @@ export const SITE_CS: SiteDictionary = {
   store: {
     appStoreAria: "Stáhnout PDF Editor z App Store",
     googlePlayAria: "Stáhnout PDF Editor z Google Play",
+    availability: "Dostupné pro iOS i Android · Vyzkoušej zdarma",
   },
 
   breadcrumbs: {
@@ -94,6 +95,7 @@ export const SITE_CS: SiteDictionary = {
     compare: "Srovnání",
     useCases: "Případy užití",
     tools: "Nástroje",
+    ariaLabel: "Drobečková navigace",
   },
 
   sections: {

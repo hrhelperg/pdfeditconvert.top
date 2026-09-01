@@ -52,6 +52,7 @@ export function GuidesIndexPage({
       />
       <Container className="pt-6">
         <Breadcrumbs
+          ariaLabel={breadcrumbs.ariaLabel}
           items={[
             { label: breadcrumbs.home, href: homeHref },
             { label: breadcrumbs.guides },
