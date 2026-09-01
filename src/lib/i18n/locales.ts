@@ -191,7 +191,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "Czech",
     nativeName: "Čeština",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "cs-CZ",
   },
   it: {

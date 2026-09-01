@@ -236,7 +236,7 @@ export const PL_ROUTE_MANIFEST: readonly LocaleRouteEntry[] = [
   {
     id: "contact",
     slug: "kontakt",
-    title: "Kontakt — PDF Editor od hrhelperg s.r.o.",
+    title: "Skontaktuj się — PDF Editor od hrhelperg s.r.o.",
     description:
       "Skontaktuj się z zespołem PDF Editor. E-mail: info@hrhelperg.com.",
   },

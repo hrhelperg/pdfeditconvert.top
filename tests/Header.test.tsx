@@ -12,7 +12,17 @@ import { publishedLocales } from "@/lib/i18n/locales";
  * same way the root layout builds them.
  */
 function headerProps(
-  locale: "en" | "pt-BR" | "fr" | "es" | "de" | "it" | "ar" | "ru" | "pl" = "en",
+  locale:
+    | "en"
+    | "pt-BR"
+    | "fr"
+    | "es"
+    | "de"
+    | "it"
+    | "ar"
+    | "ru"
+    | "pl"
+    | "cs" = "en",
 ) {
   const d = getSiteDictionary(locale);
   return {
@@ -84,6 +94,10 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: /Polski/ })).toHaveAttribute(
       "href",
       "/pl",
+    );
+    expect(screen.getByRole("link", { name: /Čeština/ })).toHaveAttribute(
+      "href",
+      "/cs",
     );
   });
 
@@ -157,6 +171,15 @@ describe("Header", () => {
       "/pl/kompresuj-pdf",
     );
     expect(screen.getByLabelText(/Otwórz menu/i)).toBeInTheDocument();
+  });
+
+  it("renders Czech navigation when given the cs dictionary", () => {
+    render(<Header {...headerProps("cs")} />);
+    expect(screen.getByRole("link", { name: "Komprimovat" })).toHaveAttribute(
+      "href",
+      "/cs/zkomprimovat-pdf",
+    );
+    expect(screen.getByLabelText(/Otevřít nabídku/i)).toBeInTheDocument();
   });
 
   it("clicking the toggle opens the mobile menu", async () => {
