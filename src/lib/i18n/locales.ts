@@ -125,7 +125,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "German",
     nativeName: "Deutsch",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "de-DE",
   },
   ja: {
