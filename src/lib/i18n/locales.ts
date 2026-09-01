@@ -158,7 +158,7 @@ export const LOCALES: Record<Locale, LocaleConfig> = {
     name: "Arabic",
     nativeName: "العربية",
     fallback: "en",
-    published: false,
+    published: true,
     intlLocale: "ar",
   },
   ru: {
